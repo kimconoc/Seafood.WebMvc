@@ -3,6 +3,7 @@ using Admin.CustomAuthen;
 using Admin.Models;
 using Domain.Models.User;
 using Newtonsoft.Json;
+using Service;
 using System;
 using System.DirectoryServices.AccountManagement;
 using System.Linq;
@@ -25,6 +26,13 @@ namespace Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel model, string ReturnUrl = "")
         {
+            string url = "api/Account/Login";
+            dynamic body = new
+            {
+                Username = "ducpv13",
+                Password = "ad"
+            };
+            Provider.GetAsync(url, body);
             return RedirectToAction("Index", "Home");
         }
 

@@ -28,15 +28,16 @@ namespace Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.Message = "Nhập thông tin đăng nhập";
                 return View(model);
             }           
-            var userBase = provider.PostAsync<User>(ApiUri.POST_AccountLogin, model).Result;
-            if(userBase == null || userBase.Data == null)
+            var userBase = provider.PostAsync<User>(ApiUri.POST_AccountLogin, model);
+            if(userBase == null || userBase.Result.Data == null)
             {
-                ViewBag.Message = "User is not registered to application";
+                ViewBag.Message = "Tài khoản đăng nhập không đúng";
                 return View(model);
             }
-            var user = userBase.Data;
+            var user = userBase.Result.Data;
             // Lưu thông tin ticket
             var userData = StoreUserData(user);
             FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, model.UserName, DateTime.Now, DateTime.Now.AddMinutes(1500), false, JsonConvert.SerializeObject(userData), FormsAuthentication.FormsCookiePath);

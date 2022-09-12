@@ -26,18 +26,18 @@
 <body>
     <div class="login-form">
         <div class="form-group" style="text-align: center;">
-            <img src="~/assets/images/logo_vinmec.png" height="80" />
+            <img src="~/assets/images/logos/logo_login.jpg" height="80"width="200"/>
         </div>
 
         <form role="form" method="post" data-parsley-validate="">
             @Html.AntiForgeryToken()
 
-            <div class="form-group ">
-                <input type="text" class="form-control" placeholder="Your AD account" id="UserName" name="UserName">
+            <div class="form-group log-status" id="txtUserName">
+                <input type="text" class="form-control" placeholder="Nhập tài khoản" id="UserName" name="UserName">
                 <i class="fa fa-user"></i>
             </div>
             <div class="form-group log-status" id="txtPassword" style="margin-bottom: 10px;">
-                <input type="password" class="form-control" placeholder="Your password" id="Password" name="Password">
+                <input type="password" class="form-control" placeholder="Nhập mật khẩu" id="Password" name="Password">
                 <i class="fa fa-lock"></i>
             </div>
             <span id="alert"></span>
@@ -51,12 +51,15 @@
             $('.log-status').removeClass('wrong-entry');
         });
 
-        $( document ).ready(function() {
-            if ('@ViewBag.Message' != '') {
+        $(document).ready(function ()
+        {
+            if ('@ViewBag.Message' != '')
+            {
+                $('#txtUserName').addClass('wrong-entry');
                 $('#txtPassword').addClass('wrong-entry');
                 $('#alert').html('@ViewBag.Message')
 				$('#alert').fadeIn(500);
-				setTimeout( "$('#alert').fadeOut(1500);",3000 );
+				setTimeout( "$('#alert').fadeOut(1500);",5000 );
             }
 
             $('#UserName').trigger('change');

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Admin.Common.Model
+namespace Admin.Model
 {
     public class UserData
     {

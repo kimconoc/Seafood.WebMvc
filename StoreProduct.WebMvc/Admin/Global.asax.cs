@@ -1,4 +1,4 @@
-﻿using Admin.Common.Model;
+﻿using Admin.Model;
 using Admin.MemCached;
 using Newtonsoft.Json;
 using System;

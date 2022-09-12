@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,6 +47,7 @@
     <Compile Include="Models\BaseModel\IEntiy.cs" />
     <Compile Include="Models\BaseModel\ResponseBase.cs" />
     <Compile Include="Models\BaseModel\VBaseModel.cs" />
+    <Compile Include="Models\ParameterModel\LoginViewModel.cs" />
     <Compile Include="Models\ResponseModel\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

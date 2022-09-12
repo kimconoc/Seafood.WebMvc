@@ -162,6 +162,7 @@
     <Compile Include="Common\Model\DataTablesQueryModel.cs" />
     <Compile Include="Common\Model\UserData.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="CustomAuthen\RecaptchaAuthen.cs" />
@@ -174,7 +175,7 @@
     <Compile Include="MemCached\SpamAD.cs" />
     <Compile Include="Models\ActionViewModel.cs" />
     <Compile Include="Models\ADUserDetailModel.cs" />
-    <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\ParameterModel\LoginViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -464,6 +465,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

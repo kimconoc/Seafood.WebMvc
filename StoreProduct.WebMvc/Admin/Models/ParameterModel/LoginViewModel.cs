@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace Admin.Models
+namespace Admin.Models.ParameterModel
 {
     public class LoginViewModel
     {

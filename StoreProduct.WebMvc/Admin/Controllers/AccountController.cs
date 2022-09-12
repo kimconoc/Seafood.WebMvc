@@ -1,12 +1,7 @@
-﻿using Admin.Common.Model;
-using Admin.CustomAuthen;
-using Admin.Models;
-using Domain.Models.User;
-using Newtonsoft.Json;
-using Service;
+﻿using Admin.Models.ParameterModel;
+using Domain.Models.ResponseModel;
+using Service.ServiceProvider;
 using System;
-using System.DirectoryServices.AccountManagement;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -14,7 +9,7 @@ using System.Web.Security;
 
 namespace Admin.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         // GET: Account
         public ActionResult Login()
@@ -30,9 +25,11 @@ namespace Admin.Controllers
             dynamic body = new
             {
                 Username = "ducpv13",
-                Password = "ad"
+                Password = "ad1234567"
             };
-            Provider.GetAsync(url, body);
+            
+            var test = provider.PostAsync<User>(url, body).Result;
+            var name = test;
             return RedirectToAction("Index", "Home");
         }
 

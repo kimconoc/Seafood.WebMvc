@@ -41,10 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constant\ApiUri.cs" />
     <Compile Include="FileLog\FileHelper.cs" />
     <Compile Include="Models\BaseModel\IEntiy.cs" />
+    <Compile Include="Models\BaseModel\ResponseBase.cs" />
     <Compile Include="Models\BaseModel\VBaseModel.cs" />
-    <Compile Include="Models\User\User.cs" />
+    <Compile Include="Models\ResponseModel\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

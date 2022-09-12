@@ -1,18 +1,12 @@
 ﻿using Domain.Models.BaseModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Domain.Models.User
+namespace Domain.Models.ResponseModel
 {
     public class User : VBaseModel
     {
         public static ClaimsIdentity Identity { get; internal set; }
         public string Username { get; set; }
-        public string PasswordHash { get; set; }
         public string Roles { get; set; }
         public string Fullname { get; set; }
         public string FirstName { get; set; }
@@ -25,8 +19,6 @@ namespace Domain.Models.User
         public string Title { get; set; }
         public string Company { get; set; }
         public bool IsAdminUser { get; set; }
-        public string SessionId { get; set; }
-        public string Session { get; set; }
         public bool IsLocked { get; set; } = false;
     }
 }

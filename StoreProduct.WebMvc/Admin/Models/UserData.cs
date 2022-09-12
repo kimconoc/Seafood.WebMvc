@@ -10,5 +10,6 @@ namespace Admin.Model
         public string FullName { get; set; }
         public string DisplayName { get; set; }
         public List<string> Roles { get; set; }
+        public bool IsAdminUser { get; set; }
     }
 }

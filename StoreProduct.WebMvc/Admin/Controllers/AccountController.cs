@@ -66,7 +66,8 @@ namespace Admin.Controllers
             {
                 DisplayName = user.DisplayName,
                 FullName = user.Fullname,
-                Roles = roles
+                Roles = roles,
+                IsAdminUser = user.IsAdminUser
             };
             return userData;
         }

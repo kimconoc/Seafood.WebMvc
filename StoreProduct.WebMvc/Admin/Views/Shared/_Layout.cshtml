@@ -1,5 +1,4 @@
 ﻿@using Newtonsoft.Json;
-@using Admin.Common
 @using Admin.Model;
 
 @{
@@ -30,7 +29,33 @@
             <div class="mdc-drawer__content">
                 <div class="mdc-list-group">
                     <nav class="mdc-list mdc-drawer-menu">
-                        @if (User.IsInRole(Constant.AdminRoles.SuperAdmin) || User.IsInRole(Constant.AdminRoles.ManageUser))
+                        <div class="mdc-list-item mdc-drawer-item">
+                            <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="masterdata-sub-menu">
+                                <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">storage</i>
+                                Quản lý dữ liệu
+                                <i class="mdc-drawer-arrow material-icons">chevron_right</i>
+                            </a>
+                            <div class="mdc-expansion-panel" id="masterdata-sub-menu">
+                                <nav class="mdc-list mdc-drawer-submenu">
+                                    <div class="mdc-list-item mdc-drawer-item">
+                                        <a class="mdc-drawer-link" href="@Url.Action("Index", "Site")">
+                                            Bệnh viện
+                                        </a>
+                                    </div>
+                                    <div class="mdc-list-item mdc-drawer-item">
+                                        <a class="mdc-drawer-link" href="@Url.Action("Index", "Specialty")">
+                                            Chuyên khoa
+                                        </a>
+                                    </div>
+                                    <div class="mdc-list-item mdc-drawer-item">
+                                        <a class="mdc-drawer-link" href="@Url.Action("Index", "Clinic")">
+                                            Phòng khám
+                                        </a>
+                                    </div>
+                                </nav>
+                            </div>
+                        </div>
+                        @if (userData.IsAdminUser)
                         {
                             <div class="mdc-list-item mdc-drawer-item">
                                 <a class="mdc-drawer-link" href="@Url.Action("Index", "User")">
@@ -38,81 +63,6 @@
                                     Quản lý người dùng
                                 </a>
                             </div>
-                        }
-
-                        @if (User.IsInRole(Constant.AdminRoles.SuperAdmin) || User.IsInRole(Constant.AdminRoles.ManageData))
-                        {
-                            <div class="mdc-list-item mdc-drawer-item">
-                                <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="masterdata-sub-menu">
-                                    <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">storage</i>
-                                    Quản lý dữ liệu
-                                    <i class="mdc-drawer-arrow material-icons">chevron_right</i>
-                                </a>
-                                <div class="mdc-expansion-panel" id="masterdata-sub-menu">
-                                    <nav class="mdc-list mdc-drawer-submenu">
-                                        <div class="mdc-list-item mdc-drawer-item">
-                                            <a class="mdc-drawer-link" href="@Url.Action("Index", "Site")">
-                                                Bệnh viện
-                                            </a>
-                                        </div>
-                                        <div class="mdc-list-item mdc-drawer-item">
-                                            <a class="mdc-drawer-link" href="@Url.Action("Index", "Specialty")">
-                                                Chuyên khoa
-                                            </a>
-                                        </div>
-                                        <div class="mdc-list-item mdc-drawer-item">
-                                            <a class="mdc-drawer-link" href="@Url.Action("Index", "Clinic")">
-                                                Phòng khám
-                                            </a>
-                                        </div>
-                                    </nav>
-                                </div>
-                            </div>
-                        }
-                        @if (User.IsInRole(Constant.AdminRoles.SuperAdmin) || User.IsInRole(Constant.AdminRoles.ManageRole))
-                        {
-                            <div class="mdc-list-item mdc-drawer-item">
-                                <a class="mdc-drawer-link" href="@Url.Action("Index", "Role")">
-                                    <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">dashboard</i>
-                                    Quản lý nhóm quyền
-                                </a>
-                            </div>
-                        }
-                        @if (User.IsInRole(Constant.AdminRoles.SuperAdmin) || User.IsInRole(Constant.AdminRoles.ManageUnlock))
-                        {
-                            <div class="mdc-list-item mdc-drawer-item">
-                                <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="record-sub-menu">
-                                    <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">assignment</i>
-                                    Quản lý hồ sơ
-                                    <i class="mdc-drawer-arrow material-icons">chevron_right</i>
-                                </a>
-                                <div class="mdc-expansion-panel" id="record-sub-menu">
-                                    <nav class="mdc-list mdc-drawer-submenu">
-                                        <div class="mdc-list-item mdc-drawer-item">
-                                            <a class="mdc-drawer-link" href="@Url.Action("Index", "UnlockForm")">
-                                                Quản lý mở khóa hồ sơ
-                                            </a>
-                                        </div>
-                                        <div class="mdc-list-item mdc-drawer-item">
-                                            <a class="mdc-drawer-link" href="@Url.Action("Index", "DeleteRecord")">
-                                                Xóa hồ sơ
-                                            </a>
-                                        </div>
-                                        <div class="mdc-list-item mdc-drawer-item">
-                                            <a class="mdc-drawer-link" href="@Url.Action("Index", "ChangeStatus")">
-                                                Thay đổi trạng thái
-                                            </a>
-                                        </div>
-                                    </nav>
-                                </div>
-                            </div>
-
-                            @*<div class="mdc-list-item mdc-drawer-item">
-                                <a class="mdc-drawer-link" href="@Url.Action("Index", "UnlockForm")">
-                                    <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">lock_open</i>
-                                    Quản lý mở khóa hồ sơ
-                                </a>
-                            </div>*@
                         }
                     </nav>
                 </div>

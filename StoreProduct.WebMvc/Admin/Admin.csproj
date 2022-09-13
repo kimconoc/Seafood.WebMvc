@@ -181,7 +181,6 @@
     <Content Include="assets\fonts\roboto\Roboto-Regular.svg" />
     <Content Include="assets\fonts\roboto\Roboto-Thin.svg" />
     <Content Include="assets\images\logos\logo_login.jpg" />
-    <Content Include="assets\images\logo_vinmec-white.png" />
     <Content Include="assets\images\sidebar\sidebar-bg.jpg" />
     <Content Include="assets\images\switch.png" />
     <Content Include="assets\js\dashboard.js" />

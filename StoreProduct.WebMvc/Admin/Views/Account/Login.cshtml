@@ -3,7 +3,6 @@
     Layout = null;
 }
 
-
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -20,13 +19,35 @@
             transform: scale(1.12);
             transform-origin: 0 0;
         }
+        .register{
+            color: #007bff;
+            cursor: pointer;
+        }
+            .register:hover {
+                font-weight: bold;
+                text-decoration: underline;
+                text-decoration-color: none;
+            }
+        .modal-popup {
+            margin: 5% auto !important;
+            max-width: 700px;
+        }
+
+        .aria-hidden {
+            text-align: right;
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+            .aria-hidden:focus{
+                outline:none;
+            }
     </style>
 </head>
 
 <body>
     <div class="login-form">
-        <div class="form-group" style="text-align: center;">
-            <img src="~/assets/images/logos/logo_login.jpg" height="80"width="200"/>
+        <div class="form-group" style="width: 150px; margin: 0 auto;">
+            <img style="width: 100%;" src="~/assets/images/logos/logo_login.jpg" />
         </div>
 
         <form role="form" method="post" data-parsley-validate="">
@@ -44,9 +65,65 @@
             <button type="submit" id="login" class="log-btn">
                 Đăng nhập
             </button>
+            <div style="display: flex; margin-top:5px">
+                <div style="flex:3;">
+                    <h6 class="register" onclick="showModalRegister()" >Đăng ký tài khoản</h6>
+                </div>
+                <div style="flex:auto;">
+                </div>
+                <div style="flex:3.3;">
+                    <h6 class="register" onclick="showModalPasswordRetrieval()">Bạn quên mật khẩu?</h6>
+                </div>
+            </div>
         </form>
     </div>
+    <div class="modal" tabindex="-1" role="dialog" id="modalRegister">
+        <div class="modal-popup modal-dialog" role="document">
+            <div class="modal-content">
+                <button class="aria-hidden close" aria-label="Close" onclick="CloseModalRegister()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div style="display: flex;">
+                    <div style="flex: 1.5; padding-left: 30px;padding-bottom:30px;">
+                        <div class="form-group" style="text-align: left; width: 70px;">
+                            <img style="width: 100%;" src="~/assets/images/logos/logo_login.jpg" height="70" />
+                        </div>
+                        <h6>Tạo Tài khoản SEAFOOD</h6>
+                        <div style="display: flex; margin-top: 30px;">
+                            <div style="flex:1;">
+                                <input type="text" style="height:35px" class="form-control" placeholder="Họ" />
+                            </div>
+                            <div style="flex:0.05;">
+                            </div>
+                            <div style="flex:1;">
+                                <input type="text" style="height:35px" class="form-control" placeholder="Tên" />
+                            </div>
+                        </div>
+                        <input type="text" style="height:35px;margin-top:20px;" class="form-control" placeholder="E-mail" />
+                        <div style="display: flex; margin-top: 20px;">
+                            <div style="flex:1;">
+                                <input type="text" style="height:35px" class="form-control" placeholder="Mật khẩu" />
+                            </div>
+                            <div style="flex:0.05;">
+                            </div>
+                            <div style="flex:1;">
+                                <input type="text" style="height:35px" class="form-control" placeholder="Xác nhận" />
+                            </div>
+                        </div>
+                        <div style="margin-left:10px;margin-right:10px;font-size:13px">Sử dụng 8 ký tự trở lên và kết hợp chữ cái, chữ số và biểu tượng. Để tăng tính bảo mật</div>
+                    </div>
+                    <div style="flex:0.1;">
+                    </div>
+                    <div style="flex:1;">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
+        var modal = document.getElementById("modalRegister");
+
         $('.form-control').keypress(function () {
             $('.log-status').removeClass('wrong-entry');
         });
@@ -64,6 +141,18 @@
 
             $('#UserName').trigger('change');
         });
+        function showModalRegister()
+        {
+            modal.style.display = "block";
+        }
+        function CloseModalRegister()
+        {
+            modal.style.display = "none";
+        }
+        function showModalPasswordRetrieval()
+        {
+            alert('Liên hệ SĐT: 0367823445');
+        }
     </script>
 </body>
 </html>

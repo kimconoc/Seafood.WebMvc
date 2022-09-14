@@ -19,8 +19,8 @@
             transform: scale(1.12);
             transform-origin: 0 0;
         }
-        .register{
-            color: #007bff;
+        .register {
+            color: #1a73e8;
             cursor: pointer;
         }
             .register:hover {
@@ -41,10 +41,42 @@
             .aria-hidden:focus{
                 outline:none;
             }
+        input.form-check-input {
+            width: 20px;
+            height: 20px;
+        }
+        .r-button-popup {
+            width: 100px !important;
+            font-size: 15px !important;
+            border-width: 0px !important;
+            border-radius: 5px !important;
+            font-weight: normal !important;
+            color: white;
+            height: 35px;
+            font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background: #1a73e8;
+        }
+            .r-button-popup:hover {
+                box-shadow: inset 0 0 100px rgb(0 0 0 / 20%);
+            }
+            .r-button-popup:focus {
+                outline: none;
+            }
+        .r-container-image {
+            width: 200px;
+            border-radius:50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 40%;
+            margin-left: auto;
+            margin-right: auto;
+        }
     </style>
 </head>
 
 <body>
+    @*Form login*@
     <div class="login-form">
         <div class="form-group" style="width: 150px; margin: 0 auto;">
             <img style="width: 100%;" src="~/assets/images/logos/logo_login.jpg" />
@@ -67,7 +99,7 @@
             </button>
             <div style="display: flex; margin-top:5px">
                 <div style="flex:3;">
-                    <h6 class="register" onclick="showModalRegister()" >Đăng ký tài khoản</h6>
+                    <h6 class="register" onclick="showModalRegister()">Đăng ký tài khoản</h6>
                 </div>
                 <div style="flex:auto;">
                 </div>
@@ -77,6 +109,7 @@
             </div>
         </form>
     </div>
+    @*Popup modal đăng ký tài khoản*@
     <div class="modal" tabindex="-1" role="dialog" id="modalRegister">
         <div class="modal-popup modal-dialog" role="document">
             <div class="modal-content">
@@ -84,6 +117,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <div style="display: flex;">
+                    @*Vùng 1 thông tin đăng ký*@
                     <div style="flex: 1.5; padding-left: 30px;padding-bottom:30px;">
                         <div class="form-group" style="text-align: left; width: 70px;">
                             <img style="width: 100%;" src="~/assets/images/logos/logo_login.jpg" height="70" />
@@ -100,22 +134,45 @@
                             </div>
                         </div>
                         <input type="text" style="height:35px;margin-top:20px;" class="form-control" placeholder="E-mail" />
+                        <input type="text" style="height:35px;margin-top:20px;" class="form-control" placeholder="Tài khoản" />
                         <div style="display: flex; margin-top: 20px;">
                             <div style="flex:1;">
-                                <input type="text" style="height:35px" class="form-control" placeholder="Mật khẩu" />
+                                <input type="password" style="height:35px" class="form-control" placeholder="Mật khẩu" />
                             </div>
                             <div style="flex:0.05;">
                             </div>
                             <div style="flex:1;">
-                                <input type="text" style="height:35px" class="form-control" placeholder="Xác nhận" />
+                                <input type="password" style="height:35px" class="form-control" placeholder="Xác nhận" />
                             </div>
                         </div>
                         <div style="margin-left:10px;margin-right:10px;font-size:13px">Sử dụng 8 ký tự trở lên và kết hợp chữ cái, chữ số và biểu tượng. Để tăng tính bảo mật</div>
+                        <div class="form-check" style="margin-top: 20px;">
+                            <input class="form-check-input" type="checkbox" value="" />
+                            <label style="margin-left:20px;margin-top:3px" class="form-check-label">Hiện mật khẩu</label>
+                        </div>
+                        <div style="display:flex;margin-top:50px">
+                            <div style="flex:3;margin-top:5px">
+                                <h6 class="register" onclick="cancelRegisterAccount()">Hủy bỏ</h6>
+                            </div>
+                            <div style="flex:0.3;">
+                            </div>
+                            <div style="flex: 3; text-align: right;">
+                                <button class="r-button-popup mdc-button mdc-button--outlined outlined-button--success mdc-ripple-upgraded" onclick="executeRegisterAccount()">
+                                    Đăng ký
+                                </button>
+                            </div>
+                        </div>
                     </div>
                     <div style="flex:0.1;">
                     </div>
-                    <div style="flex:1;">
-
+                    @*Vùng 2 logo giao diện*@
+                    <div style="flex: 1; padding: 30px">
+                        <div class="r-container-image">
+                            <img style="width: 100%;" src="~/assets/images/logos/r-logo_login.jpg" />
+                        </div>
+                        <label style="margin-top: 20px; text-align:center;">
+                            Một tài khoản. Hoạt động trên mọi dịch vụ của Seafood.
+                        </label>
                     </div>
                 </div>
             </div>
@@ -152,6 +209,14 @@
         function showModalPasswordRetrieval()
         {
             alert('Liên hệ SĐT: 0367823445');
+        }
+        function cancelRegisterAccount()
+        {
+            modal.style.display = "none";
+        }
+        function executeRegisterAccount()
+        {
+
         }
     </script>
 </body>

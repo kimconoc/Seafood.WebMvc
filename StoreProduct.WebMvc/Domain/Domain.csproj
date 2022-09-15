@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constant\ApiUri.cs" />
+    <Compile Include="Constant\Helper.cs" />
     <Compile Include="FileLog\FileHelper.cs" />
     <Compile Include="Models\BaseModel\IEntiy.cs" />
     <Compile Include="Models\BaseModel\ResponseBase.cs" />

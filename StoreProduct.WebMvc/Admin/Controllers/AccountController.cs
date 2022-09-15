@@ -56,6 +56,32 @@ namespace Admin.Controllers
             return RedirectToAction("Login", "Account");
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateAccount(string jsonObject)
+        {
+            dynamic data = null;
+            try
+            {
+                if (string.IsNullOrEmpty(jsonObject))
+                {
+                    data = new
+                    {
+                        IsCreate = false,
+                        Message = "Thông tin nhập không đúng"
+                    };
+                    return Json(data);
+                }
+                return Json(false);
+            }   
+            catch
+            {
+                return Json(false);
+            }
+            
+        }
+
+        #region private menthod
         private UserData StoreUserData(User user)
         {
             List<string> roles = new List<string>();
@@ -72,5 +98,6 @@ namespace Admin.Controllers
             };
             return userData;
         }
+        #endregion private menthod
     }
 }

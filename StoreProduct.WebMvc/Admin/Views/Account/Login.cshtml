@@ -46,7 +46,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-top: 40%;
+            margin-top: 50%;
             margin-left: auto;
             margin-right: auto;
         }
@@ -121,21 +121,25 @@
                             <input id="r_email" type="text" style="height:35px;" class="form-control" placeholder="E-mail" />
                         </div>
                         <span class="validateError" id="alert_r2"></span>
+                        <div class="form-group log-status" id="log_r_number">
+                            <input id="r_number" type="number" style="height:35px;" class="form-control" placeholder="Số điện thoại" />
+                        </div>
+                        <span class="validateError" id="alert_r3"></span>
                         <div class="form-group log-status" id="log_r_username">
                             <input id="r_username" type="text" style="height:35px;" class="form-control" placeholder="Tài khoản" />
                         </div>
-                        <span class="validateError" id="alert_r3"></span>
+                        <span class="validateError" id="alert_r4"></span>
                         <div style="display: flex;">
                             <div style="flex:1;" class="form-group log-status" id="log_r_password">
-                                <input id="id=" r_password" type="password" style="height:35px" class="form-control" placeholder="Mật khẩu" />
+                                <input id="r_password" type="password" style="height:35px" class="form-control" placeholder="Mật khẩu" />
                             </div>
                             <div style="flex:0.05;">
                             </div>
                             <div style="flex:1;" class="form-group log-status" id="log_r_confirmPassword">
-                                <input id="id=" r_confirmPassword" type="password" style="height:35px" class="form-control" placeholder="Xác nhận" />
+                                <input id="r_confirmPassword" type="password" style="height:35px" class="form-control" placeholder="Xác nhận" />
                             </div>
                         </div>
-                        <span class="validateError" id="alert_r4"></span>
+                        <span class="validateError" id="alert_r5"></span>
                         <div style="margin-left: 10px; margin-right: 10px; font-size: 13px">
                             Sử dụng 8 ký tự trở lên và kết hợp chữ cái, chữ số và biểu tượng. Để tăng tính bảo mật
                         </div>
@@ -184,7 +188,7 @@
             {
                 $('#txtUserName').addClass('wrong-entry');
                 $('#txtPassword').addClass('wrong-entry');
-                $('#alert').html('@ViewBag.Message')
+                $('#alert').html('@ViewBag.Message');
                 $('#alert').fadeIn(500);
                 setTimeout( "$('#alert').fadeOut(1500);",5000 );
             }
@@ -209,24 +213,108 @@
         }
         function executeRegisterAccount()
         {
+            isValidate = true;
             var r_firstName = $("#r_firstName").val();
-            if (r_firstName == undefined || r_firstName == '')
-            {
-                $('#log_r_firstName').addClass('wrong-entry');
-                $('#alert_r1').html(test)
-                $('#alert_r1').fadeIn(500);
-                //setTimeout("$('#alert1').fadeOut(1500);", 5000);
-                $('#alert_r2').html('Nhập một địa chỉ Gmail')
-                $('#alert_r2').fadeIn(500);
-                //setTimeout("$('#alert1').fadeOut(1500);", 5000);
-                $('#alert_r3').html('Nhập tài khoản')
-                $('#alert_r3').fadeIn(500);
-                //setTimeout("$('#alert1').fadeOut(1500);", 5000);
-                $('#alert_r4').html('Nhập mật khẩu')
-                $('#alert_r4').fadeIn(500);
-                //setTimeout("$('#alert1').fadeOut(1500);", 5000);
+            var r_lastName = $("#r_lastName").val();
+            var r_email = $("#r_email").val();
+            var r_number = $("#r_number").val();
+            var r_username = $("#r_username").val();
+            var r_password = $("#r_password").val();
+            var r_confirmPassword = $("#r_confirmPassword").val();
 
+            if (r_firstName == undefined || r_firstName == ''){
+                isValidate = false;
+                $('#log_r_firstName').addClass('wrong-entry');
+                $('#alert_r1').html('Nhập họ và tên');
+                $('#alert_r1').fadeIn(500);
+                setTimeout("$('#alert_r1').fadeOut(1500);", 5000);
             }
+            if (r_lastName == undefined || r_lastName == '') {
+                isValidate = false;
+                $('#log_r_lastName').addClass('wrong-entry');
+                $('#alert_r1').html('Nhập họ và tên');
+                $('#alert_r1').fadeIn(500);
+                setTimeout("$('#alert_r1').fadeOut(1500);", 5000);
+            }
+            if (r_email == undefined || r_email == '') {
+                isValidate = false;
+                $('#log_r_email').addClass('wrong-entry');
+                $('#alert_r2').html('Nhập một địa chỉ Gmail');
+                $('#alert_r2').fadeIn(500);
+                setTimeout("$('#alert_r2').fadeOut(1500);", 5000);
+            }
+            if (r_number == undefined || r_number == '') {
+                isValidate = false;
+                $('#log_r_number').addClass('wrong-entry');
+                $('#alert_r3').html('Nhập một số điện thoại');
+                $('#alert_r3').fadeIn(500);
+                setTimeout("$('#alert_r3').fadeOut(1500);", 5000);
+            }
+            if (r_username == undefined || r_username == '') {
+                isValidate = false;
+                $('#log_r_username').addClass('wrong-entry');
+                $('#alert_r4').html('Nhập tài khoản đăng nhập');
+                $('#alert_r4').fadeIn(500);
+                setTimeout("$('#alert_r4').fadeOut(1500);", 5000);
+            }
+            if (r_password == undefined || r_password == '') {
+                isValidate = false;
+                $('#log_r_password').addClass('wrong-entry');
+                $('#alert_r5').html('Nhập mật khẩu');
+                $('#alert_r5').fadeIn(500);
+                setTimeout("$('#alert_r5').fadeOut(1500);", 5000);
+            }
+            if (r_confirmPassword == undefined || r_confirmPassword == '') {
+                isValidate = false;
+                $('#log_r_confirmPassword').addClass('wrong-entry');
+                $('#alert_r5').html('Nhập mật khẩu');
+                $('#alert_r5').fadeIn(500);
+                setTimeout("$('#alert_r5').fadeOut(1500);", 5000);
+            }
+
+            if (!isValidate)
+                return;
+
+            dataObject =
+            {
+                r_firstName: r_firstName,
+                r_lastName: r_lastName,
+                r_email: r_email,
+                r_number: r_number,
+                r_username: r_username,
+                r_password: r_password,
+                r_confirmPassword: r_confirmPassword
+            };
+            paramData =
+            {
+                "__RequestVerificationToken": $('input[name="__RequestVerificationToken"]')[0].value,
+                "jsonObject": JSON.stringify(dataObject),
+            }
+            paramUrl = "@Url.Action("CreateAccount", "Account")";
+
+            $.ajax({
+                type: "POST",
+                traditional: true,
+                data:
+                {
+                    "__RequestVerificationToken": $('input[name="__RequestVerificationToken"]')[0].value,
+                    "jsonObject": JSON.stringify(dataObject),
+                },
+                url: "@Url.Action("CreateAccount", "Account")",
+                success: function (data)
+                {
+                    if (data != null)
+                    {
+                        alert(oke);
+                    }
+                    else
+                    {
+                        // show popup alert save false
+                    }
+                }
+            })
+
+
 
         }
     </script>

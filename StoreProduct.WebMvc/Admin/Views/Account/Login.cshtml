@@ -8,10 +8,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <title>Login</title>
-
+    <link href="~/assets/css/theme.css" rel="stylesheet" />
     <link href="~/Content/bootstrap/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/fa/font-awesome.css" rel="stylesheet" />
     <link href="~/Content/login.css" rel="stylesheet" />
+    <script src="~/assets/js/Constant.js"></script>
     <script src="~/Scripts/jquery/jquery-3.3.1.js"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <style>
@@ -19,15 +20,7 @@
             transform: scale(1.12);
             transform-origin: 0 0;
         }
-        .register {
-            color: #1a73e8;
-            cursor: pointer;
-        }
-            .register:hover {
-                font-weight: bold;
-                text-decoration: underline;
-                text-decoration-color: none;
-            }
+
         .modal-popup {
             margin: 5% auto !important;
             max-width: 700px;
@@ -38,39 +31,29 @@
             margin-right: 10px;
             margin-top: 5px;
         }
-            .aria-hidden:focus{
-                outline:none;
+            .aria-hidden:focus {
+                outline: none;
             }
+
         input.form-check-input {
             width: 20px;
             height: 20px;
         }
-        .r-button-popup {
-            width: 100px !important;
-            font-size: 15px !important;
-            border-width: 0px !important;
-            border-radius: 5px !important;
-            font-weight: normal !important;
-            color: white;
-            height: 35px;
-            font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
-            background: #1a73e8;
-        }
-            .r-button-popup:hover {
-                box-shadow: inset 0 0 100px rgb(0 0 0 / 20%);
-            }
-            .r-button-popup:focus {
-                outline: none;
-            }
+
         .r-container-image {
             width: 200px;
-            border-radius:50px;
+            border-radius: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-top: 40%;
             margin-left: auto;
             margin-right: auto;
+        }
+
+        .form-group {
+            margin-top: 1rem !important;
+            margin-bottom: 0 !important;
         }
     </style>
 </head>
@@ -94,17 +77,17 @@
                 <i class="fa fa-lock"></i>
             </div>
             <span id="alert"></span>
-            <button type="submit" id="login" class="log-btn">
+            <button style="margin-top: 10px;" type="submit" id="login" class="log-btn">
                 Đăng nhập
             </button>
             <div style="display: flex; margin-top:5px">
                 <div style="flex:3;">
-                    <h6 class="register" onclick="showModalRegister()">Đăng ký tài khoản</h6>
+                    <h6 class="labelClick" onclick="showModalRegister()">Đăng ký tài khoản</h6>
                 </div>
                 <div style="flex:auto;">
                 </div>
                 <div style="flex:3.3;">
-                    <h6 class="register" onclick="showModalPasswordRetrieval()">Bạn quên mật khẩu?</h6>
+                    <h6 class="labelClick" onclick="showModalPasswordRetrieval()">Bạn quên mật khẩu?</h6>
                 </div>
             </div>
         </form>
@@ -122,42 +105,52 @@
                         <div class="form-group" style="text-align: left; width: 70px;">
                             <img style="width: 100%;" src="~/assets/images/logos/logo_login.jpg" height="70" />
                         </div>
-                        <h6>Tạo Tài khoản SEAFOOD</h6>
-                        <div style="display: flex; margin-top: 30px;">
-                            <div style="flex:1;">
-                                <input type="text" style="height:35px" class="form-control" placeholder="Họ" />
+                        <h6 style="margin-top: 1rem;">Tạo Tài khoản SEAFOOD</h6>
+                        <div style="display: flex;">
+                            <div style="flex:1;" class="form-group log-status" id="log_r_firstName">
+                                <input id="r_firstName" type="text" style="height:35px" class="form-control" placeholder="Họ" />
                             </div>
                             <div style="flex:0.05;">
                             </div>
-                            <div style="flex:1;">
-                                <input type="text" style="height:35px" class="form-control" placeholder="Tên" />
+                            <div style="flex:1;" class="form-group log-status" id="log_r_lastName">
+                                <input id="r_lastName" type="text" style="height:35px" class="form-control" placeholder="Tên" />
                             </div>
                         </div>
-                        <input type="text" style="height:35px;margin-top:20px;" class="form-control" placeholder="E-mail" />
-                        <input type="text" style="height:35px;margin-top:20px;" class="form-control" placeholder="Tài khoản" />
-                        <div style="display: flex; margin-top: 20px;">
-                            <div style="flex:1;">
-                                <input type="password" style="height:35px" class="form-control" placeholder="Mật khẩu" />
+                        <span class="validateError" id="alert_r1"></span>
+                        <div class="form-group log-status" id="log_r_email">
+                            <input id="r_email" type="text" style="height:35px;" class="form-control" placeholder="E-mail" />
+                        </div>
+                        <span class="validateError" id="alert_r2"></span>
+                        <div class="form-group log-status" id="log_r_username">
+                            <input id="r_username" type="text" style="height:35px;" class="form-control" placeholder="Tài khoản" />
+                        </div>
+                        <span class="validateError" id="alert_r3"></span>
+                        <div style="display: flex;">
+                            <div style="flex:1;" class="form-group log-status" id="log_r_password">
+                                <input id="id=" r_password" type="password" style="height:35px" class="form-control" placeholder="Mật khẩu" />
                             </div>
                             <div style="flex:0.05;">
                             </div>
-                            <div style="flex:1;">
-                                <input type="password" style="height:35px" class="form-control" placeholder="Xác nhận" />
+                            <div style="flex:1;" class="form-group log-status" id="log_r_confirmPassword">
+                                <input id="id=" r_confirmPassword" type="password" style="height:35px" class="form-control" placeholder="Xác nhận" />
                             </div>
                         </div>
-                        <div style="margin-left:10px;margin-right:10px;font-size:13px">Sử dụng 8 ký tự trở lên và kết hợp chữ cái, chữ số và biểu tượng. Để tăng tính bảo mật</div>
+                        <span class="validateError" id="alert_r4"></span>
+                        <div style="margin-left: 10px; margin-right: 10px; font-size: 13px">
+                            Sử dụng 8 ký tự trở lên và kết hợp chữ cái, chữ số và biểu tượng. Để tăng tính bảo mật
+                        </div>
                         <div class="form-check" style="margin-top: 20px;">
-                            <input class="form-check-input" type="checkbox" value="" />
+                            <input id="id=" r_showPassword" class="form-check-input" type="checkbox" value="" />
                             <label style="margin-left:20px;margin-top:3px" class="form-check-label">Hiện mật khẩu</label>
                         </div>
-                        <div style="display:flex;margin-top:50px">
+                        <div style="display:flex;margin-top:40px">
                             <div style="flex:3;margin-top:5px">
-                                <h6 class="register" onclick="cancelRegisterAccount()">Hủy bỏ</h6>
+                                <h6 class="labelClick" onclick="cancelRegisterAccount()">Hủy bỏ</h6>
                             </div>
                             <div style="flex:0.3;">
                             </div>
                             <div style="flex: 3; text-align: right;">
-                                <button class="r-button-popup mdc-button mdc-button--outlined outlined-button--success mdc-ripple-upgraded" onclick="executeRegisterAccount()">
+                                <button class="buttonCore mdc-button mdc-button--outlined outlined-button--success mdc-ripple-upgraded" onclick="executeRegisterAccount()">
                                     Đăng ký
                                 </button>
                             </div>
@@ -170,7 +163,7 @@
                         <div class="r-container-image">
                             <img style="width: 100%;" src="~/assets/images/logos/r-logo_login.jpg" />
                         </div>
-                        <label style="margin-top: 20px; text-align:center;">
+                        <label style="margin-top: 15px; text-align:center;">
                             Một tài khoản. Hoạt động trên mọi dịch vụ của Seafood.
                         </label>
                     </div>
@@ -192,8 +185,8 @@
                 $('#txtUserName').addClass('wrong-entry');
                 $('#txtPassword').addClass('wrong-entry');
                 $('#alert').html('@ViewBag.Message')
-				$('#alert').fadeIn(500);
-				setTimeout( "$('#alert').fadeOut(1500);",5000 );
+                $('#alert').fadeIn(500);
+                setTimeout( "$('#alert').fadeOut(1500);",5000 );
             }
 
             $('#UserName').trigger('change');
@@ -216,6 +209,24 @@
         }
         function executeRegisterAccount()
         {
+            var r_firstName = $("#r_firstName").val();
+            if (r_firstName == undefined || r_firstName == '')
+            {
+                $('#log_r_firstName').addClass('wrong-entry');
+                $('#alert_r1').html(test)
+                $('#alert_r1').fadeIn(500);
+                //setTimeout("$('#alert1').fadeOut(1500);", 5000);
+                $('#alert_r2').html('Nhập một địa chỉ Gmail')
+                $('#alert_r2').fadeIn(500);
+                //setTimeout("$('#alert1').fadeOut(1500);", 5000);
+                $('#alert_r3').html('Nhập tài khoản')
+                $('#alert_r3').fadeIn(500);
+                //setTimeout("$('#alert1').fadeOut(1500);", 5000);
+                $('#alert_r4').html('Nhập mật khẩu')
+                $('#alert_r4').fadeIn(500);
+                //setTimeout("$('#alert1').fadeOut(1500);", 5000);
+
+            }
 
         }
     </script>

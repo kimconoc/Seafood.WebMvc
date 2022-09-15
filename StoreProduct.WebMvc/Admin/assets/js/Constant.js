@@ -1,0 +1,1 @@
+﻿var test = 'alo alo alo';

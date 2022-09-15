@@ -174,7 +174,8 @@
   <ItemGroup>
     <Content Include="404.html" />
     <Content Include="500.html" />
-    <Content Include="assets\css\demo\style.css" />
+    <Content Include="assets\css\style.css" />
+    <Content Include="assets\css\theme.css" />
     <Content Include="assets\fonts\roboto\Roboto-Bold.svg" />
     <Content Include="assets\fonts\roboto\Roboto-Light.svg" />
     <Content Include="assets\fonts\roboto\Roboto-Medium.svg" />
@@ -186,6 +187,7 @@
     <Content Include="assets\images\logos\logo_login.jpg" />
     <Content Include="assets\images\sidebar\sidebar-bg.jpg" />
     <Content Include="assets\images\switch.png" />
+    <Content Include="assets\js\Constant.js" />
     <Content Include="assets\js\dashboard.js" />
     <Content Include="assets\js\material.js" />
     <Content Include="assets\js\misc.js" />
@@ -460,7 +462,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="assets\css\themes\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

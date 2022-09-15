@@ -1,0 +1,36 @@
+﻿
+/*//////////////////////////////*/
+.validateError {
+    color: #D93025;
+    font-size: 13px;
+}
+
+.labelClick {
+    color: #1a73e8;
+    cursor: pointer;
+}
+    .labelClick:hover {
+        font-weight: bold;
+        text-decoration: underline;
+        text-decoration-color: none;
+    }
+
+.buttonCore {
+    width: 100px !important;
+    font-size: 15px !important;
+    border-width: 0px !important;
+    border-radius: 5px !important;
+    font-weight: normal !important;
+    color: white;
+    height: 35px;
+    font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background: #1a73e8;
+}
+
+    .buttonCore:hover {
+        box-shadow: inset 0 0 100px rgb(0 0 0 / 20%);
+    }
+
+    .buttonCore:focus {
+        outline: none;
+    }

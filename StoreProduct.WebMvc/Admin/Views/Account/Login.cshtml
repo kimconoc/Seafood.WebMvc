@@ -12,7 +12,7 @@
     <link href="~/Content/bootstrap/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/fa/font-awesome.css" rel="stylesheet" />
     <link href="~/Content/login.css" rel="stylesheet" />
-    <script src="~/assets/js/Constant.js"></script>
+    <script src="~/assets/js/constant.js"></script>
     <script src="~/Scripts/jquery/jquery-3.3.1.js"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <style>
@@ -50,10 +50,15 @@
             margin-left: auto;
             margin-right: auto;
         }
-
+        /*Ghi đề class*/
         .form-group {
             margin-top: 1rem !important;
             margin-bottom: 0 !important;
+        }
+
+        .form-control:focus, .form-control:focus + .fa {
+            border-color: #10CE88;
+            color: black !important;
         }
     </style>
 </head>
@@ -69,7 +74,7 @@
             @Html.AntiForgeryToken()
 
             <div class="form-group log-status" id="txtUserName">
-                <input type="text" class="form-control" placeholder="Nhập tài khoản" id="UserName" name="UserName">
+                <input type="text" class="form-control" placeholder="Nhập số điện thoại" id="UserName" name="UserName">
                 <i class="fa fa-user"></i>
             </div>
             <div class="form-group log-status" id="txtPassword" style="margin-bottom: 10px;">
@@ -121,14 +126,14 @@
                             <input id="r_email" type="text" style="height:35px;" class="form-control" placeholder="E-mail" />
                         </div>
                         <span class="validateError" id="alert_r2"></span>
-                        <div class="form-group log-status" id="log_r_number">
-                            <input id="r_number" type="number" style="height:35px;" class="form-control" placeholder="Số điện thoại" />
+                        <div class="form-group log-status" id="log_r_numberPhone">
+                            <input id="r_numberPhone" type="number" style="height:35px;" class="form-control" placeholder="Số điện thoại" />
                         </div>
                         <span class="validateError" id="alert_r3"></span>
-                        <div class="form-group log-status" id="log_r_username">
+                        @*<div class="form-group log-status" id="log_r_username">
                             <input id="r_username" type="text" style="height:35px;" class="form-control" placeholder="Tài khoản" />
                         </div>
-                        <span class="validateError" id="alert_r4"></span>
+                        <span class="validateError" id="alert_r4"></span>*@
                         <div style="display: flex;">
                             <div style="flex:1;" class="form-group log-status" id="log_r_password">
                                 <input id="r_password" type="password" style="height:35px" class="form-control" placeholder="Mật khẩu" />
@@ -144,7 +149,7 @@
                             Sử dụng 8 ký tự trở lên và kết hợp chữ cái, chữ số và biểu tượng. Để tăng tính bảo mật
                         </div>
                         <div class="form-check" style="margin-top: 20px;">
-                            <input id="id=" r_showPassword" class="form-check-input" type="checkbox" value="" />
+                            <input id="r_showPassword" onclick="isShowPassword()" class="form-check-input" type="checkbox" value="" />
                             <label style="margin-left:20px;margin-top:3px" class="form-check-label">Hiện mật khẩu</label>
                         </div>
                         <div style="display:flex;margin-top:40px">
@@ -176,7 +181,7 @@
         </div>
     </div>
     <script>
-        var modal = document.getElementById("modalRegister");
+        var r_modal = document.getElementById("modalRegister");
 
         $('.form-control').keypress(function () {
             $('.log-status').removeClass('wrong-entry');
@@ -197,11 +202,11 @@
         });
         function showModalRegister()
         {
-            modal.style.display = "block";
+            r_modal.style.display = "block";
         }
         function CloseModalRegister()
         {
-            modal.style.display = "none";
+            r_modal.style.display = "none";
         }
         function showModalPasswordRetrieval()
         {
@@ -209,7 +214,31 @@
         }
         function cancelRegisterAccount()
         {
-            modal.style.display = "none";
+            r_modal.style.display = "none";
+            clearData();
+        }
+        function isShowPassword()
+        {
+            var checkShowPassword = document.getElementById('r_showPassword');
+            if (checkShowPassword.checked)
+            {
+                document.getElementById("r_password").setAttribute('type', 'text');
+                document.getElementById("r_confirmPassword").setAttribute('type', 'text');
+            }
+            else
+            {
+                document.getElementById("r_password").setAttribute('type', 'password');
+                document.getElementById("r_confirmPassword").setAttribute('type', 'password');
+            }
+        }
+        function clearData()
+        {
+            $("#r_firstName").val('');
+            $("#r_lastName").val('');
+            $("#r_email").val('');
+            $("#r_numberPhone").val('');
+            $("#r_password").val('');
+            $("#r_confirmPassword").val('');
         }
         function executeRegisterAccount()
         {
@@ -217,10 +246,10 @@
             var r_firstName = $("#r_firstName").val();
             var r_lastName = $("#r_lastName").val();
             var r_email = $("#r_email").val();
-            var r_number = $("#r_number").val();
-            var r_username = $("#r_username").val();
+            var r_numberPhone = $("#r_numberPhone").val();
             var r_password = $("#r_password").val();
             var r_confirmPassword = $("#r_confirmPassword").val();
+            var isPw = validatePassword(r_password, r_confirmPassword);
 
             if (r_firstName == undefined || r_firstName == ''){
                 isValidate = false;
@@ -236,38 +265,25 @@
                 $('#alert_r1').fadeIn(500);
                 setTimeout("$('#alert_r1').fadeOut(1500);", 5000);
             }
-            if (r_email == undefined || r_email == '') {
+            if (!validateEmail(r_email)) {
                 isValidate = false;
                 $('#log_r_email').addClass('wrong-entry');
                 $('#alert_r2').html('Nhập một địa chỉ Gmail');
                 $('#alert_r2').fadeIn(500);
                 setTimeout("$('#alert_r2').fadeOut(1500);", 5000);
             }
-            if (r_number == undefined || r_number == '') {
+            if (!validatePhoneNumber(r_numberPhone)) {
                 isValidate = false;
-                $('#log_r_number').addClass('wrong-entry');
+                $('#log_r_numberPhone').addClass('wrong-entry');
                 $('#alert_r3').html('Nhập một số điện thoại');
                 $('#alert_r3').fadeIn(500);
                 setTimeout("$('#alert_r3').fadeOut(1500);", 5000);
             }
-            if (r_username == undefined || r_username == '') {
-                isValidate = false;
-                $('#log_r_username').addClass('wrong-entry');
-                $('#alert_r4').html('Nhập tài khoản đăng nhập');
-                $('#alert_r4').fadeIn(500);
-                setTimeout("$('#alert_r4').fadeOut(1500);", 5000);
-            }
-            if (r_password == undefined || r_password == '') {
+            if (isPw != 'true') {
                 isValidate = false;
                 $('#log_r_password').addClass('wrong-entry');
-                $('#alert_r5').html('Nhập mật khẩu');
-                $('#alert_r5').fadeIn(500);
-                setTimeout("$('#alert_r5').fadeOut(1500);", 5000);
-            }
-            if (r_confirmPassword == undefined || r_confirmPassword == '') {
-                isValidate = false;
                 $('#log_r_confirmPassword').addClass('wrong-entry');
-                $('#alert_r5').html('Nhập mật khẩu');
+                $('#alert_r5').html(validatePassword(r_password, r_confirmPassword));
                 $('#alert_r5').fadeIn(500);
                 setTimeout("$('#alert_r5').fadeOut(1500);", 5000);
             }
@@ -280,10 +296,8 @@
                 r_firstName: r_firstName,
                 r_lastName: r_lastName,
                 r_email: r_email,
-                r_number: r_number,
-                r_username: r_username,
+                r_numberPhone: r_numberPhone,
                 r_password: r_password,
-                r_confirmPassword: r_confirmPassword
             };
             paramData =
             {
@@ -313,9 +327,6 @@
                     }
                 }
             })
-
-
-
         }
     </script>
 </body>

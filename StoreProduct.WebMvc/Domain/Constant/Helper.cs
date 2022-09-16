@@ -11,6 +11,8 @@ namespace Domain.Constant
     {
         public static bool ValidPhoneNumer(string phoneNumber, string lengthAndPrefixPhoneNumber = "10-09,086,088,089,020,032,033,034,035,036,037,038,039,070,079,077,076,078,083,084,085,081,082,056,058,059")
         {
+            if (string.IsNullOrEmpty(phoneNumber))
+                return false;
             // Chuẩn hóa số điện thoại
             phoneNumber = phoneNumber.Replace("+", string.Empty);
             if (phoneNumber.StartsWith("84"))

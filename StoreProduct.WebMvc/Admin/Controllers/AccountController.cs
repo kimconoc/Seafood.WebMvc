@@ -1,5 +1,6 @@
 ﻿using Admin.Model;
 using Domain.Constant;
+using Domain.FileLog;
 using Domain.Models.ParameterModel;
 using Domain.Models.ResponseModel;
 using Newtonsoft.Json;
@@ -7,8 +8,10 @@ using Service.ServiceProvider;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using System.Web.Security;
 
 
@@ -68,17 +71,50 @@ namespace Admin.Controllers
                     data = new
                     {
                         IsCreate = false,
-                        Message = "Thông tin nhập không đúng"
+                        Message = "Dữ liệu trống"
                     };
                     return Json(data);
                 }
-                return Json(false);
+                var obj = new JavaScriptSerializer().Deserialize<dynamic>(jsonObject);
+                if (!Helper.ValidPhoneNumer(obj["r_numberPhone"]))
+                {
+                    data = new
+                    {
+                        IsCreate = false,
+                        Message = "Số điện thoại không hợp lệ"
+                    };
+                    return Json(data);
+                }
+                dynamic model = new
+                {
+                    FirstName = obj["r_firstName"],
+                    LastName = obj["r_lastName"],
+                    Email = obj["r_email"],
+                    NumberPhone = obj["r_numberPhone"],
+                    Password = obj["r_password"],
+                };
+                var isCreate = provider.PostAsync<bool>(ApiUri.POST_AccountCreate, model).Result;
+                if(!isCreate.Data)
+                {
+                    data = new
+                    {
+                        IsCreate = false,
+                        Message = isCreate.Message.ViMessage
+                    };
+                    return Json(data);
+                }
+                data = new
+                {
+                    IsCreate = true,
+                    Message = "Thành công"
+                };
+                return Json(data);
             }   
-            catch
+            catch(Exception ex)
             {
+                FileHelper.GeneratorFileByDay(ex.ToString(), MethodBase.GetCurrentMethod().Name);
                 return Json(false);
             }
-            
         }
 
         #region private menthod

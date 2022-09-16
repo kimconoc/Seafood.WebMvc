@@ -9,5 +9,6 @@ namespace Domain.Constant
     public class ApiUri
     {
         public const string POST_AccountLogin = "api/Account/Login";
+        public const string POST_AccountCreate = "api/Account/Create";
     }
 }

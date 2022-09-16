@@ -174,7 +174,7 @@
   <ItemGroup>
     <Content Include="404.html" />
     <Content Include="500.html" />
-    <Content Include="assets\css\style.css" />
+    <Content Include="assets\css\demo\style.css" />
     <Content Include="assets\css\theme.css" />
     <Content Include="assets\fonts\roboto\Roboto-Bold.svg" />
     <Content Include="assets\fonts\roboto\Roboto-Light.svg" />

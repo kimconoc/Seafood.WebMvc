@@ -63,30 +63,6 @@
             border-color: #10CE88;
             color: black !important;
         }
-
-        #loading {
-            background-color: white;
-            position: fixed;
-            display: block;
-            top: 0;
-            bottom: 0;
-            z-index: 1000000;
-            opacity: 0.5;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-        }
-
-        #loadingHourglass {
-            font-size: 50px;
-            color: #17a2b8;
-            margin: auto;
-            display: block;
-            top: calc(50% - 100px);
-            left: calc(50% - 10px);
-            position: absolute;
-            z-index: 999999;
-        }
     </style>
 </head>
 
@@ -95,7 +71,9 @@
         <button type="button" class="btn btn-info btn-lg">Open Modal</button>*@
     <div id="loading" style="display:none">
         <div id="loadingHourglass" class="fa">
-            <h1>lalalalal</h1>
+        </div>
+        <div id="loadingTextHourglass">
+            Processing...
         </div>
     </div>
     <div id="notification">
@@ -218,20 +196,8 @@
     </div>
     <script>
 
-        function hourglass()
-        {
-            var hourglass;
-            hourglass = document.getElementById("loadingHourglass");
-            hourglass.innerHTML = "&#xf251;";
-            setTimeout(function () {
-                hourglass.innerHTML = "&#xf252;";
-            }, 1000);
-            setTimeout(function () {
-                hourglass.innerHTML = "&#xf253;";
-            }, 2000);
-        }
-        hourglass();
-        setInterval(hourglass, 3000);
+        executeHourglass();
+        setInterval(executeHourglass, 3000);
 
         var r_modal = document.getElementById("modalRegister");
 
@@ -264,11 +230,6 @@
         }
         function showModalPasswordRetrieval()
         {
-            $("#loading").show();
-            var delayInMilliseconds = 5000; //1 second
-            setTimeout(function () {
-                $("#loading").hide();
-            }, delayInMilliseconds);
             $('#notification').html(HtmlNotifiInfo('Liên hệ đến SĐT: 0367823445'));
             $('#notification').fadeIn(500);
             setTimeout( "$('#notification').fadeOut(1500);",5000 );
@@ -367,7 +328,7 @@
                 "jsonObject": JSON.stringify(dataObject),
             }
             paramUrl = "@Url.Action("CreateAccount", "Account")";
-
+            $("#loading").show();
             $.ajax({
                 type: "POST",
                 traditional: true,
@@ -395,6 +356,10 @@
                         $('#notification').fadeIn(500);
                         setTimeout("$('#notification').fadeOut(1500);", 5000);
                     }
+                },
+                complete:function(data)
+                {
+                    $("#loading").hide();
                 }
 
             })

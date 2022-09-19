@@ -70,6 +70,41 @@
     .buttonCore:focus {
         outline: none;
     }
+/*loading Hourglass*/
+#loading {
+    background-color: white;
+    position: fixed;
+    display: block;
+    top: 0;
+    bottom: 0;
+    z-index: 1000000;
+    opacity: 0.5;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+#loadingHourglass {
+    font-size: 50px;
+    color: black;
+    margin: auto;
+    display: block;
+    top: calc(50% - 100px);
+    left: calc(50% - 10px);
+    position: absolute;
+    z-index: 999999;
+}
+
+#loadingTextHourglass {
+    font-size: inherit;
+    color: black;
+    margin: auto;
+    display: block;
+    top: calc(50% - 50px);
+    left: calc(50% - 25px);
+    position: absolute;
+    z-index: 999999;
+}
 
 /*Notification*/
 .notifiError {
@@ -90,7 +125,7 @@
 .notifiErrorRight {
     z-index: 1;
     position: absolute;
-    width: 500px;
+    width: 350px;
     padding: 20px;
     border-radius: 10px;
     background-color: #f44336;

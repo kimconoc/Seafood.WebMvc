@@ -40,7 +40,22 @@ function validatePassword(pw1,pw2)
     }
 
     return isPw;
+
 }
+
+function executeHourglass()
+{
+    var hourglass;
+    hourglass = document.getElementById("loadingHourglass");
+    hourglass.innerHTML = "&#xf251;";
+    setTimeout(function () {
+        hourglass.innerHTML = "&#xf252;";
+    }, 1000);
+    setTimeout(function () {
+        hourglass.innerHTML = "&#xf253;";
+    }, 2000);
+}
+
 /*Notification*/
 function HtmlNotifiError(content)
 {

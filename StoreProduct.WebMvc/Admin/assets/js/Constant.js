@@ -41,3 +41,52 @@ function validatePassword(pw1,pw2)
 
     return isPw;
 }
+/*Notification*/
+function HtmlNotifiError(content)
+{
+    var notifiError = `
+                        <div class="notifiError">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        <strong>Có lỗi xảy ra! </strong>
+                        ${content}
+                        </div>
+                    `;
+    return notifiError;
+}
+
+function HtmlNotifiSuccess(content)
+{
+    var notifiError = `
+                        <div class="notifiSuccess">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        <strong>Thành công! </strong>
+                        ${content}
+                        </div>
+                    `;
+    return notifiError;
+}
+
+function HtmlNotifiInfo(content)
+{
+    var notifiError = `
+                        <div class="notifiInfo">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        <strong>Thông tin! </strong>
+                        ${content}
+                        </div>
+                    `;
+    return notifiError;
+}
+
+function HtmlNotifiWarning(content)
+{
+    var notifiError = `
+                        <div class="notifiWarning">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        <strong>Cảnh báo! </strong>
+                        ${content}
+                        </div>
+                    `;
+    return notifiError;
+}
+

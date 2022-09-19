@@ -22,7 +22,7 @@
         }
 
         .modal-popup {
-            margin: 5% auto !important;
+            /*margin: 5% auto !important;*/
             max-width: 700px;
         }
 
@@ -31,6 +31,7 @@
             margin-right: 10px;
             margin-top: 5px;
         }
+
             .aria-hidden:focus {
                 outline: none;
             }
@@ -64,8 +65,12 @@
 </head>
 
 <body>
+    @*<h2>Modal Example</h2>
+        <button type="button" class="btn btn-info btn-lg">Open Modal</button>*@
+    <div id="notification">
+    </div>
     @*Form login*@
-    <div class="login-form">
+    <div class="login-form" id="loginForm">
         <div class="form-group" style="width: 150px; margin: 0 auto;">
             <img style="width: 100%;" src="~/assets/images/logos/logo_login.jpg" />
         </div>
@@ -98,7 +103,7 @@
         </form>
     </div>
     @*Popup modal đăng ký tài khoản*@
-    <div class="modal" tabindex="-1" role="dialog" id="modalRegister">
+    <div style="overflow:scroll" class="modal" tabindex="-1" role="dialog" id="modalRegister">
         <div class="modal-popup modal-dialog" role="document">
             <div class="modal-content">
                 <button class="aria-hidden close" aria-label="Close" onclick="CloseModalRegister()">
@@ -131,9 +136,9 @@
                         </div>
                         <span class="validateError" id="alert_r3"></span>
                         @*<div class="form-group log-status" id="log_r_username">
-                            <input id="r_username" type="text" style="height:35px;" class="form-control" placeholder="Tài khoản" />
-                        </div>
-                        <span class="validateError" id="alert_r4"></span>*@
+                                <input id="r_username" type="text" style="height:35px;" class="form-control" placeholder="Tài khoản" />
+                            </div>
+                            <span class="validateError" id="alert_r4"></span>*@
                         <div style="display: flex;">
                             <div style="flex:1;" class="form-group log-status" id="log_r_password">
                                 <input id="r_password" type="password" style="height:35px" class="form-control" placeholder="Mật khẩu" />
@@ -181,6 +186,7 @@
         </div>
     </div>
     <script>
+
         var r_modal = document.getElementById("modalRegister");
 
         $('.form-control').keypress(function () {
@@ -203,18 +209,24 @@
         function showModalRegister()
         {
             r_modal.style.display = "block";
+            $("#loginForm").hide();
         }
         function CloseModalRegister()
         {
             r_modal.style.display = "none";
+            $('#loginForm').show();
         }
         function showModalPasswordRetrieval()
         {
-            alert('Liên hệ SĐT: 0367823445');
+            //alert('Liên hệ SĐT: 0367823445');
+            $('#notification').html(HtmlNotifiInfo('đến SĐT: 0367823445'));
+            $('#notification').fadeIn(500);
+            setTimeout( "$('#notification').fadeOut(1500);",5000 );
         }
         function cancelRegisterAccount()
         {
             r_modal.style.display = "none";
+            $('#loginForm').show();
             clearData();
         }
         function isShowPassword()

@@ -17,6 +17,7 @@
 
 .form-group {
     position: relative;
+    margin-bottom: 15px;
 }
     .form-group .fa {
         position: absolute;
@@ -68,6 +69,81 @@
 
     .buttonCore:focus {
         outline: none;
+    }
+
+/*Notification*/
+.notifiError {
+    z-index: 1;
+    position: relative;
+    width: 500px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f44336;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.notifiSuccess {
+    z-index: 1;
+    position: relative;
+    width: 500px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #04AA6D;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.notifiInfo {
+    z-index: 1;
+    position: relative;
+    width: 500px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #2196F3;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.notifiWarning {
+    z-index: 1;
+    position: relative;
+    width: 500px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #ff9800;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+    .closebtn:hover {
+        color: black;
     }
 
 @-moz-keyframes wrong-log {

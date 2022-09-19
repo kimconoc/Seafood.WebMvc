@@ -15,6 +15,8 @@
     <script src="~/assets/js/constant.js"></script>
     <script src="~/Scripts/jquery/jquery-3.3.1.js"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    @*Thêm*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         .g-recaptcha {
             transform: scale(1.12);
@@ -61,12 +63,41 @@
             border-color: #10CE88;
             color: black !important;
         }
+
+        #loading {
+            background-color: white;
+            position: fixed;
+            display: block;
+            top: 0;
+            bottom: 0;
+            z-index: 1000000;
+            opacity: 0.5;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+        }
+
+        #loadingHourglass {
+            font-size: 50px;
+            color: #17a2b8;
+            margin: auto;
+            display: block;
+            top: calc(50% - 100px);
+            left: calc(50% - 10px);
+            position: absolute;
+            z-index: 999999;
+        }
     </style>
 </head>
 
 <body>
     @*<h2>Modal Example</h2>
         <button type="button" class="btn btn-info btn-lg">Open Modal</button>*@
+    <div id="loading" style="display:none">
+        <div id="loadingHourglass" class="fa">
+            <h1>lalalalal</h1>
+        </div>
+    </div>
     <div id="notification">
     </div>
     @*Form login*@
@@ -187,6 +218,21 @@
     </div>
     <script>
 
+        function hourglass()
+        {
+            var hourglass;
+            hourglass = document.getElementById("loadingHourglass");
+            hourglass.innerHTML = "&#xf251;";
+            setTimeout(function () {
+                hourglass.innerHTML = "&#xf252;";
+            }, 1000);
+            setTimeout(function () {
+                hourglass.innerHTML = "&#xf253;";
+            }, 2000);
+        }
+        hourglass();
+        setInterval(hourglass, 3000);
+
         var r_modal = document.getElementById("modalRegister");
 
         $('.form-control').keypress(function () {
@@ -218,8 +264,12 @@
         }
         function showModalPasswordRetrieval()
         {
-            //alert('Liên hệ SĐT: 0367823445');
-            $('#notification').html(HtmlNotifiInfo('đến SĐT: 0367823445'));
+            $("#loading").show();
+            var delayInMilliseconds = 5000; //1 second
+            setTimeout(function () {
+                $("#loading").hide();
+            }, delayInMilliseconds);
+            $('#notification').html(HtmlNotifiInfo('Liên hệ đến SĐT: 0367823445'));
             $('#notification').fadeIn(500);
             setTimeout( "$('#notification').fadeOut(1500);",5000 );
         }
@@ -329,15 +379,24 @@
                 url: "@Url.Action("CreateAccount", "Account")",
                 success: function (data)
                 {
-                    if (data != null)
+                    if (data != null && data.IsCreate)
                     {
-                        alert(oke);
+                        $('#notification').html(HtmlNotifiSuccess(data.Message));
+                        $('#notification').fadeIn(500);
+                        setTimeout("$('#notification').fadeOut(1500);", 5000);
+                        $("#UserName").val(r_numberPhone);
+                        $("#Password").val(r_password);
+                        cancelRegisterAccount();
+
                     }
                     else
                     {
-                        // show popup alert save false
+                        $('#notification').html(HtmlNotifiErrorRight(data.Message));
+                        $('#notification').fadeIn(500);
+                        setTimeout("$('#notification').fadeOut(1500);", 5000);
                     }
                 }
+
             })
         }
     </script>

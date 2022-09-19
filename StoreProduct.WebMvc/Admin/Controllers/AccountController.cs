@@ -106,14 +106,19 @@ namespace Admin.Controllers
                 data = new
                 {
                     IsCreate = true,
-                    Message = "Thành công"
+                    Message = "Đăng ký tài khoản thành công"
                 };
                 return Json(data);
             }   
             catch(Exception ex)
             {
                 FileHelper.GeneratorFileByDay(ex.ToString(), MethodBase.GetCurrentMethod().Name);
-                return Json(false);
+                data = new
+                {
+                    IsCreate = false,
+                    Message = "Có lỗi trong quá trình xử lý"
+                };
+                return Json(data);
             }
         }
 

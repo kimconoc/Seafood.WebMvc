@@ -47,7 +47,19 @@ function HtmlNotifiError(content)
     var notifiError = `
                         <div class="notifiError">
                         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                        <strong>Có lỗi xảy ra! </strong>
+                        <strong>Danger! </strong>
+                        ${content}
+                        </div>
+                    `;
+    return notifiError;
+}
+
+function HtmlNotifiErrorRight(content)
+{
+    var notifiError = `
+                        <div class="notifiErrorRight">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        <strong>Danger! </strong>
                         ${content}
                         </div>
                     `;
@@ -59,7 +71,7 @@ function HtmlNotifiSuccess(content)
     var notifiError = `
                         <div class="notifiSuccess">
                         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                        <strong>Thành công! </strong>
+                        <strong>Success! </strong>
                         ${content}
                         </div>
                     `;
@@ -71,7 +83,7 @@ function HtmlNotifiInfo(content)
     var notifiError = `
                         <div class="notifiInfo">
                         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                        <strong>Thông tin! </strong>
+                        <strong>Info! </strong>
                         ${content}
                         </div>
                     `;
@@ -83,7 +95,7 @@ function HtmlNotifiWarning(content)
     var notifiError = `
                         <div class="notifiWarning">
                         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                        <strong>Cảnh báo! </strong>
+                        <strong>Warning! </strong>
                         ${content}
                         </div>
                     `;

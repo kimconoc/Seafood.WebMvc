@@ -53,7 +53,7 @@
             margin-left: auto;
             margin-right: auto;
         }
-        /*Ghi đề class*/
+        /*Ghi đè class*/
         .form-group {
             margin-top: 1rem !important;
             margin-bottom: 0 !important;
@@ -63,6 +63,11 @@
             border-color: #10CE88;
             color: black !important;
         }
+
+        .buttonCore {
+            background: #1a73e8;
+        }
+        
     </style>
 </head>
 
@@ -357,9 +362,16 @@
                         setTimeout("$('#notification').fadeOut(1500);", 5000);
                     }
                 },
-                complete:function(data)
+                complete:function()
                 {
                     $("#loading").hide();
+                },
+                error: function (e)
+                {
+                    $("#loading").hide();
+                    $('#notification').html(HtmlNotifiSuccess('Có lỗi trong quá trình xử lý'));
+                    $('#notification').fadeIn(500);
+                    setTimeout("$('#notification').fadeOut(1500);", 5000);
                 }
 
             })

@@ -15,6 +15,13 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/bundles/css")
     <link href="~/assets/css/demo/style.css" rel="stylesheet" />
+    <style>
+        /*Ghi đè class*/
+        .brand-logo {
+            margin-left: 30% !important;
+            margin-right: auto !important;
+        }
+    </style>
 </head>
 <body>
     <script src="../assets/js/preloader.js"></script>
@@ -23,7 +30,7 @@
         <aside class="mdc-drawer mdc-drawer--dismissible mdc-drawer--open">
             <div class="mdc-drawer__header">
                 <a class="brand-logo">
-                    <img src="~/assets/images/logo_vinmec-white.png" style="width: 90%;" />
+                    <img src="~/assets/images/oyster.png" style="width: 50%;border-radius:100px;" />
                 </a>
             </div>
             <div class="mdc-drawer__content">
@@ -32,24 +39,24 @@
                         <div class="mdc-list-item mdc-drawer-item">
                             <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel" data-target="masterdata-sub-menu">
                                 <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">storage</i>
-                                Quản lý dữ liệu
+                                Hải sản tươi sống biển
                                 <i class="mdc-drawer-arrow material-icons">chevron_right</i>
                             </a>
                             <div class="mdc-expansion-panel" id="masterdata-sub-menu">
                                 <nav class="mdc-list mdc-drawer-submenu">
                                     <div class="mdc-list-item mdc-drawer-item">
-                                        <a class="mdc-drawer-link" href="@Url.Action("Index", "Site")">
-                                            Bệnh viện
+                                        <a class="mdc-drawer-link" href="@Url.Action("Index", "Shrimp")">
+                                            Tôm biển
                                         </a>
                                     </div>
                                     <div class="mdc-list-item mdc-drawer-item">
-                                        <a class="mdc-drawer-link" href="@Url.Action("Index", "Specialty")">
-                                            Chuyên khoa
+                                        <a class="mdc-drawer-link" href="@Url.Action("Index", "Home")">
+                                            Cua biển
                                         </a>
                                     </div>
                                     <div class="mdc-list-item mdc-drawer-item">
-                                        <a class="mdc-drawer-link" href="@Url.Action("Index", "Clinic")">
-                                            Phòng khám
+                                        <a class="mdc-drawer-link" href="@Url.Action("Index", "Home")">
+                                            Cá biển
                                         </a>
                                     </div>
                                 </nav>
@@ -58,7 +65,7 @@
                         @if (userData.IsAdminUser)
                         {
                             <div class="mdc-list-item mdc-drawer-item">
-                                <a class="mdc-drawer-link" href="@Url.Action("Index", "User")">
+                                <a class="mdc-drawer-link" href="@Url.Action("Index", "Home")">
                                     <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">account_box</i>
                                     Quản lý người dùng
                                 </a>

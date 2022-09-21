@@ -1,0 +1,59 @@
+﻿/*headerLayout1*/
+.headerLayout1 {
+    background: #cd1818;
+    background: blue;
+    height: 50px;
+    padding: 5px;
+    color: white;
+}
+
+.headerLayout1_flex1 {
+    text-align: right;
+    font-family: cursive;
+    margin: 5px 10px 0 0;
+    cursor: pointer;
+}
+
+.headerLayout1_flex2 {
+    min-width: 200px;
+}
+
+.headerLayout1_flex3 {
+    align-items: center;
+    background-color: black;
+    text-align: center;
+    cursor: pointer;
+    min-width: 40px;
+}
+
+.headerLayout1_flex4 {
+    margin: 0 20px 0 20px;
+    text-align: center;
+    cursor: pointer;
+    min-width: 100px;
+}
+
+    .headerLayout1_flex4:hover {
+        background: hsla(0,0%,100%,.2);
+        border-radius: 10px;
+    }
+
+.headerLayout1_flex5 {
+    text-align: center;
+    cursor: pointer;
+    min-width: 100px;
+}
+
+    .headerLayout1_flex5:hover {
+        background: hsla(0,0%,100%,.2);
+        border-radius: 10px;
+    }
+
+.headerLayout1_flex6 {
+    margin: 0 20px 0 20px;
+    text-align: center;
+    cursor: pointer;
+    background: hsla(0,0%,100%,.2);
+    border-radius: 10px;
+    min-width: 100px;
+}

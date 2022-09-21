@@ -15,8 +15,46 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/bundles/css")
     <link href="~/assets/css/demo/style.css" rel="stylesheet" />
+    <link href="~/assets/css/demo/layout.css" rel="stylesheet" />
     <link href="~/assets/css/theme.css" rel="stylesheet" />
+    <link href="~/Content/fa/font-awesome.css" rel="stylesheet" />
     <style>
+        .headerLayout2 {
+            background-color: black;
+            padding: 5px;
+            height: 30px;
+            color: white;
+        }
+
+        .headerLayout2_icon {
+            width: 25px;
+            height: 25px;
+        }
+
+        .headerLayout2_text {
+            margin: 2.5px 0 0 5px;
+        }
+
+        .headerLayout2_flex {
+            margin: 0 10px 0 0;
+            display: flex;
+            cursor: pointer;
+            min-width: 135px;
+            font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            /* giữa trên dưới trái phải*/
+            align-items: center;
+            justify-content: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+            .headerLayout2_flex:hover {
+                background: hsla(0,0%,100%,.2);
+                border-radius: 10px;
+                font-weight: bold;
+                text-decoration: underline;
+                text-decoration-color: none;
+            }
+
         input {
             padding-left: 10px;
         }
@@ -29,18 +67,95 @@
         <!-- partial:partials/_sidebar.html -->
         <div class="main-wrapper mdc-drawer-app-content">
 
-            <div style="display:flex;background: #40c6cc;height:50px;padding:7.5px;">
-                <div style="flex:3;background:red;">
-                    Hải sản tươi sống
+            <div style="display:flex;" class="headerLayout1">
+                <div style="flex:1">
                 </div>
-                <div style="flex:3">
-                    <input style="height:100%;width:100%" placeholder="123" />
-                </div>
-                <div style="flex:6">
 
+                @*flex1*@
+                <h2 style="width:auto;" class="headerLayout1_flex1">Seefood.com.vn</h2>
+                @*flex2*@
+                <div style="flex: 1;" class="headerLayout1_flex2">
+                    <input style="height:100%;width:100%" placeholder="Bạn cần tìm gì?" />
+                </div>
+                @*flex3*@
+                <div style="width:40px;" class="headerLayout1_flex3">
+                    <i style="font-size: 20px;margin-top:7.5px;" class="fa fa-search"></i>
+                </div>
+                @*flex4*@
+                <div style="width:100px;display:flex;" class="headerLayout1_flex4">
+                    <i style="font-size: 30px;margin-top:5px;" class="fa fa-car"></i>
+                    <h6 style="margin-top: 5px;">Tra cứu đơn hàng</h6>
+                </div>
+                @*flex5*@
+                <div style="width: 100px; display: flex;" class="headerLayout1_flex5">
+                    <i style="font-size: 30px;margin-top:5px;" class="fa fa-shopping-basket"></i>
+                    <h6 style="margin-top: 7.5px;">Giỏ hàng của bạn</h6>
+                </div>
+                @*flex6*@
+                <div style="width: 100px;" class="headerLayout1_flex6">
+                    <i style="font-size: 17.5px;margin-top:5px;" class="fa fa-user-circle"></i>
+                    <h6 style="margin-top: -2.5px;">Đăng nhập</h6>
+                </div>
+                <div style="flex:1">
                 </div>
             </div>
-            <div style="background-color: black; height: 30px;">
+            <div style="display:flex;" class="headerLayout2">
+
+                <div style="flex:1">
+                </div>
+                @*flex0*@
+                <div class="headerLayout2_flex">
+                    <i style="font-size: 20px;" class="fa fa-home"></i>
+                    <h6 class="headerLayout2_text">TRANG CHỦ</h6>
+                </div>
+                @*flex1*@
+                <div class="headerLayout2_flex">
+                    <img class="headerLayout2_icon" src="~/assets/images/icon/fish.png" />
+                    <h6 class="headerLayout2_text">CÁC LOẠI TÔM</h6>
+                </div>
+                @*flex2*@
+                <div class="headerLayout2_flex">
+                    <img class="headerLayout2_icon" src="~/assets/images/icon/fish.png" />
+                    <h6 class="headerLayout2_text">CÁC LOẠI MỰC</h6>
+                </div>
+                @*flex3*@
+                <div class="headerLayout2_flex">
+                    <img class="headerLayout2_icon" src="~/assets/images/icon/fish.png" />
+                    <h6 class="headerLayout2_text">CÁC LOẠI CÁ</h6>
+                </div>
+                @*flex4*@
+                <div class="headerLayout2_flex">
+                    <img class="headerLayout2_icon" src="~/assets/images/icon/fish.png" />
+                    <h6 class="headerLayout2_text">CÁC LOẠI HÀU</h6>
+                </div>
+                @*flex5*@
+                <div class="headerLayout2_flex">
+                    <img class="headerLayout2_icon" src="~/assets/images/icon/fish.png" />
+                    <h6 class="headerLayout2_text">CÁC LOẠI TÍCH</h6>
+                </div>
+                @*flex6*@
+                <div class="headerLayout2_flex">
+                    <img class="headerLayout2_icon" src="~/assets/images/icon/fish.png" />
+                    <h6 class="headerLayout2_text">CÁC LOẠI NGAO</h6>
+                </div>
+                @*flex7*@
+                <div class="headerLayout2_flex">
+                    <img class="headerLayout2_icon" src="~/assets/images/icon/fish.png" />
+                    <h6 class="headerLayout2_text">CÁC LOẠI KHÔ</h6>
+                </div>
+                @*flex8*@
+                <div class="headerLayout2_flex">
+                    <img class="headerLayout2_icon" src="~/assets/images/icon/fish.png" />
+                    <h6 class="headerLayout2_text">CÁC LOẠI MẮM</h6>
+                </div>
+                @*flex9*@
+                <div class="headerLayout2_flex">
+                    <i style="font-size: 17.5px;margin-top:2px" class="fa fa-shopping-cart"></i>
+                    <h6 class="headerLayout2_text">KHUYẾN MÃI</h6>
+                </div>
+
+                <div style="flex:1">
+                </div>
 
             </div>
 

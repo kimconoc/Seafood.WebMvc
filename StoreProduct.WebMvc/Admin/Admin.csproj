@@ -174,6 +174,7 @@
   <ItemGroup>
     <Content Include="404.html" />
     <Content Include="500.html" />
+    <Content Include="assets\css\demo\layout.css" />
     <Content Include="assets\css\demo\style.css" />
     <Content Include="assets\css\theme.css" />
     <Content Include="assets\fonts\roboto\Roboto-Bold.svg" />
@@ -181,6 +182,7 @@
     <Content Include="assets\fonts\roboto\Roboto-Medium.svg" />
     <Content Include="assets\fonts\roboto\Roboto-Regular.svg" />
     <Content Include="assets\fonts\roboto\Roboto-Thin.svg" />
+    <Content Include="assets\images\icon\fish.png" />
     <Content Include="assets\images\oyster.png" />
     <Content Include="assets\images\logos\r-logo_login.jpg" />
     <Content Include="assets\images\crab.jpg" />

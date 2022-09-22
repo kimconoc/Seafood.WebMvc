@@ -1,7 +1,8 @@
 ﻿/*headerLayout1*/
+
 .headerLayout1 {
-    background: blue;
     background: #cd1818;
+    background: rgb(7, 171, 226);
     height: 50px;
     padding: 5px;
     color: white;
@@ -10,7 +11,8 @@
 .headerLayout1_flex1 {
     text-align: right;
     font-family: cursive;
-    margin: 5px 10px 0 0;
+    padding: 5px 0 5px 10px;
+    margin: 0 20px 0 0;
     cursor: pointer;
 }
 
@@ -20,13 +22,14 @@
 
 .headerLayout1_flex3 {
     align-items: center;
-    background-color: black;
+    background-color: #3b5898;
     text-align: center;
     cursor: pointer;
     min-width: 40px;
 }
 
 .headerLayout1_flex4 {
+    padding: 0 2px 0 2px;
     margin: 0 20px 0 20px;
     text-align: center;
     cursor: pointer;
@@ -39,6 +42,7 @@
     }
 
 .headerLayout1_flex5 {
+    padding: 0 2px 0 2px;
     text-align: center;
     cursor: pointer;
     min-width: 100px;
@@ -57,3 +61,51 @@
     border-radius: 10px;
     min-width: 100px;
 }
+
+/*headerLayout2*/
+
+.headerLayout2 {
+    background-color: #dee8fc;
+    color: #3b5898;
+}
+
+.headerLayout2_btn {
+    padding: 2.5px 10px 2.5px 10px;
+    letter-spacing: 1px;
+    vertical-align: middle;
+    text-align: center;
+    color: inherit;
+    background-color: inherit;
+    border: none;
+    float: left;
+    width: auto;
+    font-size: 17px;
+    font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 500;
+}
+
+    .headerLayout2_btn:hover {
+        background: hsla(0,0%,100%,.2);
+        font-weight: bold;
+        text-decoration-color: none;
+    }
+
+.headerLayout2_icon {
+    padding: 2.5px 10px 2.5px 10px;
+    display: flex;
+    cursor: pointer;
+    font-size: 22px;
+    font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /* giữa trên dưới trái phải*/
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+    .headerLayout2_icon:hover {
+        background: hsla(0,0%,100%,.2);
+        font-weight: bold;
+        text-decoration-color: none;
+        font-size: 25px;
+    }

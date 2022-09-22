@@ -20,12 +20,28 @@
     <link href="~/assets/css/theme.css" rel="stylesheet" />
     <link href="~/Content/fa/font-awesome.css" rel="stylesheet" />
     <style>
+        .tailLayout {
+            background-color: #dee8fc;
+            height: 200px;
+            display: flex;
+        }
+        .tailLayout_text {
+            font-size: 15px;
+            color: #4a4a4a;
+            font-weight: 700;
+            line-height: 1.4 !important;
+        }
+        .tailLayout_number {
+            font-size: 20px;
+            color: #d0021b;
+            font-weight: 700;
+        }
         /*Ghi đè class*/
         input {
             padding-left: 10px;
             border-color: transparent;
             outline: none;
-        }
+        }    
     </style>
 </head>
 <body>
@@ -84,26 +100,26 @@
                 <button class="headerLayout2_btn">
                     Cá
                 </button>
-                <button class="headerLayout2_btn">
+                <button id="crabHeaderBtn" class="headerLayout2_btn">
                     Cua
                 </button>
-                <button class="headerLayout2_btn">
+                <button id="crab2HeaderBtn" class="headerLayout2_btn">
                     Ghẹ
                 </button>
-                <button class="headerLayout2_btn">
-                    Tích
+                <button id="bebeHeaderBtn" class="headerLayout2_btn">
+                    Bề bề
                 </button>
-                <button class="headerLayout2_btn">
+                <button id="oystersHeaderBtn" class="headerLayout2_btn">
                     Hàu
                 </button>
-                <button class="headerLayout2_btn">
+                <button id="clamsHeaderBtn" class="headerLayout2_btn">
                     Ngao
                 </button>
                 <button class="headerLayout2_btn">
-                    Khô
+                    Đồ khô
                 </button>
                 <button class="headerLayout2_btn">
-                    Mắm
+                    Nước mắm
                 </button>
                 <div class="headerLayout2_icon">
                     <i class="fa fa-shopping-cart"></i>
@@ -115,9 +131,41 @@
             </div>
 
             <div class="page-wrapper mdc-toolbar-fixed-adjust">
-                <main class="content-wrapper">
+                <main style="background-color:white" class="content-wrapper">
                     @RenderBody()
                 </main>
+            </div>
+
+            <div class="tailLayout">
+                <div style="flex:1;">
+                </div>
+                @*Vùng 1*@
+            <div style="width:350px;padding: 20px">
+                <p class="tailLayout_text">Tư vấn mua hàng (Kết nối Zalo)</p>
+                <div style="display:flex;text-align:center;align-items:center;">
+                    <p class="tailLayout_number">03 678 23445</p>
+                    <h6 style="margin-left:5px;">(Chi nhánh 1)</h6>
+                </div>
+                <p class="tailLayout_text">Tư vấn bảo quản, nấu nướng (Kết nối Zalo)</p>
+                <div style="display:flex;text-align:center;align-items:center;">
+                    <p class="tailLayout_number">03 678 23445</p>
+                    <h6 style="margin-left:5px;">(Chi nhánh 1)</h6>
+                </div>
+                <p style="margin-top:10px;" class="tailLayout_text">Hỗ trợ thanh toán:</p>
+                <div style="display:flex;text-align:center;align-items:center;">
+                    <p class="tailLayout_number">099 013 915 9999</p>
+                    <h6 style="margin-left:5px;">(Ngân hàng MB)</h6>
+                </div>
+            </div>
+                @*Khoảng cách*@
+                <div style="width: 30px;">
+                </div>
+                @*Vùng 2*@
+                <div style="width: 300px;">
+
+                </div>
+                <div style="flex:2;">
+                </div>
             </div>
         </div>
     </div>

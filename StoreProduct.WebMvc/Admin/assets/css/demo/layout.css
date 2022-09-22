@@ -1,4 +1,43 @@
-﻿/*headerLayout1*/
+﻿/*Responesive*/
+@media only screen and (max-width: 900px) {
+    .headerLayout1_flex1 {
+        display:none;
+    }
+    .headerLayout1_flex2 {
+        display: none;
+    }
+    .headerLayout1_flex3 {
+        display: none;
+    }
+    .headerLayout1_flex3 {
+        display: none;
+    }
+}
+@media only screen and (max-width: 750px) {
+    #crab2HeaderBtn {
+        display: none;
+    }
+    #bebeHeaderBtn {
+        display: none;
+    }
+    #bebeHeaderBtn {
+        display: none;
+    }
+    #crabHeaderBtn {
+        display: none;
+    }
+}
+@media only screen and (max-width: 600px) {
+    #oystersHeaderBtn {
+        display: none;
+    }
+
+    #clamsHeaderBtn {
+        display: none;
+    }
+
+}
+/*headerLayout1*/
 
 .headerLayout1 {
     background: #cd1818;

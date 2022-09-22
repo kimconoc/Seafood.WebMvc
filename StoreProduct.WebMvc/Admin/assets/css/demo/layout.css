@@ -20,14 +20,6 @@
     #bebeHeaderBtn {
         display: none;
     }
-    #bebeHeaderBtn {
-        display: none;
-    }
-    #crabHeaderBtn {
-        display: none;
-    }
-}
-@media only screen and (max-width: 600px) {
     #oystersHeaderBtn {
         display: none;
     }
@@ -35,7 +27,22 @@
     #clamsHeaderBtn {
         display: none;
     }
-
+    .tailLayout_flex2 {
+        display: none;
+    }
+}
+@media only screen and (min-width: 750px) {
+    #headerBtnList {
+        display: none;
+    }
+}
+@media only screen and (max-width: 600px) {
+    #doKhoHeaderBtn {
+        display: none;
+    }
+    #nuocMamHeaderBtn {
+        display: none;
+    }
 }
 /*headerLayout1*/
 

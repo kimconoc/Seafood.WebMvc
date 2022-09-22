@@ -22,7 +22,6 @@
     <style>
         .tailLayout {
             background-color: #dee8fc;
-            height: 200px;
             display: flex;
         }
         .tailLayout_text {
@@ -85,7 +84,10 @@
             </div>
             <div style="display:flex;" class="headerLayout2">
 
-                <div style="flex:1">
+                <div style="flex: 1;">
+                    <div style="justify-content: left;" id="headerBtnList" class="headerLayout2_icon">
+                        <i class="fa fa-list-ul"></i>
+                    </div>
                 </div>
 
                 <div class="headerLayout2_icon">
@@ -94,14 +96,14 @@
                 <button class="headerLayout2_btn">
                     Tôm
                 </button>
-                <button class="headerLayout2_btn">
-                    Mực
+                <button id="crabHeaderBtn" class="headerLayout2_btn">
+                    Cua
                 </button>
                 <button class="headerLayout2_btn">
                     Cá
                 </button>
-                <button id="crabHeaderBtn" class="headerLayout2_btn">
-                    Cua
+                <button class="headerLayout2_btn">
+                    Mực
                 </button>
                 <button id="crab2HeaderBtn" class="headerLayout2_btn">
                     Ghẹ
@@ -115,10 +117,10 @@
                 <button id="clamsHeaderBtn" class="headerLayout2_btn">
                     Ngao
                 </button>
-                <button class="headerLayout2_btn">
+                <button id="doKhoHeaderBtn" class="headerLayout2_btn">
                     Đồ khô
                 </button>
-                <button class="headerLayout2_btn">
+                <button id="nuocMamHeaderBtn" class="headerLayout2_btn">
                     Nước mắm
                 </button>
                 <div class="headerLayout2_icon">
@@ -140,29 +142,30 @@
                 <div style="flex:1;">
                 </div>
                 @*Vùng 1*@
-            <div style="width:350px;padding: 20px">
-                <p class="tailLayout_text">Tư vấn mua hàng (Kết nối Zalo)</p>
-                <div style="display:flex;text-align:center;align-items:center;">
-                    <p class="tailLayout_number">03 678 23445</p>
-                    <h6 style="margin-left:5px;">(Chi nhánh 1)</h6>
+                <div style="width:350px;padding: 20px">
+                    <p class="tailLayout_text">Tư vấn mua hàng (Kết nối Zalo)</p>
+                    <div style="display:flex;text-align:center;align-items:center;">
+                        <p class="tailLayout_number">03 678 23445</p>
+                        <h6 style="margin-left:5px;">(Chi nhánh 1)</h6>
+                    </div>
+                        <p class="tailLayout_text">Tư vấn bảo quản, nấu nướng (Kết nối Zalo)</p>
+                    <div style="display:flex;text-align:center;align-items:center;">
+                        <p class="tailLayout_number">03 678 23445</p>
+                        <h6 style="margin-left:5px;">(Chi nhánh 1)</h6>
+                    </div>
+                    <p style="margin-top:10px;" class="tailLayout_text">Hỗ trợ thanh toán:</p>
+                    <div style="display:flex;text-align:center;align-items:center;">
+                        <p class="tailLayout_number">099 013 915 9999</p>
+                        <h6 style="margin-left:5px;">(Ngân hàng MB)</h6>
+                    </div>
                 </div>
-                <p class="tailLayout_text">Tư vấn bảo quản, nấu nướng (Kết nối Zalo)</p>
-                <div style="display:flex;text-align:center;align-items:center;">
-                    <p class="tailLayout_number">03 678 23445</p>
-                    <h6 style="margin-left:5px;">(Chi nhánh 1)</h6>
-                </div>
-                <p style="margin-top:10px;" class="tailLayout_text">Hỗ trợ thanh toán:</p>
-                <div style="display:flex;text-align:center;align-items:center;">
-                    <p class="tailLayout_number">099 013 915 9999</p>
-                    <h6 style="margin-left:5px;">(Ngân hàng MB)</h6>
-                </div>
-            </div>
                 @*Khoảng cách*@
                 <div style="width: 30px;">
                 </div>
                 @*Vùng 2*@
-                <div style="width: 300px;">
-
+                <div class="tailLayout_flex2" style="width:350px;padding: 20px">
+                    <p class="tailLayout_text">Góp ý, khiếu nại dịch vụ (Kết nối Zalo)</p>
+                    <p class="tailLayout_number">03 678 23445</p>
                 </div>
                 <div style="flex:2;">
                 </div>

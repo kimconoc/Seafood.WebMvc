@@ -1,4 +1,9 @@
-﻿/*Responesive*/
+﻿
+/*primary_main_background-color = #cd1818*/
+/*primary_extra_background-color = #dee8fc*/
+/*primary_extra_btn_text-color = #3b5898*/
+
+/*Responesive*/
 
 @media only screen and (max-width: 900px) {
     .headerLayout1_flex1 {

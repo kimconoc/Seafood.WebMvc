@@ -155,3 +155,28 @@
         text-decoration-color: none;
         font-size: 25px;
     }
+/*tailLayout*/
+
+.tailLayout {
+    background-color: #dee8fc;
+    display: flex;
+}
+
+.tailLayout_text {
+    font-size: 15px;
+    color: #4a4a4a;
+    font-weight: 700;
+    line-height: 1.4 !important;
+}
+
+.tailLayout_number {
+    font-size: 20px;
+    color: #d0021b;
+    font-weight: 700;
+}
+
+.tailLayout_div_number {
+    display: flex;
+    text-align: center;
+    align-items: center;
+}

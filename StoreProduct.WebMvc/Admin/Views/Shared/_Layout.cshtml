@@ -20,21 +20,6 @@
     <link href="~/assets/css/theme.css" rel="stylesheet" />
     <link href="~/Content/fa/font-awesome.css" rel="stylesheet" />
     <style>
-        .tailLayout {
-            background-color: #dee8fc;
-            display: flex;
-        }
-        .tailLayout_text {
-            font-size: 15px;
-            color: #4a4a4a;
-            font-weight: 700;
-            line-height: 1.4 !important;
-        }
-        .tailLayout_number {
-            font-size: 20px;
-            color: #d0021b;
-            font-weight: 700;
-        }
         /*Ghi đè class*/
         input {
             padding-left: 10px;
@@ -85,9 +70,6 @@
             <div style="display:flex;" class="headerLayout2">
 
                 <div style="flex: 1;">
-                    <div style="justify-content: left;" id="headerBtnList" class="headerLayout2_icon">
-                        <i class="fa fa-list-ul"></i>
-                    </div>
                 </div>
 
                 <div class="headerLayout2_icon">
@@ -128,6 +110,9 @@
                 </div>
 
                 <div style="flex:1">
+                    <div id="headerBtnList" class="headerLayout2_icon">
+                        <i class="fa fa-angle-double-down"></i>
+                    </div>
                 </div>
 
             </div>
@@ -142,19 +127,19 @@
                 <div style="flex:1;">
                 </div>
                 @*Vùng 1*@
-                <div style="width:350px;padding: 20px">
+                <div class="tailLayout_flex1" style="width:350px;padding: 20px">
                     <p class="tailLayout_text">Tư vấn mua hàng (Kết nối Zalo)</p>
-                    <div style="display:flex;text-align:center;align-items:center;">
+                    <div class="tailLayout_div_number">
                         <p class="tailLayout_number">03 678 23445</p>
                         <h6 style="margin-left:5px;">(Chi nhánh 1)</h6>
                     </div>
                         <p class="tailLayout_text">Tư vấn bảo quản, nấu nướng (Kết nối Zalo)</p>
-                    <div style="display:flex;text-align:center;align-items:center;">
+                    <div class="tailLayout_div_number">
                         <p class="tailLayout_number">03 678 23445</p>
                         <h6 style="margin-left:5px;">(Chi nhánh 1)</h6>
                     </div>
-                    <p style="margin-top:10px;" class="tailLayout_text">Hỗ trợ thanh toán:</p>
-                    <div style="display:flex;text-align:center;align-items:center;">
+                    <p  class="tailLayout_text" style="margin-top:10px;">Hỗ trợ thanh toán:</p>
+                    <div class="tailLayout_div_number">
                         <p class="tailLayout_number">099 013 915 9999</p>
                         <h6 style="margin-left:5px;">(Ngân hàng MB)</h6>
                     </div>

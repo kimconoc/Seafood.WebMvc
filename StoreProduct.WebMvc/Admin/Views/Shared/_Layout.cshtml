@@ -12,20 +12,21 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/bundles/css")
     <link href="~/assets/css/demo/style.css" rel="stylesheet" />
     <link href="~/assets/css/demo/layout.css" rel="stylesheet" />
     <link href="~/assets/css/theme.css" rel="stylesheet" />
     <link href="~/Content/fa/font-awesome.css" rel="stylesheet" />
+    <!-- js bootstrap -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
         /*Ghi đè class*/
         input {
             padding-left: 10px;
             border-color: transparent;
             outline: none;
-        }    
+        }
     </style>
 </head>
 <body>
@@ -106,12 +107,24 @@
                     Nước mắm
                 </button>
                 <div class="headerLayout2_icon">
-                    <i class="fa fa-shopping-cart"></i>
+                    <i data-toggle="tooltip" data-placement="bottom" title="Khuyến mãi"  class="fa fa-shopping-cart"></i>
                 </div>
 
                 <div style="flex:1">
-                    <div id="headerBtnList" class="headerLayout2_icon">
+                    <div id="headerBtnList" class="headerLayout2_icon" data-toggle="dropdown">
                         <i class="fa fa-angle-double-down"></i>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Tôm</a></li>
+                            <li><a href="#">Cua</a></li>
+                            <li><a href="#">Cá</a></li>
+                            <li><a href="#">Mực</a></li>
+                            <li><a href="#">Ghẹ</a></li>
+                            <li><a href="#">Bề bề</a></li>
+                            <li><a href="#">Hàu</a></li>
+                            <li><a href="#">Ngao</a></li>
+                            <li><a href="#">Đồ khô</a></li>
+                            <li><a href="#">Nước mắm</a></li>
+                        </ul>
                     </div>
                 </div>
 
@@ -162,6 +175,12 @@
     @Scripts.Render("~/bundles/js")
     <script src="~/assets/js/misc.js"></script>
     <script>
+        //Setup
+        $(document).ready(function ()
+        {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+        //Setup
         $(window).on('beforeunload', function () {
             document.body.className = "";
         });

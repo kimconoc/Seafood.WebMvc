@@ -1,4 +1,5 @@
 ﻿/*Responesive*/
+
 @media only screen and (max-width: 900px) {
     .headerLayout1_flex1 {
         display:none;
@@ -13,7 +14,7 @@
         display: none;
     }
 }
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 775px) {
     #crab2HeaderBtn {
         display: none;
     }
@@ -31,7 +32,7 @@
         display: none;
     }
 }
-@media only screen and (min-width: 750px) {
+@media only screen and (min-width: 775px) {
     #headerBtnList {
         display: none;
     }
@@ -44,6 +45,7 @@
         display: none;
     }
 }
+
 /*headerLayout1*/
 
 .headerLayout1 {
@@ -55,9 +57,10 @@
 }
 
 .headerLayout1_flex1 {
+    align-items: center;
+    justify-content: right;
     text-align: right;
     font-family: cursive;
-    padding: 5px 0 5px 10px;
     margin: 0 20px 0 0;
     cursor: pointer;
 }
@@ -68,8 +71,9 @@
 
 .headerLayout1_flex3 {
     align-items: center;
-    background-color: #3b5898;
+    justify-content: center;
     text-align: center;
+    background-color: #3b5898;
     cursor: pointer;
     min-width: 40px;
 }
@@ -77,9 +81,13 @@
 .headerLayout1_flex4 {
     padding: 0 2px 0 2px;
     margin: 0 20px 0 20px;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     cursor: pointer;
     min-width: 100px;
+    width: 100px;
+    display: flex;
 }
 
     .headerLayout1_flex4:hover {
@@ -89,9 +97,13 @@
 
 .headerLayout1_flex5 {
     padding: 0 2px 0 2px;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     cursor: pointer;
     min-width: 100px;
+    width: 100px;
+    display: flex;
 }
 
     .headerLayout1_flex5:hover {
@@ -101,6 +113,8 @@
 
 .headerLayout1_flex6 {
     margin: 0 20px 0 20px;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     cursor: pointer;
     background: hsla(0,0%,100%,.2);
@@ -119,6 +133,8 @@
     padding: 2.5px 10px 2.5px 10px;
     letter-spacing: 1px;
     vertical-align: middle;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     color: inherit;
     background-color: inherit;
@@ -140,9 +156,10 @@
     padding: 2.5px 10px 2.5px 10px;
     display: flex;
     cursor: pointer;
-    font-size: 22px;
+    font-size: 20px;
     font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
     /* giữa trên dưới trái phải*/
+    text-align: center;
     align-items: center;
     justify-content: center;
     margin-left: auto;
@@ -153,8 +170,9 @@
         background: hsla(0,0%,100%,.2);
         font-weight: bold;
         text-decoration-color: none;
-        font-size: 25px;
+        font-size: 22.5px;
     }
+
 /*tailLayout*/
 
 .tailLayout {
@@ -179,4 +197,5 @@
     display: flex;
     text-align: center;
     align-items: center;
+    justify-content: start;
 }

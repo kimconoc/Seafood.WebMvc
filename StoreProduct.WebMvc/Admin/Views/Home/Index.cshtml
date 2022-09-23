@@ -1,3 +1,105 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/assets/css/theme.css" rel="stylesheet" />
+    <link href="~/assets/css/demo/indexHone.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        /* Remove the navbar's default margin-bottom and rounded borders */
+        .navbar {
+            margin-bottom: 0;
+            border-radius: 0;
+        }
+
+        /* Add a gray background color and some padding to the footer */
+        footer {
+            background-color: #f2f2f2;
+            padding: 25px;
+        }
+
+        .carousel-inner img {
+            width: 100%; /* Set width to 100% */
+            margin: auto;
+            min-height: 200px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <img src="https://placehold.it/1200x400?text=IMAGE" alt="Image">
+                    <div class="carousel-caption">
+                        <h3>Sell $</h3>
+                        <p>Money Money.</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <img src="https://placehold.it/1200x400?text=Another Image Maybe" alt="Image">
+                    <div class="carousel-caption">
+                        <h3>More Sell $</h3>
+                        <p>Lorem ipsum...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Left and right controls -->
+            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3 col-sm-12 menu">
+            <ul>
+                <li>The Flight</li>
+                <li>The City</li>
+                <li>The Island</li>
+                <li>The Food</li>
+            </ul>
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+            <h1>The City</h1>
+            <p>Chania is the capital of the Chania region on the island of Crete. The city can be divided in two parts, the old town and the modern city.</p>
+        </div>
+
+        <div class="col-md-3 col-sm-12">
+            <div class="aside">
+                <h2>What?</h2>
+                <p>Chania is a city on the island of Crete.</p>
+                <h2>Where?</h2>
+                <p>Crete is a Greek island in the Mediterranean Sea.</p>
+                <h2>How?</h2>
+                <p>You can reach Chania airport from all over Europe.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Resize the browser window to see how the content respond to the resizing.</p>
+    </div>
+
+</body>
+</html>
+
+

@@ -14,12 +14,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/bundles/css")
-    <link href="~/assets/css/demo/style.css" rel="stylesheet" />
+    @*<link href="~/assets/css/demo/style.css" rel="stylesheet" />*@
     <link href="~/assets/css/demo/layout.css" rel="stylesheet" />
     <link href="~/assets/css/theme.css" rel="stylesheet" />
     <link href="~/Content/fa/font-awesome.css" rel="stylesheet" />
     <!-- js bootstrap -->
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <style>
         /*Ghi đè class*/
         input {
@@ -30,7 +33,6 @@
     </style>
 </head>
 <body>
-    <script src="../assets/js/preloader.js"></script>
     <div class="body-wrapper">
         <!-- partial:partials/_sidebar.html -->
         <div class="main-wrapper mdc-drawer-app-content">
@@ -181,24 +183,7 @@
             $('[data-toggle="tooltip"]').tooltip();
         });
         //Setup
-        $(window).on('beforeunload', function () {
-            document.body.className = "";
-        });
-
-        $.ajaxSetup({
-            complete: function (x, e) {
-                if (x.status == 401) {
-                    alert("Phiên đăng nhập đã hết. Vui lòng đăng nhập lại để tiếp tục.");
-                    window.location = "/Account/Login";
-                } 
-                if (x.status == 500) {
-                    var url = '@Url.Action("CommonErr", "Error")';
-                    $('#errorPopupPlaceholder').load(url);
-                }
-            }
-        });
     </script>
     @RenderSection("script", false)
-    <div id="errorPopupPlaceholder"></div>
 </body>
 </html>

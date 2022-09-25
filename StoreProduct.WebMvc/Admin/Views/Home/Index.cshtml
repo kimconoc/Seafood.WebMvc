@@ -4,91 +4,155 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="~/assets/css/demo/indexHone.css" rel="stylesheet" />
     <style>
+
+        html {
+            font-family: "Lucida Sans", sans-serif;
+        }
+
+        .header {
+            color: #ffffff;
+            padding: 15px 30px 0 30px;
+        }
+
+        .headerLeft {
+            background-color: rgb(7, 171, 226);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24) !important;
+            padding: 15px;
+        }
+
+        .headerCenter {
+            height: 100% !important;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24) !important;
+        }
+
+        .headerRight {
+            background-color: rgb(7, 171, 226);
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24) !important;
+        }
+
+        .mainContent{
+
+        }
+
+        .footer {
+            background-color: rgb(7, 171, 226);
+            text-align: center;
+            font-size: inherit;
+            color: white;
+            padding: 15px;
+        }
+
+        /*more Class*/
+
+        .menu ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu li {
+            padding: 8px;
+            margin-bottom: 7px;
+            background-color: rgb(7, 171, 226);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        }
+
+            .menu li:hover {
+                background-color: #0099cc;
+            }
+
+        .slides-container-image {
+            width: 50%;
+            align-items: center;
+            justify-content: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         /* Remove the navbar's default margin-bottom and rounded borders */
         .navbar {
             margin-bottom: 0;
             border-radius: 0;
         }
 
-        /* Add a gray background color and some padding to the footer */
-        footer {
-            background-color: #f2f2f2;
-            padding: 25px;
-        }
-
-        .carousel-inner img {
-            width: 100%; /* Set width to 100% */
-            margin: auto;
-            min-height: 200px;
-        }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-            </ol>
+        <div class="row">
+            <div class="headerLeft col-md-3 col-sm-12 menu">
+                <ul>
+                    <li>The Flight</li>
+                    <li>The City</li>
+                    <li>The Island</li>
+                    <li>The Food</li>
+                    <li>The Food</li>
+                </ul>
+            </div>
 
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <img src="https://placehold.it/1200x400?text=IMAGE" alt="Image">
-                    <div class="carousel-caption">
-                        <h3>Sell $</h3>
-                        <p>Money Money.</p>
-                    </div>
-                </div>
+            <div class="headerCenter col-md-6 col-sm-12">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                    </ol>
 
-                <div class="item">
-                    <img src="https://placehold.it/1200x400?text=Another Image Maybe" alt="Image">
-                    <div class="carousel-caption">
-                        <h3>More Sell $</h3>
-                        <p>Lorem ipsum...</p>
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="slides-container-image item active">
+                            <img style="width: 100%;" src="~/assets/images/crab.jpg" />
+                            <div class="carousel-caption">
+                                <h3>Sell $</h3>
+                                <p>Money Money.</p>
+                            </div>
+                        </div>
+
+                        <div class="slides-container-image item">
+                            <img style="width:100%;" src="~/assets/images/oyster.png" alt="Image">
+                            <div style="color:black;" class="carousel-caption">
+                                <h3>More Sell $</h3>
+                                <p>Lorem ipsum...</p>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
             </div>
 
-            <!-- Left and right controls -->
-            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
+            <div class="headerRight col-md-3 col-sm-12">
+                <div>
+                    <h2>Mua hải sản?</h2>
+                    <p>Nơi đây cung cấp hải sản thượng hạng nhất</p>
+                    <h2>O đâu?</h2>
+                    <p>Seafood luôn luôn đồng hành cùng bạn</p>
+                </div>
+            </div>
         </div>
+
     </div>
 
-    <div class="row">
-        <div class="col-md-3 col-sm-12 menu">
-            <ul>
-                <li>The Flight</li>
-                <li>The City</li>
-                <li>The Island</li>
-                <li>The Food</li>
-            </ul>
-        </div>
-
-        <div class="col-md-6 col-sm-12">
-            <h1>The City</h1>
-            <p>Chania is the capital of the Chania region on the island of Crete. The city can be divided in two parts, the old town and the modern city.</p>
-        </div>
-
-        <div class="col-md-3 col-sm-12">
-            <div class="aside">
-                <h2>What?</h2>
-                <p>Chania is a city on the island of Crete.</p>
-                <h2>Where?</h2>
-                <p>Crete is a Greek island in the Mediterranean Sea.</p>
-                <h2>How?</h2>
-                <p>You can reach Chania airport from all over Europe.</p>
-            </div>
-        </div>
+    <div>
+        <h2>Bạn muốn mua hải sản?</h2>
+        <p>Nơi đây luôn </p>
+        <h2>Where?</h2>
+        <p>Crete is a Greek island in the Mediterranean Sea.</p>
+        <h2>Bạn muốn mua hải sản?</h2>
+        <p>Nơi đây luôn </p>
+        <h2>Where?</h2>
+        <p>Crete is a Greek island in the Mediterranean Sea.</p>
     </div>
 
     <div class="footer">

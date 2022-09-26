@@ -72,8 +72,6 @@
 </head>
 
 <body>
-    @*<h2>Modal Example</h2>
-        <button type="button" class="btn btn-info btn-lg">Open Modal</button>*@
     <div id="loading" style="display:none">
         <div id="loadingHourglass" class="fa">
         </div>
@@ -82,6 +80,14 @@
         </div>
     </div>
     <div id="notification">
+    </div>
+    <div style="margin: 20px 0 0 20px;">
+        <h4 style="line-height: 0.5 !important;">Đăng nhập</h4>
+        <h6>Để được hưởng các ưu đãi tốt nhất</h6>
+        <button style="background-color: #3b5898;" type="button" class="btn btn-info btn-lg" onclick="goToMainHome()">
+            <i class="fa fa-backward"></i>
+            Trang chủ
+        </button>
     </div>
     @*Form login*@
     <div class="login-form" id="loginForm">
@@ -375,6 +381,11 @@
                 }
 
             })
+        }
+
+        function goToMainHome()
+        {
+            window.location = "/Home/Index";
         }
     </script>
 </body>

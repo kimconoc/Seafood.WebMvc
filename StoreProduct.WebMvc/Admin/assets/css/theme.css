@@ -1,4 +1,12 @@
-﻿@import url(https://fonts.googleapis.com/css?family=Vibur);
+﻿
+/*Responesive*/
+@media only screen and (max-width: 600px) {
+    #r-container-image {
+        display: none;
+    }
+}
+
+@import url(https://fonts.googleapis.com/css?family=Vibur);
 /*//////////////////////////////*/
 .validateError {
     color: #D93025;

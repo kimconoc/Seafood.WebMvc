@@ -1,7 +1,52 @@
 ﻿
 /*Responesive*/
+
+@media only screen and (max-width: 1800px) {
+    #mainContent_grid {
+        grid-template-columns: 250px 250px 250px 250px 250px;
+    }
+}
+
+@media only screen and (max-width: 1500px) {
+    #mainContent_grid {
+        grid-template-columns: 250px 250px 250px 250px;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    #mainContent_grid {
+        grid-template-columns: 250px 250px 250px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    #mainContent_grid {
+        grid-template-columns: 250px 250px;
+    }
+    #headerCenterCarousel {
+        display: none;
+    }
+    .headerRight {
+        margin-right: auto !important;
+        margin-left: auto !important;
+    }
+    .headerLeft {
+        margin-right: auto !important;
+        margin-left: auto !important;
+    }
+}
+
 @media only screen and (max-width: 600px) {
+    .headerRight {
+        margin-top: 20px !important;
+    }
+    #mainContent_grid {
+        grid-template-columns: 250px;
+    }
     #r-container-image {
+        display: none;
+    }
+    #headerCenterCarousel {
         display: none;
     }
 }

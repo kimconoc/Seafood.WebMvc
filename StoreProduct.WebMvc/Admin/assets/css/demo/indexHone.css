@@ -78,16 +78,6 @@
 	border-radius: 0;
 }
 
-/*Ghi đè class*/
-
-.carousel-control:focus, .carousel-control:hover {
-	color: hsla(0,0%,100%,.2);
-}
-
-.carousel-indicators .active {
-	background-color: #3b5898;
-}
-
 /* For mobile phones: */
 [class*="col-"] {
 	width: 100%;

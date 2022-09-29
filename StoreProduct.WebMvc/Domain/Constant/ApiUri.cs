@@ -10,5 +10,8 @@ namespace Domain.Constant
     {
         public const string POST_AccountLogin = "api/Account/Login";
         public const string POST_AccountCreate = "api/Account/Create";
+
+        public const string Get_ProductGetAllProd = "api/Product/GetAllProd";
+        public const string Get_ProductGetProdByCode = "api/Product/GetProdByCode";
     }
 }

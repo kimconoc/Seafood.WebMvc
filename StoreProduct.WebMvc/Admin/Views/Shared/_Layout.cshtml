@@ -1,10 +1,18 @@
 ﻿@using Newtonsoft.Json;
 @using Admin.Model;
 
-@{
-//FormsIdentity id = (FormsIdentity)HttpContext.Current.User.Identity;
-//FormsAuthenticationTicket ticket = id.Ticket;
-//var userData = JsonConvert.DeserializeObject<UserData>(ticket.UserData);
+@{   
+    try
+    {
+        FormsIdentity id = (FormsIdentity)HttpContext.Current.User.Identity;
+        FormsAuthenticationTicket ticket = id.Ticket;
+        var userData = JsonConvert.DeserializeObject<UserData>(ticket.UserData);
+    }
+    catch
+    {
+
+    }
+
 }
 
 <!DOCTYPE html>
@@ -14,7 +22,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seefood</title>
     @Styles.Render("~/bundles/css")
-    @*<link href="~/assets/css/demo/style.css" rel="stylesheet" />*@
     <link href="~/assets/css/demo/layout.css" rel="stylesheet" />
     <link href="~/assets/css/theme.css" rel="stylesheet" />
     <!--css, js bootstrap -->

@@ -1,16 +1,18 @@
 ﻿@using Newtonsoft.Json;
 @using Admin.Model;
 
-@{   
+@{  
+    bool isLogin = false;
     try
     {
         FormsIdentity id = (FormsIdentity)HttpContext.Current.User.Identity;
         FormsAuthenticationTicket ticket = id.Ticket;
         var userData = JsonConvert.DeserializeObject<UserData>(ticket.UserData);
+        isLogin = true;
     }
     catch
     {
-
+        isLogin = false;
     }
 
 }
@@ -75,11 +77,20 @@
                     <h6>Giỏ hàng của bạn</h6>
                 </div>
                 @*flex6*@
-                <div style="width: 100px;" class="headerLayout1_flex6" onclick="loginAndLogout()">
-                    <i style="font-size: 17.5px;margin-top:5px;" class="fa fa-user-circle"></i>
-                    <h6 style="margin-top: -2.5px;">Đăng nhập</h6>
-                </div>
-
+                @if (!isLogin)
+                {
+                    <div style="width: 100px;" class="headerLayout1_flex6" onclick="loginAndLogout()">
+                        <i style="font-size: 17.5px;margin-top:5px;" class="fa fa-user-circle"></i>
+                        <h6 style="margin-top: -2.5px;">Đăng nhập</h6>
+                    </div>
+                }
+                else
+                {
+                    <div style="width: 100px;" class="headerLayout1_flex6" onclick="loginAndLogout()">
+                        <i style="font-size: 17.5px;margin-top:5px;" class="fa fa-sign-out"></i>
+                        <h6 style="margin-top: -2.5px;">Đăng xuất</h6>
+                    </div>
+                }
                 <div style="flex:1">
                 </div>
             </div>

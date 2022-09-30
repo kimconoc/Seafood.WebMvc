@@ -79,14 +79,14 @@
                 @*flex6*@
                 @if (!isLogin)
                 {
-                    <div style="width: 100px;" class="headerLayout1_flex6" onclick="loginAndLogout()">
+                    <div style="width: 100px;" class="headerLayout1_flex6" onclick="login()">
                         <i style="font-size: 17.5px;margin-top:5px;" class="fa fa-user-circle"></i>
                         <h6 style="margin-top: -2.5px;">Đăng nhập</h6>
                     </div>
                 }
                 else
                 {
-                    <div style="width: 100px;" class="headerLayout1_flex6" onclick="loginAndLogout()">
+                    <div style="width: 100px;" class="headerLayout1_flex6" onclick="logout()">
                         <i style="font-size: 17.5px;margin-top:5px;" class="fa fa-sign-out"></i>
                         <h6 style="margin-top: -2.5px;">Đăng xuất</h6>
                     </div>
@@ -203,9 +203,13 @@
             $('[data-toggle="tooltip"]').tooltip();
         });
         //Setup
-        function loginAndLogout()
+        function login()
         {
-            window.location = "/Account/Login";
+           window.location = "/Account/Login";
+        }
+        function logout()
+        {
+            window.location = "/Account/Logout";
         }
     </script>
 </body>

@@ -18,8 +18,56 @@ namespace Domain.Models.ResponseModel
         public string Outstanding { get; set; }
         public double? ReviewProd { get; set; }
         public int? Price { get; set; }
+        public string StrPrice 
+        {
+            get
+            {
+                if (Price != null)
+                {
+                    return FomatToTypeMoney(Price);
+                }
+                return string.Empty;
+            }
+        }
         public int? PriceSale { get; set; }
+        public string StrPriceSale
+        {
+            get
+            {
+                if (PriceSale != null)
+                {
+                    return FomatToTypeMoney(PriceSale);
+                }
+                return string.Empty;
+            }
+        }
         public double? Amount { get; set; }
         public string Note { get; set; }
+        private string FomatToTypeMoney(int? Price)
+        {
+            var strPrice = Price.ToString();
+            var result = string.Empty;
+            if (strPrice.Length == 4)
+            {
+                result = strPrice.Substring(0, 1) + "." + strPrice.Substring(1);
+            }
+            else if (strPrice.Length == 5)
+            {
+                result = strPrice.Substring(0, 2) + "." + strPrice.Substring(2);
+            }
+            else if (strPrice.Length == 6)
+            {
+                result = strPrice.Substring(0, 3) + "." + strPrice.Substring(3);
+            }
+            else if (strPrice.Length == 7)
+            {
+                result = strPrice.Substring(0, 1) + "." + strPrice.Substring(1, 3) + "." + strPrice.Substring(4);
+            }
+            else if (strPrice.Length == 8)
+            {
+                result = strPrice.Substring(0, 2) + "." + strPrice.Substring(2, 3) + "." + strPrice.Substring(5);
+            }
+            return result;
+        }
     }
 }

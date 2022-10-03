@@ -8,6 +8,8 @@ namespace Domain.Constant
 {
     public class ApiUri
     {
+        public const string POST_AccountIsAuthori = "api/Account/IsAuthori";
+        public const string POST_AccountLogout = "api/Account/Logout";
         public const string POST_AccountLogin = "api/Account/Login";
         public const string POST_AccountCreate = "api/Account/Create";
 

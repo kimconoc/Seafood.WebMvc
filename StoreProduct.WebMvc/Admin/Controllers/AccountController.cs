@@ -52,10 +52,19 @@ namespace Admin.Controllers
 
         public ActionResult Logout()
         {
+            var isLogout = provider.GetAsync<bool>(ApiUri.POST_AccountLogout);
+            if (isLogout == null || !isLogout.Result.Data)
+            {
+                ViewBag.Message = "Có lỗi xảy ra";
+                return View();
+            }
             FormsAuthentication.SignOut();
             HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, "");
-            cookie.Expires = DateTime.Now.AddYears(-1);
-            Response.Cookies.Add(cookie);
+            if(cookie != null)
+            {
+                cookie.Expires = DateTime.Now.AddYears(-1);
+                Response.Cookies.Add(cookie);
+            }    
             return RedirectToAction("Index", "Home");
         }
 

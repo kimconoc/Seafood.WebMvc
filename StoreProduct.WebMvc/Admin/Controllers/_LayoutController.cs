@@ -20,8 +20,8 @@ namespace Admin.Controllers
                 id = new JavaScriptSerializer().Deserialize<string>(id);
                 className = new JavaScriptSerializer().Deserialize<string>(className);
                 int indexOf = id.IndexOf("_");
-                id = id.Substring(0, indexOf);
-                var uri = ApiUri.Get_ProductExecuteToFavourite + string.Format($"?id={id}&className={className}");
+                var prodId = id.Substring(0, indexOf);
+                var uri = ApiUri.Get_ProductExecuteToFavourite + string.Format($"?prodId={prodId}&className={className}");
                 provider.GetAsync<bool>(uri);
             }
             catch(Exception ex)

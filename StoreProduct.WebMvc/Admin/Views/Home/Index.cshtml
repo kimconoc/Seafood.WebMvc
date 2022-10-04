@@ -114,11 +114,11 @@
              {
                 foreach (var md in Model)
                 {
-                    <div class="mainContent_grid_item">
-                        <div class="mainContent_card-wrapper">
+                    <div id=" @md.Id" class="mainContent_grid_item">
+                        <div class="mainContent_card-wrapper" onclick="gridItemClick(this)">
                             <div class="mainContent_card-price__pecent">
                                 <div class="card-price__pecent-text">
-                                    Giảm giá 10%
+                                    @md.Discount
                                 </div>
                             </div>
                             <div class="mainContent_card-img">
@@ -138,10 +138,20 @@
                             <div class="mainContent_card-descPromotion">
                                 @md.DescPromotion
                             </div>
-                            <div class="mainContent_card-favourite">
-                                <span>Yêu thích</span>
-                                <i class="fa-regular fa-heart"></i>
-                            </div>
+                            @if (string.IsNullOrEmpty(md.Favourite))
+                             {
+                                <div class="mainContent_card-favourite">
+                                    <span>Yêu thích</span>
+                                    <i id="@md.FavouriteId" class="fa-regular fa-heart" onclick="favouriteClick(this)"></i>
+                                </div>
+                             }
+                            else
+                            {
+                                <div class="mainContent_card-favourite">
+                                    <span>Yêu thích</span>
+                                    <i id="@md.FavouriteId" class="@md.Favourite" onclick="favouriteClick(this)"></i>
+                                </div>
+                            }
                         </div>
                     </div>
                 }
@@ -150,9 +160,22 @@
     </div>
 
     <div class="footer">
-        <p>Resize the browser window to see how the content respond to the resizing.</p>
+        <p>Thay đổi kích thước cửa sổ trình duyệt để xem nội dung nếu không thể xem được.</p>
     </div>
-
+    <script>
+        //Setup
+        var favourite = false;
+        //Setup
+        function gridItemClick(item)
+        {
+            if (favourite)
+            {
+                favourite = false;
+                return;
+            }
+            alert(item.id);
+        }
+    </script>
 </body>
 </html>
 

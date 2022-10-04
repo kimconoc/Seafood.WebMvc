@@ -211,6 +211,34 @@
         {
             window.location = "/Account/Logout";
         }
+
+        function favouriteClick(item)
+        {
+            favourite = true;
+            const element = document.getElementById(item.id);
+            if (element.className == "fa-regular fa-heart")
+            {
+                element.className = "fa-solid fa-heart";
+            } else
+            {
+                element.className = "fa-regular fa-heart";
+            }
+
+            $.ajax({
+                type: "POST",
+                traditional: true,
+                data:
+                {
+                    "id": JSON.stringify(item.id),
+                    "className": JSON.stringify(element.className),
+                },
+                url: "@Url.Action("ExecuteToFavourite", "_Layout")",
+                success: function (data)
+                {
+                },
+            })
+        }
+
     </script>
 </body>
 </html>

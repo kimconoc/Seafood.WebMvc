@@ -1,5 +1,4 @@
-﻿using Admin.CustomAuthen;
-using Domain.Constant;
+﻿using Domain.Constant;
 using Domain.Models.ResponseModel;
 using System.Collections.Generic;
 using System.Web.Mvc;

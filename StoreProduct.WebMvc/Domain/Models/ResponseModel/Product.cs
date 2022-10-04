@@ -16,6 +16,15 @@ namespace Domain.Models.ResponseModel
         public string DescPromotion { get; set; }
         public string Description { get; set; }
         public string Outstanding { get; set; }
+        public string FavouriteId
+        {
+            get
+            {
+                return Id.ToString() + "_Favourite";
+            }
+        }
+
+        public string Favourite { get; set; }
         public double? ReviewProd { get; set; }
         public int? Price { get; set; }
         public string StrPrice 
@@ -39,6 +48,22 @@ namespace Domain.Models.ResponseModel
                     return FomatToTypeMoney(PriceSale);
                 }
                 return string.Empty;
+            }
+        }
+        public string Discount
+        {
+            get
+            {
+                if (PriceSale == null || PriceSale == 0 || PriceSale >= Price)
+                {
+                    return "Hàng mới";
+                }
+                else
+                {
+                    var conut = string.Format("{0:N2}",Decimal.Divide((Decimal)PriceSale, (Decimal)Price));
+                    int discount = (int)((1 - double.Parse(conut)) * 100);
+                    return string.Format($"Giảm giá {discount} %");
+                }
             }
         }
         public double? Amount { get; set; }

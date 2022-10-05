@@ -6,7 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 
-namespace Admin.CustomAuthen
+namespace Seefood.CustomAuthen
 {
     public class RecaptchaAuthen
     {

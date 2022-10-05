@@ -3,7 +3,7 @@ using Domain.Models.ResponseModel;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
-namespace Admin.Controllers
+namespace Seefood.Controllers
 {
     public class HomeController : BaseController
     {

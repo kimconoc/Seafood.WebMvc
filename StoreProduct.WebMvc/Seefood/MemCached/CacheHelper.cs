@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.Caching;
 using System.Web;
 
-namespace Admin.MemCached
+namespace Seefood.MemCached
 {
     //public static class CacheHelper
     //{

@@ -1,4 +1,4 @@
-﻿using Admin.Model;
+﻿using Seefood.Model;
 using Domain.Constant;
 using Domain.FileLog;
 using Domain.Models.ParameterModel;
@@ -15,7 +15,7 @@ using System.Web.Script.Serialization;
 using System.Web.Security;
 
 
-namespace Admin.Controllers
+namespace Seefood.Controllers
 {
     public class AccountController : BaseController
     {

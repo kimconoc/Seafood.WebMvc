@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Admin.MemCached
+namespace Seefood.MemCached
 {
     //public class SessionBlackList
     //{

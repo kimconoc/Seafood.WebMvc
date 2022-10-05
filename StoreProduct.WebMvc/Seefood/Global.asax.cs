@@ -1,5 +1,5 @@
-﻿using Admin.Model;
-using Admin.MemCached;
+﻿using Seefood.Model;
+using Seefood.MemCached;
 using Newtonsoft.Json;
 using System;
 using System.Security.Principal;
@@ -14,7 +14,7 @@ using System.Net.Http;
 using Domain.Constant;
 using System.Net;
 
-namespace Admin
+namespace Seefood
 {
     public class MvcApplication : System.Web.HttpApplication
     {

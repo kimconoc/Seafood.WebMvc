@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 
-namespace Admin.Controllers
+namespace Seefood.Controllers
 {
     public class SharedController : BaseController
     {

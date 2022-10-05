@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace Admin
+namespace Seefood
 {
     public class FilterConfig
     {

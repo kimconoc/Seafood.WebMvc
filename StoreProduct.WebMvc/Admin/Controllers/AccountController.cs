@@ -47,7 +47,7 @@ namespace Admin.Controllers
             string hash = FormsAuthentication.Encrypt(ticket);
             HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, hash);
             Response.Cookies.Add(cookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Seefood", "Home");
         }
 
         public ActionResult Logout()
@@ -65,7 +65,7 @@ namespace Admin.Controllers
                 cookie.Expires = DateTime.Now.AddYears(-1);
                 Response.Cookies.Add(cookie);
             }    
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Seefood", "Home");
         }
 
         [HttpPost]

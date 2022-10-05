@@ -10,7 +10,7 @@ using System.Web.Script.Serialization;
 
 namespace Admin.Controllers
 {
-    public class _LayoutController : BaseController
+    public class SharedController : BaseController
     {
         [HttpPost]
         public ActionResult ExecuteToFavourite(string id,string className)

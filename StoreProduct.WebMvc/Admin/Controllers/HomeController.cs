@@ -7,7 +7,7 @@ namespace Admin.Controllers
 {
     public class HomeController : BaseController
     {
-        public ActionResult Index(string code)
+        public ActionResult Seefood(string code)
         {
             if(string.IsNullOrEmpty(code))
             {

@@ -269,9 +269,9 @@
     text-align: center;
 }
 
-#loadingHourglass {
+#loadingIcon {
     font-size: 40px;
-    color: black;
+    color: rgb(7, 171, 226);
     margin: auto;
     display: block;
     top: calc(50% - 100px);
@@ -280,9 +280,9 @@
     z-index: 999999;
 }
 
-#loadingTextHourglass {
+#loadingText {
     font-size: inherit;
-    color: black;
+    color: rgb(7, 171, 226);
     margin: auto;
     display: block;
     top: calc(50% - 60px);

@@ -7,15 +7,29 @@ namespace Admin.Controllers
 {
     public class HomeController : BaseController
     {
-        public ActionResult Index()
+        public ActionResult Index(string code)
         {
-            var products = provider.GetAsync<List<Product>>(ApiUri.Get_ProductGetAllProd);
-            if (products == null || products.Result.Data == null)
+            if(string.IsNullOrEmpty(code))
             {
-                return View();
-            }
-            var result = products.Result.Data;
-            return View(result);
+                var products = provider.GetAsync<List<Product>>(ApiUri.Get_ProductGetAllProd);
+                if (products == null || products.Result.Data == null)
+                {
+                    return View();
+                }
+                var result = products.Result.Data;
+                return View(result);
+            }   
+            else
+            {
+                var uri = ApiUri.Get_ProductGetProdByCode + string.Format($"?code={code}");
+                var products = provider.GetAsync<List<Product>>(uri);
+                if (products == null || products.Result.Data == null)
+                {
+                    return View();
+                }
+                var result = products.Result.Data;
+                return View(result);
+            }      
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿@using Newtonsoft.Json;
 @using Admin.Model;
+@using Domain.Constant
 
 @{  
     bool isLogin = false;
@@ -48,6 +49,11 @@
     </style>
 </head>
 <body>
+    <div id="loading" style="display:none">
+        <i id="loadingIcon" class="fas fa-spinner fa-pulse"></i>
+    </div>
+    <div id="notification">
+    </div>
     <div class="body-wrapper" style="overflow:hidden;">
         <!-- partial:partials/_sidebar.html -->
         <div class="main-wrapper mdc-drawer-app-content">
@@ -57,7 +63,7 @@
                 </div>
 
                 @*flex1*@
-                <h2 style="width:auto;" class="headerLayout1_flex1">Seefood.com.vn</h2>
+                <h2 style="width:auto;" class="headerLayout1_flex1" onclick="goToMainHome('')">Seefood.com.vn</h2>
                 @*flex2*@
                 <div style="flex: 1;" class="headerLayout1_flex2">
                     <input style="height:100%;width:100%" placeholder="Bạn cần tìm gì?" />
@@ -96,62 +102,62 @@
             </div>
             <div style="display:flex;" class="headerLayout2">
 
-                <div style="flex: 1;">
-                </div>
-
-                <div class="headerLayout2_icon">
-                    <i class="fa fa-home"></i>
-                </div>
-                <button class="headerLayout2_btn">
-                    Tôm
-                </button>
-                <button id="crabHeaderBtn" class="headerLayout2_btn">
-                    Cua
-                </button>
-                <button class="headerLayout2_btn">
-                    Cá
-                </button>
-                <button class="headerLayout2_btn">
-                    Mực
-                </button>
-                <button id="crab2HeaderBtn" class="headerLayout2_btn">
-                    Ghẹ
-                </button>
-                <button id="bebeHeaderBtn" class="headerLayout2_btn">
-                    Bề bề
-                </button>
-                <button id="oystersHeaderBtn" class="headerLayout2_btn">
-                    Hàu
-                </button>
-                <button id="clamsHeaderBtn" class="headerLayout2_btn">
-                    Ngao
-                </button>
-                <button id="doKhoHeaderBtn" class="headerLayout2_btn">
-                    Đồ khô
-                </button>
-                <button id="nuocMamHeaderBtn" class="headerLayout2_btn">
-                    Nước mắm
-                </button>
-                <div class="headerLayout2_icon">
-                    <i data-toggle="tooltip" data-placement="bottom" title="Khuyến mãi"  class="fa fa-shopping-cart"></i>
-                </div>
-
                 <div style="flex:1" class="dropdown">
                     <div id="headerBtnList" class="headerLayout2_icon" data-toggle="dropdown">
                         <i class="fa fa-angle-double-down"></i>
                     </div>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Tôm</a></li>
-                        <li><a href="#">Cua</a></li>
-                        <li><a href="#">Cá</a></li>
-                        <li><a href="#">Mực</a></li>
-                        <li><a href="#">Ghẹ</a></li>
-                        <li><a href="#">Bề bề</a></li>
-                        <li><a href="#">Hàu</a></li>
-                        <li><a href="#">Ngao</a></li>
-                        <li><a href="#">Đồ khô</a></li>
-                        <li><a href="#">Nước mắm</a></li>
+                        <li><a href="/Home/Index?code=@Constant.CodeTom">Tôm</a></li>
+                        <li><a href="/Home/Index?code=@Constant.CodeCua">Cua</a></li>
+                        <li><a href="/Home/Index?code=@Constant.CodeCa">Cá</a></li>
+                        <li><a href="/Home/Index?code=@Constant.CodeMuc">Mực</a></li>
+                        <li><a href="/Home/Index?code=@Constant.CodeGhe">Ghẹ</a></li>
+                        <li><a href="/Home/Index?code=@Constant.CodeBeBe">Bề bề</a></li>
+                        <li><a href="/Home/Index?code=@Constant.CodeHau">Hàu</a></li>
+                        <li><a href="/Home/Index?code=@Constant.CodeNgao">Ngao</a></li>
+                        <li><a href="/Home/Index?code=@Constant.CodeDoKho">Đồ khô</a></li>
+                        <li><a href="/Home/Index?code=@Constant.CodeNuocMam">Nước mắm</a></li>
                     </ul>
+                </div>
+
+                <div class="headerLayout2_icon" onclick="goToMainHome('')">
+                    <i class="fa fa-home"></i>
+                </div>
+                <button class="headerLayout2_btn" onclick="goToMainHome('@Constant.CodeTom')">
+                    Tôm
+                </button>
+                <button id="crabHeaderBtn" class="headerLayout2_btn" onclick="goToMainHome('@Constant.CodeCua')">
+                    Cua
+                </button>
+                <button class="headerLayout2_btn" onclick="goToMainHome('@Constant.CodeCa')">
+                    Cá
+                </button>
+                <button class="headerLayout2_btn" onclick="goToMainHome('@Constant.CodeMuc')">
+                    Mực
+                </button>
+                <button id="crab2HeaderBtn" class="headerLayout2_btn" onclick="goToMainHome('@Constant.CodeGhe')">
+                    Ghẹ
+                </button>
+                <button id="bebeHeaderBtn" class="headerLayout2_btn" onclick="goToMainHome('@Constant.CodeBeBe')">
+                    Bề bề
+                </button>
+                <button id="oystersHeaderBtn" class="headerLayout2_btn" onclick="goToMainHome('@Constant.CodeHau')">
+                    Hàu
+                </button>
+                <button id="clamsHeaderBtn" class="headerLayout2_btn" onclick="goToMainHome('@Constant.CodeNgao')">
+                    Ngao
+                </button>
+                <button id="doKhoHeaderBtn" class="headerLayout2_btn" onclick="goToMainHome('@Constant.CodeDoKho')">
+                    Đồ khô
+                </button>
+                <button id="nuocMamHeaderBtn" class="headerLayout2_btn" onclick="goToMainHome('@Constant.CodeNuocMam')">
+                    Nước mắm
+                </button>
+                <div class="headerLayout2_icon">
+                    <i data-toggle="tooltip" data-placement="bottom" title="Khuyến mãi" class="fa fa-shopping-cart"></i>
+                </div>
+
+                <div style="flex: 1;">
                 </div>
 
             </div>
@@ -172,12 +178,12 @@
                         <p class="tailLayout_number">03 678 23445</p>
                         <h6 style="margin:-2.5px 0 0 5px;">(Chi nhánh 1)</h6>
                     </div>
-                        <p class="tailLayout_text">Tư vấn bảo quản, nấu nướng (Kết nối Zalo)</p>
+                    <p class="tailLayout_text">Tư vấn bảo quản, nấu nướng (Kết nối Zalo)</p>
                     <div class="tailLayout_div_number">
                         <p class="tailLayout_number">03 678 23445</p>
                         <h6 style="margin:-2.5px 0 0 5px;">(Chi nhánh 1)</h6>
                     </div>
-                    <p  class="tailLayout_text" style="margin-top:10px;">Hỗ trợ thanh toán:</p>
+                    <p class="tailLayout_text" style="margin-top:10px;">Hỗ trợ thanh toán:</p>
                     <div class="tailLayout_div_number">
                         <p class="tailLayout_number">099 013 915 9999</p>
                         <h6 style="margin:-2.5px 0 0 5px;">(Ngân hàng MB)</h6>
@@ -195,7 +201,7 @@
                 </div>
             </div>
         </div>
-    </div>   
+    </div>
     <script>
         //Setup
         $(document).ready(function ()
@@ -211,34 +217,11 @@
         {
             window.location = "/Account/Logout";
         }
-
-        function favouriteClick(item)
+        function goToMainHome(code)
         {
-            favourite = true;
-            const element = document.getElementById(item.id);
-            if (element.className == "fa-regular fa-heart")
-            {
-                element.className = "fa-solid fa-heart";
-            } else
-            {
-                element.className = "fa-regular fa-heart";
-            }
-
-            $.ajax({
-                type: "POST",
-                traditional: true,
-                data:
-                {
-                    "id": JSON.stringify(item.id),
-                    "className": JSON.stringify(element.className),
-                },
-                url: "@Url.Action("ExecuteToFavourite", "_Layout")",
-                success: function (data)
-                {
-                },
-            })
+            $("#loading").show();
+            window.location = "/Home/Index?code=" + code;
         }
-
     </script>
 </body>
 </html>

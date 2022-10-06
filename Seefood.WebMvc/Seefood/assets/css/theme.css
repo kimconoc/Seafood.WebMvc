@@ -269,6 +269,17 @@
     text-align: center;
 }
 
+#loadingHourglass {
+    font-size: 40px;
+    color: rgb(7, 171, 226);
+    margin: auto;
+    display: block;
+    top: calc(50% - 100px);
+    left: calc(50% - 10px);
+    position: absolute;
+    z-index: 999999;
+}
+
 #loadingIcon {
     font-size: 40px;
     color: rgb(7, 171, 226);

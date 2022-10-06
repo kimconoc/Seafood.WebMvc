@@ -210,8 +210,6 @@
         executeHourglass();
         setInterval(executeHourglass, 3000);
         //Setup
-        var r_modal = document.getElementById("modalRegister");
-
         $('.form-control').keypress(function () {
             $('.log-status').removeClass('wrong-entry');
         });
@@ -231,11 +229,13 @@
         });
         function showModalRegister()
         {
+            var r_modal = document.getElementById("modalRegister");
             r_modal.style.display = "block";
             $("#loginForm").hide();
         }
         function CloseModalRegister()
         {
+            var r_modal = document.getElementById("modalRegister");
             r_modal.style.display = "none";
             $('#loginForm').show();
         }
@@ -247,6 +247,7 @@
         }
         function cancelRegisterAccount()
         {
+            var r_modal = document.getElementById("modalRegister");
             r_modal.style.display = "none";
             $('#loginForm').show();
             clearData();

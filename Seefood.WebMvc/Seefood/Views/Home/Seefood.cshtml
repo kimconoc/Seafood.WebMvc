@@ -167,14 +167,19 @@
         var favourite = false;
         //Setup
          function gridItemClick(item)
-        {
-            if (favourite)
-            {
-                favourite = false;
-                return;
-            }
-            alert(item.id);
-        }
+         {
+             if (favourite)
+             {
+                 favourite = false;
+                 return;
+             }
+
+             if (item.id != null && item.id != undefined && item.id != '')
+             {
+                 $("#loading").show();
+                 window.location = "/ProdDetailt/Detailt?idProd=" + item.id;
+             }
+         }
 
         function favouriteClick(item)
         {

@@ -376,7 +376,7 @@
                 error: function (e)
                 {
                     $("#loading").hide();
-                    $('#notification').html(HtmlNotifiSuccess('Có lỗi trong quá trình xử lý'));
+                    $('#notification').html(HtmlNotifiErrorRight('Có lỗi trong quá trình xử lý'));
                     $('#notification').fadeIn(500);
                     setTimeout("$('#notification').fadeOut(1500);", 5000);
                 }

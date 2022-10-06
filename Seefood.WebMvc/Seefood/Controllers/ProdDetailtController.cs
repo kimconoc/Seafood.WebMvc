@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Models.ResponseModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,11 @@ namespace Seefood.Controllers
         // GET: ProdDetailt
         public ActionResult Detailt(string idProd)
         {
-            return View();
+            var prod = new ProdDetailt()
+            {
+                ReviewProd = 3.5
+            };
+            return View(prod);
         }
     }
 }

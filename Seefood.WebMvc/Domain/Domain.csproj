@@ -50,6 +50,7 @@
     <Compile Include="Models\BaseModel\ResponseBase.cs" />
     <Compile Include="Models\BaseModel\VBaseModel.cs" />
     <Compile Include="Models\ParameterModel\LoginViewModel.cs" />
+    <Compile Include="Models\ResponseModel\ProdDetailt.cs" />
     <Compile Include="Models\ResponseModel\Product.cs" />
     <Compile Include="Models\ResponseModel\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

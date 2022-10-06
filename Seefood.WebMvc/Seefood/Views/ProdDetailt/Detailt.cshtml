@@ -2,15 +2,173 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@model Domain.Models.ResponseModel.ProdDetailt
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/assets/css/demo/detailt.css" rel="stylesheet" />
     <style>
+        .body-detailt {
+            color: #4a4a4a;
+            font-size: 1em;
+            font-weight: 400;
+            line-height: 1.5;
+            width: 100%;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 5px 0 5px;
+        }
+
+        .prod-name {
+            display: flex !important;
+            align-items: center !important;
+        }
+
+            .prod-name h1 {
+                color: #0a263c;
+                margin: 0 10px 0 0;
+                font-size: 18px;
+                font-weight: 700;
+                line-height: 2;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+
+            .prod-name i {
+                font-size: 14px;
+                color: #f59e0b;
+                margin: 0 5px 0 0;
+            }
+
+        .prod-detailt-main {
+            height: 500px;
+            margin-top: 10px;
+        }
+
+        .prod-detailt-main-img {
+            height: auto;
+            max-width: 100%;
+            display: flex;
+            box-shadow: 0 1px 2px 0 rgb(60 64 67 / 10%), 0 2px 6px 2px rgb(60 64 67 / 15%) !important;
+            padding: 25px 50px 25px 50px;
+            border-radius: 15px;
+            justify-content: center;
+            align-items: center;
+            background: #fff;
+            text-align: center;
+            overflow: hidden;
+        }
     </style>
 </head>
 
 <body>
-    <div>Hello</div>
+    <div class="body-detailt">
+        <div class="prod-name">
+            <h1>Tôm chiên trắng (loại 1 kg 50 con)</h1>
+            @if (Model != null)
+            {
+                if (Model.ReviewProd == null || Model.ReviewProd == 0)
+                {
+                    <h6>Chưa có đánh giá</h6>
+                }
+                else if (Model.ReviewProd == 1)
+                {
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                }
+                else if (Model.ReviewProd == 1.5)
+                {
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                }
+                else if (Model.ReviewProd == 2)
+                {
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                }
+                else if (Model.ReviewProd == 2.5)
+                {
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                }
+                else if (Model.ReviewProd == 3)
+                {
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                }
+                else if (Model.ReviewProd == 3.5)
+                {
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <i class="fa-regular fa-star"></i>
+                }
+                else if (Model.ReviewProd == 4)
+                {
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                }
+                else if (Model.ReviewProd == 3.5)
+                {
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                }
+                else if (Model.ReviewProd >= 5)
+                {
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                }
+            }
+            else
+            {
+                <h6>Chưa có đánh giá</h6>
+            }
+        </div>
+        <div class="slim-line">
+
+        </div>
+        <div class="prod-detailt-main row">
+            <div class="col-md-4 col-sm-12 menu">
+                <div class="prod-detailt-main-img">
+                    <img src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/4/h/4h43.png" alt="Alternate Text" />
+                </div>
+            </div>
+                
+            <div style="background-color:olive;" class="col-md-4 col-sm-12">
+            </div>
+
+            <div style="background-color:yellow;" class="col-md-4 col-sm-12">
+            </div>
+        </div>
+    </div>
     <script>
 
     </script>

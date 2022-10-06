@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="~/assets/css/demo/Seefood.css" rel="stylesheet" />
+    <link href="~/assets/css/demo/seefood.css" rel="stylesheet" />
     <style>
 
         /*Ghi đè class*/
@@ -166,20 +166,26 @@
         //Setup
         var favourite = false;
         //Setup
-         function gridItemClick(item)
-         {
-             if (favourite)
-             {
-                 favourite = false;
-                 return;
-             }
+        function gridItemClick(item)
+        {
+            if (favourite)
+            {
+                favourite = false;
+                return;
+            }
 
-             if (item.id != null && item.id != undefined && item.id != '')
-             {
-                 $("#loading").show();
-                 window.location = "/ProdDetailt/Detailt?idProd=" + item.id;
-             }
-         }
+            if (item.id != null && item.id != undefined && item.id != '')
+            {
+                $("#loading").show();
+                window.location = "/ProdDetailt/Detailt?idProd=" + item.id;
+            }
+            else
+            {
+                $('#notification').html(HtmlNotifiErrorRight('Có lỗi xảy ra'));
+                $('#notification').fadeIn(500);
+                setTimeout("$('#notification').fadeOut(1500);", 5000);
+            }
+        }
 
         function favouriteClick(item)
         {

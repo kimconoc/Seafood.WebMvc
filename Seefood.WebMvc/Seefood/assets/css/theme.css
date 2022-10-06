@@ -44,6 +44,10 @@
         right: 0 !important;
         bottom: 10px !important;
     }
+    .notifiSuccessRight {
+        right: 0 !important;
+        bottom: 10px !important;
+    }
     #mainContent_grid {
         grid-template-columns: 200px 200px;
     }
@@ -129,7 +133,7 @@
 }
 
 .mainContent_card-img img {
-    width: 100%
+    width: 100%;
 }
 
 .mainContent_card-content {
@@ -217,6 +221,12 @@
 .validateError {
     color: #D93025;
     font-size: 13px;
+}
+
+.slim-line {
+    height: 1.5px;
+    background-color: #dee8fc;
+    width: 100%;
 }
 
 .labelClick {
@@ -346,6 +356,19 @@
     margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.notifiSuccessRight {
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #04AA6D;
+    color: white;
+    bottom: 20px;
+    right: 10px;
 }
 
 .notifiInfo {

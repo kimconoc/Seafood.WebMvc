@@ -59,61 +59,73 @@ function executeHourglass()
 /*Notification*/
 function HtmlNotifiError(content)
 {
-    var notifiError = `
+    var notifi = `
                         <div class="notifiError">
                         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
                         <strong>Danger! </strong>
                         ${content}
                         </div>
                     `;
-    return notifiError;
+    return notifi;
 }
 
 function HtmlNotifiErrorRight(content)
 {
-    var notifiError = `
+    var notifi = `
                         <div class="notifiErrorRight">
                         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
                         <strong>Danger! </strong>
                         ${content}
                         </div>
                     `;
-    return notifiError;
+    return notifi;
 }
 
 function HtmlNotifiSuccess(content)
 {
-    var notifiError = `
+    var notifi = `
                         <div class="notifiSuccess">
                         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
                         <strong>Success! </strong>
                         ${content}
                         </div>
                     `;
-    return notifiError;
+    return notifi;
+}
+
+function HtmlNotifiSuccess(content)
+{
+    var notifi = `
+                        <div class="notifiSuccessRight">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        <strong>Success! </strong>
+                        ${content}
+                        </div>
+                    `;
+    return notifi;
 }
 
 function HtmlNotifiInfo(content)
 {
-    var notifiError = `
+    var notifi = `
                         <div class="notifiInfo">
                         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
                         <strong>Info! </strong>
                         ${content}
                         </div>
                     `;
-    return notifiError;
+    return notifi;
 }
 
 function HtmlNotifiWarning(content)
 {
-    var notifiError = `
+    var notifi = `
                         <div class="notifiWarning">
                         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
                         <strong>Warning! </strong>
                         ${content}
                         </div>
                     `;
-    return notifiError;
+    return notifi;
 }
 

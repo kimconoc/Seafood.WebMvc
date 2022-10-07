@@ -7,6 +7,10 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="~/assets/css/demo/detailt.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick-theme.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <style>
         .body-detailt {
             color: #4a4a4a;
@@ -44,13 +48,12 @@
             }
 
         .prod-detailt-main {
-            height: 500px;
             margin-top: 10px;
         }
 
         .prod-detailt-main-img {
             height: auto;
-            max-width: 100%;
+            width: 100%;
             display: flex;
             box-shadow: 0 1px 2px 0 rgb(60 64 67 / 10%), 0 2px 6px 2px rgb(60 64 67 / 15%) !important;
             padding: 25px 50px 25px 50px;
@@ -61,6 +64,27 @@
             text-align: center;
             overflow: hidden;
         }
+
+        /*slick-slide*/
+        .slick-slide img {
+            width: 100%;
+        }
+
+        .slick-next:before, .slick-prev:before {
+            font-size: 20px;
+            line-height: 1;
+            opacity: .75;
+            color: #3b5898;
+        }
+
+        .slick-next:before {
+            margin-left: -15px;
+        }
+
+        .slick-prev:before {
+            margin-right: -13px;
+        }
+
     </style>
 </head>
 
@@ -157,20 +181,70 @@
         </div>
         <div class="prod-detailt-main row">
             <div class="col-md-4 col-sm-12 menu">
-                <div class="prod-detailt-main-img">
-                    <img src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/4/h/4h43.png" alt="Alternate Text" />
+                <div class="prod-detailt-main-img slider slider-for">
+                    <div>
+                        <img src="~/assets/images/oyster.png" alt="Alternate Text" />
+                    </div>
+                    <div>
+                        <img src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/4/h/4h43.png" alt="Alternate Text" />
+                    </div>
+                    <div>
+                        <img src="~/assets/images/crab.jpg" alt="Alternate Text" />
+                    </div>
+                    <div>
+                        <img src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/4/h/4h43.png" alt="Alternate Text" />
+                    </div>
+                    <div>
+                        <img src="~/assets/images/logos/r-logo_login.jpg" alt="Alternate Text" />
+                    </div>
+                </div>
+                <div style="margin-top:-10px;margin-left:-10px;" class="slider slider-nav">
+                    <div>
+                        <img src="~/assets/images/oyster.png" alt="Alternate Text" />
+                    </div>
+                    <div>
+                        <img src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/4/h/4h43.png" alt="Alternate Text" />
+                    </div>
+                    <div>
+                        <img src="~/assets/images/crab.jpg" alt="Alternate Text" />
+                    </div>
+                    <div>
+                        <img src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/4/h/4h43.png" alt="Alternate Text" />
+                    </div>
+                    <div>
+                        <img src="~/assets/images/logos/r-logo_login.jpg" alt="Alternate Text" />
+                    </div>
                 </div>
             </div>
-                
-            <div style="background-color:olive;" class="col-md-4 col-sm-12">
+
+            <div class="col-md-4 col-sm-12">
             </div>
 
-            <div style="background-color:yellow;" class="col-md-4 col-sm-12">
+            <div class="col-md-4 col-sm-12">
             </div>
         </div>
     </div>
     <script>
+        $('.slider-for').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            fade: true,
+            asNavFor: '.slider-nav'
+        });
+        $('.slider-nav').slick({
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            asNavFor: '.slider-for',
+            dots: true,
+            focusOnSelect: true
+        });
 
+        $('a[data-slide]').click(function (e) {
+            e.preventDefault();
+            var slideno = $(this).data('slide');
+            $('.slider-nav').slick('slickGoTo', slideno - 1);
+        });
     </script>
 </body>
 </html>

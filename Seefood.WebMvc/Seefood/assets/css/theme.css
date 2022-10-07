@@ -78,6 +78,9 @@
     .mainContent_card-desc {
         font-size: 10px !important;
     }
+    .mainContent_card-descPromotion {
+        font-size: 10px !important;
+    }
 }
 
 /*mainContent*/
@@ -104,7 +107,7 @@
     text-align: center;
     border-radius: 15px;
     cursor: pointer;
-    height: 400px;
+    height: 410px;
 }
 
     .mainContent_grid_item:hover {

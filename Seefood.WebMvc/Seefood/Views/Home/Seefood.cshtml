@@ -9,6 +9,15 @@
     <link href="~/assets/css/demo/seefood.css" rel="stylesheet" />
     <style>
 
+        .mainContent_card-reviewProd {
+            display: flex !important;
+            align-items: center !important;
+        }
+            .mainContent_card-reviewProd i {
+                font-size: 14px;
+                color: #f59e0b;
+                margin: 0 5px 0 0;
+            }
         /*Ghi đè class*/
         .carousel-control:focus, .carousel-control:hover {
             color: hsla(0,0%,100%,.2);
@@ -126,6 +135,91 @@
                             </div>
                             <div class="mainContent_card-content">
                                 @md.Description
+                            </div>
+                            <div class="mainContent_card-reviewProd">
+                                @if (md != null)
+                                {
+                                    if (md.ReviewProd == null || md.ReviewProd == 0)
+                                    {
+                                        <h6>Chưa có đánh giá</h6>
+                                    }
+                                    else if (md.ReviewProd == 1)
+                                    {
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                    }
+                                    else if (md.ReviewProd == 1.5)
+                                    {
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star-half-stroke"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                    }
+                                    else if (md.ReviewProd == 2)
+                                    {
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                    }
+                                    else if (md.ReviewProd == 2.5)
+                                    {
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star-half-stroke"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                    }
+                                    else if (md.ReviewProd == 3)
+                                    {
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                    }
+                                    else if (md.ReviewProd == 3.5)
+                                    {
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star-half-stroke"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                    }
+                                    else if (md.ReviewProd == 4)
+                                    {
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                    }
+                                    else if (md.ReviewProd == 3.5)
+                                    {
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star-half-stroke"></i>
+                                    }
+                                    else if (md.ReviewProd >= 5)
+                                    {
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    }
+                                }
+                                else
+                                {
+                                    <h6>Chưa có đánh giá</h6>
+                                }
                             </div>
                             <div class="mainContent_card-price">
                                 <div class="mainContent_card-price__main">

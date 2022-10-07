@@ -12,59 +12,45 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <style>
-        .body-detailt {
-            color: #4a4a4a;
-            font-size: 1em;
-            font-weight: 400;
-            line-height: 1.5;
-            width: 100%;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 0 5px 0 5px;
+
+        .block-box-price{
+
         }
-
-        .prod-name {
-            display: flex !important;
-            align-items: center !important;
+        .box-info__installment {
+            width: fit-content;
+            padding: 4px 5px;
+            font-size: 12px;
+            border-radius: 5px;
+            border: 1px solid #d70018;
+            background-color: #fef2f2;
+            color: #d70018;
+            margin-bottom: 10px !important;
         }
-
-            .prod-name h1 {
-                color: #0a263c;
-                margin: 0 10px 0 0;
-                font-size: 18px;
-                font-weight: 700;
-                line-height: 2;
-                display: -webkit-box;
-                -webkit-line-clamp: 3;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-            }
-
-            .prod-name i {
-                font-size: 14px;
-                color: #f59e0b;
-                margin: 0 5px 0 0;
-            }
-
-        .prod-detailt-main {
-            margin-top: 10px;
-        }
-
-        .prod-detailt-main-img {
-            height: auto;
-            width: 100%;
+        .box-info__box-price {
             display: flex;
-            box-shadow: 0 1px 2px 0 rgb(60 64 67 / 10%), 0 2px 6px 2px rgb(60 64 67 / 15%) !important;
-            padding: 25px 50px 25px 50px;
-            border-radius: 15px;
-            justify-content: center;
-            align-items: center;
-            background: #fff;
-            text-align: center;
-            overflow: hidden;
+            flex-wrap: wrap;
+            align-items: flex-end;
+        }
+        .product__price--show {
+            display: inline-block;
+            margin-bottom: 10px !important;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 1.1;
+            color: #d70018;
         }
 
+        .product__price--through {
+            display: inline-block;
+            margin: 0 0 10px 10px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: line-through;
+            color: #707070;
+            position: relative;
+            top: 2px;
+        }
+        /*ghi đè class*/
         /*slick-slide*/
         .slick-slide img {
             width: 100%;
@@ -218,6 +204,19 @@
             </div>
 
             <div class="col-md-4 col-sm-12">
+                <div class="block-box-price">
+                    <div class="box-info__installment">
+                        Ưu đãi 10%
+                    </div>
+                    <div class="box-info__box-price">
+                        <div class="product__price--show">
+                            1.235.000 đ
+                        </div>
+                        <div class="product__price--through">
+                            1,111,500 đ
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="col-md-4 col-sm-12">

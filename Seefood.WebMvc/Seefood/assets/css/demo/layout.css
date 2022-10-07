@@ -181,6 +181,7 @@
 /*tailLayout*/
 
 .tailLayout {
+    margin-top: 10px;
     background-color: #dee8fc;
     display: flex;
 }

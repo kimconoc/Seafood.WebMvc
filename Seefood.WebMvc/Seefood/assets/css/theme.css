@@ -251,6 +251,7 @@
 
 .labelClick {
     color: #1a73e8;
+    color: rgb(7, 171, 226);
     cursor: pointer;
 }
     .labelClick:hover {
@@ -260,7 +261,7 @@
     }
 
 .btn-primary {
-    background-color: #3b5898 !important;
+    background: linear-gradient(rgb(7, 171, 226),#3b5898) !important;
     color: white !important;
     width: 100% !important;
     margin-top: 10% !important;
@@ -275,7 +276,7 @@
     color: white;
     height: 35px;
     font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    background: #3b5898;
+    background: linear-gradient(rgb(7, 171, 226),#3b5898);
 }
 
     .buttonCore:hover {

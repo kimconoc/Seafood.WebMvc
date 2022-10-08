@@ -118,22 +118,36 @@
     text-align: start;
 }
 
-.mainContent_card-price__pecent {
-    position: absolute;
-    display: flex;
-    background-color: #cd1818;
-    top: 10px;
-    left: 20px;
-    width: auto;
-    border-radius: 5px;
-    padding: 2.5px 5px 2.5px 5px;
-    justify-content: center;
-    text-align: center;
-}
+/*.mainContent_card-price__pecent {
+            position: absolute;
+            display: flex;
+            background-color: #cd1818;
+            top: 10px;
+            left: 20px;
+            width: auto;
+            border-radius: 5px;
+            padding: 2.5px 5px 2.5px 5px;
+            justify-content: center;
+            text-align: center;
+        }
 
-.card-price__pecent-text {
+        .card-price__pecent-text {
+            font-size: 12px;
+            color: white;
+            font-family: sans-serif;
+            font-weight: 500;
+        }*/
+
+.mainContent_card-price__pecent {
+    width: auto;
+    border-radius: 10px 0 10px 0;
+    background-color: #cd1818;
+    padding: 5px;
+    position: absolute;
+    top: 5px;
+    left: 0;
+    color: #fff;
     font-size: 12px;
-    color: white;
     font-family: sans-serif;
     font-weight: 500;
 }

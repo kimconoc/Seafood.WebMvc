@@ -238,12 +238,107 @@
         .box-more-promotion-content-detailt {
             width: calc(100% - 25px);
             font-size: 12px;
-        }  
-        /*ghi đè class*/
-        /*slick-slide*/
-        .slick-slide img {
-            width: 100%;
         }
+
+        .box-on-stock-options{
+
+        }
+
+        .box-on-stock-option-region {
+            width: 100%;
+            height: 36px;
+            margin-bottom: 10px;
+            padding: 5px 10px;
+            border-radius: 10px;
+            border: 1px solid #e5e7eb;
+            transition: box-shadow .3s ease-in;
+            font-size: 14px;
+            background-color: #fff;
+        }
+
+        select {
+            font-family: sans-serif !important;
+        }
+
+        .box-on-stock-count{
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .box-on-stock-address {
+            width: 100%;
+            min-height: 140px;
+            max-height: 200px;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            overflow-y: scroll;
+        }
+
+        .box-on-stock-item {
+            padding: 0 10px;
+            height: 33px;
+            width: 100%;
+            gap: 5px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            background-color: #dee8fc;
+            display: flex !important;
+            padding: 0.5rem !important;
+            box-sizing: inherit;
+            font-family: sans-serif !important;
+        }
+
+        .has-text-phone {
+            color: #f14668 !important;
+        }
+
+        .has-text-danger {
+            margin-right: 5px;
+            display: flex;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .box-warranty-info {
+            margin-top:10px;
+            width: 100%;
+            display: inline-block;
+            padding: 10px 10px 0;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            background: #fff;
+        }
+
+            .box-warranty-info p {
+                font-size: 16px;
+                font-weight: 700;
+                color: rgb(7, 171, 226);
+                margin-bottom: 10px;
+            }
+        .item-warranty-info {
+            display: flex;
+            font-size: inherit;
+            margin-bottom: 10px;
+            gap:5px;
+        }
+
+            .item-warranty-info i {
+                font-size: 20px;
+                color: #5cb85c;
+            }
+
+            .item-warranty-info div {
+                font-size: 14px;
+                margin-top: 2px;
+                max-width: calc(100% - 40px);
+            }
+            /*ghi đè class*/
+            /*slick-slide*/
+            .slick-slide img {
+                width: 100%;
+            }
 
         .slick-next:before, .slick-prev:before {
             font-size: 20px;
@@ -502,6 +597,121 @@
             </div>
 
             <div class="col-md-4 col-sm-12">
+                <div class="box-on-stock-options">
+                    <div>
+                        <select class="box-on-stock-option-region headerLeft_select form-select" aria-label="Default select example">
+                            <option selected="selected" value="7">Hà Nội</option>
+                            <option value="8">Thanh Hóa</option>
+                        </select>
+                    </div>
+                    <div>
+                        <select class="box-on-stock-option-region headerLeft_select form-select" aria-label="Default select example">
+                            <option disabled="disabled" selected="selected">Quận/Huyện</option>
+                            <option value="1">
+                                Thanh Xuân
+                            </option>
+                            <option value="4">
+                                Thanh Trì
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="box-on-stock-count">
+                    <p> 
+                        Có 
+                        <strong>13</strong> 
+                        cửa hàng có sản phẩm
+                    </p>
+                </div>
+                <div class="box-on-stock-address">
+                    <div class="box-on-stock-item">
+                        <div class="has-text-phone">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div class="has-text-phone">
+                            0367823445
+                        </div>
+                        <div class="has-text-danger">
+                            | 117 - 119 Nguyễn Trung Trực, TP. Rạch Giá, Kiên Giang
+                        </div>
+                    </div>
+                    <div style="background-color:white;" class="box-on-stock-item">
+                        <div class="has-text-phone">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div class="has-text-phone">
+                            0367823445
+                        </div>
+                        <div class="has-text-danger">
+                            | 117 - 119 Nguyễn Trung Trực, TP. Rạch Giá, Kiên Giang
+                        </div>
+                    </div>
+                    <div class="box-on-stock-item">
+                        <div class="has-text-phone">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div class="has-text-phone">
+                            0367823445
+                        </div>
+                        <div class="has-text-danger">
+                            | 117 - 119 Nguyễn Trung Trực, TP. Rạch Giá, Kiên Giang
+                        </div>
+                    </div>
+                    <div style="background-color:white;" class="box-on-stock-item">
+                        <div class="has-text-phone">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div class="has-text-phone">
+                            0367823445
+                        </div>
+                        <div class="has-text-danger">
+                            | 117 - 119 Nguyễn Trung Trực, TP. Rạch Giá, Kiên Giang
+                        </div>
+                    </div>
+                    <div class="box-on-stock-item">
+                        <div class="has-text-phone">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div class="has-text-phone">
+                            0367823445
+                        </div>
+                        <div class="has-text-danger">
+                            | 117 - 119 Nguyễn Trung Trực, TP. Rạch Giá, Kiên Giang
+                        </div>
+                    </div>
+                    <div style="background-color:white;" class="box-on-stock-item">
+                        <div class="has-text-phone">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div class="has-text-phone">
+                            0367823445
+                        </div>
+                        <div class="has-text-danger">
+                            | 117 - 119 Nguyễn Trung Trực, TP. Rạch Giá, Kiên Giang
+                        </div>
+                    </div>
+                </div>
+                <div class="box-warranty-info">
+                    <p>Thông tin sản phẩm</p>
+                    <div class="item-warranty-info">
+                        <i class="fa-solid fa-shrimp"></i>
+                        <div>
+                            Mua từ 2 kg được miến phí ship trong 5 km, trên 5 km được giảm 20.000 đ tiền ship. Ship thần tốc khi áp dụng voucher
+                        </div>
+                    </div>
+                    <div class="item-warranty-info">
+                        <i class="fa-solid fa-shrimp"></i>
+                        <div>
+                            Mua từ 2 kg được miến phí ship trong 5 km, trên 5 km được giảm 20.000 đ tiền ship. Ship thần tốc khi áp dụng voucher
+                        </div>
+                    </div>
+                    <div class="item-warranty-info">
+                        <i class="fa-solid fa-shrimp"></i>
+                        <div>
+                            Mua từ 2 kg được miến phí ship trong 5 km, trên 5 km được giảm 20.000 đ tiền ship. Ship thần tốc khi áp dụng voucher
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

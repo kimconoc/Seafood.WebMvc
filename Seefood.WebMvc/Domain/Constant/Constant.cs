@@ -20,10 +20,10 @@ namespace Domain.Constant
         public const string CodeNuocMam = "SEANUOCMAM";
 
         //Ông
-        public const string Regions_HaNoi = "SEAHANOI";
+        public const string Region_HaNoi = "SEAHANOI";
         //Cha
-        public const string RegionDistricts_ThanhXuan = "SEAHANOITHANHXUAN";
-        public const string RegionDistricts_ThanhTri = "SEAHANOITHANHTRI";
+        public const string RegionDistrict_ThanhXuan = "SEAHANOITHANHXUAN";
+        public const string RegionDistrict_ThanhTri = "SEAHANOITHANHTRI";
         //Con
         public const string ShopSeafood_NgocHoi = "SEAFOODNGOCHOI";
 

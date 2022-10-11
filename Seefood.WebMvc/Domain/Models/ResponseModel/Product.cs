@@ -11,11 +11,9 @@ namespace Domain.Models.ResponseModel
     {
         public string CategoryCode { get; set; }
         public string RegionCode { get; set; }
-        public Guid? ImgeProdId { get; set; }
         public string Name { get; set; }
         public string DescPromotion { get; set; }
         public string Description { get; set; }
-        public string Outstanding { get; set; }
         public string FavouriteId
         {
             get
@@ -23,7 +21,6 @@ namespace Domain.Models.ResponseModel
                 return Id.ToString() + "_Favourite";
             }
         }
-
         public string Favourite { get; set; }
         public double? ReviewProd { get; set; }
         public int? Price { get; set; }

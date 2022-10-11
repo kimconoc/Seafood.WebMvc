@@ -8,15 +8,24 @@ namespace Domain.Constant
 {
     public class Constant
     {
-        public const string CodeTom = "SEETOM";
-        public const string CodeCua = "SEECUA";
-        public const string CodeCa = "SEECA";
-        public const string CodeMuc = "SEEMUC";
-        public const string CodeGhe = "SEEGHE";
-        public const string CodeBeBe = "SEEBEBE";
-        public const string CodeHau = "SEEHAU";
-        public const string CodeNgao = "SEENGAO";
-        public const string CodeDoKho = "SEEDOKHO";
-        public const string CodeNuocMam = "SEENUOCMAM";
+        public const string CodeTom = "SEATOM";
+        public const string CodeCua = "SEACUA";
+        public const string CodeCa = "SEACA";
+        public const string CodeMuc = "SEAMUC";
+        public const string CodeGhe = "SEAGHE";
+        public const string CodeBeBe = "SEABEBE";
+        public const string CodeHau = "SEAHAU";
+        public const string CodeNgao = "SEANGAO";
+        public const string CodeDoKho = "SEADOKHO";
+        public const string CodeNuocMam = "SEANUOCMAM";
+
+        //Ông
+        public const string Regions_HaNoi = "SEAHANOI";
+        //Cha
+        public const string RegionDistricts_ThanhXuan = "SEAHANOITHANHXUAN";
+        public const string RegionDistricts_ThanhTri = "SEAHANOITHANHTRI";
+        //Con
+        public const string ShopSeafood_NgocHoi = "SEAFOODNGOCHOI";
+
     }
 }

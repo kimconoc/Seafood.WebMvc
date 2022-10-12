@@ -7,17 +7,9 @@ using System.Threading.Tasks;
 
 namespace Domain.Models.ResponseModel
 {
-    public class ProdDetailt : VBaseModel
+    public class ProdDetailt : ProductBase
     {
-        public string CategoryCode { get; set; }
-        public string RegionDistrictCode { get; set; }
-        public string RegionCode { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public double? ReviewProd { get; set; }
-        public double? Price { get; set; }
-        public double? PriceSale { get; set; }
-        public double? Amount { get; set; }
+        public string Icon { get; set; }
         public List<Image> Images { get; set; }
         public List<ProdProcessing> ListProcessing { get; set; }
         public List<ProdPromotion> ListPromotion { get; set; }

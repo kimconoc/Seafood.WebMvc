@@ -47,6 +47,7 @@
     <Compile Include="Constant\Helper.cs" />
     <Compile Include="FileLog\FileHelper.cs" />
     <Compile Include="Models\BaseModel\IEntiy.cs" />
+    <Compile Include="Models\BaseModel\ProductBase.cs" />
     <Compile Include="Models\BaseModel\ResponseBase.cs" />
     <Compile Include="Models\BaseModel\VBaseModel.cs" />
     <Compile Include="Models\ParameterModel\LoginViewModel.cs" />

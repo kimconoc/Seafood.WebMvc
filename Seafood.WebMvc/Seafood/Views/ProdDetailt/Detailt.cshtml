@@ -169,14 +169,23 @@
             <div class="col-md-4 col-sm-12">
                 <div class="block-box-price">
                     <div class="box-info__installment">
-                        Ưu đãi 10%
+                        @if (Model != null)
+                        {
+                            @Model.Discount
+                        }
                     </div>
                     <div class="box-info__box-price">
                         <div class="product__price--show">
-                            1.235.000 đ
+                            @if (Model != null)
+                             {
+                                @Model.StrPriceSale
+                             }
                         </div>
                         <div class="product__price--through">
-                            1,111,500 đ
+                            @if (Model != null)
+                             {
+                                @Model.StrPrice
+                             }
                         </div>
                     </div>
                 </div>
@@ -209,22 +218,22 @@
                         <i class="fa-solid fa-gift"></i>
                         <h1>Khuyến mãi</h1>
                     </div>
-                    <div class="box-product-promotion-content">
-                        <div class="box-product-promotion-number">
-                            1
-                        </div>
-                        <div class="box-product-promotion-detail">
-                            Mua từ 2 kg được miến phí ship trong 5 km, trên 5 km được giảm 20.000 đ tiền ship. Ship thần tốc khi áp dụng voucher
-                        </div>
-                    </div>
-                    <div class="box-product-promotion-content">
-                        <div class="box-product-promotion-number">
-                            2
-                        </div>
-                        <div class="box-product-promotion-detail">
-                            mua từ 4 kg được tặng 1 cân hàu sống, và miễn phí ship trong phạm vi 7 km
-                        </div>
-                    </div>
+                    @if (Model != null && Model.ListPromotion != null && Model.ListPromotion.Any())
+                    {
+                        int index = 0;
+                        foreach (var item in Model.ListPromotion)
+                        {
+                            index = index + 1;
+                            <div class="box-product-promotion-content">
+                                <div class="box-product-promotion-number">
+                                    @index
+                                </div>
+                                <div class="box-product-promotion-detail">
+                                    @item.Content
+                                </div>
+                            </div>
+                        }
+                    }
                 </div>
                 <div class="order-add-to-cart">
                     <button>
@@ -240,38 +249,20 @@
                     <div class="box-more-promotion-title">
                         ƯU ĐÃI THÊM TỪ SEAFOOD
                     </div>
-                    <div class="box-more-promotion-content">
-                        <div class="box-more-promotion-content-✓">
-                            ✓
-                        </div>
-                        <div class="box-more-promotion-content-detailt">
-                            Tham gia tích lũy cùng Seafood, với tổng tiền mua đơn trong 1.000.000 đ được miễn phí ship trong 5 km áp dụng dụng cho hóa đơn từ 200.000 đ
-                        </div>
-                    </div>
-                    <div class="box-more-promotion-content">
-                        <div class="box-more-promotion-content-✓">
-                            ✓
-                        </div>
-                        <div class="box-more-promotion-content-detailt">
-                            Bạn sẽ được tặng ngay 2 cân ngao và miễn phí 20.000 đ ship âp dụng cho hóa đơn từ 400.000 đ
-                        </div>
-                    </div>
-                    <div class="box-more-promotion-content">
-                        <div class="box-more-promotion-content-✓">
-                            ✓
-                        </div>
-                        <div class="box-more-promotion-content-detailt">
-                            Bạn sẽ được tặng ngay 1 cân hàu và miễn phí 20.000 đ ship âp dụng cho hóa đơn từ 500.000 đ
-                        </div>
-                    </div>
-                    <div class="box-more-promotion-content">
-                        <div class="box-more-promotion-content-✓">
-                            ✓
-                        </div>
-                        <div class="box-more-promotion-content-detailt">
-                            Miễn phí ship phạm vi 15 km và giảm 10% áp dụng cho hóa đơn từ 1000.000 đ
-                        </div>
-                    </div>
+                    @if (Model != null && Model.ListSeafoodPromotion != null && Model.ListSeafoodPromotion.Any())
+                    {
+                        foreach (var item in Model.ListSeafoodPromotion)
+                        {
+                            <div class="box-more-promotion-content">
+                                <div class="box-more-promotion-content-✓">
+                                    ✓
+                                </div>
+                                <div class="box-more-promotion-content-detailt">
+                                    @item.Content
+                                </div>
+                            </div>
+                        }
+                    }
                 </div>
             </div>
 
@@ -372,24 +363,18 @@
                 </div>
                 <div class="box-warranty-info">
                     <p>Thông tin sản phẩm</p>
-                    <div class="item-warranty-info">
-                        <i class="fa-solid fa-shrimp"></i>
-                        <div>
-                            Mua từ 2 kg được miến phí ship trong 5 km, trên 5 km được giảm 20.000 đ tiền ship. Ship thần tốc khi áp dụng voucher
-                        </div>
-                    </div>
-                    <div class="item-warranty-info">
-                        <i class="fa-solid fa-shrimp"></i>
-                        <div>
-                            Mua từ 2 kg được miến phí ship trong 5 km, trên 5 km được giảm 20.000 đ tiền ship. Ship thần tốc khi áp dụng voucher
-                        </div>
-                    </div>
-                    <div class="item-warranty-info">
-                        <i class="fa-solid fa-shrimp"></i>
-                        <div>
-                            Mua từ 2 kg được miến phí ship trong 5 km, trên 5 km được giảm 20.000 đ tiền ship. Ship thần tốc khi áp dụng voucher
-                        </div>
-                    </div>
+                    @if (Model != null && Model.ListProdInfo != null && Model.ListProdInfo.Any())
+                    {
+                        foreach (var item in Model.ListProdInfo)
+                        {
+                            <div class="item-warranty-info">
+                                <i class="fa-solid fa-shrimp"></i>
+                                <div>
+                                    @item.Description
+                                </div>
+                            </div>
+                        }
+                    }
                 </div>
             </div>
         </div>

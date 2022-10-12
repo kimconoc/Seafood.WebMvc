@@ -1,0 +1,394 @@
+﻿
+@{
+    Layout = null;
+}
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <title>Login</title>
+    <link href="~/assets/css/theme.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/fa/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/login.css" rel="stylesheet" />
+    <script src="~/assets/js/constant.js"></script>
+    <script src="~/Scripts/jquery/jquery-3.3.1.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    @*Thêm*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .g-recaptcha {
+            transform: scale(1.12);
+            transform-origin: 0 0;
+        }
+
+        .modal-popup {
+            /*margin: 5% auto !important;*/
+            max-width: 700px;
+        }
+
+        .aria-hidden {
+            text-align: right;
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+
+            .aria-hidden:focus {
+                outline: none;
+            }
+
+        input.form-check-input {
+            width: 20px;
+            height: 20px;
+        }
+
+        .r-container-image {
+            width: 200px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 50%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        /*Ghi đè class*/
+        .form-group {
+            margin-top: 1rem !important;
+            margin-bottom: 0 !important;
+        }
+
+        .form-control:focus, .form-control:focus + .fa {
+            border-color: #10CE88;
+            color: black !important;
+        }
+
+        .buttonCore {
+            background: #1a73e8;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div id="loading" style="display:none">
+        <div id="loadingHourglass" class="fa">
+        </div>
+        <div id="loadingText">
+            Processing...
+        </div>
+    </div>
+    <div id="notification">
+    </div>
+    <div style="margin: 20px 0 0 20px;">
+        <h4 style="line-height: 0.5 !important;">Đăng nhập</h4>
+        <h6>Để được hưởng các ưu đãi tốt nhất</h6>
+        <button style="background: linear-gradient(rgb(7, 171, 226),#3b5898);" type="button" class="btn btn-info btn-lg" onclick="goToMainHome()">
+            <i class="fa fa-backward"></i>
+            Trang chủ
+        </button>
+    </div>
+    @*Form login*@
+    <div class="login-form" id="loginForm">
+        <div class="form-group" style="width: 150px; margin: 0 auto;">
+            <img style="width: 100%;" src="~/assets/images/logos/logo_login.jpg" />
+        </div>
+
+        <form role="form" method="post" data-parsley-validate="">
+            @Html.AntiForgeryToken()
+
+            <div class="form-group log-status" id="txtUserName">
+                <input type="text" class="form-control" placeholder="Nhập số điện thoại" id="UserName" name="UserName">
+                <i class="fa fa-user"></i>
+            </div>
+            <div class="form-group log-status" id="txtPassword" style="margin-bottom: 10px;">
+                <input type="password" class="form-control" placeholder="Nhập mật khẩu" id="Password" name="Password">
+                <i class="fa fa-lock"></i>
+            </div>
+            <span id="alert"></span>
+            <button style="margin-top: 10px;" type="submit" id="login" class="log-btn">
+                Đăng nhập
+            </button>
+            <div style="display: flex; margin-top:5px">
+                <div style="flex:3;">
+                    <h6 class="labelClick" onclick="showModalRegister()">Đăng ký tài khoản</h6>
+                </div>
+                <div style="flex:auto;">
+                </div>
+                <div style="flex:3.3;">
+                    <h6 class="labelClick" onclick="showModalPasswordRetrieval()">Bạn quên mật khẩu?</h6>
+                </div>
+            </div>
+        </form>
+    </div>
+    @*Popup modal đăng ký tài khoản*@
+    <div style="overflow:scroll" class="modal" tabindex="-1" role="dialog" id="modalRegister">
+        <div class="modal-popup modal-dialog" role="document">
+            <div class="modal-content">
+                <button class="aria-hidden close" aria-label="Close" onclick="CloseModalRegister()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div style="display: flex;">
+                    @*Vùng 1 thông tin đăng ký*@
+                    <div style="flex: 1.5; padding-left: 30px;padding-bottom:30px;">
+                        <div class="form-group" style="text-align: left; width: 70px;">
+                            <img style="width: 100%;" src="~/assets/images/logos/logo_login.jpg" height="70" />
+                        </div>
+                        <h6 style="margin-top: 1rem;">Tạo Tài khoản SEAFOOD</h6>
+                        <div style="display: flex;">
+                            <div style="flex:1;" class="form-group log-status" id="log_r_firstName">
+                                <input id="r_firstName" type="text" style="height:35px" class="form-control" placeholder="Họ" />
+                            </div>
+                            <div style="flex:0.05;">
+                            </div>
+                            <div style="flex:1;" class="form-group log-status" id="log_r_lastName">
+                                <input id="r_lastName" type="text" style="height:35px" class="form-control" placeholder="Tên" />
+                            </div>
+                        </div>
+                        <span class="validateError" id="alert_r1"></span>
+                        <div class="form-group log-status" id="log_r_email">
+                            <input id="r_email" type="text" style="height:35px;" class="form-control" placeholder="E-mail" />
+                        </div>
+                        <span class="validateError" id="alert_r2"></span>
+                        <div class="form-group log-status" id="log_r_numberPhone">
+                            <input id="r_numberPhone" type="number" style="height:35px;" class="form-control" placeholder="Số điện thoại" />
+                        </div>
+                        <span class="validateError" id="alert_r3"></span>
+                        @*<div class="form-group log-status" id="log_r_username">
+                                <input id="r_username" type="text" style="height:35px;" class="form-control" placeholder="Tài khoản" />
+                            </div>
+                            <span class="validateError" id="alert_r4"></span>*@
+                        <div style="display: flex;">
+                            <div style="flex:1;" class="form-group log-status" id="log_r_password">
+                                <input id="r_password" type="password" style="height:35px" class="form-control" placeholder="Mật khẩu" />
+                            </div>
+                            <div style="flex:0.05;">
+                            </div>
+                            <div style="flex:1;" class="form-group log-status" id="log_r_confirmPassword">
+                                <input id="r_confirmPassword" type="password" style="height:35px" class="form-control" placeholder="Xác nhận" />
+                            </div>
+                        </div>
+                        <span class="validateError" id="alert_r5"></span>
+                        <div style="margin-left: 10px; margin-right: 10px; font-size: 13px">
+                            Sử dụng 8 ký tự trở lên và kết hợp chữ cái, chữ số và biểu tượng. Để tăng tính bảo mật
+                        </div>
+                        <div class="form-check" style="margin-top: 20px;">
+                            <input id="r_showPassword" onclick="isShowPassword()" class="form-check-input" type="checkbox" value="" />
+                            <label style="margin-left:20px;margin-top:3px" class="form-check-label">Hiện mật khẩu</label>
+                        </div>
+                        <div style="display:flex;margin-top:40px">
+                            <div style="flex:3;margin-top:5px">
+                                <h6 class="labelClick" onclick="cancelRegisterAccount()">Hủy bỏ</h6>
+                            </div>
+                            <div style="flex:0.3;">
+                            </div>
+                            <div style="flex: 3; text-align: right;">
+                                <button class="buttonCore mdc-button mdc-button--outlined outlined-button--success mdc-ripple-upgraded" onclick="executeRegisterAccount()">
+                                    Đăng ký
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="flex:0.1;">
+                    </div>
+                    @*Vùng 2 logo giao diện*@
+                    <div id="r-container-image" style="flex: 1; padding: 30px">
+                        <div class="r-container-image">
+                            <img style="width: 100%;" src="~/assets/images/logos/r-logo_login.jpg" />
+                        </div>
+                        <label style="margin-top: 15px; text-align:center;">
+                            Một tài khoản. Hoạt động trên mọi dịch vụ của Seafood.
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        //Setup
+        executeHourglass();
+        setInterval(executeHourglass, 3000);
+        //Setup
+        $('.form-control').keypress(function () {
+            $('.log-status').removeClass('wrong-entry');
+        });
+
+        $(document).ready(function ()
+        {
+            if ('@ViewBag.Message' != '')
+            {
+                $('#txtUserName').addClass('wrong-entry');
+                $('#txtPassword').addClass('wrong-entry');
+                $('#alert').html('@ViewBag.Message');
+                $('#alert').fadeIn(500);
+                setTimeout( "$('#alert').fadeOut(1500);",5000 );
+            }
+
+            $('#UserName').trigger('change');
+        });
+        function showModalRegister()
+        {
+            var r_modal = document.getElementById("modalRegister");
+            r_modal.style.display = "block";
+            $("#loginForm").hide();
+        }
+        function CloseModalRegister()
+        {
+            var r_modal = document.getElementById("modalRegister");
+            r_modal.style.display = "none";
+            $('#loginForm').show();
+        }
+        function showModalPasswordRetrieval()
+        {
+            $('#notification').html(HtmlNotifiInfo('Liên hệ đến SĐT: 0367823445'));
+            $('#notification').fadeIn(500);
+            setTimeout( "$('#notification').fadeOut(1500);",5000 );
+        }
+        function cancelRegisterAccount()
+        {
+            var r_modal = document.getElementById("modalRegister");
+            r_modal.style.display = "none";
+            $('#loginForm').show();
+            clearData();
+        }
+        function isShowPassword()
+        {
+            var checkShowPassword = document.getElementById('r_showPassword');
+            if (checkShowPassword.checked)
+            {
+                document.getElementById("r_password").setAttribute('type', 'text');
+                document.getElementById("r_confirmPassword").setAttribute('type', 'text');
+            }
+            else
+            {
+                document.getElementById("r_password").setAttribute('type', 'password');
+                document.getElementById("r_confirmPassword").setAttribute('type', 'password');
+            }
+        }
+        function clearData()
+        {
+            $("#r_firstName").val('');
+            $("#r_lastName").val('');
+            $("#r_email").val('');
+            $("#r_numberPhone").val('');
+            $("#r_password").val('');
+            $("#r_confirmPassword").val('');
+        }
+        function executeRegisterAccount()
+        {
+            isValidate = true;
+            var r_firstName = $("#r_firstName").val();
+            var r_lastName = $("#r_lastName").val();
+            var r_email = $("#r_email").val();
+            var r_numberPhone = $("#r_numberPhone").val();
+            var r_password = $("#r_password").val();
+            var r_confirmPassword = $("#r_confirmPassword").val();
+            var isPw = validatePassword(r_password, r_confirmPassword);
+
+            if (r_firstName == undefined || r_firstName == ''){
+                isValidate = false;
+                $('#log_r_firstName').addClass('wrong-entry');
+                $('#alert_r1').html('Nhập họ và tên');
+                $('#alert_r1').fadeIn(500);
+                setTimeout("$('#alert_r1').fadeOut(1500);", 5000);
+            }
+            if (r_lastName == undefined || r_lastName == '') {
+                isValidate = false;
+                $('#log_r_lastName').addClass('wrong-entry');
+                $('#alert_r1').html('Nhập họ và tên');
+                $('#alert_r1').fadeIn(500);
+                setTimeout("$('#alert_r1').fadeOut(1500);", 5000);
+            }
+            if (!validateEmail(r_email)) {
+                isValidate = false;
+                $('#log_r_email').addClass('wrong-entry');
+                $('#alert_r2').html('Nhập một địa chỉ Gmail');
+                $('#alert_r2').fadeIn(500);
+                setTimeout("$('#alert_r2').fadeOut(1500);", 5000);
+            }
+            if (!validatePhoneNumber(r_numberPhone)) {
+                isValidate = false;
+                $('#log_r_numberPhone').addClass('wrong-entry');
+                $('#alert_r3').html('Nhập một số điện thoại');
+                $('#alert_r3').fadeIn(500);
+                setTimeout("$('#alert_r3').fadeOut(1500);", 5000);
+            }
+            if (isPw != 'true') {
+                isValidate = false;
+                $('#log_r_password').addClass('wrong-entry');
+                $('#log_r_confirmPassword').addClass('wrong-entry');
+                $('#alert_r5').html(validatePassword(r_password, r_confirmPassword));
+                $('#alert_r5').fadeIn(500);
+                setTimeout("$('#alert_r5').fadeOut(1500);", 5000);
+            }
+
+            if (!isValidate)
+                return;
+
+            dataObject =
+            {
+                r_firstName: r_firstName,
+                r_lastName: r_lastName,
+                r_email: r_email,
+                r_numberPhone: r_numberPhone,
+                r_password: r_password,
+            };
+            paramData =
+            {
+                "__RequestVerificationToken": $('input[name="__RequestVerificationToken"]')[0].value,
+                "jsonObject": JSON.stringify(dataObject),
+            }
+            paramUrl = "@Url.Action("CreateAccount", "Account")";
+            $("#loading").show();
+            $.ajax({
+                type: "POST",
+                traditional: true,
+                data:
+                {
+                    "__RequestVerificationToken": $('input[name="__RequestVerificationToken"]')[0].value,
+                    "jsonObject": JSON.stringify(dataObject),
+                },
+                url: "@Url.Action("CreateAccount", "Account")",
+                success: function (data)
+                {
+                    if (data != null && data.IsCreate)
+                    {
+                        $('#notification').html(HtmlNotifiSuccess(data.Message));
+                        $('#notification').fadeIn(500);
+                        setTimeout("$('#notification').fadeOut(1500);", 5000);
+                        $("#UserName").val(r_numberPhone);
+                        $("#Password").val(r_password);
+                        cancelRegisterAccount();
+
+                    }
+                    else
+                    {
+                        $('#notification').html(HtmlNotifiErrorRight(data.Message));
+                        $('#notification').fadeIn(500);
+                        setTimeout("$('#notification').fadeOut(1500);", 5000);
+                    }
+                },
+                complete:function()
+                {
+                    $("#loading").hide();
+                },
+                error: function (e)
+                {
+                    $("#loading").hide();
+                    $('#notification').html(HtmlNotifiErrorRight('Có lỗi trong quá trình xử lý'));
+                    $('#notification').fadeIn(500);
+                    setTimeout("$('#notification').fadeOut(1500);", 5000);
+                }
+
+            })
+        }
+
+        function goToMainHome()
+        {
+            $("#loading").show();
+            window.location = "/Home/Seafood";
+        }
+    </script>
+</body>
+</html>

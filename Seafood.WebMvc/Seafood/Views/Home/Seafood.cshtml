@@ -1,0 +1,311 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<Domain.Models.ResponseModel.Product>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/assets/css/demo/seafood.css" rel="stylesheet" />
+    <style>
+
+        .mainContent_card-reviewProd {
+            display: flex !important;
+            align-items: center !important;
+        }
+            .mainContent_card-reviewProd i {
+                font-size: 14px;
+                color: #f59e0b;
+                margin: 0 5px 0 0;
+            }
+        /*Ghi đè class*/
+        .carousel-control:focus, .carousel-control:hover {
+            color: hsla(0,0%,100%,.2);
+        }
+
+        .carousel-indicators .active {
+            background-color: #3b5898;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="row">
+            <div class="headerLeft col-md-3 col-sm-12 menu">
+
+                <select style="margin-top:10px" class="headerLeft_select form-select" aria-label="Default select example">
+                    <option selected value="0">Tất cả sản phẩm</option>
+                    <option disabled>─────────</option>
+                    <option value="unLockConfirm">Sản phẩm tươi sống biển</option>
+                    <option value="unLockConfirm">Sản phẩm đồ khô</option>
+                    <option value="unLockConfirm">Sản phẩm nước mắm gia truyền</option>
+                </select>
+                <select class="headerLeft_select form-select" aria-label="Default select example">
+                    <option selected value="0">Tất cả giá sản phẩm</option>
+                    <option disabled>─────────</option>
+                    <option value="unLockConfirm">Sản phẩm tươi sống biển</option>
+                    <option value="unLockConfirm">Sản phẩm đồ khô</option>
+                    <option value="unLockConfirm">Sản phẩm nước mắm gia truyền</option>
+                </select>
+                <select class="headerLeft_select form-select" aria-label="Default select example">
+                    <option selected value="0">Tất cả loại sản phẩm</option>
+                    <option disabled>─────────</option>
+                    <option value="unLockConfirm">Sản phẩm tươi sống biển</option>
+                    <option value="unLockConfirm">Sản phẩm đồ khô</option>
+                    <option value="unLockConfirm">Sản phẩm nước mắm gia truyền</option>
+                </select>
+                <select class="headerLeft_select form-select" aria-label="Default select example">
+                    <option selected value="0">Tất cả loại nuôi trồng</option>
+                    <option disabled>─────────</option>
+                    <option value="unLockConfirm">Sản phẩm tươi sống biển</option>
+                    <option value="unLockConfirm">Sản phẩm đồ khô</option>
+                    <option value="unLockConfirm">Sản phẩm nước mắm gia truyền</option>
+                </select>
+
+                <button type="button" class="btn btn-primary">Tìm kiếm theo</button>
+            </div>
+
+            <div id="headerCenterCarousel" class="col-md-6 col-sm-12">
+                <div style="margin:0 10px 0 10px;" id="myCarousel" class="headerCenter carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="slides-container-image item active">
+                            <img style="width: 100%;" src="~/assets/images/crab.jpg" />
+                            @*<div class="carousel-caption">
+                                    <h3>Sell $</h3>
+                                    <p>Money Money.</p>
+                                </div>*@
+                        </div>
+
+                        <div class="slides-container-image item">
+                            <img style="width:100%;" src="~/assets/images/oyster.png" alt="Image">
+                            @*<div style="color:black;" class="carousel-caption">
+                                    <h3>More Sell $</h3>
+                                    <p>Lorem ipsum...</p>
+                                </div>*@
+                        </div>
+                    </div>
+
+                    <!-- Left and right controls -->
+                    <a style="background:none;" class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a style="background:none;" class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="headerRight col-md-3 col-sm-12">
+                <div>
+                    <h2>Mua hải sản?</h2>
+                    <p>Nơi đây cung cấp hải sản thượng hạng nhất</p>
+                    <h2>Ở đâu?</h2>
+                    <p>Seafood luôn luôn đồng hành cùng bạn</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="mainContent">
+        <div id="mainContent_grid" class="mainContent_grid">
+            @if (Model != null)
+             {
+                foreach (var md in Model)
+                {
+                    <div class="mainContent_grid_item">
+                        <div id=" @md.Id" class="mainContent_card-wrapper" onclick="gridItemClick(this)">
+                            <div class="mainContent_card-price__pecent">
+                                @md.Discount
+                            </div>
+                            <div class="mainContent_card-img">
+                                <img src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/4/h/4h43.png" alt="Alternate Text" />
+                            </div>
+                            <div class="mainContent_card-content">
+                                @md.Description
+                            </div>
+                            <div class="mainContent_card-reviewProd">
+                                @if (md != null)
+                                {
+                                    if (md.ReviewProd == null || md.ReviewProd == 0)
+                                    {
+                                    }
+                                    else if (md.ReviewProd == 1)
+                                    {
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                    }
+                                    else if (md.ReviewProd == 1.5)
+                                    {
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star-half-stroke"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                    }
+                                    else if (md.ReviewProd == 2)
+                                    {
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                    }
+                                    else if (md.ReviewProd == 2.5)
+                                    {
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star-half-stroke"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                    }
+                                    else if (md.ReviewProd == 3)
+                                    {
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                    }
+                                    else if (md.ReviewProd == 3.5)
+                                    {
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star-half-stroke"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                    }
+                                    else if (md.ReviewProd == 4)
+                                    {
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                    }
+                                    else if (md.ReviewProd == 4.5)
+                                    {
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star-half-stroke"></i>
+                                    }
+                                    else if (md.ReviewProd >= 5)
+                                    {
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    }
+                                }
+                                else
+                                {
+                                }
+                            </div>
+                            <div class="mainContent_card-price">
+                                <div class="mainContent_card-price__main">
+                                    @md.StrPrice đ
+                                </div>
+                                <div class="mainContent_card-price__sale">
+                                    @md.StrPriceSale đ
+                                </div>
+                            </div>
+                            <div class="mainContent_card-descPromotion">
+                                @md.DescPromotion
+                            </div>
+                            @if (string.IsNullOrEmpty(md.Favourite))
+                             {
+                                <div class="mainContent_card-favourite">
+                                    <span>Yêu thích</span>
+                                    <i id="@md.FavouriteId" class="fa-regular fa-heart" onclick="favouriteClick(this)"></i>
+                                </div>
+                             }
+                            else
+                            {
+                                <div class="mainContent_card-favourite">
+                                    <span>Yêu thích</span>
+                                    <i id="@md.FavouriteId" class="@md.Favourite" onclick="favouriteClick(this)"></i>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+             }
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Thay đổi kích thước cửa sổ trình duyệt để xem nội dung nếu không thể xem được.</p>
+    </div>
+    <script>
+        //Setup
+        var favourite = false;
+        //Setup
+        function gridItemClick(item)
+        {
+            if (favourite)
+            {
+                favourite = false;
+                return;
+            }
+
+            if (item.id != null && item.id != undefined && item.id != '')
+            {
+                $("#loading").show();
+                window.location = "/ProdDetailt/Detailt?idProd=" + item.id;
+            }
+            else
+            {
+                $('#notification').html(HtmlNotifiErrorRight('Có lỗi xảy ra'));
+                $('#notification').fadeIn(500);
+                setTimeout("$('#notification').fadeOut(1500);", 5000);
+            }
+        }
+
+        function favouriteClick(item)
+        {
+            favourite = true;
+            const element = document.getElementById(item.id);
+            if (element.className == "fa-regular fa-heart")
+            {
+                element.className = "fa-solid fa-heart";
+            } else
+            {
+                element.className = "fa-regular fa-heart";
+            }
+
+            $.ajax({
+                type: "POST",
+                traditional: true,
+                data:
+                {
+                    "id": JSON.stringify(item.id),
+                    "className": JSON.stringify(element.className),
+                },
+                url: "@Url.Action("ExecuteToFavourite", "Shared")",
+                success: function (data)
+                {
+                },
+            })
+        }
+    </script>
+</body>
+</html>
+
+

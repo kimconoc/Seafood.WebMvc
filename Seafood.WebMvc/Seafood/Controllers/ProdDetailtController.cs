@@ -1,4 +1,5 @@
-﻿using Domain.Models.ResponseModel;
+﻿using Domain.Constant;
+using Domain.Models.ResponseModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +11,18 @@ namespace Seafood.Controllers
     public class ProdDetailtController : BaseController
     {
         // GET: ProdDetailt
-        public ActionResult Detailt(string idProd)
+        public ActionResult Detailt(string prodId)
         {
-            var prod = new ProdDetailt()
+            if(prodId == null)
+                return View();
+            var uri = ApiUri.Get_GetProdDetailtById + string.Format($"?prodId={prodId}");
+            var product = provider.GetAsync<ProdDetailt>(uri);
+            if (product == null || product.Result == null || product.Result.Data == null)
             {
-                ReviewProd = 3.5
-            };
-            return View(prod);
+                return View();
+            }
+            var result = product.Result.Data;
+            return View(result);
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Domain.Models.ResponseModel
         }
         public string Favourite { get; set; }
         public double? ReviewProd { get; set; }
-        public int? Price { get; set; }
+        public double? Price { get; set; }
         public string StrPrice 
         {
             get
@@ -35,7 +35,7 @@ namespace Domain.Models.ResponseModel
                 return string.Empty;
             }
         }
-        public int? PriceSale { get; set; }
+        public double? PriceSale { get; set; }
         public string StrPriceSale
         {
             get
@@ -65,7 +65,7 @@ namespace Domain.Models.ResponseModel
         }
         public double? Amount { get; set; }
         public string Note { get; set; }
-        private string FomatToTypeMoney(int? Price)
+        private string FomatToTypeMoney(double? Price)
         {
             var strPrice = Price.ToString();
             var result = string.Empty;

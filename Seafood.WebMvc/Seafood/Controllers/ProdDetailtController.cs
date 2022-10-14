@@ -14,12 +14,12 @@ namespace Seafood.Controllers
         public ActionResult Detailt(string prodId)
         {
             if(prodId == null)
-                return View();
+                return View(new ProdDetailt());
             var uri = ApiUri.Get_GetProdDetailtById + string.Format($"?prodId={prodId}");
             var product = provider.GetAsync<ProdDetailt>(uri);
             if (product == null || product.Result == null || product.Result.Data == null)
             {
-                return View();
+                return View(new ProdDetailt());
             }
             var result = product.Result.Data;
             return View(result);

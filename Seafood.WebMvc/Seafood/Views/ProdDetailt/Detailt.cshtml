@@ -1,6 +1,10 @@
-﻿
+﻿@using Domain.Enums
+@using Domain.Extentions
+@using Domain.Constant
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var code1 = "DENGUYEN";
+    var code2 = "THEOYEUCAU";
 }
 @model Domain.Models.ResponseModel.ProdDetailt
 <html>
@@ -17,7 +21,7 @@
         /*slick-slide*/
         .slick-slide img {
             width: 100%;
-        }    
+        }
 
         .slick-next:before, .slick-prev:before {
             font-size: 20px;
@@ -33,7 +37,6 @@
         .slick-prev:before {
             margin-right: -13px;
         }
-
     </style>
 </head>
 
@@ -177,39 +180,38 @@
                     <div class="box-info__box-price">
                         <div class="product__price--show">
                             @if (Model != null)
-                             {
+                            {
                                 @Model.StrPriceSale
-                             }
+                            }
                         </div>
                         <div class="product__price--through">
                             @if (Model != null)
-                             {
+                            {
                                 @Model.StrPrice
-                             }
+                            }
                         </div>
                     </div>
                 </div>
                 <div class="list-linked">
-                    <div style="border: 1px solid rgb(7, 171, 226); " class="linked-undefined">
-                        <strong>Để nguyên</strong>
+                    <div id="@Model.ListProcessing.FirstOrDefault(x=> x.Note == code1).Id" class="linked-undefined">
+                        <strong>@Model.ListProcessing.FirstOrDefault(x => x.Note == code1).Name</strong>
                         <div class="active">
                             ✓
                         </div>
                     </div>
-                    <div class="linked-undefined">
-                        <strong>chế biến sẵn </strong>
-                        <span>+ 30.000 đ</span>
-                    </div>
-                    <div class="linked-undefined">
-                        <strong>chế biến lẩu </strong>
-                        <span>+ 30.000 đ</span>
-                    </div>
-                    <div class="linked-undefined">
-                        <strong>chế biến nướng</strong>
-                        <span>+ 30.000 đ</span>
-                    </div>
-                    <div class="linked-undefined">
-                        <strong>Theo yêu cầu</strong>
+                    @foreach (var item in @Model.ListProcessing)
+                    {
+                        if (item.Note == code1 || item.Note == code2)
+                        {
+                            continue;
+                        }
+                        <div id="@item.Id" class="linked-undefined">
+                            <strong>@item.Name</strong>
+                            <span>@string.Format("+ {0}", item.StrPrice)</span>
+                        </div>
+                    }
+                    <div id="@Model.ListProcessing.FirstOrDefault(x=> x.Note == code2).Id" class="linked-undefined">
+                        <strong>@Model.ListProcessing.FirstOrDefault(x => x.Note == code2).Name</strong>
                         <span>liên hệ</span>
                     </div>
                 </div>
@@ -269,27 +271,38 @@
             <div class="col-md-4 col-sm-12">
                 <div class="box-on-stock-options">
                     <div>
-                        <select class="box-on-stock-option-region headerLeft_select form-select" aria-label="Default select example">
-                            <option selected="selected" value="7">Hà Nội</option>
-                            <option value="8">Thanh Hóa</option>
+                        <select onchange="selectedRegion(this)" class="box-on-stock-option-region headerLeft_select form-select" aria-label="Default select example">
+                            <option selected="selected" value="@Constant.Region_HaNoi">Hà Nội</option>
+                            <option value="@Constant.Region_ThanhHoa">Thanh Hóa</option>
                         </select>
                     </div>
-                    <div>
+                    <div id="@Constant.Region_HaNoi">
                         <select class="box-on-stock-option-region headerLeft_select form-select" aria-label="Default select example">
                             <option disabled="disabled" selected="selected">Quận/Huyện</option>
-                            <option value="1">
-                                Thanh Xuân
-                            </option>
-                            <option value="4">
-                                Thanh Trì
-                            </option>
+                            @{
+                                foreach (var role in Enum.GetValues(typeof(HaNoiDistrictEnum)))
+                                {
+                                    <option value="@((int)role)"> @StringExtension.GetDescription((Enum)role)</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div id="@Constant.Region_ThanhHoa" style="display: none;">
+                        <select class="box-on-stock-option-region headerLeft_select form-select" aria-label="Default select example">
+                            <option disabled="disabled" selected="selected">Quận/Huyện</option>
+                            @{
+                                foreach (var role in Enum.GetValues(typeof(ThanhHoaDistrictEnum)))
+                                {
+                                    <option value="@((int)role)"> @StringExtension.GetDescription((Enum)role)</option>
+                                }
+                            }
                         </select>
                     </div>
                 </div>
                 <div class="box-on-stock-count">
-                    <p> 
-                        Có 
-                        <strong>13</strong> 
+                    <p>
+                        Có
+                        <strong>13</strong>
                         cửa hàng có sản phẩm
                     </p>
                 </div>
@@ -368,7 +381,7 @@
                         foreach (var item in Model.ListProdInfo)
                         {
                             <div class="item-warranty-info">
-                                <i class="fa-solid fa-shrimp"></i>
+                                <i class="@Model.Icon"></i>
                                 <div>
                                     @item.Description
                                 </div>
@@ -400,6 +413,62 @@
             var slideno = $(this).data('slide');
             $('.slider-nav').slick('slickGoTo', slideno - 1);
         });
+
+        $('.linked-undefined').click(function (e) {
+            var dom = this;
+            if (dom.innerHTML.indexOf('active') >= 0)
+                return;
+
+            var model = @Html.Raw(Json.Encode(Model));
+
+            for (var i = 0; i < model.ListProcessing.length; i++)
+            {
+                const element = document.getElementById(model.ListProcessing[i].Id);
+                if (element.innerHTML.indexOf('active') >= 0)
+                {
+                    if (model.ListProcessing[i].Note == '@code1') {
+                        var htmlUnActive = `<strong>${model.ListProcessing[i].Name}</strong>`;
+                        element.innerHTML = htmlUnActive;
+                    }
+                    else if (model.ListProcessing[i].Note == '@code2') {
+                        var htmlUnActive = `<strong>${model.ListProcessing[i].Name}</strong>
+                                            <span>liên hệ</span>
+                                            `;
+                        element.innerHTML = htmlUnActive;
+                    }
+                    else
+                    {
+                        var htmlUnActive = `<strong>${model.ListProcessing[i].Name}</strong>
+                                            <span>+ ${model.ListProcessing[i].StrPrice}</span>
+                                            `;
+                        element.innerHTML = htmlUnActive;
+                    }
+                }
+            }
+
+            var htmlActive = `<div class="active">
+                                   ✓
+                               </div>
+                              `;
+            dom.innerHTML = dom.innerHTML + htmlActive;
+        });
+
+        function selectedRegion(dom)
+        {
+            debugger
+            var idHN = '#' + '@Constant.Region_HaNoi'
+            var idTH = '#' + '@Constant.Region_ThanhHoa'
+            if (dom.value == '@Constant.Region_HaNoi')
+            {
+                $(idTH).hide();
+                $(idHN).show();
+            }
+            else
+            {
+                $(idHN).hide();
+                $(idTH).show();
+            }
+        }
     </script>
 </body>
 </html>

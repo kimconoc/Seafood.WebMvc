@@ -1,4 +1,6 @@
-﻿using Domain.Models.BaseModel;
+﻿using Domain.Constant;
+using Domain.Helpers;
+using Domain.Models.BaseModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +24,13 @@ namespace Domain.Models.ResponseModel
         public string Name { get; set; }
         public int Price { get; set; }
         public string Note { get; set; }
+        public string StrPrice
+        {
+            get
+            {
+                return Helper.FomatToTypeMoney(Price);
+            }
+        }
     }
     public class ProdPromotion : VBaseModel
     {

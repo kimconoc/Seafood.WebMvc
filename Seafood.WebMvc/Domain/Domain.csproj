@@ -44,7 +44,9 @@
   <ItemGroup>
     <Compile Include="Constant\ApiUri.cs" />
     <Compile Include="Constant\Constant.cs" />
-    <Compile Include="Constant\Helper.cs" />
+    <Compile Include="Enums\Enum.cs" />
+    <Compile Include="Helpers\Helper.cs" />
+    <Compile Include="Extentions\StringExtension.cs" />
     <Compile Include="FileLog\FileHelper.cs" />
     <Compile Include="Models\BaseModel\IEntiy.cs" />
     <Compile Include="Models\BaseModel\ProductBase.cs" />

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Domain.Constant;
+using Domain.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,7 +26,7 @@ namespace Domain.Models.BaseModel
             {
                 if (Price != null)
                 {
-                    return FomatToTypeMoney(Price);
+                    return Helper.FomatToTypeMoney(Price);
                 }
                 return string.Empty;
             }
@@ -35,7 +37,7 @@ namespace Domain.Models.BaseModel
             {
                 if (PriceSale != null)
                 {
-                    return FomatToTypeMoney(PriceSale);
+                    return Helper.FomatToTypeMoney(PriceSale);
                 }
                 return string.Empty;
             }
@@ -48,32 +50,6 @@ namespace Domain.Models.BaseModel
             }
         }
 
-        protected string FomatToTypeMoney(double? Price)
-        {
-            var strPrice = Price.ToString();
-            var result = string.Empty;
-            if (strPrice.Length == 4)
-            {
-                result = strPrice.Substring(0, 1) + "." + strPrice.Substring(1);
-            }
-            else if (strPrice.Length == 5)
-            {
-                result = strPrice.Substring(0, 2) + "." + strPrice.Substring(2);
-            }
-            else if (strPrice.Length == 6)
-            {
-                result = strPrice.Substring(0, 3) + "." + strPrice.Substring(3);
-            }
-            else if (strPrice.Length == 7)
-            {
-                result = strPrice.Substring(0, 1) + "." + strPrice.Substring(1, 3) + "." + strPrice.Substring(4);
-            }
-            else if (strPrice.Length == 8)
-            {
-                result = strPrice.Substring(0, 2) + "." + strPrice.Substring(2, 3) + "." + strPrice.Substring(5);
-            }
-            return result + " đ";
-        }
         protected string CalculateDiscount(double? Price, double? PriceSale)
         {
             if (PriceSale == null || Price == null || PriceSale == 0 || PriceSale >= Price)

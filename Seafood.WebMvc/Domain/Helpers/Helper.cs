@@ -5,10 +5,36 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Domain.Constant
+namespace Domain.Helpers
 {
     public class Helper
     {
+        public static string FomatToTypeMoney(double? Price)
+        {
+            var strPrice = Price.ToString();
+            var result = string.Empty;
+            if (strPrice.Length == 4)
+            {
+                result = strPrice.Substring(0, 1) + "." + strPrice.Substring(1);
+            }
+            else if (strPrice.Length == 5)
+            {
+                result = strPrice.Substring(0, 2) + "." + strPrice.Substring(2);
+            }
+            else if (strPrice.Length == 6)
+            {
+                result = strPrice.Substring(0, 3) + "." + strPrice.Substring(3);
+            }
+            else if (strPrice.Length == 7)
+            {
+                result = strPrice.Substring(0, 1) + "." + strPrice.Substring(1, 3) + "." + strPrice.Substring(4);
+            }
+            else if (strPrice.Length == 8)
+            {
+                result = strPrice.Substring(0, 2) + "." + strPrice.Substring(2, 3) + "." + strPrice.Substring(5);
+            }
+            return result + " đ";
+        }
         public static bool ValidPhoneNumer(string phoneNumber, string lengthAndPrefixPhoneNumber = "10-09,086,088,089,020,032,033,034,035,036,037,038,039,070,079,077,076,078,083,084,085,081,082,056,058,059")
         {
             if (string.IsNullOrEmpty(phoneNumber))

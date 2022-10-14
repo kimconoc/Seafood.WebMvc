@@ -21,6 +21,7 @@ namespace Domain.Constant
 
         //Ông
         public const string Region_HaNoi = "SEAHANOI";
+        public const string Region_ThanhHoa = "SEATHANHHOA";
         //Cha
         public const string RegionDistrict_ThanhXuan = "SEAHANOITHANHXUAN";
         public const string RegionDistrict_ThanhTri = "SEAHANOITHANHTRI";

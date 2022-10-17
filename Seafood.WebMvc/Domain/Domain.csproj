@@ -57,6 +57,7 @@
     <Compile Include="Models\ResponseModel\ProdDetailt.cs" />
     <Compile Include="Models\ResponseModel\Product.cs" />
     <Compile Include="Models\ResponseModel\SeafoodPromotion.cs" />
+    <Compile Include="Models\ResponseModel\ShopSeafood.cs" />
     <Compile Include="Models\ResponseModel\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

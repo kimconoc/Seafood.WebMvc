@@ -17,5 +17,7 @@ namespace Domain.Constant
         public const string Get_ProductGetProdByCode = "api/Product/GetProdByCode";
         public const string Get_ProductExecuteToFavourite = "api/Product/ExecuteToFavourite";
         public const string Get_GetProdDetailtById = "api/Product/GetProdDetailtById";
+
+        public const string Get_GetInfoShopSeeFood = "api/Product/GetInfoShopSeeFood";
     }
 }

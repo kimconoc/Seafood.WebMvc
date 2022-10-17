@@ -1,10 +1,13 @@
 ﻿@using Domain.Enums
 @using Domain.Extentions
 @using Domain.Constant
+@using Service.Helpers
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     var code1 = "DENGUYEN";
     var code2 = "THEOYEUCAU";
+    var masterDataHelper = new MasterDataHelper();
+    var infoShopSeeFood = masterDataHelper.GetInfoShopSeeFood();
 }
 @model Domain.Models.ResponseModel.ProdDetailt
 <html>
@@ -302,77 +305,25 @@
                 <div class="box-on-stock-count">
                     <p>
                         Có
-                        <strong>13</strong>
+                        <strong>@infoShopSeeFood.Count</strong>
                         cửa hàng có sản phẩm
                     </p>
                 </div>
                 <div class="box-on-stock-address">
-                    <div class="box-on-stock-item">
-                        <div class="has-text-phone">
-                            <i class="fa-solid fa-phone"></i>
+                    @foreach (var item in infoShopSeeFood)
+                    {
+                        <div class="box-on-stock-item">
+                            <div class="has-text-phone">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div class="has-text-phone">
+                                @item.Phone
+                            </div>
+                            <div class="has-text-danger">
+                                | @item.Address
+                            </div>
                         </div>
-                        <div class="has-text-phone">
-                            0367823445
-                        </div>
-                        <div class="has-text-danger">
-                            | 117 - 119 Nguyễn Trung Trực, TP. Rạch Giá, Kiên Giang
-                        </div>
-                    </div>
-                    <div style="background-color:white;" class="box-on-stock-item">
-                        <div class="has-text-phone">
-                            <i class="fa-solid fa-phone"></i>
-                        </div>
-                        <div class="has-text-phone">
-                            0367823445
-                        </div>
-                        <div class="has-text-danger">
-                            | 117 - 119 Nguyễn Trung Trực, TP. Rạch Giá, Kiên Giang
-                        </div>
-                    </div>
-                    <div class="box-on-stock-item">
-                        <div class="has-text-phone">
-                            <i class="fa-solid fa-phone"></i>
-                        </div>
-                        <div class="has-text-phone">
-                            0367823445
-                        </div>
-                        <div class="has-text-danger">
-                            | 117 - 119 Nguyễn Trung Trực, TP. Rạch Giá, Kiên Giang
-                        </div>
-                    </div>
-                    <div style="background-color:white;" class="box-on-stock-item">
-                        <div class="has-text-phone">
-                            <i class="fa-solid fa-phone"></i>
-                        </div>
-                        <div class="has-text-phone">
-                            0367823445
-                        </div>
-                        <div class="has-text-danger">
-                            | 117 - 119 Nguyễn Trung Trực, TP. Rạch Giá, Kiên Giang
-                        </div>
-                    </div>
-                    <div class="box-on-stock-item">
-                        <div class="has-text-phone">
-                            <i class="fa-solid fa-phone"></i>
-                        </div>
-                        <div class="has-text-phone">
-                            0367823445
-                        </div>
-                        <div class="has-text-danger">
-                            | 117 - 119 Nguyễn Trung Trực, TP. Rạch Giá, Kiên Giang
-                        </div>
-                    </div>
-                    <div style="background-color:white;" class="box-on-stock-item">
-                        <div class="has-text-phone">
-                            <i class="fa-solid fa-phone"></i>
-                        </div>
-                        <div class="has-text-phone">
-                            0367823445
-                        </div>
-                        <div class="has-text-danger">
-                            | 117 - 119 Nguyễn Trung Trực, TP. Rạch Giá, Kiên Giang
-                        </div>
-                    </div>
+                    }
                 </div>
                 <div class="box-warranty-info">
                     <p>Thông tin sản phẩm</p>
@@ -393,6 +344,7 @@
         </div>
     </div>
     <script>
+        //Setup
         $('.slider-for').slick({
             slidesToShow: 1,
             slidesToScroll: 1,
@@ -407,13 +359,12 @@
             dots: true,
             focusOnSelect: true
         });
-
         $('a[data-slide]').click(function (e) {
             e.preventDefault();
             var slideno = $(this).data('slide');
             $('.slider-nav').slick('slickGoTo', slideno - 1);
         });
-
+        //Setup
         $('.linked-undefined').click(function (e) {
             var dom = this;
             if (dom.innerHTML.indexOf('active') >= 0)

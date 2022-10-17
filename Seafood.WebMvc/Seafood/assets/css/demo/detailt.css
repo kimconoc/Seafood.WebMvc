@@ -5,6 +5,15 @@
     }
 }
 
+@media only screen and (max-width: 768px) {
+    .block-box-price{
+        margin-top:10px;
+    }
+    .box-on-stock-options {
+        margin-top: 10px;
+    }
+}
+
 .block-box-price {
 }
 

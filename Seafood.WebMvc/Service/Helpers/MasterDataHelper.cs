@@ -19,7 +19,7 @@ namespace Service.Helpers
             var shopSeafood = provider.GetAsync<List<ShopSeafood>>(uri);
             if (shopSeafood == null || shopSeafood.Result == null || shopSeafood.Result.Data == null)
             {
-                return null;
+                return new List<ShopSeafood>();
             }
 
             return shopSeafood.Result.Data;

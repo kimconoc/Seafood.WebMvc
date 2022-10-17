@@ -141,6 +141,7 @@ namespace Seafood.Controllers
             }    
             var userData = new UserData
             {
+                UserId = user.Id,
                 DisplayName = user.DisplayName,
                 FullName = user.Fullname,
                 Roles = roles,

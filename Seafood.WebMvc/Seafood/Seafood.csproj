@@ -157,6 +157,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ProdDetailtController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
+    <Compile Include="Controllers\YourBasketController.cs" />
     <Compile Include="Models\DataTablesQueryModel.cs" />
     <Compile Include="Models\UserData.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -460,6 +461,7 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\ProdDetailt\Detailt.cshtml" />
+    <Content Include="Views\YourBasket\Basket.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

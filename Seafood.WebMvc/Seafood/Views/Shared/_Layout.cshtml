@@ -37,6 +37,7 @@
     @Styles.Render("~/bundles/css")
     <link href="~/assets/css/demo/layout.css" rel="stylesheet" />
     <link href="~/assets/css/theme.css" rel="stylesheet" />
+    <script src="~/assets/js/constant.js"></script>
     <!--css, js bootstrap -->
     <link href="~/Content/fa/font-awesome.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet" />
@@ -235,7 +236,17 @@
 
         $('.headerLayout1_flex5').click(function (e)
         {
-            window.location = "/YourBasket/Basket";
+            debugger
+            if ('@isLogin' == 'True')
+            {
+                window.location = "/YourBasket/Basket";
+            }
+            else
+            {
+                $('#notification').html(HtmlNotifiErrorRight('Bạn chưa đăng nhập'));
+                $('#notification').fadeIn(500);
+                setTimeout("$('#notification').fadeOut(1500);", 5000);
+            }
         });
     </script>
 </body>

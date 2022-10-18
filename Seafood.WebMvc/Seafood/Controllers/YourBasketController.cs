@@ -9,7 +9,7 @@ namespace Seafood.Controllers
     public class YourBasketController : Controller
     {
         // GET: ProdDetailt
-        public ActionResult Basket()
+        public ActionResult Basket(Guid userId)
         {
             return View();
         }

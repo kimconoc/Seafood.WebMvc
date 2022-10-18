@@ -40,13 +40,13 @@ namespace Seafood.Controllers
                 ViewBag.Message = "Tài khoản đăng nhập không đúng";
                 return View(model);
             }
-            var user = userBase.Result.Data;
+            //var user = userBase.Result.Data;
             // Lưu thông tin ticket
-            var userData = StoreUserData(user);
-            FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, model.UserName, DateTime.Now, DateTime.Now.AddMinutes(1500), false, JsonConvert.SerializeObject(userData), FormsAuthentication.FormsCookiePath);
-            string hash = FormsAuthentication.Encrypt(ticket);
-            HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, hash);
-            Response.Cookies.Add(cookie);
+            //var userData = StoreUserData(user);
+            //FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, model.UserName, DateTime.Now, DateTime.Now.AddMinutes(1500), false, JsonConvert.SerializeObject(userData), FormsAuthentication.FormsCookiePath);
+            //string hash = FormsAuthentication.Encrypt(ticket);
+            //HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, hash);
+            //Response.Cookies.Add(cookie);
             return RedirectToAction("Seafood", "Home");
         }
 
@@ -58,13 +58,13 @@ namespace Seafood.Controllers
                 ViewBag.Message = "Có lỗi xảy ra";
                 return View();
             }
-            FormsAuthentication.SignOut();
-            HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, "");
-            if(cookie != null)
-            {
-                cookie.Expires = DateTime.Now.AddYears(-1);
-                Response.Cookies.Add(cookie);
-            }    
+            //FormsAuthentication.SignOut();
+            //HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, "");
+            //if(cookie != null)
+            //{
+            //    cookie.Expires = DateTime.Now.AddYears(-1);
+            //    Response.Cookies.Add(cookie);
+            //}    
             return RedirectToAction("Seafood", "Home");
         }
 
@@ -132,23 +132,23 @@ namespace Seafood.Controllers
         }
 
         #region private menthod
-        private UserData StoreUserData(User user)
-        {
-            List<string> roles = new List<string>();
-            if (!string.IsNullOrEmpty(user.Roles))
-            {
-                roles = user.Roles.Split(',').OfType<string>().ToList();
-            }    
-            var userData = new UserData
-            {
-                UserId = user.Id,
-                DisplayName = user.DisplayName,
-                FullName = user.Fullname,
-                Roles = roles,
-                IsAdminUser = user.IsAdminUser
-            };
-            return userData;
-        }
+        //private UserData StoreUserData(User user)
+        //{
+        //    List<string> roles = new List<string>();
+        //    if (!string.IsNullOrEmpty(user.Roles))
+        //    {
+        //        roles = user.Roles.Split(',').OfType<string>().ToList();
+        //    }    
+        //    var userData = new UserData
+        //    {
+        //        UserId = user.Id,
+        //        DisplayName = user.DisplayName,
+        //        FullName = user.Fullname,
+        //        Roles = roles,
+        //        IsAdminUser = user.IsAdminUser
+        //    };
+        //    return userData;
+        //}
         #endregion private menthod
     }
 }

@@ -1,15 +1,18 @@
 ﻿@using Newtonsoft.Json;
-@using Seafood.Model;
+@using Domain.Models.ResponseModel;
 @using Domain.Constant
+@using Service.Helpers
 
 @{  
     bool isLogin = false;
     try
     {
-        FormsIdentity id = (FormsIdentity)HttpContext.Current.User.Identity;
-        FormsAuthenticationTicket ticket = id.Ticket;
-        var userData = JsonConvert.DeserializeObject<UserData>(ticket.UserData);
-        isLogin = true;
+        var getInfoUserAndAuthen = new GetInfoUserAndAuthen();
+        var userData = getInfoUserAndAuthen.AuthenticateRequest();
+        if(userData != null)
+        {
+            isLogin = true;
+        }
     }
     catch
     {

@@ -170,6 +170,7 @@
     <Compile Include="MemCached\LoginFailed.cs" />
     <Compile Include="MemCached\SessionBlackList.cs" />
     <Compile Include="MemCached\SpamAD.cs" />
+    <Compile Include="Models\UserData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -47,6 +47,7 @@ namespace Seafood.Controllers
             //string hash = FormsAuthentication.Encrypt(ticket);
             //HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, hash);
             //Response.Cookies.Add(cookie);
+            StaticSettings.User = userBase.Result.Data;
             return RedirectToAction("Seafood", "Home");
         }
 
@@ -65,6 +66,7 @@ namespace Seafood.Controllers
             //    cookie.Expires = DateTime.Now.AddYears(-1);
             //    Response.Cookies.Add(cookie);
             //}    
+            StaticSettings.ClearStaticSettings();
             return RedirectToAction("Seafood", "Home");
         }
 

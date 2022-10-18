@@ -7,9 +7,16 @@
     bool isLogin = false;
     try
     {
-        var getInfoUserAndAuthen = new GetInfoUserAndAuthen();
-        var userData = getInfoUserAndAuthen.AuthenticateRequest();
-        if(userData != null)
+        if(StaticSettings.User == null && !StaticSettings.ExecutedAuthen)
+        {
+            var getInfoUserAndAuthen = new GetInfoUserAndAuthen();
+            var authenticateRequest = getInfoUserAndAuthen.AuthenticateRequest();
+            if (StaticSettings.User != null)
+            {
+                isLogin = true;
+            }
+        }
+        else if(StaticSettings.User != null)
         {
             isLogin = true;
         }

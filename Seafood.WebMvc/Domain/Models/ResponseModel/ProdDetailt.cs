@@ -16,7 +16,6 @@ namespace Domain.Models.ResponseModel
         public List<ProdProcessing> ListProcessing { get; set; }
         public List<ProdPromotion> ListPromotion { get; set; }
         public List<ProdInfo> ListProdInfo { get; set; }
-        public List<SeafoodPromotion> ListSeafoodPromotion { get; set; }
     }
     public class ProdProcessing : VBaseModel
     {

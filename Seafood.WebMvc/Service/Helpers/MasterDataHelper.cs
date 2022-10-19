@@ -24,5 +24,17 @@ namespace Service.Helpers
 
             return shopSeafood.Result.Data;
         }
+
+        public List<SeafoodPromotion> GetListSeafoodPromotion(string shopCode = "")
+        {
+            var uri = ApiUri.Get_GetListSeafoodPromotion + string.Format($"?shopCode={shopCode}");
+
+            var result = provider.GetAsync<List<SeafoodPromotion>>(uri);
+            if (result == null || result.Result == null || result.Result.Data == null)
+            {
+                return new List<SeafoodPromotion>();
+            }
+            return result.Result.Data;
+        }
     }
 }

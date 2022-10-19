@@ -176,6 +176,7 @@
   <ItemGroup>
     <Content Include="404.html" />
     <Content Include="500.html" />
+    <Content Include="assets\css\demo\basket.css" />
     <Content Include="assets\css\demo\detailt.css" />
     <Content Include="assets\css\demo\seafood.css" />
     <Content Include="assets\css\demo\layout.css" />

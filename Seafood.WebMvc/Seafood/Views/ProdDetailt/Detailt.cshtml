@@ -8,6 +8,7 @@
     var code2 = "THEOYEUCAU";
     var masterDataHelper = new MasterDataHelper();
     var infoShopSeeFood = masterDataHelper.GetInfoShopSeeFood();
+    var listSeafoodPromotion = masterDataHelper.GetListSeafoodPromotion();
 }
 @model Domain.Models.ResponseModel.ProdDetailt
 <html>
@@ -46,7 +47,12 @@
 <body>
     <div class="body-detailt">
         <div class="prod-name">
-            <h1>Tôm chiên trắng (loại 1 kg 50 con)</h1>
+            <h1>
+                @if (Model != null)
+                {
+                    @Model.Name
+                }
+            </h1>
             @if (Model != null)
             {
                 if (Model.ReviewProd == null || Model.ReviewProd == 0)
@@ -254,19 +260,16 @@
                     <div class="box-more-promotion-title">
                         ƯU ĐÃI THÊM TỪ SEAFOOD
                     </div>
-                    @if (Model != null && Model.ListSeafoodPromotion != null && Model.ListSeafoodPromotion.Any())
+                    @foreach (var item in listSeafoodPromotion)
                     {
-                        foreach (var item in Model.ListSeafoodPromotion)
-                        {
-                            <div class="box-more-promotion-content">
-                                <div class="box-more-promotion-content-✓">
-                                    ✓
-                                </div>
-                                <div class="box-more-promotion-content-detailt">
-                                    @item.Content
-                                </div>
+                        <div class="box-more-promotion-content">
+                            <div class="box-more-promotion-content-✓">
+                                ✓
                             </div>
-                        }
+                            <div class="box-more-promotion-content-detailt">
+                                @item.Content
+                            </div>
+                        </div>
                     }
                 </div>
             </div>

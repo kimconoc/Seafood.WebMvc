@@ -4,7 +4,7 @@
 @using Service.Helpers
 
 @{  
-    bool isLogin = false;
+   bool isLogin = false;
     try
     {
         if(StaticSettings.User == null && !StaticSettings.ExecutedAuthen)
@@ -237,7 +237,7 @@
         $('.headerLayout1_flex5').click(function (e)
         {
             debugger
-            if ('@isLogin' == 'True')
+            if ('@isLogin'.toLowerCase() == 'true')
             {
                 window.location = "/YourBasket/Basket";
             }
@@ -245,7 +245,7 @@
             {
                 $('#notification').html(HtmlNotifiErrorRight('Bạn chưa đăng nhập'));
                 $('#notification').fadeIn(500);
-                setTimeout("$('#notification').fadeOut(1500);", 5000);
+                setTimeout("$('#notification').fadeOut(1500);", 2000);
             }
         });
     </script>

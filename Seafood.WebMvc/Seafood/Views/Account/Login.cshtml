@@ -222,7 +222,7 @@
                 $('#txtPassword').addClass('wrong-entry');
                 $('#alert').html('@ViewBag.Message');
                 $('#alert').fadeIn(500);
-                setTimeout( "$('#alert').fadeOut(1500);",5000 );
+                setTimeout("$('#alert').fadeOut(1500);", 3000 );
             }
 
             $('#UserName').trigger('change');
@@ -243,7 +243,7 @@
         {
             $('#notification').html(HtmlNotifiInfo('Liên hệ đến SĐT: 0367823445'));
             $('#notification').fadeIn(500);
-            setTimeout( "$('#notification').fadeOut(1500);",5000 );
+            setTimeout("$('#notification').fadeOut(1500);", 3000 );
         }
         function cancelRegisterAccount()
         {
@@ -291,28 +291,28 @@
                 $('#log_r_firstName').addClass('wrong-entry');
                 $('#alert_r1').html('Nhập họ và tên');
                 $('#alert_r1').fadeIn(500);
-                setTimeout("$('#alert_r1').fadeOut(1500);", 5000);
+                setTimeout("$('#alert_r1').fadeOut(1500);", 3000);
             }
             if (r_lastName == undefined || r_lastName == '') {
                 isValidate = false;
                 $('#log_r_lastName').addClass('wrong-entry');
                 $('#alert_r1').html('Nhập họ và tên');
                 $('#alert_r1').fadeIn(500);
-                setTimeout("$('#alert_r1').fadeOut(1500);", 5000);
+                setTimeout("$('#alert_r1').fadeOut(1500);", 3000);
             }
             if (!validateEmail(r_email)) {
                 isValidate = false;
                 $('#log_r_email').addClass('wrong-entry');
                 $('#alert_r2').html('Nhập một địa chỉ Gmail');
                 $('#alert_r2').fadeIn(500);
-                setTimeout("$('#alert_r2').fadeOut(1500);", 5000);
+                setTimeout("$('#alert_r2').fadeOut(1500);", 3000);
             }
             if (!validatePhoneNumber(r_numberPhone)) {
                 isValidate = false;
                 $('#log_r_numberPhone').addClass('wrong-entry');
                 $('#alert_r3').html('Nhập một số điện thoại');
                 $('#alert_r3').fadeIn(500);
-                setTimeout("$('#alert_r3').fadeOut(1500);", 5000);
+                setTimeout("$('#alert_r3').fadeOut(1500);", 3000);
             }
             if (isPw != 'true') {
                 isValidate = false;
@@ -320,7 +320,7 @@
                 $('#log_r_confirmPassword').addClass('wrong-entry');
                 $('#alert_r5').html(validatePassword(r_password, r_confirmPassword));
                 $('#alert_r5').fadeIn(500);
-                setTimeout("$('#alert_r5').fadeOut(1500);", 5000);
+                setTimeout("$('#alert_r5').fadeOut(1500);", 3000);
             }
 
             if (!isValidate)
@@ -356,7 +356,7 @@
                     {
                         $('#notification').html(HtmlNotifiSuccess(data.Message));
                         $('#notification').fadeIn(500);
-                        setTimeout("$('#notification').fadeOut(1500);", 5000);
+                        setTimeout("$('#notification').fadeOut(1500);", 3000);
                         $("#UserName").val(r_numberPhone);
                         $("#Password").val(r_password);
                         cancelRegisterAccount();
@@ -366,7 +366,7 @@
                     {
                         $('#notification').html(HtmlNotifiErrorRight(data.Message));
                         $('#notification').fadeIn(500);
-                        setTimeout("$('#notification').fadeOut(1500);", 5000);
+                        setTimeout("$('#notification').fadeOut(1500);", 3000);
                     }
                 },
                 complete:function()
@@ -378,7 +378,7 @@
                     $("#loading").hide();
                     $('#notification').html(HtmlNotifiErrorRight('Có lỗi trong quá trình xử lý'));
                     $('#notification').fadeIn(500);
-                    setTimeout("$('#notification').fadeOut(1500);", 5000);
+                    setTimeout("$('#notification').fadeOut(1500);", 3000);
                 }
 
             })

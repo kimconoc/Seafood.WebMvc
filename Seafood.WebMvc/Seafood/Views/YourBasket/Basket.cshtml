@@ -82,12 +82,13 @@
             background-color: #5cb85c;
             color: white;
         }
+
         .box-more-promotion-content-detailt {
             width: calc(100% - 25px);
             font-size: 12px;
         }
 
-        .jKLiJX {
+        .basket-header {
             background: rgb(255, 255, 255);
             padding: 10px;
             border-radius: 4px;
@@ -102,26 +103,79 @@
             -webkit-box-align: center;
             align-items: center;
         }
-            .jKLiJX div {
-                text-align: center;
+            .basket-header div {
+                text-align: start;
             }
 
-        .checkbox-fake {
-            height: 18px;
-            border: 1px solid rgb(7, 171, 226);
+        .basket-content {
+            background: rgb(255, 255, 255);
+            padding: 10px;
             border-radius: 4px;
-            display: inline-block;
-            vertical-align: middle;
-            vertical-align: middle !important;
-            position: relative;
-            z-index: 1;
-            color: white;
-            font-size: 15px;
-            font-weight: 900;
-            text-align: center;
-            cursor: pointer;
-            background-color: transparent;
-        }    
+            color: rgb(36, 36, 36);
+            font-weight: 400;
+            font-size: 12px;
+            margin-bottom: 12px;
+            position: sticky;
+            top: 20px;
+            z-index: 99;
+            display: flex;
+            -webkit-box-align: center;
+            align-items: center;
+        }
+            .basket-content div {
+                text-align: start;
+            }
+            .basket-content .info-prod-basket {
+                display: flex;
+                width: 350px;
+                gap: 5px;
+            }
+
+                .basket-content .info-prod-basket img {
+                    width: 40%;
+                }
+
+                .basket-content .info-prod-basket div p {
+                    -webkit-box-orient: vertical;
+                    display: -webkit-box;
+                    overflow: hidden;
+                    font-weight: 600;
+                    position: relative;
+                    z-index: 10;
+                }     
+
+                .basket-content .info-prod-basket div span {
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;
+                    display: -webkit-box;
+                    overflow: hidden;
+                    height: 37px;
+                    position: relative;
+                    z-index: 10;
+                }
+
+
+            .basket-content .price-prod-basket {
+                display: flex;
+                flex: 1.5;
+                margin-left: 5px;
+            }
+        .checkbox-fake {
+                height: 18px;
+                border: 1px solid rgb(7, 171, 226);
+                border-radius: 4px;
+                display: inline-block;
+                vertical-align: middle;
+                vertical-align: middle !important;
+                position: relative;
+                z-index: 1;
+                color: white;
+                font-size: 15px;
+                font-weight: 900;
+                text-align: center;
+                cursor: pointer;
+                background-color: transparent;
+            }    
     </style>
 </head>
 
@@ -135,13 +189,13 @@
 
         <div class="basket-detailt-main row">
             <div class="col-md-8 col-sm-12 menu">
-                <div class="jKLiJX">
-                    <div style="width: 18px;" class="checkbox-fake">
+                <div class="basket-header">
+                    <div style="width: 18px;margin-right:12px;" class="checkbox-fake">
                         <div style="margin-top:-3px;">
                             ✓
                         </div>
                     </div>
-                    <div style="width:150px;">
+                    <div class="info-prod-basket" style="width:350px;">
                         Tất cả (1 sản phẩm)
                     </div>
                     <div style="flex: 1.5;">
@@ -155,6 +209,32 @@
                     </div>
                     <div style="width: auto">
                         <i data-toggle="tooltip" data-placement="bottom" title="Xóa mục đã chọn" style="font-size: 18px; cursor: pointer;" class="fa-regular fa-trash-can"></i>
+                    </div>
+                </div>
+                <div class="basket-content">
+                    <div style="width: 18px;" class="checkbox-fake">
+                        <div style="margin-top:-3px;">
+                            ✓
+                        </div>
+                    </div>
+                    <div class="info-prod-basket">
+                        <img src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/4/h/4h43.png" alt="Alternate Text" />
+                        <div>
+                            <b>Loại tôm 1kg 40</b> <br />
+                            <span>Tôm được ảo chất lượng tươi ngon Tôm được ảo chất lượng tươi ngon tươi ngon</span>
+                        </div>
+                    </div>
+                    <div class="price-prod-basket">
+                        Đơn giá
+                    </div>
+                    <div class="amonnt-prod-basket" style="flex: 1;">
+                        Số lượng
+                    </div>
+                    <div class="price_main-prod-basket" style="flex: 1;">
+                        Thành tiền
+                    </div>
+                    <div style="width: auto">
+                        <i data-toggle="tooltip" data-placement="bottom" title="Xóa mục đã chọn" style="font-size: 17px; cursor: pointer;" class="fa-regular fa-trash-can"></i>
                     </div>
                 </div>
             </div>

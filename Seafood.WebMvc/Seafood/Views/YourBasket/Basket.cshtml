@@ -211,7 +211,6 @@
             color: #444;
             position: relative;
             overflow: hidden;
-            cursor: pointer;
             grid-gap: 3px;
             gap: 3px;
         }
@@ -250,6 +249,40 @@
             text-align: center;
             cursor: pointer;
             background-color: transparent;
+        }
+
+        .box-info__box-price {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+        }
+
+        .product__price--show {
+            display: inline-block;
+            margin-bottom: 12px !important;
+            font-size: 15px;
+            font-weight: 600;
+            line-height: 1.1;
+            color: rgb(36, 36, 36);
+        }
+
+        .product__price--through {
+            display: inline-block;
+            margin: 0 0 10px 10px;
+            font-size: 13px;
+            font-weight: 500;
+            text-decoration: line-through;
+            color: rgb(153, 153, 153);
+            position: relative;
+            top: 2px;
+        }
+
+        .product__final-prices {
+            color: #d70018;
+            font-size: 15px;
+            font-weight: 600;
+            line-height: 20px;
+            display: block;
         }
 
         /*ghi đè class*/
@@ -324,13 +357,22 @@
 
                     </div>
                     <div class="price-prod-basket">
-                        Đơn giá
+                        <div class="box-info__box-price">
+                            <div class="product__price--show">
+                                150.000 đ
+                            </div>
+                            <div class="product__price--through">
+                                180.000 đ
+                            </div>
+                        </div>
                     </div>
                     <div class="amonnt-prod-basket" style="flex: 1;">
                         Số lượng
                     </div>
                     <div class="price_main-prod-basket" style="flex: 1;">
-                        Thành tiền
+                        <div class="product__final-prices">
+                            150.000 đ
+                        </div>
                     </div>
                     <div style="width: auto">
                         <i style="font-size: 17px; cursor: pointer;" class="fa-regular fa-trash-can"></i>

@@ -9,11 +9,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="~/assets/css/demo/basket.css" rel="stylesheet" />
     <style>
-         /*ghi đè class*/
-         a:focus {
-             outline: none;
-             outline-offset: 0;
-         }
+
+        .box-address-ship {
+            padding:15px;
+            margin-top:10px;
+            border-radius: 8px;
+            background-color:white;
+        }
+            .box-address-ship .block-header {
+                padding: 0 0 10px 0;
+                display: flex;
+                -webkit-box-align: center;
+                align-items: center;
+                -webkit-box-pack: justify;
+                /*Chia đều khoảng và cái đứa cái cuối về sát lề*/
+                justify-content: space-between;
+            }
+                .box-address-ship .block-header .block-header__title {
+                    color: rgb(128, 128, 137);
+                    font-weight: normal;
+                    margin: 0px;
+                }
+                .box-address-ship .block-header .block-header__nav {
+                    color: rgb(7, 171, 226);
+                    text-decoration: none;
+                }
+            .box-address-ship .customer_info {
+                display: flex;
+                -webkit-box-align: center;
+                align-items: center;
+                color: rgb(56, 56, 61);
+                margin-bottom: 2px;
+                font-size: 15px;
+                font-weight: 600;
+                line-height: 1.1;
+                gap:20px;
+            }
+
+            .box-address-ship .address {
+                color: rgb(128, 128, 137);
+                font-weight: normal;
+            }
+                .box-address-ship .address strong {
+                    color: rgb(7, 171, 226);
+                }
+                /*ghi đè class*/
+                a:focus {
+                    outline: none;
+                    outline-offset: 0;
+                }
 
         .popover-title {
             background-color: #dee8fc;
@@ -221,6 +265,20 @@
                             </div>
                         </div>
                     }
+                </div>
+                <div class="box-address-ship" >
+                    <div class="block-header">
+                        <h4 class="block-header__title">Giao tới</h4>
+                        <a class="block-header__nav" href="#">Thay đổi</a>
+                    </div>
+                    <div class="customer_info">
+                        <span>Phạm Văn Đức</span>
+                        <span>0367823445</span>
+                    </div>
+                    <div class="address">
+                        <strong>Văn phòng</strong>
+                        Lô 14 phố Nguyễn Cảnh Dị, Phường Đại Kim, Quận Hoàng Mai, Hà Nội
+                    </div>
                 </div>
             </div>
         </div>

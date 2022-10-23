@@ -199,7 +199,6 @@
     background-color: white;
     border-radius: 10px;
     overflow: hidden;
-    border: 1px solid rgb(7, 171, 226);
 }
 
 .box-more-promotion-title {
@@ -236,6 +235,7 @@
 }
 
 .basket-header {
+    margin-top: 12px;
     background: rgb(255, 255, 255);
     padding: 10px;
     border-radius: 4px;

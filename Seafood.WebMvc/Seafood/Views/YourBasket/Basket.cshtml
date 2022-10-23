@@ -12,7 +12,6 @@
 
         .box-address-ship {
             padding:15px;
-            margin-top:10px;
             border-radius: 8px;
             background-color:white;
         }
@@ -53,28 +52,148 @@
                 .box-address-ship .address strong {
                     color: rgb(7, 171, 226);
                 }
-                /*ghi đè class*/
-                a:focus {
-                    outline: none;
-                    outline-offset: 0;
+
+        .box-your-voucher {
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 8px;
+            background-color: white;
+        }
+
+            .box-your-voucher .voucher-header {
+                padding: 0 0 10px 0;
+                display: flex;
+                -webkit-box-align: center;
+                align-items: center;
+                -webkit-box-pack: justify;
+                /*Chia đều khoảng và cái đứa cái cuối về sát lề*/
+                justify-content: space-between;
+            }
+            .box-your-voucher .show-more {
+                display: flex;
+                -webkit-box-align: center;
+                align-items: center;
+                color: rgb(7, 171, 226);
+                font-size: 15px;
+                line-height: 20px;
+                cursor: pointer;
+                gap: 10px;
+            }
+
+        .box-your-price {
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 8px;
+            background-color: white;
+        }
+
+            .box-your-price .prices__item {
+                display: flex;
+                flex-wrap: nowrap;
+                -webkit-box-pack: justify;
+                justify-content: space-between;
+                margin-bottom: 10px;
+                font-size:15px;
+            }
+
+                .box-your-price .prices__item .text-price {
+                    font-weight: normal;
+                }
+                .box-your-price .prices__item .number-price {
+                    color: rgb(128, 128, 137);
+                    font-weight: normal;
                 }
 
+                .box-your-price .prices__item .text-price .text-price-promotion {
+                    font-weight: normal;
+                }
+
+                .box-your-price .prices__item .number-price-promotion {
+                    font-weight: 600;
+                }
+                .box-your-price .prices__item .text-price-value {
+                    font-weight: normal;
+                }
+
+                .box-your-price .prices__item .number-price-value {
+                    color: #d70018;
+                    font-weight: 600;
+                    font-size: 17px;
+                }
+            .box-your-price .asa-summary-disclaimer {
+                font-size: 13px;
+                color: rgb(128, 128, 137);
+                line-height: 16px;
+                text-align: justify;
+            }
+
+        .order-add-to-cart {
+            margin-top: 10px;
+            display: flex !important;
+            justify-content: space-between !important;
+        }
+
+            .order-add-to-cart button {
+                text-align: center;
+                align-items: center;
+                width: calc(100%);
+                height: 60px;
+                background: linear-gradient(rgb(7, 171, 226),#3b5898);
+                color: #fff;
+                border-radius: 10px;
+                outline: none;
+                border: none;
+                margin-bottom: 10px;
+                flex-direction: column;
+                padding-top: 10px;
+            }
+
+                .order-add-to-cart button strong {
+                    font-size: 16px;
+                }
+
+                .order-add-to-cart button span {
+                    font-size: 14px;
+                    position: relative;
+                    display: block;
+                }
+
+        /*ghi đè class*/
+        a:focus {
+            outline: none;
+            outline-offset: 0;
+        }
         .popover-title {
             background-color: #dee8fc;
         }
     </style>
 </head>
 
-<body style="background-color: #efefef;">
+<body>
     <div class="body-detailt">
         <div class="main-title">
             <h1>GIỎ HÀNG</h1>
         </div>
         <div class="slim-line">
         </div>
-
         <div class="basket-detailt-main row">
             <div class="col-md-8 col-sm-12 menu">
+                <div class="box-more-promotion">
+                    <div class="box-more-promotion-title">
+                        ƯU ĐÃI THÊM TỪ SEAFOOD
+                    </div>
+                    @foreach (var item in listSeafoodPromotion)
+                    {
+                        <div class="box-more-promotion-content">
+                            <div class="box-more-promotion-content-✓">
+                                ✓
+                            </div>
+                            <div class="box-more-promotion-content-detailt">
+                                @item.Content
+                            </div>
+                        </div>
+                    }
+                </div>
                 <div class="basket-header">
                     <div id="checkbox_all_item" style="width: 18px;margin-right:12px;" class="checkbox-fake">
                     </div>
@@ -122,10 +241,10 @@
                     <div class="price-prod-basket" style="flex:1.5;">
                         <div class="box-info__box-price">
                             <div class="product__price--show">
-                                150.000 đ
+                                1.500.000 đ
                             </div>
                             <div class="product__price--through">
-                                180.000 đ
+                                1.800.000 đ
                             </div>
                         </div>
                     </div>
@@ -249,23 +368,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4 col-sm-12">
-                <div class="box-more-promotion">
-                    <div class="box-more-promotion-title">
-                        ƯU ĐÃI THÊM TỪ SEAFOOD
-                    </div>
-                    @foreach (var item in listSeafoodPromotion)
-                    {
-                        <div class="box-more-promotion-content">
-                            <div class="box-more-promotion-content-✓">
-                                ✓
-                            </div>
-                            <div class="box-more-promotion-content-detailt">
-                                @item.Content
-                            </div>
-                        </div>
-                    }
-                </div>
+            <div class="col-md-4 col-sm-12"> 
                 <div class="box-address-ship" >
                     <div class="block-header">
                         <h4 class="block-header__title">Giao tới</h4>
@@ -279,6 +382,44 @@
                         <strong>Văn phòng</strong>
                         Lô 14 phố Nguyễn Cảnh Dị, Phường Đại Kim, Quận Hoàng Mai, Hà Nội
                     </div>
+                </div>
+                <div class="box-your-voucher">
+                    <div class="voucher-header">
+                        <strong>Voucher của bạn</strong>
+                        <span>bạn có
+                        <strong>1</strong>
+                        voucher
+                        </span>
+                    </div>
+                    <div class="show-more">
+                        <i class="fa-solid fa-tags"></i>
+                        <strong>Voucher của bạn</strong>
+                    </div>
+                </div>
+                <div class="box-your-price">
+                    <div class="prices__item">
+                        <span class="text-price">Tạm tính</span>
+                        <span class="number-price">150.000 đ</span>
+                    </div>
+                    <div class="prices__item">
+                        <span class="text-price-promotion">Giảm giá</span>
+                        <span class="number-price-promotion">30.000 đ</span>
+                    </div>
+                    <div class="slim-line">
+                    </div>
+                    <div style=" margin-top: 10px;" class="prices__item">
+                        <span class="text-price-value">Tổng tiền</span>
+                        <span class="number-price-value">120.000 đ</span>
+                    </div>
+                    <div class="asa-summary-disclaimer">
+                        * Seafood sẽ liên hệ với bạn để nắm được các chính sách kèm theo khi mua sản phẩm.
+                    </div>
+                </div>
+                <div class="order-add-to-cart">
+                    <button>
+                        <strong>MUA NGAY (1)</strong> <br />
+                        <span>(Giao tận nơi hoặc lấy tại cửa hàng)</span>
+                    </button>
                 </div>
             </div>
         </div>

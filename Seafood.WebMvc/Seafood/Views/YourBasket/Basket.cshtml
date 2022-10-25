@@ -10,154 +10,6 @@
     <link href="~/assets/css/demo/basket.css" rel="stylesheet" />
     <style>
 
-        .box-address-ship {
-            padding:15px;
-            border-radius: 8px;
-            background-color:white;
-        }
-            .box-address-ship .block-header {
-                padding: 0 0 10px 0;
-                display: flex;
-                -webkit-box-align: center;
-                align-items: center;
-                -webkit-box-pack: justify;
-                /*Chia đều khoảng và cái đứa cái cuối về sát lề*/
-                justify-content: space-between;
-            }
-                .box-address-ship .block-header .block-header__title {
-                    color: rgb(128, 128, 137);
-                    font-weight: normal;
-                    margin: 0px;
-                }
-                .box-address-ship .block-header .block-header__nav {
-                    color: rgb(7, 171, 226);
-                    text-decoration: none;
-                }
-            .box-address-ship .customer_info {
-                display: flex;
-                -webkit-box-align: center;
-                align-items: center;
-                color: rgb(56, 56, 61);
-                margin-bottom: 2px;
-                font-size: 15px;
-                font-weight: 600;
-                line-height: 1.1;
-                gap:20px;
-            }
-
-            .box-address-ship .address {
-                color: rgb(128, 128, 137);
-                font-weight: normal;
-            }
-                .box-address-ship .address strong {
-                    color: rgb(7, 171, 226);
-                }
-
-        .box-your-voucher {
-            padding: 15px;
-            margin-top: 10px;
-            border-radius: 8px;
-            background-color: white;
-        }
-
-            .box-your-voucher .voucher-header {
-                padding: 0 0 10px 0;
-                display: flex;
-                -webkit-box-align: center;
-                align-items: center;
-                -webkit-box-pack: justify;
-                /*Chia đều khoảng và cái đứa cái cuối về sát lề*/
-                justify-content: space-between;
-            }
-            .box-your-voucher .show-more {
-                display: flex;
-                -webkit-box-align: center;
-                align-items: center;
-                color: rgb(7, 171, 226);
-                font-size: 15px;
-                line-height: 20px;
-                cursor: pointer;
-                gap: 10px;
-            }
-
-        .box-your-price {
-            padding: 15px;
-            margin-top: 10px;
-            border-radius: 8px;
-            background-color: white;
-        }
-
-            .box-your-price .prices__item {
-                display: flex;
-                flex-wrap: nowrap;
-                -webkit-box-pack: justify;
-                justify-content: space-between;
-                margin-bottom: 10px;
-                font-size:15px;
-            }
-
-                .box-your-price .prices__item .text-price {
-                    font-weight: normal;
-                }
-                .box-your-price .prices__item .number-price {
-                    color: rgb(128, 128, 137);
-                    font-weight: normal;
-                }
-
-                .box-your-price .prices__item .text-price .text-price-promotion {
-                    font-weight: normal;
-                }
-
-                .box-your-price .prices__item .number-price-promotion {
-                    font-weight: 600;
-                }
-                .box-your-price .prices__item .text-price-value {
-                    font-weight: normal;
-                }
-
-                .box-your-price .prices__item .number-price-value {
-                    color: #d70018;
-                    font-weight: 600;
-                    font-size: 17px;
-                }
-            .box-your-price .asa-summary-disclaimer {
-                font-size: 13px;
-                color: rgb(128, 128, 137);
-                line-height: 16px;
-                text-align: justify;
-            }
-
-        .order-add-to-cart {
-            margin-top: 10px;
-            display: flex !important;
-            justify-content: space-between !important;
-        }
-
-            .order-add-to-cart button {
-                text-align: center;
-                align-items: center;
-                width: calc(100%);
-                height: 60px;
-                background: linear-gradient(rgb(7, 171, 226),#3b5898);
-                color: #fff;
-                border-radius: 10px;
-                outline: none;
-                border: none;
-                margin-bottom: 10px;
-                flex-direction: column;
-                padding-top: 10px;
-            }
-
-                .order-add-to-cart button strong {
-                    font-size: 16px;
-                }
-
-                .order-add-to-cart button span {
-                    font-size: 14px;
-                    position: relative;
-                    display: block;
-                }
-
         /*ghi đè class*/
         a:focus {
             outline: none;
@@ -200,13 +52,13 @@
                     <div class="info-prod-basket">
                         Tất cả (1 sản phẩm)
                     </div>
-                    <div class="price-prod-basket" style="flex: 1.5;">
+                    <div class="price-prod-basket" style="flex: 1.25;">
                         Đơn giá
                     </div>
                     <div style="flex: 1;">
                         Số lượng
                     </div>
-                    <div class="price_main-prod-basket" style="flex: 1;">
+                    <div class="price_main-prod-basket" style="flex: 1.25;">
                         Thành tiền
                     </div>
                     <div class="remote-prod-basket" style="width: auto">
@@ -238,7 +90,7 @@
                         </div>
 
                     </div>
-                    <div class="price-prod-basket" style="flex:1.5;">
+                    <div class="price-prod-basket" style="flex:1.25;">
                         <div class="box-info__box-price">
                             <div class="product__price--show">
                                 1.500.000 đ
@@ -255,7 +107,7 @@
                             <i class="fa-regular fa-plus"></i>
                         </div>
                     </div>
-                    <div class="price_main-prod-basket" style="flex: 1;">
+                    <div class="price_main-prod-basket" style="flex: 1.25;">
                         <div class="product__final-prices">
                             1.500.000 đ
                         </div>
@@ -289,7 +141,7 @@
                         </div>
 
                     </div>
-                    <div class="price-prod-basket" style="flex:1.5;">
+                    <div class="price-prod-basket" style="flex: 1.25;">
                         <div class="box-info__box-price">
                             <div class="product__price--show">
                                 150.000 đ
@@ -306,7 +158,7 @@
                             <i class="fa-regular fa-plus"></i>
                         </div>
                     </div>
-                    <div class="price_main-prod-basket" style="flex: 1;">
+                    <div class="price_main-prod-basket" style="flex: 1.25;">
                         <div class="product__final-prices">
                             150.000 đ
                         </div>
@@ -340,7 +192,7 @@
                         </div>
 
                     </div>
-                    <div class="price-prod-basket" style="flex:1.5;">
+                    <div class="price-prod-basket" style="flex: 1.25;">
                         <div class="box-info__box-price">
                             <div class="product__price--show">
                                 150.000 đ
@@ -357,7 +209,7 @@
                             <i class="fa-regular fa-plus"></i>
                         </div>
                     </div>
-                    <div class="price_main-prod-basket" style="flex: 1;">
+                    <div class="price_main-prod-basket" style="flex: 1.25;">
                         <div class="product__final-prices">
                             150.000 đ
                         </div>

@@ -158,6 +158,7 @@
     <Compile Include="Controllers\ProdDetailtController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\YourBasketController.cs" />
+    <Compile Include="Controllers\YourOrderController.cs" />
     <Compile Include="Models\DataTablesQueryModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -178,6 +179,7 @@
     <Content Include="500.html" />
     <Content Include="assets\css\demo\basket.css" />
     <Content Include="assets\css\demo\detailt.css" />
+    <Content Include="assets\css\demo\order.css" />
     <Content Include="assets\css\demo\seafood.css" />
     <Content Include="assets\css\demo\layout.css" />
     <Content Include="assets\css\demo\style.css" />
@@ -463,6 +465,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\ProdDetailt\Detailt.cshtml" />
     <Content Include="Views\YourBasket\Basket.cshtml" />
+    <Content Include="Views\YourOrder\Order.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

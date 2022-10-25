@@ -35,12 +35,6 @@
     .basket-header {
         font-size: 12px !important;
     }
-    .basket-content .price-prod-basket {
-        flex:1 !important;
-    }
-    .basket-header .price-prod-basket {
-        flex: 1 !important;
-    }
     .active {
         width: 16px !important;
         height: 11px !important;
@@ -57,9 +51,6 @@
     }
     .basket-header .info-prod-basket {
         width: 150px !important;
-    }
-    .price_main-prod-basket {
-        flex: 1.25 !important;
     }
 
     .main-title h1 {
@@ -78,30 +69,31 @@
     }
 
     .product__price--show {
-        margin-bottom: 0 !important;
-        font-size: 11.5px !important;
+        font-size: 10.5px !important;
     }
 
     .product__price--through {
-        font-size: 9.5px !important;
+        font-size: 8.5px !important;
     }
 
     .product__final-prices {
-        font-size: 11.5px !important;
+        font-size: 10.5px !important;
+        margin-left:1px!important;
     }
 
     .amonnt-prod-basket {
         width: 50px !important;
+        margin-left: -3px !important;
     }
 
         .amonnt-prod-basket input {
-            width: 20px !important;
+            width: 18px !important;
             font-size: 10px !important;
         }
         .amonnt-prod-basket i {
             padding-top: 5px;
-            width: 20px !important;
-            height: 20px !important;
+            width: 18.5px !important;
+            height: 18.5px !important;
         }
 
     .basket-content .info-prod-basket .name-prod {
@@ -151,6 +143,50 @@
     .popover-title {
         font-size: 12px !important;
     }
+    .box-address-ship .block-header .block-header__title {
+        font-size: 14px !important;
+    }
+
+    .box-address-ship .block-header .block-header__nav {
+        font-size: 14px !important;
+    }
+
+    .box-address-ship .customer_info {
+        font-size: 13px !important;
+    }
+
+    .box-address-ship .address {
+        font-size: 13px !important;
+    }
+    .box-your-voucher .voucher-header {
+        font-size: 13px !important;
+    }
+    .box-your-voucher .show-more {
+        font-size: 13px !important;
+    }
+    .box-your-price .prices__item {
+        font-size: 13px !important;
+    }
+        .box-your-price .prices__item .number-price-value {
+            font-size: 15px !important;
+        }
+    .box-your-price .asa-summary-disclaimer {
+        font-size: 12px !important;
+    }
+
+    .order-add-to-cart button {
+        height: 45px !important;
+        margin-bottom: 5px !important;
+        padding-top: 3px !important;
+    }
+
+        .order-add-to-cart button strong {
+            font-size: 14px !important;
+        }
+
+        .order-add-to-cart button span {
+            font-size: 12px !important;
+        }
 }
 
 /*css*/
@@ -405,29 +441,25 @@
 }
 
 .box-info__box-price {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
+    text-align: center !important;
 }
 
 .product__price--show {
     display: inline-block;
-    margin-bottom: 12px;
     font-size: 15px;
     font-weight: 600;
-    line-height: 1.1;
+    line-height: 1;
     color: rgb(36, 36, 36);
 }
 
 .product__price--through {
-    display: inline-block;
-    margin: 0 0 10px 10px;
+    /*inline-block không đủ kích thước sẽ xuống dòng*/
+    /*display: inline-block;*/
+    margin: 0 0 0 10px;
     font-size: 13px;
     font-weight: 500;
     text-decoration: line-through;
     color: rgb(153, 153, 153);
-    position: relative;
-    top: 2px;
 }
 
 .product__final-prices {
@@ -473,3 +505,160 @@
         height: 23px;
         display: block;
     }
+
+.box-address-ship {
+    padding: 15px;
+    border-radius: 8px;
+    background-color: white;
+}
+
+    .box-address-ship .block-header {
+        padding: 0 0 10px 0;
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: justify;
+        /*Chia đều khoảng và cái đứa cái cuối về sát lề*/
+        justify-content: space-between;
+    }
+
+        .box-address-ship .block-header .block-header__title {
+            color: rgb(128, 128, 137);
+            font-weight: normal;
+            margin: 0px;
+        }
+
+        .box-address-ship .block-header .block-header__nav {
+            color: rgb(7, 171, 226);
+            text-decoration: none;
+        }
+
+    .box-address-ship .customer_info {
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        color: rgb(56, 56, 61);
+        margin-bottom: 2px;
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 1.1;
+        gap: 20px;
+    }
+
+    .box-address-ship .address {
+        color: rgb(128, 128, 137);
+        font-weight: normal;
+    }
+
+        .box-address-ship .address strong {
+            color: rgb(7, 171, 226);
+        }
+
+.box-your-voucher {
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 8px;
+    background-color: white;
+}
+
+    .box-your-voucher .voucher-header {
+        padding: 0 0 10px 0;
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: justify;
+        /*Chia đều khoảng và cái đứa cái cuối về sát lề*/
+        justify-content: space-between;
+    }
+
+    .box-your-voucher .show-more {
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        color: rgb(7, 171, 226);
+        font-size: 15px;
+        line-height: 20px;
+        cursor: pointer;
+        gap: 10px;
+    }
+
+.box-your-price {
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 8px;
+    background-color: white;
+}
+
+    .box-your-price .prices__item {
+        display: flex;
+        flex-wrap: nowrap;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        font-size: 15px;
+    }
+
+        .box-your-price .prices__item .text-price {
+            font-weight: normal;
+        }
+
+        .box-your-price .prices__item .number-price {
+            color: rgb(128, 128, 137);
+            font-weight: normal;
+        }
+
+        .box-your-price .prices__item .text-price .text-price-promotion {
+            font-weight: normal;
+        }
+
+        .box-your-price .prices__item .number-price-promotion {
+            font-weight: 600;
+        }
+
+        .box-your-price .prices__item .text-price-value {
+            font-weight: normal;
+        }
+
+        .box-your-price .prices__item .number-price-value {
+            color: #d70018;
+            font-weight: 600;
+            font-size: 17px;
+        }
+
+    .box-your-price .asa-summary-disclaimer {
+        font-size: 13px;
+        color: rgb(128, 128, 137);
+        line-height: 16px;
+        text-align: justify;
+    }
+
+.order-add-to-cart {
+    margin-top: 10px;
+    display: flex !important;
+    justify-content: space-between !important;
+}
+
+    .order-add-to-cart button {
+        text-align: center;
+        align-items: center;
+        width: calc(100%);
+        height: 60px;
+        background: linear-gradient(rgb(7, 171, 226),#3b5898);
+        color: #fff;
+        border-radius: 10px;
+        outline: none;
+        border: none;
+        margin-bottom: 10px;
+        flex-direction: column;
+        padding-top: 8px;
+    }
+
+        .order-add-to-cart button strong {
+            font-size: 16px;
+        }
+
+        .order-add-to-cart button span {
+            font-size: 14px;
+            position: relative;
+            display: block;
+        }

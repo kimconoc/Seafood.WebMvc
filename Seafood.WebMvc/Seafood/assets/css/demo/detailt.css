@@ -345,7 +345,7 @@ select {
         max-width: calc(100% - 40px);
     }
 
-.body-detailt {
+.container-detailt {
     color: #4a4a4a;
     font-size: 1em;
     font-weight: 400;

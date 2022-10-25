@@ -5,31 +5,43 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="~/assets/css/demo/order.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <style>
-
+        .menu-tab-order {
+            display: inline-block;
+            width: 100%;
+        }
+            .menu-tab-order li a {
+                color: rgb(7, 171, 226);
+                background-color: white;
+                margin-bottom: 5px;
+            }
         /*ghi đè class*/
         /*slick-slide*/
-
+        .nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
+            color: rgb(7, 171, 226);
+            background-color: #dee8fc !important;
+        }
+        .nav-tabs {
+             border-bottom: none; 
+        }
     </style>
 </head>
 
 <body>
-    <div class="container">
+    <div class="container-oder">
         <div class="row">
-            <div class="col-md-4 col-sm-12 menu">
+            <div class="col-md-3 col-sm-12 menu">
                 <h2>Dynamic Tabs</h2>
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#home">Home</a></li>
-                    <li><a href="#menu1">Menu 1</a></li>
-                    <li><a href="#menu2">Menu 2</a></li>
-                    <li><a href="#menu3">Menu 3</a></li>
+                <ul class="menu-tab-order nav nav-pills nav-stacked nav nav-tabs">
+                    <li class="active"><a href="#home">Tất cả đơn</a></li>
+                    <li><a href="#menu1">Đang xử lý</a></li>
+                    <li><a href="#menu2">Đang vận chuyển</a></li>
+                    <li><a href="#menu3">Đơn đã giao</a></li>
+                    <li><a href="#menu3">Đơn đã hủy</a></li>
                 </ul>
             </div>
 
-            <div class="col-md-8 col-sm-12">
+            <div class="col-md-7 col-sm-12">
                 <div class="tab-content">
                     <div id="home" class="tab-pane fade in active">
                         <h3>HOME</h3>

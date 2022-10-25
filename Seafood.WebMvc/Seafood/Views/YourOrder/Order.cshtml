@@ -27,17 +27,38 @@
                 margin-bottom: 5px;
             }
 
-        .box-search-order input {
+        .box-search-order {
+            margin-top: 10px;
+            background-color: white;
+            display: flex;
             transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s, -webkit-box-shadow 0.15s ease-in-out 0s;
             height: 36px;
             width: 100%;
             border-radius: 4px;
-            padding: 10px 12px;
-            line-height: 20px;
             outline: none;
-            flex: 1 1 0%;
             border: 1px solid rgb(196, 196, 207);
+            justify-content: space-between;
         }
+            .box-search-order i {
+                width:auto;
+                font-size:20px;
+                padding:8px 0 8px 8px;
+            }
+            .box-search-order div {
+                background-color:rgb(196, 196, 207);
+                width: 1px;
+                height: 80%;
+                margin: 4px 5px 0 0;
+            }
+            .box-search-order label {
+                font-weight:500;
+                color: rgb(7, 171, 226);
+                cursor: pointer;
+                width: auto;
+                font-size: 15px;
+                padding: 10px 8px 8px 0;
+            } 
+
         /*ghi đè class*/
         /*slick-slide*/
         .nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
@@ -59,7 +80,7 @@
         </div>
         <div class="row">
             <div class="col-md-3 col-sm-12 menu">
-                <h3>Quản lý đơn hàng</h3>
+                <h3 style="margin-top:10px;">Quản lý đơn hàng</h3>
                 <ul class="menu-tab-order nav nav-pills nav-stacked nav nav-tabs">
                     <li class="active"><a href="#all_order">Tất cả đơn</a></li>
                     <li><a href="#order_processing">Đang xử lý</a></li>
@@ -71,7 +92,12 @@
 
             <div class="col-md-9 col-sm-12">
                 <div class="box-search-order">
-                    <input name="search" placeholder="Tìm đơn hàng theo Mã đơn hàng, Nhà bán hoặc Tên sản phẩm" type="search" class="input with-icon-left">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input style="flex:1;" placeholder="Nhập tên đơn hàng ?" />
+                    <div></div>
+                    <label style="width:auto;">
+                        Tìm đơn hàng
+                    </label>
                 </div>
                 <div class="tab-content">
                     <div id="all_order" class="tab-pane fade in active">

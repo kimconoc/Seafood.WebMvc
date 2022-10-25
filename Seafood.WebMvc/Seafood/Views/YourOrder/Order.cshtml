@@ -6,15 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="~/assets/css/demo/order.css" rel="stylesheet" />
     <style>
+        .container-oder {
+            color: #4a4a4a;
+            font-size: 1em;
+            font-weight: 400;
+            line-height: 1.5;
+            width: 100%;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 5px 0 5px;
+        }
         .menu-tab-order {
             display: inline-block;
             width: 100%;
         }
             .menu-tab-order li a {
-                color: rgb(7, 171, 226);
+                /*color: rgb(7, 171, 226);*/
                 background-color: white;
                 margin-bottom: 5px;
             }
+
+        .box-search-order input {
+            transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s, -webkit-box-shadow 0.15s ease-in-out 0s;
+            height: 36px;
+            width: 100%;
+            border-radius: 4px;
+            padding: 10px 12px;
+            line-height: 20px;
+            outline: none;
+            flex: 1 1 0%;
+            border: 1px solid rgb(196, 196, 207);
+        }
         /*ghi đè class*/
         /*slick-slide*/
         .nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
@@ -29,33 +52,45 @@
 
 <body>
     <div class="container-oder">
+        <div class="main-title">
+            <h1>GIỎ HÀNG</h1>
+        </div>
+        <div class="slim-line">
+        </div>
         <div class="row">
             <div class="col-md-3 col-sm-12 menu">
-                <h2>Dynamic Tabs</h2>
+                <h3>Quản lý đơn hàng</h3>
                 <ul class="menu-tab-order nav nav-pills nav-stacked nav nav-tabs">
-                    <li class="active"><a href="#home">Tất cả đơn</a></li>
-                    <li><a href="#menu1">Đang xử lý</a></li>
-                    <li><a href="#menu2">Đang vận chuyển</a></li>
-                    <li><a href="#menu3">Đơn đã giao</a></li>
-                    <li><a href="#menu3">Đơn đã hủy</a></li>
+                    <li class="active"><a href="#all_order">Tất cả đơn</a></li>
+                    <li><a href="#order_processing">Đang xử lý</a></li>
+                    <li><a href="#order_shiping">Đang vận chuyển</a></li>
+                    <li><a href="#order_delivered">Đơn đã giao</a></li>
+                    <li><a href="#order_canceled">Đơn đã hủy</a></li>
                 </ul>
             </div>
 
-            <div class="col-md-7 col-sm-12">
+            <div class="col-md-9 col-sm-12">
+                <div class="box-search-order">
+                    <input name="search" placeholder="Tìm đơn hàng theo Mã đơn hàng, Nhà bán hoặc Tên sản phẩm" type="search" class="input with-icon-left">
+                </div>
                 <div class="tab-content">
-                    <div id="home" class="tab-pane fade in active">
+                    <div id="all_order" class="tab-pane fade in active">
                         <h3>HOME</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                     </div>
-                    <div id="menu1" class="tab-pane fade">
+                    <div id="order_processing" class="tab-pane fade">
                         <h3>Menu 1</h3>
                         <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                     </div>
-                    <div id="menu2" class="tab-pane fade">
+                    <div id="order_shiping" class="tab-pane fade">
                         <h3>Menu 2</h3>
                         <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
                     </div>
-                    <div id="menu3" class="tab-pane fade">
+                    <div id="order_delivered" class="tab-pane fade">
+                        <h3>Menu 3</h3>
+                        <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                    </div>
+                    <div id="order_canceled" class="tab-pane fade">
                         <h3>Menu 3</h3>
                         <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
                     </div>

@@ -1,4 +1,11 @@
-﻿.container-oder {
+﻿
+@media only screen and (max-width: 600px) {
+    .name-header-manager-tab {
+        font-size: 14px !important;
+    }
+}
+
+.container-oder {
     color: #4a4a4a;
     font-size: 1em;
     font-weight: 400;
@@ -8,6 +15,10 @@
     margin-left: auto;
     margin-right: auto;
     padding: 0 5px 0 5px;
+}
+
+.name-header-manager-tab {
+    margin-top: 10px;
 }
 
 .menu-tab-order {

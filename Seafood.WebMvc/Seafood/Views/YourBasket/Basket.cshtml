@@ -32,19 +32,27 @@
             <div class="col-md-8 col-sm-12 menu">
                 <div class="box-more-promotion">
                     <div class="box-more-promotion-title">
-                        ƯU ĐÃI THÊM TỪ SEAFOOD
-                    </div>
-                    @foreach (var item in listSeafoodPromotion)
-                    {
-                        <div class="box-more-promotion-content">
-                            <div class="box-more-promotion-content-✓">
-                                ✓
-                            </div>
-                            <div class="box-more-promotion-content-detailt">
-                                @item.Content
-                            </div>
+                        <div>
+                            ƯU ĐÃI THÊM TỪ SEAFOOD
                         </div>
-                    }
+                        <div>
+                            <span data-toggle="collapse" data-target="#showSeafoodPromotion">Mở rộng</span>
+                            <i id="showSeafoodPromotion_icon" class="fa fa-angle-double-down"></i>
+                        </div>
+                    </div>
+                    <div id="showSeafoodPromotion" class="collapse">
+                        @foreach (var item in listSeafoodPromotion)
+                        {
+                            <div class="box-more-promotion-content">
+                                <div class="box-more-promotion-content-✓">
+                                    ✓
+                                </div>
+                                <div class="box-more-promotion-content-detailt">
+                                    @item.Content
+                                </div>
+                            </div>
+                        }
+                    </div> 
                 </div>
                 <div class="basket-header">
                     <div id="checkbox_all_item" style="width: 18px;margin-right:12px;" class="checkbox-fake">
@@ -332,7 +340,6 @@
         //Setup
 
         $('.checkbox-fake').click(function (e) {
-            debugger
             var dom = this;
             if (dom.id == "checkbox_all_item") {
                 const element1 = document.getElementById("checkbox1");
@@ -374,6 +381,22 @@
                     dom.innerText = "";
                     dom.style.backgroundColor = "transparent"
                 }
+            }
+        });
+
+        $('.box-more-promotion-title div span').click(function (e) {
+            var dom = this;
+            if (dom.innerHTML.indexOf('Mở rộng') >= 0)
+            {
+                dom.innerText = "Thu lại";
+                const element = document.getElementById("showSeafoodPromotion_icon");
+                element.className = "fa fa-angle-double-up";
+            }
+            else
+            {
+                dom.innerText = "Mở rộng";
+                const element = document.getElementById("showSeafoodPromotion_icon");
+                element.className = "fa fa-angle-double-down";
             }
         });
     </script>

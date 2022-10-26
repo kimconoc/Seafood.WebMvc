@@ -215,7 +215,17 @@
     padding: 10px;
     background-color: #dee8fc;
     color: rgb(7, 171, 226);
+    justify-content: space-between;
+    display: flex;
 }
+    .box-more-promotion-title div span {
+        margin-right: 2px;
+        cursor: pointer;
+    }
+
+        .box-more-promotion-title div span:hover {
+            text-decoration: underline;
+        }
 
 .box-more-promotion-content {
     min-height: fit-content;

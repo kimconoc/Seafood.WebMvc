@@ -1,4 +1,5 @@
-﻿@{
+﻿@using Domain.Constant
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <html>
@@ -131,11 +132,15 @@
                         </div>
                     </div>
                     <div id="order_delivered" class="tab-pane fade">
-                        <div class="box-prod-order">
+                        @*<div class="box-prod-order">
                             <div class="status-prod">
                                 <i class="fa fa-check-square-o" aria-hidden="true"></i>
                                 <span class="main-status">Giao hàng thành công</span>
                             </div>
+                        </div>*@
+                        <div class="box-no-data-found">
+                            <img src="@Constant.Link_Img">
+                            <span>Không có đơn hàng</span>
                         </div>
                     </div>
                     <div id="order_canceled" class="tab-pane fade">

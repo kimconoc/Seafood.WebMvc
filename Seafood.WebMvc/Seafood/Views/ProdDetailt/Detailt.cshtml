@@ -2,6 +2,7 @@
 @using Domain.Extentions
 @using Domain.Constant
 @using Service.Helpers
+@using System.Globalization
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     var code1 = "DENGUYEN";
@@ -188,16 +189,10 @@
                     </div>
                     <div class="box-info__box-price">
                         <div class="product__price--show">
-                            @if (Model != null)
-                            {
-                                @Model.StrPriceSale
-                            }
+                            @string.Format(new CultureInfo("de-DE"), "{0:N0}", @Model?.PriceSale) đ
                         </div>
                         <div class="product__price--through">
-                            @if (Model != null)
-                            {
-                                @Model.StrPrice
-                            }
+                            @string.Format(new CultureInfo("de-DE"), "{0:N0}", @Model?.Price) đ
                         </div>
                     </div>
                 </div>
@@ -216,7 +211,7 @@
                         }
                         <div id="@item.Id" class="linked-undefined">
                             <strong>@item.Name</strong>
-                            <span>@string.Format("+ {0}", item.StrPrice)</span>
+                            <span>@string.Format("+ {0} đ", string.Format(new CultureInfo("de-DE"), "{0:N0}", item.Price))</span>
                         </div>
                     }
                     <div id="@Model.ListProcessing.FirstOrDefault(x=> x.Note == code2).Id" class="linked-undefined">

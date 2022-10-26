@@ -1,4 +1,5 @@
-﻿@{
+﻿@using System.Globalization
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @model List<Domain.Models.ResponseModel.Product>
@@ -13,6 +14,7 @@
             display: flex !important;
             align-items: center !important;
         }
+
             .mainContent_card-reviewProd i {
                 font-size: 14px;
                 color: #f59e0b;
@@ -26,7 +28,6 @@
         .carousel-indicators .active {
             background-color: #3b5898;
         }
-
     </style>
 </head>
 <body>
@@ -121,7 +122,7 @@
     <div class="mainContent">
         <div id="mainContent_grid" class="mainContent_grid">
             @if (Model != null)
-             {
+            {
                 foreach (var md in Model)
                 {
                     <div class="mainContent_grid_item">
@@ -220,22 +221,22 @@
                             </div>
                             <div class="mainContent_card-price">
                                 <div class="mainContent_card-price__main">
-                                    @md.StrPriceSale
+                                    @string.Format(new CultureInfo("de-DE"), "{0:N0}", md.PriceSale) đ
                                 </div>
                                 <div class="mainContent_card-price__sale">
-                                    @md.StrPrice
+                                    @string.Format(new CultureInfo("de-DE"), "{0:N0}", md.Price) đ
                                 </div>
                             </div>
                             <div class="mainContent_card-descPromotion">
                                 @md.DescPromotion
                             </div>
                             @if (string.IsNullOrEmpty(md.Favourite))
-                             {
+                            {
                                 <div class="mainContent_card-favourite">
                                     <span>Yêu thích</span>
                                     <i id="@md.FavouriteId" class="fa-regular fa-heart" onclick="favouriteClick(this)"></i>
                                 </div>
-                             }
+                            }
                             else
                             {
                                 <div class="mainContent_card-favourite">
@@ -246,7 +247,7 @@
                         </div>
                     </div>
                 }
-             }
+            }
         </div>
     </div>
 

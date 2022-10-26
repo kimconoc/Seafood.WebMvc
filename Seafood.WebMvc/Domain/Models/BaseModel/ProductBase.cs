@@ -20,28 +20,6 @@ namespace Domain.Models.BaseModel
         public double? PriceSale { get; set; }
         public double? Amount { get; set; }
         public string Note { get; set; }
-        public string StrPrice
-        {
-            get
-            {
-                if (Price != null)
-                {
-                    return Helper.FomatToTypeMoney(Price);
-                }
-                return string.Empty;
-            }
-        }
-        public string StrPriceSale
-        {
-            get
-            {
-                if (PriceSale != null)
-                {
-                    return Helper.FomatToTypeMoney(PriceSale);
-                }
-                return string.Empty;
-            }
-        }
         public string Discount
         {
             get

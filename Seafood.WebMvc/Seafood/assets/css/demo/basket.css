@@ -308,6 +308,7 @@
         }
 
         .basket-content .info-prod-basket .info-prod {
+            /*Cho vào giữa dòng*/
             display: flex;
             flex-flow: column;
             justify-content: center;

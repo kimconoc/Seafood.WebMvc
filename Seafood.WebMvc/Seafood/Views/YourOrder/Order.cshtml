@@ -44,6 +44,9 @@
                 font-size:20px;
                 padding:8px 0 8px 12px;
             }
+            .box-search-order input {
+                flex: 1;
+            }
             .box-search-order div {
                 background-color:rgb(196, 196, 207);
                 width: 1px;
@@ -51,7 +54,8 @@
                 margin: 4px 10px 0 0;
             }
             .box-search-order label {
-                font-weight:500;
+                width: auto;
+                font-weight: 500;
                 color: rgb(7, 171, 226);
                 cursor: pointer;
                 width: auto;
@@ -204,11 +208,11 @@
             </div>
 
             <div class="col-md-9 col-sm-12">
-                <div class="box-search-order">
+                <div id="box_search_order" class="box-search-order">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                    <input style="flex:1;" placeholder="Tìm đơn hàng theo Mã đơn hàng hoặc tên sản phẩm" />
+                    <input id="box_search_order_input" placeholder="Tìm đơn hàng theo Mã đơn hàng hoặc tên sản phẩm" />
                     <div></div>
-                    <label style="width:auto;">
+                    <label>
                         Tìm đơn hàng
                     </label>
                 </div>
@@ -323,6 +327,12 @@
             $(".nav-tabs a").click(function () {
                 $(this).tab('show');
             });
+        });
+        $('#box_search_order_input').on('focus', function () {
+            document.getElementById("box_search_order").style.borderColor = "rgb(7, 171, 226)";
+        });
+        $('#box_search_order_input').on('blur', function () {
+            document.getElementById("box_search_order").style.borderColor = "rgb(196, 196, 207)";
         });
     </script>           
 </body>

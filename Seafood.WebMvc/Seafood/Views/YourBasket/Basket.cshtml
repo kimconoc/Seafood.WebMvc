@@ -382,6 +382,32 @@
                     dom.style.backgroundColor = "transparent"
                 }
             }
+            var fullTest = 0;
+            var blankTest = 3;
+            const elementcheckbox_all_item = document.getElementById("checkbox_all_item");
+            for (var i = 1; i <= 3; i++)
+            {
+                var id = "checkbox" + i;
+                const elementById = document.getElementById(id);
+                if (elementById.innerText == "✓")
+                {
+                    fullTest = fullTest + 1;
+                }
+                else
+                {
+                    blankTest = blankTest - 1;
+                }
+            }
+            if (fullTest == 3)
+            {
+                elementcheckbox_all_item.innerText = "✓";
+                elementcheckbox_all_item.style.backgroundColor = "rgb(7, 171, 226)"
+            }
+            else if (blankTest == 0)
+            {
+                elementcheckbox_all_item.innerText = "";
+                elementcheckbox_all_item.style.backgroundColor = "transparent"
+            }
         });
 
         $('.box-more-promotion-title div span').click(function (e) {

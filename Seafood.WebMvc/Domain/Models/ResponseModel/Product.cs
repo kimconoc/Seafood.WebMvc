@@ -15,7 +15,7 @@ namespace Domain.Models.ResponseModel
         {
             get
             {
-                return Id.ToString() + "_Favourite";
+                return Id.ToString() + Domain.Constant.Constant.FakeId_Favourite;
             }
         }
     }

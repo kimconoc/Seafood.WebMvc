@@ -10,6 +10,8 @@ namespace Domain.Constant
     {
         public const string Link_Img = "https://frontend.tikicdn.com/_desktop-next/static/img/account/empty-order.png";
 
+        public const string FakeId_Favourite = "_Favourite";
+
         public const string CodeTom = "SEATOM";
         public const string CodeCua = "SEACUA";
         public const string CodeCa = "SEACA";

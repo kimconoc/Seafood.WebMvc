@@ -339,35 +339,25 @@
         });
         //Setup
 
-        $('.checkbox-fake').click(function (e) {
+        $('.checkbox-fake').click(function (e)
+        {
             var dom = this;
-            if (dom.id == "checkbox_all_item") {
-                const element1 = document.getElementById("checkbox1");
-                const element2 = document.getElementById("checkbox2");
-                const element3 = document.getElementById("checkbox3");
-                if (dom.innerText == "")
+            if (dom.id == "checkbox_all_item")
+            {
+                for (var i = 1; i <= 3; i++)
                 {
-                    dom.innerText = "✓";
-                    dom.style.backgroundColor = "rgb(7, 171, 226)"
-
-                    element1.innerText = "✓";
-                    element1.style.backgroundColor = "rgb(7, 171, 226)"
-                    element2.innerText = "✓";
-                    element2.style.backgroundColor = "rgb(7, 171, 226)"
-                    element3.innerText = "✓";
-                    element3.style.backgroundColor = "rgb(7, 171, 226)"
-                }
-                else
-                {
-                    dom.innerText = "";
-                    dom.style.backgroundColor = "transparent"
-
-                    element1.innerText = "";
-                    element1.style.backgroundColor = "transparent"
-                    element2.innerText = "";
-                    element2.style.backgroundColor = "transparent"
-                    element3.innerText = "";
-                    element3.style.backgroundColor = "transparent"
+                    var id = "checkbox" + i;
+                    const elementById = document.getElementById(id);
+                    if (dom.innerText == "✓")
+                    {
+                        elementById.innerText = "";
+                        elementById.style.backgroundColor = "transparent" 
+                    }
+                    else
+                    {
+                        elementById.innerText = "✓";
+                        elementById.style.backgroundColor = "rgb(7, 171, 226)"
+                    }
                 }
             }
             else
@@ -382,8 +372,7 @@
                     dom.style.backgroundColor = "transparent"
                 }
             }
-            var fullTest = 0;
-            var blankTest = 3;
+            var checkFull = 0;
             const elementcheckbox_all_item = document.getElementById("checkbox_all_item");
             for (var i = 1; i <= 3; i++)
             {
@@ -391,19 +380,15 @@
                 const elementById = document.getElementById(id);
                 if (elementById.innerText == "✓")
                 {
-                    fullTest = fullTest + 1;
-                }
-                else
-                {
-                    blankTest = blankTest - 1;
+                    checkFull = checkFull + 1;
                 }
             }
-            if (fullTest == 3)
+            if (checkFull == 3)
             {
                 elementcheckbox_all_item.innerText = "✓";
                 elementcheckbox_all_item.style.backgroundColor = "rgb(7, 171, 226)"
             }
-            else if (blankTest == 0)
+            else
             {
                 elementcheckbox_all_item.innerText = "";
                 elementcheckbox_all_item.style.backgroundColor = "transparent"

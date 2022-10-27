@@ -37,7 +37,7 @@
                 display: flex;
             }
 
-                .box-footer .main-content .tab {
+                .box-footer .main-content .box-tab {
                     border: 1px solid white;
                     background-color: white;
                     display: flex;
@@ -47,18 +47,20 @@
                     flex-shrink: 0;
                     cursor: pointer;
                     width: 150px;
-                    height: 100px;
+                    height: 90px;
                     border-radius: 4px;
                     padding: 15px 0 0 0;
+                    border: 1px solid transparent;
+                    color: rgb(120, 120, 120);
                 }
-                    .box-footer .main-content .tab img {
+                    .box-footer .main-content .box-tab img {
                         transition: all 0.4s ease 0s;
                         border-radius: 4px;
-                        height: 50px;
-                        width: 50px;
+                        height: 45px;
+                        width: 45px;
                     }
 
-                    .box-footer .main-content .tab .tab-text {
+                    .box-footer .main-content .box-tab .tab-text {
                         padding-top: 4px;
                         font-size: 13px;
                         line-height: 18px;
@@ -68,7 +70,6 @@
                         overflow: hidden;
                         display: -webkit-box;
                         word-break: break-word;
-                        color: rgb(120, 120, 120);
                     }
 
         /*Ghi đè class*/
@@ -280,7 +281,8 @@
                 <div class="main-content">
                     @for (int i = 0; i <= 6; i++)
                     {
-                        <div class="tab">
+                        string id = "box_tab" + i;
+                        <div id="@id" class="box-tab">
                             <img src="https://salt.tikicdn.com/cache/w1080/ts/banner/05/6a/87/32bbe6b7e64db93e68f2515b40d21075.png" />
                             <div class="tab-text">
                                 Giảm giá sốc
@@ -294,6 +296,20 @@
     <script>
         //Setup
         var favourite = false;
+        $('.box-tab').click(function (e)
+        {
+            for (var i = 0; i <= 6; i++)
+            {
+                var id = "box_tab" + i;
+                var elem = document.getElementById(id);
+                elem.style.color = "rgb(120, 120, 120)";
+                elem.style.borderColor = "transparent";
+            }
+            var dom = this;
+            var elemSetColor = document.getElementById(dom.id);
+            elemSetColor.style.color = "rgb(7, 171, 226)";
+            elemSetColor.style.borderColor = "rgb(7, 171, 226)";
+        });
         $('#box_search_order_input').on('focus', function () {
             document.getElementById("box_search_order").style.borderColor = "rgb(7, 171, 226)";
         });

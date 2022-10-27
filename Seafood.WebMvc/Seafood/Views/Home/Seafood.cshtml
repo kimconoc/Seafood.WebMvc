@@ -10,13 +10,66 @@
     <link href="~/assets/css/demo/seafood.css" rel="stylesheet" />
     <style>
 
-        .footer {
-            background-color: rgb(7, 171, 226);
-            text-align: center;
-            font-size: inherit;
-            color: white;
-            padding: 15px;
+        .box-footer {
+            overflow: hidden;
+            margin:0 10px 0 10px;
         }
+            .box-footer div {
+                width: auto;
+                max-width:1100px;
+                border-radius: 8px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+                .box-footer div .title {
+                    font-size: 16px;
+                    width: 100%;
+                    padding: 10px;
+                    background-color: #dee8fc;
+                    color: rgb(7, 171, 226);
+                }
+
+            .box-footer .main-content {
+                margin-top: -5px;
+                min-height: fit-content;
+                transition: min-height 1s ease;
+                padding: 10px 10px 5px 10px;
+                display: flex;
+            }
+
+                .box-footer .main-content .tab {
+                    border: 1px solid white;
+                    background-color: white;
+                    display: flex;
+                    flex-direction: column;
+                    -webkit-box-align: center;
+                    align-items: center;
+                    flex-shrink: 0;
+                    cursor: pointer;
+                    width: 150px;
+                    height: 100px;
+                    border-radius: 4px;
+                    padding: 15px 0 0 0;
+                }
+                    .box-footer .main-content .tab img {
+                        transition: all 0.4s ease 0s;
+                        border-radius: 4px;
+                        height: 50px;
+                        width: 50px;
+                    }
+
+                    .box-footer .main-content .tab .tab-text {
+                        padding-top: 4px;
+                        font-size: 13px;
+                        line-height: 18px;
+                        text-align: center;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 1;
+                        overflow: hidden;
+                        display: -webkit-box;
+                        word-break: break-word;
+                        color: rgb(120, 120, 120);
+                    }
 
         /*Ghi đè class*/
         .carousel-control:focus, .carousel-control:hover {
@@ -219,13 +272,34 @@
             </div>
         </div>
 
-        <div class="footer">
-            <p>Thay đổi kích thước cửa sổ trình duyệt để xem nội dung nếu không thể xem được.</p>
+        <div class="box-footer">
+            <div>
+                <div class="title">
+                    Gợi ý hôm nay
+                </div>
+                <div class="main-content">
+                    @for (int i = 0; i <= 6; i++)
+                    {
+                        <div class="tab">
+                            <img src="https://salt.tikicdn.com/cache/w1080/ts/banner/05/6a/87/32bbe6b7e64db93e68f2515b40d21075.png" />
+                            <div class="tab-text">
+                                Giảm giá sốc
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>        
         </div>
     </div>
     <script>
         //Setup
         var favourite = false;
+        $('#box_search_order_input').on('focus', function () {
+            document.getElementById("box_search_order").style.borderColor = "rgb(7, 171, 226)";
+        });
+        $('#box_search_order_input').on('blur', function () {
+            document.getElementById("box_search_order").style.borderColor = "rgb(196, 196, 207)";
+        });
         //Setup
         function gridItemClick(item)
         {

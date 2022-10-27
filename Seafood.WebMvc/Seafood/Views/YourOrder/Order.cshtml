@@ -158,18 +158,18 @@
 
     <script>
         //Setup
-        //Setup
-        $(document).ready(function () {
-            $(".nav-tabs a").click(function () {
-                $(this).tab('show');
-            });
-        });
         $('#box_search_order_input').on('focus', function () {
             document.getElementById("box_search_order").style.borderColor = "rgb(7, 171, 226)";
         });
         $('#box_search_order_input').on('blur', function () {
             document.getElementById("box_search_order").style.borderColor = "rgb(196, 196, 207)";
         });
+        $(document).ready(function () {
+            $(".nav-tabs a").click(function () {
+                $(this).tab('show');
+            });
+        });
+        //Setup
     </script>           
 </body>
 </html>

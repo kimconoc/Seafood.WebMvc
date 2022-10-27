@@ -10,6 +10,9 @@
     .header .box-header-introduce {
         margin-top:10px;
     }
+        .header .box-header-introduce div img {
+            width: 100% !important;
+        }    
 }
 
 html {

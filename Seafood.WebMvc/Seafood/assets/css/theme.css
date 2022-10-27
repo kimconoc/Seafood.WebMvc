@@ -23,9 +23,6 @@
     #mainContent_grid {
         grid-template-columns: 250px 250px;
     }
-    #headerCenterCarousel {
-        display: none;
-    }
     .headerRight {
         margin-right: auto !important;
         margin-left: auto !important;
@@ -55,9 +52,6 @@
         grid-template-columns: 200px 200px;
     }
     #r-container-image {
-        display: none;
-    }
-    #headerCenterCarousel {
         display: none;
     }
     .mainContent_grid_item {
@@ -217,6 +211,17 @@
     position: relative;
     z-index: 10;
 }
+
+.mainContent_card-reviewProd {
+    display: flex !important;
+    align-items: center !important;
+}
+
+    .mainContent_card-reviewProd i {
+        font-size: 14px;
+        color: #f59e0b;
+        margin: 0 5px 0 0;
+    }
 
 .mainContent_card-price {
     margin-top: 10px;

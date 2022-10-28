@@ -13,5 +13,11 @@ namespace Seafood.Controllers
         {
             return View();
         }
+        // GET: OrderDetail
+        public ActionResult OrderDetail()
+        {
+            return View();
+        }
     }
+
 }

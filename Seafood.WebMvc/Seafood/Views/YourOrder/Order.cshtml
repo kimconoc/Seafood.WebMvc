@@ -170,6 +170,14 @@
             });
         });
         //Setup
+        $('.click-continue button').click(function (e)
+        {
+            var dom = this;
+            if (dom.innerText == "Xem Chi tiết")
+            {
+                window.location = "/YourOrder/OrderDetail";
+            }
+        });
     </script>           
 </body>
 </html>

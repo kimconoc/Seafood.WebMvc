@@ -1,0 +1,16 @@
+﻿@media only screen and (max-width: 768px) {
+    .row-column1 {
+        padding-right: 15px !important;
+        padding-left: 15px !important;
+    }
+
+    .row-column2 {
+        padding-right: 15px !important;
+        padding-left: 15px !important;
+    }
+
+    .row-column3 {
+        padding-right: 15px !important;
+        padding-left: 15px !important;
+    }
+}

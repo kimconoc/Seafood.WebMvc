@@ -173,6 +173,7 @@
     <Compile Include="MemCached\SpamAD.cs" />
     <Compile Include="Models\UserData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Views\YourOrder\OrderDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="404.html" />
@@ -180,6 +181,7 @@
     <Content Include="assets\css\demo\basket.css" />
     <Content Include="assets\css\demo\detailt.css" />
     <Content Include="assets\css\demo\order.css" />
+    <Content Include="assets\css\demo\OrderDetail.css" />
     <Content Include="assets\css\demo\seafood.css" />
     <Content Include="assets\css\demo\layout.css" />
     <Content Include="assets\css\demo\style.css" />

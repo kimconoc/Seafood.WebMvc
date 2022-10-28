@@ -135,7 +135,7 @@
         left: 20px;
         border-radius: 50%;
     }
-.headerLayout1_flex6 {
+.header-layout1-login {
     margin: 0 20px 0 20px;
     align-items: center;
     justify-content: center;
@@ -143,9 +143,52 @@
     cursor: pointer;
     background: hsla(0,0%,100%,.2);
     border-radius: 10px;
+    width: 100px;
     min-width: 100px;
 }
+    .header-layout1-login i {
+        font-size: 17.5px;
+        margin-top: 5px;
+    }
+    .header-layout1-login h6 {
+        margin-top: -2.5px;
+    }
 
+.header-layout1-account {
+    width: auto;
+    cursor: pointer;
+    margin: 0px 0px 0px 20px;
+    -webkit-box-align: center;
+    align-items: center;
+    display: flex;
+    color: rgb(255, 255, 255);
+    font-size: 12px;
+    position: relative;
+    letter-spacing: 0.7px;
+    background: hsla(0,0%,100%,.2);
+    border-radius: 10px;
+    padding: 5px;
+    gap: 5px;
+}
+
+    .header-layout1-account .account-icon {
+        font-size: 30px;
+    }
+
+    .header-layout1-account .account-info {
+        display: flex;
+        flex-flow: column;
+        font-size: 12px;
+    }
+
+        .header-layout1-account .account-info .name {
+            /*display: flex;*/
+        }
+
+            .header-layout1-account .account-info .name i {
+                font-size: 10px;
+                /*display: flex;*/
+            }
 /*headerLayout2*/
 
 .headerLayout2 {

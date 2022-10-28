@@ -46,6 +46,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <style>
+
         /*Ghi đè class*/
         input {
             padding-left: 10px;
@@ -97,16 +98,27 @@
                 @*flex6*@
                 @if (!isLogin)
                 {
-                    <div style="width: 100px;" class="headerLayout1_flex6" onclick="login()">
-                        <i style="font-size: 17.5px;margin-top:5px;" class="fa fa-user-circle"></i>
-                        <h6 style="margin-top: -2.5px;">Đăng nhập</h6>
+                    <div class="header-layout1-login" onclick="login()">
+                        <i class="fa fa-user-circle"></i>
+                        <h6 >Đăng nhập</h6>
                     </div>
                 }
                 else
                 {
-                    <div style="width: 100px;" class="headerLayout1_flex6" onclick="logout()">
-                        <i style="font-size: 17.5px;margin-top:5px;" class="fa fa-sign-out"></i>
-                        <h6 style="margin-top: -2.5px;">Đăng xuất</h6>
+                    <div class="header-layout1-account" onclick="logout()">
+                        <div class="account-icon">
+                            <i class="fa-regular fa-user"></i>
+                        </div>
+                        <div>
+                            <div class="account-info">
+                                <div>Tài khoản</div>
+                                <div class="name">
+                                    Phạm Văn Đức
+                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                            
+                        </div>
                     </div>
                 }
                 <div style="flex:1">

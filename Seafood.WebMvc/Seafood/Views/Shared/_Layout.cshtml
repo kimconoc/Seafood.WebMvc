@@ -47,6 +47,22 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <style>
 
+        .popover-content {
+            padding: 5px 0 5px 0;
+        }
+        .account-manager{
+            display:flex;
+            flex-flow:column;
+            gap:5px;
+            color:black;
+            width:250px;
+        }
+            .account-manager .item-content {
+                cursor: pointer;
+            }
+            .account-manager .item-content:hover {
+                background-color: #dee8fc;
+            }
         /*Ghi đè class*/
         input {
             padding-left: 10px;
@@ -100,12 +116,12 @@
                 {
                     <div class="header-layout1-login" onclick="login()">
                         <i class="fa fa-user-circle"></i>
-                        <h6 >Đăng nhập</h6>
+                        <h6>Đăng nhập</h6>
                     </div>
                 }
                 else
                 {
-                    <div class="header-layout1-account" onclick="logout()">
+                    <div class="header-layout1-account" data-html="true" data-placement="bottom" data-popover-content="#account_manager_popover" data-toggle="popover_account_manager" href="#" tabindex="0">
                         <div class="account-icon">
                             <i class="fa-regular fa-user"></i>
                         </div>
@@ -225,12 +241,50 @@
                 </div>
             </div>
         </div>
+        <!--Content Popover account manager -->
+        <div class="hidden d-none" id="account_manager_popover">
+            <div class="popover-body">
+                <div class="account-manager">
+                    <div class="item-content">
+                        Thông báo của tôi
+                    </div>
+                    <div class="item-content">
+                        Thông tin tài khoản
+                    </div>
+                    <div class="item-content">
+                        Sổ địa chỉ
+                    </div>
+                    <div class="item-content">
+                        Lịch sử mua hàng
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <script>
         //Setup
         $(document).ready(function ()
         {
             $('[data-toggle="tooltip"]').tooltip();
+        });
+        $(function () {
+
+            $("[data-toggle=popover_account_manager]").popover({
+                html: true,
+                content: function (e) {
+                    var content = $(this).attr("data-popover-content");
+                    return $(content).children(".popover-body").html();
+                },
+                //title: function (e) {
+                //    var title = $(this).attr("data-popover-content");
+                //    return $(title).children(".popover-heading").html();
+                //}
+            });
+
+        });
+
+        $('.prod-promotion-popover').click(function (e) {
+            e.preventDefault(); return true;
         });
         //Setup
         function login()

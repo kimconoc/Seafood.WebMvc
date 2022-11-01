@@ -46,7 +46,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <style>
-
         /*Ghi đè class*/
         input {
             padding-left: 10px;
@@ -100,12 +99,12 @@
                 {
                     <div class="header-layout1-login" onclick="login()">
                         <i class="fa fa-user-circle"></i>
-                        <h6 >Đăng nhập</h6>
+                        <h6>Đăng nhập</h6>
                     </div>
                 }
                 else
                 {
-                    <div class="header-layout1-account" onclick="logout()">
+                    <div class="header-layout1-account" data-html="true" data-placement="bottom" data-popover-content="#account_manager_popover" data-toggle="popover_account_manager" href="#" data-trigger="focus" tabindex="0">
                         <div class="account-icon">
                             <i class="fa-regular fa-user"></i>
                         </div>
@@ -117,7 +116,7 @@
                                     <i class="fa fa-chevron-down" aria-hidden="true"></i>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                 }
@@ -180,7 +179,7 @@
                 <div class="headerLayout2_icon">
                     <i data-toggle="tooltip" data-placement="bottom" title="Khuyến mãi" class="fa-solid fa-gift"></i>
                 </div>
-                
+
                 <div style="flex: 1;">
                 </div>
 
@@ -226,11 +225,54 @@
             </div>
         </div>
     </div>
+    <!--Content Popover account manager -->
+    <div class="hidden d-none" id="account_manager_popover">
+        <div class="popover-body">
+            <div class="account-manager">
+                <div class="item-content">
+                    <i class="icon-address fa-solid fa-comment-sms"></i>
+                    <div>Thông báo của tôi</div>
+                    <span>1</span>
+                </div>
+                <div class="item-content">
+                    <i class='fas fa-address-card'></i>
+                    <div>Thông tin tài khoản</div>
+                </div>
+                <div class="item-content">
+                    <i class="fa-solid fa-address-book"></i>
+                    <div>Sổ địa chỉ</div>
+                </div>
+                <div class="item-content">
+                    <i class="fa-solid fa-notes-medical"></i>
+                    <div>Lịch sử mua hàng</div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
         //Setup
         $(document).ready(function ()
         {
             $('[data-toggle="tooltip"]').tooltip();
+        });
+        $(function () {
+
+            $("[data-toggle=popover_account_manager]").popover({
+                html: true,
+                content: function (e) {
+                    var content = $(this).attr("data-popover-content");
+                    return $(content).children(".popover-body").html();
+                },
+                //title: function (e) {
+                //    var title = $(this).attr("data-popover-content");
+                //    return $(title).children(".popover-heading").html();
+                //}
+            });
+
+        });
+
+        $('.prod-promotion-popover').click(function (e) {
+            e.preventDefault(); return true;
         });
         //Setup
         function login()

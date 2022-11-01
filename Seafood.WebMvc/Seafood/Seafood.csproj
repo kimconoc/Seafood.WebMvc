@@ -155,6 +155,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AddressController.cs" />
     <Compile Include="Controllers\ProdDetailtController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\YourBasketController.cs" />
@@ -178,10 +179,11 @@
   <ItemGroup>
     <Content Include="404.html" />
     <Content Include="500.html" />
+    <Content Include="assets\css\demo\address-list.css" />
     <Content Include="assets\css\demo\basket.css" />
     <Content Include="assets\css\demo\detailt.css" />
     <Content Include="assets\css\demo\order.css" />
-    <Content Include="assets\css\demo\OrderDetail.css" />
+    <Content Include="assets\css\demo\orderDetail.css" />
     <Content Include="assets\css\demo\seafood.css" />
     <Content Include="assets\css\demo\layout.css" />
     <Content Include="assets\css\demo\style.css" />
@@ -438,6 +440,7 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <None Include="Views\Address\AddressList.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

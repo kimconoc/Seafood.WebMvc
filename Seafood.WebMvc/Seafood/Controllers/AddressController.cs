@@ -9,8 +9,9 @@ namespace Seafood.Controllers
     public class AddressController : Controller
     {
         // GET: AddressList
-        public ActionResult AddressList()
+        public ActionResult AddressList(string idItem)
         {
+            ViewBag.IdItem = idItem;
             return View();
         }
     }

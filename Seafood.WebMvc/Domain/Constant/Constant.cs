@@ -10,6 +10,18 @@ namespace Domain.Constant
     {
         public const string Link_Img = "https://frontend.tikicdn.com/_desktop-next/static/img/account/empty-order.png";
 
+        public const string Name_Thong_Bao_Cua_Toi = "Thông báo của tôi";
+        public const string Name_Thong_Tin_Tai_Khoan = "Thông tin tài khoản";
+        public const string Name_So_Dia_Chi = "Sổ địa chỉ";
+        public const string Name_San_Pham_Yeu_Thich = "Sản phẩm yêu thích";
+        public const string Name_Lich_Su_Mua_Hang = "Lịch Sử mua Hàng";
+
+        public const string Id_Thong_Bao_Cua_Toi = "Thong_Bao_Cua_Toi";
+        public const string Id_Thong_Tin_Tai_Khoan = "Thong_Tin_Tai_Khoan";
+        public const string Id_So_Dia_Chi = "So_Dia_Chi";
+        public const string Id_San_Pham_Yeu_Thich = "San_Pham_Yeu_Thich";
+        public const string Id_Lich_Su_Mua_Hang = "Lich_Su_Mua_Hang";
+
         public const string FakeId_Favourite = "_Favourite";
 
         public const string CodeTom = "SEATOM";

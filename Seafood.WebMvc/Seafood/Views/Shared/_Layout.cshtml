@@ -65,7 +65,7 @@
     </div>
     <div id="notification">
     </div>
-    <div class="body-wrapper" style="overflow:hidden;">
+    <div class="body-wrapper" style="overflow: hidden; background-color: rgb(235, 235, 240);">
         <!-- partial:partials/_sidebar.html -->
         <div class="main-wrapper mdc-drawer-app-content">
 
@@ -186,7 +186,7 @@
             </div>
 
             <div class="page-wrapper mdc-toolbar-fixed-adjust">
-                <main style="background-color: #efefef;" class="content-wrapper">
+                <main class="content-wrapper">
                     @RenderBody()
                 </main>
             </div>
@@ -229,22 +229,26 @@
     <div class="hidden d-none" id="account_manager_popover">
         <div class="popover-body">
             <div class="account-manager">
-                <div class="item-content">
-                    <i class="icon-address fa-solid fa-comment-sms"></i>
-                    <div>Thông báo của tôi</div>
+                <div id="@Constant.Id_Thong_Bao_Cua_Toi" class="item-content">
+                    <i class='icon-address far fa-bell'></i>
+                    <div>@Constant.Name_Thong_Bao_Cua_Toi</div>
                     <span>1</span>
                 </div>
-                <div class="item-content">
+                <div id="@Constant.Id_Thong_Tin_Tai_Khoan" class="item-content">
                     <i class='fas fa-address-card'></i>
-                    <div>Thông tin tài khoản</div>
+                    <div>@Constant.Name_Thong_Tin_Tai_Khoan</div>
                 </div>
-                <div class="item-content">
-                    <i class="fa-solid fa-address-book"></i>
-                    <div>Sổ địa chỉ</div>
+                <div id="@Constant.Id_So_Dia_Chi" class="item-content">
+                    <i class='fas fa-map-marker-alt'></i>
+                    <div>@Constant.Name_So_Dia_Chi</div>
                 </div>
-                <div class="item-content">
+                <div id="@Constant.Id_San_Pham_Yeu_Thich" class="item-content">
+                    <i class='icon-heart far fa-heart'></i>
+                    <div>@Constant.Name_San_Pham_Yeu_Thich</div>
+                </div>
+                <div id="@Constant.Id_Lich_Su_Mua_Hang" class="item-content">
                     <i class="fa-solid fa-notes-medical"></i>
-                    <div>Lịch sử mua hàng</div>
+                    <div>@Constant.Name_Lich_Su_Mua_Hang</div>
                 </div>
             </div>
         </div>
@@ -259,7 +263,8 @@
 
             $("[data-toggle=popover_account_manager]").popover({
                 html: true,
-                content: function (e) {
+                content: function (e)
+                {
                     var content = $(this).attr("data-popover-content");
                     return $(content).children(".popover-body").html();
                 },
@@ -270,11 +275,15 @@
             });
 
         });
-
-        $('.prod-promotion-popover').click(function (e) {
-            e.preventDefault(); return true;
-        });
         //Setup
+        $('[data-toggle=popover_account_manager]').on('shown.bs.popover', function ()
+        {
+            $('.item-content').click(function (e) {
+                var dom = this;
+                window.location = "/Address/AddressList?idItem=" + dom.id;
+            });
+        })
+
         function login()
         {
            window.location = "/Account/Login";
@@ -302,6 +311,7 @@
                 setTimeout("$('#notification').fadeOut(1500);", 2000);
             }
         });
+
         $('.headerLayout1_flex4').click(function (e)
         {
             if ('@isLogin'.toLowerCase() == 'true')
@@ -315,6 +325,7 @@
                 setTimeout("$('#notification').fadeOut(1500);", 2000);
             }
         });
+
     </script>
 </body>
 </html>

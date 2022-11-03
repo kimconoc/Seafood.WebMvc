@@ -72,13 +72,6 @@
 </head>
 
 <body>
-    <div id="loading" style="display:none">
-        <div id="loadingHourglass" class="fa">
-        </div>
-        <div id="loadingText">
-            Processing...
-        </div>
-    </div>
     <div id="notification">
     </div>
     <div style="margin: 20px 0 0 20px;">
@@ -207,8 +200,6 @@
     </div>
     <script>
         //Setup
-        executeHourglass();
-        setInterval(executeHourglass, 3000);
         //Setup
         $('.form-control').keypress(function () {
             $('.log-status').removeClass('wrong-entry');
@@ -340,7 +331,6 @@
                 "jsonObject": JSON.stringify(dataObject),
             }
             paramUrl = "@Url.Action("CreateAccount", "Account")";
-            $("#loading").show();
             $.ajax({
                 type: "POST",
                 traditional: true,
@@ -371,11 +361,9 @@
                 },
                 complete:function()
                 {
-                    $("#loading").hide();
                 },
                 error: function (e)
                 {
-                    $("#loading").hide();
                     $('#notification').html(HtmlNotifiErrorRight('Có lỗi trong quá trình xử lý'));
                     $('#notification').fadeIn(500);
                     setTimeout("$('#notification').fadeOut(1500);", 3000);
@@ -386,7 +374,6 @@
 
         function goToMainHome()
         {
-            $("#loading").show();
             window.location = "/Home/Seafood";
         }
     </script>

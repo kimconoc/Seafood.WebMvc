@@ -61,7 +61,11 @@
 </head>
 <body style="background-color: #efefef;">
     <div id="loading" style="display:none">
-        <i id="loadingIcon" class="fas fa-spinner fa-pulse"></i>
+        <img id="loadingImg" src="~/assets/images/icon/ajax-loader.gif" alt="Alternate Text" />
+        @*<i id="loadingIcon" class="fas fa-spinner fa-pulse"></i>*@
+        @*<div id="loadingText">
+            Processing...
+        </div>*@
     </div>
     <div id="notification">
     </div>
@@ -295,6 +299,10 @@
         function goToMainHome(code)
         {
             $("#loading").show();
+            var delayInMilliseconds = 5000;
+            setTimeout(function () {
+                $("#loading").hide();
+            }, delayInMilliseconds);
             window.location = "/Home/Seafood?code=" + code;
         }
 

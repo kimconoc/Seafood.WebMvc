@@ -340,7 +340,7 @@
     .buttonCore:focus {
         outline: none;
     }
-/*loading Hourglass*/
+/*loading*/
 #loading {
     background-color: white;
     position: fixed;
@@ -354,17 +354,6 @@
     text-align: center;
 }
 
-#loadingHourglass {
-    font-size: 40px;
-    color: rgb(7, 171, 226);
-    margin: auto;
-    display: block;
-    top: calc(50% - 100px);
-    left: calc(50% - 10px);
-    position: absolute;
-    z-index: 999999;
-}
-
 #loadingIcon {
     font-size: 40px;
     color: rgb(7, 171, 226);
@@ -373,10 +362,21 @@
     top: calc(50% - 100px);
     left: calc(50% - 10px);
     position: absolute;
-    z-index: 999999;
+    z-index: 1000000;
 }
 
-#loadingText {
+#loadingImg {
+    width: 40px;
+    width: 40px;
+    margin: auto;
+    display: block;
+    top: calc(50% - 100px);
+    left: calc(50% - 10px);
+    position: absolute;
+    z-index: 1000000;
+}
+
+/*#loadingText {
     font-size: inherit;
     color: rgb(7, 171, 226);
     margin: auto;
@@ -384,12 +384,12 @@
     top: calc(50% - 60px);
     left: calc(50% - 30px);
     position: absolute;
-    z-index: 999999;
-}
+    z-index: 1000000;
+}*/
 
 /*Notification*/
 .notifiError {
-    z-index: 1;
+    z-index: 1000000;
     position: relative;
     width: 100%;
     max-width: 500px;
@@ -405,7 +405,7 @@
 }
 
 .notifiErrorRight {
-    z-index: 1;
+    z-index: 1000000;
     position: absolute;
     width: 100%;
     max-width: 500px;
@@ -418,7 +418,7 @@
 }
 
 .notifiSuccess {
-    z-index: 1;
+    z-index: 1000000;
     position: relative;
     width: 100%;
     max-width: 500px;
@@ -434,7 +434,7 @@
 }
 
 .notifiSuccessRight {
-    z-index: 1;
+    z-index: 1000000;
     position: absolute;
     width: 100%;
     max-width: 500px;
@@ -447,7 +447,7 @@
 }
 
 .notifiInfo {
-    z-index: 1;
+    z-index: 1000000;
     position: relative;
     width: 100%;
     max-width: 500px;
@@ -463,7 +463,7 @@
 }
 
 .notifiWarning {
-    z-index: 1;
+    z-index: 1000000;
     position: relative;
     width: 100%;
     max-width: 500px;

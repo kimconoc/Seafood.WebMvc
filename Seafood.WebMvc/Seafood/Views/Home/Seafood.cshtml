@@ -328,6 +328,10 @@
             if (item.id != null && item.id != undefined && item.id != '')
             {
                 $("#loading").show();
+                var delayInMilliseconds = 5000;
+                setTimeout(function () {
+                    $("#loading").hide();
+                }, delayInMilliseconds);
                 window.location = "/ProdDetailt/Detailt?prodId=" + item.id;
             }
             else

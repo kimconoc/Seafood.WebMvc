@@ -7,74 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="~/assets/css/demo/address-list.css" rel="stylesheet" />
     <style>
-        .heading {
-            font-size: 19px;
-            line-height: 21px;
-            font-weight: 300;
-            margin: 20px 0px 15px;
-        }
-        .box-add-new-address {
-            cursor:pointer;
-            background-color: rgb(255, 255, 255);
-            font-size: 15px;
-            height: 60px;
-            border: 1px dashed rgb(216, 216, 216);
-            margin: 0px 0px 10px;
-            display: flex;
-            -webkit-box-align: center;
-            align-items: center;
-            -webkit-box-pack: center;
-            justify-content: center;
-        }
-            .box-add-new-address i {
-                color: rgb(120, 120, 120);
-                font-size: 25px;
-                margin: 0px 20px;
-            }
-            .box-add-new-address span {
-                color: rgb(7, 171, 226);
-            }
-        .box-address {
-            position: relative;
-            flex: 1 0 40%;
-            background-color: rgb(255, 255, 255);
-            box-shadow: none;
-            border-radius: 3px;
-            border: 1px dashed rgb(0, 153, 0);
-            width:100%;
-            padding: 10px 15px;
-        }
-            .box-address .name {
-                font-size: 15px;
-                font-weight: bold;
-                margin-bottom: 5px;
-                justify-content: space-between;
-                align-items: center;
-                /*Chia đều khoảng và cái đứa cái cuối về sát lề*/
-                justify-content: space-between;
-                display: flex;
-                -webkit-box-align: center;
-            }
-                .box-address .name .default-address {
-                    font-weight:500;
-                    font-size: 13px;
-                    color: rgb(0, 153, 0);
-                }
-            .box-address .content {
-                align-items:start;
-                display:flex;
-                flex-flow:column;
-                text-align:start;
-            }
-                .box-address .content strong {
-                    color: rgb(7, 171, 226);
-                }
         /*ghi đè class*/
     </style>
 </head>
 
 <body>
-    <div class="container-OrderDetail">
+    <div class="container-address-list">
         <div class="heading">
             Sổ địa chỉ
         </div>
@@ -82,10 +20,10 @@
             <i class="fa-regular fa-plus"></i>
             <span>Thêm địa chỉ mới</span>
         </div>
-        <div class="box-address">
+        <div class="box-address-active box-address">
             <div class="name">
                 <span>Phạm Văn Đức</span>
-                <span class="default-address">Địa chỉ được chỉ định giao hàng</span>
+                <span class="default-address">Địa chỉ được giao hàng</span>
             </div>
             <div class="content">
                 <span>
@@ -99,15 +37,50 @@
                     Địa chỉ: 0367823445
                 </span>
             </div>
+            <div class="click-continue">
+                <button class="btn-edit">Sửa</button>
+            </div>
+        </div>
+        <div class="box-address">
+            <div class="name">
+                <span>Phạm Văn Đức</span>
+            </div>
+            <div class="content">
+                <span>
+                    Địa chỉ:
+                    <strong>
+                        Văn phòng
+                    </strong>
+                    Lô 14 phố Nguyễn Cảnh Dị, Phường Đại Kim, Quận Hoàng Mai, Hà Nội
+                </span>
+                <span>
+                    Địa chỉ: 0367823445
+                </span>
+            </div>
+            <div class="click-continue">
+                <button class="btn-edit">Sửa</button>
+                <button class="btn-delete">Xóa</button>
+            </div>
         </div>
     </div>
     <script>
         //Setup
         //Setup
         $(document).ready(function ()
-        {
-            
+        {        
         });
+
+        $('.box-add-new-address').click(function (e)
+        {
+            $("#loading").show();
+            var delayInMilliseconds = 5000;
+            setTimeout(function () {
+                $("#loading").hide();
+            }, delayInMilliseconds);
+            var dom = this;
+            window.location = "/Address/AddressAdd";
+        });
+
     </script>
 </body>
 </html>

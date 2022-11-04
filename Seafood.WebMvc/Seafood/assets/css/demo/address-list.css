@@ -1,1 +1,116 @@
-﻿
+﻿.heading {
+    font-size: 19px;
+    line-height: 21px;
+    font-weight: 300;
+    margin: 20px 0px 15px;
+}
+
+.box-add-new-address {
+    cursor: pointer;
+    background-color: rgb(255, 255, 255);
+    font-size: 15px;
+    height: 60px;
+    border: 1px dashed rgb(216, 216, 216);
+    margin: 0px 0px 10px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+
+    .box-add-new-address i {
+        color: rgb(120, 120, 120);
+        font-size: 25px;
+        margin: 0px 20px;
+    }
+
+    .box-add-new-address span {
+        color: rgb(7, 171, 226);
+    }
+
+.box-address-active {
+    border: 1px dashed rgb(0, 153, 0);
+}
+
+.box-address {
+    position: relative;
+    flex: 1 0 40%;
+    background-color: rgb(255, 255, 255);
+    box-shadow: none;
+    border-radius: 3px;
+    width: 100%;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+}
+
+    .box-address .name {
+        font-size: 15px;
+        font-weight: bold;
+        margin-bottom: 5px;
+        justify-content: space-between;
+        align-items: center;
+        /*Chia đều khoảng và cái đứa cái cuối về sát lề*/
+        justify-content: space-between;
+        display: flex;
+        -webkit-box-align: center;
+    }
+
+        .box-address .name .default-address {
+            font-weight: 500;
+            font-size: 13px;
+            color: rgb(0, 153, 0);
+        }
+
+    .box-address .content {
+        align-items: start;
+        display: flex;
+        flex-flow: column;
+        text-align: start;
+        margin-bottom: 8px;
+    }
+
+        .box-address .content strong {
+            color: rgb(7, 171, 226);
+        }
+
+    .box-address .click-continue {
+        display: flex;
+        gap: 5px;
+    }
+
+        .box-address .click-continue .btn-edit {
+            padding: 12px 36px;
+            height: 36px;
+            border-radius: 4px;
+            border: 1px solid rgb(7, 171, 226);
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.4;
+            color: rgb(7, 171, 226);
+            display: flex;
+            -webkit-box-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .box-address .click-continue .btn-delete {
+            padding: 12px 36px;
+            height: 36px;
+            border-radius: 4px;
+            border: 1px solid transparent;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.4;
+            color: rgb(7, 171, 226);
+            display: flex;
+            -webkit-box-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            align-items: center;
+            cursor: pointer;
+            background: rgb(98, 100, 85);
+            color: white;
+        }

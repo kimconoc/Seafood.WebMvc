@@ -14,5 +14,13 @@ namespace Seafood.Controllers
             ViewBag.IdItem = idItem;
             return View();
         }
+        public ActionResult AddressAdd()
+        {
+            return View();
+        }
+        public ActionResult AddressEdit()
+        {
+            return View();
+        }
     }
 }

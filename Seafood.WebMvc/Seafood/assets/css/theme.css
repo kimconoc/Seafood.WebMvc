@@ -303,43 +303,61 @@
     width: 100%;
 }
 
-.labelClick {
-    color: #1a73e8;
+.btn-core {
+    padding: 12px 8px;
+    min-width: 120px;
+    height: 36px;
+    border-radius: 4px;
+    border: 1px solid rgb(7, 171, 226);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.4;
     color: rgb(7, 171, 226);
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
     cursor: pointer;
 }
-    .labelClick:hover {
-        font-weight: bold;
-        text-decoration: underline;
-        text-decoration-color: none;
-    }
 
-.btn-primary {
-    background: linear-gradient(rgb(7, 171, 226),#3b5898) !important;
-    color: white !important;
-    width: 100% !important;
-    margin-top: 10% !important;
-}
-
-.buttonCore {
-    width: 100px !important;
-    font-size: 15px !important;
-    border-width: 0px !important;
-    border-radius: 5px !important;
-    font-weight: normal !important;
-    color: white;
-    height: 35px;
-    font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+.btn-core-accept {
+    padding: 12px 8px;
+    min-width: 120px;
+    height: 36px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.4;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid transparent;
     background: linear-gradient(rgb(7, 171, 226),#3b5898);
+    color: white;
 }
 
-    .buttonCore:hover {
-        box-shadow: inset 0 0 100px rgb(0 0 0 / 20%);
-    }
-
-    .buttonCore:focus {
-        outline: none;
-    }
+.btn-core-cancle {
+    padding: 12px 8px;
+    min-width: 120px;
+    height: 36px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: rgb(7, 171, 226);
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid transparent;
+    background: rgb(235, 235, 240);
+}
 /*loading*/
 #loading {
     background-color: white;

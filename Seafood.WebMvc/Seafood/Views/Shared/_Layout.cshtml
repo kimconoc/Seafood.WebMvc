@@ -35,6 +35,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seafood</title>
     @Styles.Render("~/bundles/css")
+    @Styles.Render("~/bundles/js")
     <link href="~/assets/css/demo/layout.css" rel="stylesheet" />
     <link href="~/assets/css/theme.css" rel="stylesheet" />
     <script src="~/assets/js/constant.js"></script>
@@ -47,16 +48,27 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <style>
         /*Ghi đè class*/
+
         input {
             padding-left: 10px;
             border-color: transparent;
             outline: none !important;
-            color: #3b5898;
+            font-size: 15px !important;
         }
 
         ::placeholder {
-            font-size: 12px !important;
+            font-size: 13px !important;
         }
+
+        .headerLayout1_flex2 input {
+            color: #3b5898;
+            font-size: 17px !important;
+        }
+
+        .headerLayout1_flex2 ::placeholder {
+            font-size: 15px !important;
+        }
+
     </style>
 </head>
 <body style="background-color: #efefef;">

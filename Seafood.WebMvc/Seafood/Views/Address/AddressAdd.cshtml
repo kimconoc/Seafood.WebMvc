@@ -7,14 +7,249 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="~/assets/css/demo/address-add.css" rel="stylesheet" />
     <style>
+        .heading {
+            font-size: 19px;
+            line-height: 21px;
+            font-weight: 300;
+            margin: 20px 0px 15px;
+        }
+        .box-address-add {
+            background-color: rgb(255, 255, 255);
+            border-radius: 4px;
+            padding: 30px 0 20px 30px;
+        }
+            .box-address-add .form-control-address-add {
+                display: flex;
+                -webkit-box-align: center;
+                align-items: center;
+                margin: 0px 0px 15px;
+                padding:0 20px 0 20px;
+            }
+                .box-address-add .form-control-address-add .label-address {
+                    width: 120px;
+                    min-width: 110px;
+                    font-size: 14px;
+                }
+                .box-address-add .form-control-address-add .input-address {
+                    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s, -webkit-box-shadow 0.15s ease-in-out 0s;
+                    border: 1px solid rgb(204, 204, 204);
+                    width: calc(100% - 160px);
+                    border-radius: 4px;
+                    height: 34px;
+                    padding: 6px 12px;
+                    line-height: 34px;
+                    outline: none;
+                    color: black;
+                }
+                .box-address-add .form-control-address-add .textarea-address {
+                    color: black;
+                    border: 1px solid rgb(204, 204, 204);
+                    border-radius: 4px;
+                    width: calc(100% - 160px);
+                    padding: 6px 12px;
+                }
+                .box-address-add .form-control-address-add select {
+                    cursor: pointer;
+                    font-size: 15px;
+                    width: calc(100% - 160px);
+                    border: 1px solid rgb(204, 204, 204);
+                    height: 34px;
+                    padding: 0 12px;
+                    line-height: 34px;
+                    outline: none;
+                    border-radius: 4px;
+                    box-shadow: none;
+                    color: black;
+                }
+                .box-address-add .form-control-address-add .box-check-radio-option {
+                    gap: 10px;
+                    display: flex;
+                    width: calc(100% - 160px);
+                }
+                    .box-address-add .form-control-address-add .box-check-radio-option input[type=checkbox], input[type=radio] {
+                        margin: 4px 0 0;
+                        margin-top: 1px\9;
+                        line-height: normal;
+                        width: 22px;
+                        height: 22px;
+                        cursor: pointer;
+                    }
+                    .box-address-add .form-control-address-add .box-check-radio-option label {
+                        font-size: 13px;
+                        line-height: 2.3;
+                    }
+
+                .box-address-add .form-control-address-add .box-click-continue {
+                    gap: 10px;
+                    display: flex;
+                    width: calc(100% - 160px);
+                }
         /*ghi đè class*/
+                .box-address-add .form-control-address-add .input-address:focus {
+                    border: 1px solid rgb(7, 171, 226);
+                }
+                .box-address-add .form-control-address-add .textarea-address:focus {
+                    outline-color: rgb(7, 171, 226);
+                }
     </style>
 </head>
 
 <body>
     <div class="container-address-add">
         <div class="heading">
-            Sổ địa chỉ
+            Thêm địa chỉ mới
+        </div>
+        <div class="box-address-add">
+            <form>
+                <div class="form-control-address-add">
+                    <label class="label-address">Họ và tên:</label>
+                    <input required class="input-address" placeholder="Nhập họ và tên" maxlength="60" value="Phạm Văn Đức">
+                </div>
+                <div class="form-control-address-add">
+                    <label class="label-address">Công ty:</label>
+                    <input class="input-address" placeholder="Nhập công ty" maxlength="60" value="">
+                </div>
+                <div class="form-control-address-add">
+                    <label class="label-address">Số điện thoại:</label>
+                    <input required class="input-address" placeholder="Nhập số điện thoại" maxlength="10" value="0367823445">
+                </div>
+                <div class="form-control-address-add">
+                    <label class="label-address">Tỉnh/Thành phố:</label>
+                    <select required class="form-select" aria-label="Default select example">
+                        <option value="">Chọn Quận/Huyện</option>
+                        <option value="1">Quận Ba Đình</option>
+                        <option value="10">Quận Hoàn Kiếm</option>
+                        <option value="11">Quận Hai Bà Trưng</option>
+                        <option value="12">Quận Đống Đa</option>
+                        <option value="13">Quận Cầu Giấy</option>
+                        <option value="14">Quận Long Biên</option>
+                        <option value="2">Quận Hoàng Mai</option>
+                        <option value="3">Huyện Sóc Sơn</option>
+                        <option value="4">Quận Bắc Từ Liêm</option>
+                        <option value="5">Huyện Thanh Trì</option>
+                        <option value="6">Huyện Gia Lâm</option>
+                        <option value="676">Huyện Ba Vì</option>
+                        <option value="677">Huyện Chương Mỹ</option>
+                        <option value="678">Huyện Đan Phượng</option>
+                        <option value="679">Huyện Hoài Đức</option>
+                        <option value="680">Huyện Mỹ Đức</option>
+                        <option value="681">Huyện Phú Xuyên</option>
+                        <option value="682">Huyện Phúc Thọ</option>
+                        <option value="683">Huyện Quốc Oai</option>
+                        <option value="684">Huyện Thạch Thất</option>
+                        <option value="685">Huyện Thanh Oai</option>
+                        <option value="686">Huyện Thường Tín</option>
+                        <option value="687">Huyện Ứng Hòa</option>
+                        <option value="688">Huyện Mê Linh</option>
+                        <option value="689">Quận Hà Đông</option>
+                        <option value="690">Thị xã Sơn Tây</option>
+                        <option value="7">Huyện Đông Anh</option>
+                        <option value="724">Quận Nam Từ Liêm</option>
+                        <option value="8">Quận Thanh Xuân</option>
+                        <option value="9">Quận Tây Hồ</option>
+                    </select>
+                </div>
+                <div class="form-control-address-add">
+                    <label class="label-address">Quận huyện:</label>
+                    <select required class="form-select" aria-label="Default select example">
+                        <option value="">Chọn Quận/Huyện</option>
+                        <option value="1">Quận Ba Đình</option>
+                        <option value="10">Quận Hoàn Kiếm</option>
+                        <option value="11">Quận Hai Bà Trưng</option>
+                        <option value="12">Quận Đống Đa</option>
+                        <option value="13">Quận Cầu Giấy</option>
+                        <option value="14">Quận Long Biên</option>
+                        <option value="2">Quận Hoàng Mai</option>
+                        <option value="3">Huyện Sóc Sơn</option>
+                        <option value="4">Quận Bắc Từ Liêm</option>
+                        <option value="5">Huyện Thanh Trì</option>
+                        <option value="6">Huyện Gia Lâm</option>
+                        <option value="676">Huyện Ba Vì</option>
+                        <option value="677">Huyện Chương Mỹ</option>
+                        <option value="678">Huyện Đan Phượng</option>
+                        <option value="679">Huyện Hoài Đức</option>
+                        <option value="680">Huyện Mỹ Đức</option>
+                        <option value="681">Huyện Phú Xuyên</option>
+                        <option value="682">Huyện Phúc Thọ</option>
+                        <option value="683">Huyện Quốc Oai</option>
+                        <option value="684">Huyện Thạch Thất</option>
+                        <option value="685">Huyện Thanh Oai</option>
+                        <option value="686">Huyện Thường Tín</option>
+                        <option value="687">Huyện Ứng Hòa</option>
+                        <option value="688">Huyện Mê Linh</option>
+                        <option value="689">Quận Hà Đông</option>
+                        <option value="690">Thị xã Sơn Tây</option>
+                        <option value="7">Huyện Đông Anh</option>
+                        <option value="724">Quận Nam Từ Liêm</option>
+                        <option value="8">Quận Thanh Xuân</option>
+                        <option value="9">Quận Tây Hồ</option>
+                    </select>
+                </div>
+                <div class="form-control-address-add">
+                    <label class="label-address">Phường xã:</label>
+                    <select required class="form-select" aria-label="Default select example">
+                        <option value="">Chọn Quận/Huyện</option>
+                        <option value="1">Quận Ba Đình</option>
+                        <option value="10">Quận Hoàn Kiếm</option>
+                        <option value="11">Quận Hai Bà Trưng</option>
+                        <option value="12">Quận Đống Đa</option>
+                        <option value="13">Quận Cầu Giấy</option>
+                        <option value="14">Quận Long Biên</option>
+                        <option value="2">Quận Hoàng Mai</option>
+                        <option value="3">Huyện Sóc Sơn</option>
+                        <option value="4">Quận Bắc Từ Liêm</option>
+                        <option value="5">Huyện Thanh Trì</option>
+                        <option value="6">Huyện Gia Lâm</option>
+                        <option value="676">Huyện Ba Vì</option>
+                        <option value="677">Huyện Chương Mỹ</option>
+                        <option value="678">Huyện Đan Phượng</option>
+                        <option value="679">Huyện Hoài Đức</option>
+                        <option value="680">Huyện Mỹ Đức</option>
+                        <option value="681">Huyện Phú Xuyên</option>
+                        <option value="682">Huyện Phúc Thọ</option>
+                        <option value="683">Huyện Quốc Oai</option>
+                        <option value="684">Huyện Thạch Thất</option>
+                        <option value="685">Huyện Thanh Oai</option>
+                        <option value="686">Huyện Thường Tín</option>
+                        <option value="687">Huyện Ứng Hòa</option>
+                        <option value="688">Huyện Mê Linh</option>
+                        <option value="689">Quận Hà Đông</option>
+                        <option value="690">Thị xã Sơn Tây</option>
+                        <option value="7">Huyện Đông Anh</option>
+                        <option value="724">Quận Nam Từ Liêm</option>
+                        <option value="8">Quận Thanh Xuân</option>
+                        <option value="9">Quận Tây Hồ</option>
+                    </select>
+                </div>
+                <div class="form-control-address-add">
+                    <label class="label-address">Địa chỉ:</label>
+                    <textarea required class="textarea-address" required name="street" rows="3" maxlength="200" placeholder="Nhập địa chỉ"></textarea>
+                </div>
+                <div class="form-control-address-add">
+                    <label class="label-address">Loại địa chỉ:</label>
+                    <div class="box-check-radio-option">
+                        <input type="radio" id="option_address1" name="radio_option_address" value="0" checked="checked" />
+                        <label for="contactChoice1">Nhà riêng / Chung cư</label>
+                        <input type="radio" id="option_address2" name="radio_option_address" value="1" />
+                        <label for="contactChoice2">Cơ quan / Công ty</label>
+                    </div>
+                </div>
+                <div class="form-control-address-add">
+                    <label class="label-address"></label>
+                    <div style="margin-top:-10px;" class="box-check-radio-option">
+                        <input style="height:20px;width:20px;" type="checkbox" id="check_option_default" name="check_option_default">
+                        <label> Đặt làm địa chỉ giao hàng</label><br>
+                    </div>
+                </div>
+                <div class="form-control-address-add">
+                    <label class="label-address"></label>
+                    <div class="box-click-continue">
+                        <button class="btn-core-cancle">Hủy bỏ</button>
+                        <button class="btn-core-accept" type="submit">Thêm địa chỉ</button>
+                    </div>
+                </div>
+                @*<input type="submit" value="121212" onclick="ok()">*@
+            </form>
         </div>
     </div>
     <script>
@@ -22,8 +257,17 @@
         //Setup
         $(document).ready(function ()
         {
-
+            $("a,textarea").on("mousedown mouseup click focus blur", function (e) {
+                console.log("%s: %s", this.tagName, e.type);
+            })
+            $("a").mousedown(function (e) {
+                $("textarea").focus();
+            });
         });
+
+        function ok() {
+            alert('oke');
+        }
     </script>
 </body>
 </html>

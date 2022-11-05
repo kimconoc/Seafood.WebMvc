@@ -319,6 +319,7 @@
     -webkit-box-align: center;
     align-items: center;
     cursor: pointer;
+    background: rgb(235, 235, 240);
 }
 
 .btn-core-accept {

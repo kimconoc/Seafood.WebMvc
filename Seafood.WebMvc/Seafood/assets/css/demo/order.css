@@ -167,6 +167,7 @@
 
         .box-prod-order .total-price .click-continue {
             display: flex;
+            gap:5px;
         }
 
         .box-prod-order .total-price .content span {
@@ -176,22 +177,4 @@
         .box-prod-order .total-price .content strong {
             font-size: 16px;
             color: #d70018;
-        }
-
-        .box-prod-order .total-price .click-continue button {
-            padding: 12px 8px;
-            height: 36px;
-            border-radius: 4px;
-            border: 1px solid rgb(7, 171, 226);
-            font-size: 14px;
-            font-weight: 400;
-            line-height: 1.4;
-            color: rgb(7, 171, 226);
-            display: flex;
-            -webkit-box-pack: center;
-            justify-content: center;
-            -webkit-box-align: center;
-            align-items: center;
-            cursor: pointer;
-            margin-left: 8px;
         }

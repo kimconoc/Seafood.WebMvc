@@ -154,20 +154,20 @@
     <script>
         //Setup
         $(document).ready(function () {
+            document.getElementById('@Constant.Id_Thong_Bao_Cua_Toi').classList.remove('active');
+            document.getElementById('@Constant.Id_Thong_Tin_Tai_Khoan').classList.remove('active');
+            document.getElementById('@Constant.Id_So_Dia_Chi').classList.remove('active');
+            document.getElementById('@Constant.Id_San_Pham_Yeu_Thich').classList.remove('active');
+            document.getElementById('@Constant.Id_Lich_Su_Mua_Hang').classList.remove('active');
             var element = document.getElementById('@ViewBag.IdItem');
             element.classList.add('active');
         });
         //Setup
         $('.item-content').click(function (e)
         {
-            document.getElementById('@Constant.Id_Thong_Bao_Cua_Toi').classList.remove('active');
-            document.getElementById('@Constant.Id_Thong_Tin_Tai_Khoan').classList.remove('active');
-            document.getElementById('@Constant.Id_So_Dia_Chi').classList.remove('active');
-            document.getElementById('@Constant.Id_San_Pham_Yeu_Thich').classList.remove('active');
-            document.getElementById('@Constant.Id_Lich_Su_Mua_Hang').classList.remove('active');
+            showLoadingPage(5000);
             var dom = this;
-            var element = document.getElementById(dom.id);
-            element.classList.add('active');
+            window.location = "/Address/AddressList?idItem=" + dom.id;
         });
     </script>
 </body>

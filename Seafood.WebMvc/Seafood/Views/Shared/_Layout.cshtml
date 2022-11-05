@@ -291,6 +291,13 @@
             });
 
         });
+        function showLoadingPage(delayInMilliseconds)
+        {
+            $("#loading").show();
+            setTimeout(function () {
+                $("#loading").hide();
+            }, delayInMilliseconds);
+        }
         //Setup
         $('[data-toggle=popover_account_manager]').on('shown.bs.popover', function ()
         {

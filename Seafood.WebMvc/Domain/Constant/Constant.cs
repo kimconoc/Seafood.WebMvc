@@ -14,7 +14,7 @@ namespace Domain.Constant
         public const string Name_Thong_Tin_Tai_Khoan = "Thông tin tài khoản";
         public const string Name_So_Dia_Chi = "Sổ địa chỉ";
         public const string Name_San_Pham_Yeu_Thich = "Sản phẩm yêu thích";
-        public const string Name_Lich_Su_Mua_Hang = "Lịch Sử mua Hàng";
+        public const string Name_Lich_Su_Mua_Hang = "Lịch sử mua hàng";
 
         public const string Id_Thong_Bao_Cua_Toi = "Thong_Bao_Cua_Toi";
         public const string Id_Thong_Tin_Tai_Khoan = "Thong_Tin_Tai_Khoan";

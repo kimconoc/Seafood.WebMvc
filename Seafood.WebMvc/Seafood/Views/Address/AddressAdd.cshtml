@@ -257,17 +257,7 @@
         //Setup
         $(document).ready(function ()
         {
-            $("a,textarea").on("mousedown mouseup click focus blur", function (e) {
-                console.log("%s: %s", this.tagName, e.type);
-            })
-            $("a").mousedown(function (e) {
-                $("textarea").focus();
-            });
         });
-
-        function ok() {
-            alert('oke');
-        }
     </script>
 </body>
 </html>

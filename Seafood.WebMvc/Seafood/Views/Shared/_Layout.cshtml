@@ -291,7 +291,7 @@
             });
 
         });
-        function showLoadingPage(delayInMilliseconds)
+        function showLoadingNavigatePage(delayInMilliseconds)
         {
             $("#loading").show();
             setTimeout(function () {
@@ -302,11 +302,7 @@
         $('[data-toggle=popover_account_manager]').on('shown.bs.popover', function ()
         {
             $('.item-content').click(function (e) {
-                $("#loading").show();
-                var delayInMilliseconds = 5000;
-                setTimeout(function () {
-                    $("#loading").hide();
-                }, delayInMilliseconds);
+                showLoadingNavigatePage(5000);
                 var dom = this;
                 window.location = "/Address/AddressList?idItem=" + dom.id;
             });

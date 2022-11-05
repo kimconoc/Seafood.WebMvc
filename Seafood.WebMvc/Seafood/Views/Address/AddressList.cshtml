@@ -72,11 +72,7 @@
 
         $('.box-add-new-address').click(function (e)
         {
-            $("#loading").show();
-            var delayInMilliseconds = 5000;
-            setTimeout(function () {
-                $("#loading").hide();
-            }, delayInMilliseconds);
+            showLoadingNavigatePage(5000);
             var dom = this;
             window.location = "/Address/AddressAdd";
         });

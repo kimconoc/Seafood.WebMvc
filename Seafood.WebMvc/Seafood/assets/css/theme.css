@@ -305,7 +305,7 @@
 
 .btn-core {
     padding: 12px 8px;
-    min-width: 120px;
+    min-width: 100px;
     height: 36px;
     border-radius: 4px;
     border: 1px solid rgb(7, 171, 226);
@@ -324,7 +324,7 @@
 
 .btn-core-accept {
     padding: 12px 8px;
-    min-width: 120px;
+    min-width: 100px;
     height: 36px;
     border-radius: 4px;
     font-size: 14px;
@@ -343,7 +343,7 @@
 
 .btn-core-cancle {
     padding: 12px 8px;
-    min-width: 120px;
+    min-width: 100px;
     height: 36px;
     border-radius: 4px;
     font-size: 14px;
@@ -358,6 +358,25 @@
     cursor: pointer;
     border: 1px solid transparent;
     background: rgb(235, 235, 240);
+}
+
+.btn-core-delete {
+    padding: 12px 8px;
+    min-width: 100px;
+    height: 36px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.4;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid transparent;
+    background: rgb(98, 100, 85);
+    color: white;
 }
 /*loading*/
 #loading {

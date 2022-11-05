@@ -78,39 +78,3 @@
         display: flex;
         gap: 5px;
     }
-
-        .box-address .click-continue .btn-edit {
-            padding: 12px 36px;
-            height: 36px;
-            border-radius: 4px;
-            border: 1px solid rgb(7, 171, 226);
-            font-size: 14px;
-            font-weight: 400;
-            line-height: 1.4;
-            color: rgb(7, 171, 226);
-            display: flex;
-            -webkit-box-pack: center;
-            justify-content: center;
-            -webkit-box-align: center;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        .box-address .click-continue .btn-delete {
-            padding: 12px 36px;
-            height: 36px;
-            border-radius: 4px;
-            border: 1px solid transparent;
-            font-size: 14px;
-            font-weight: 400;
-            line-height: 1.4;
-            color: rgb(7, 171, 226);
-            display: flex;
-            -webkit-box-pack: center;
-            justify-content: center;
-            -webkit-box-align: center;
-            align-items: center;
-            cursor: pointer;
-            background: rgb(98, 100, 85);
-            color: white;
-        }

@@ -155,6 +155,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Content Include="assets\css\demo\address-edit.css" />
     <Compile Include="Controllers\AddressController.cs" />
     <Compile Include="Controllers\ProdDetailtController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
@@ -176,6 +177,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="assets\css\demo\address-add.css" />
     <Content Include="Views\Address\AddressAdd.cshtml" />
+    <Content Include="Views\Address\AddressEdit.cshtml" />
     <None Include="Views\Shared\_LayoutAccountManager.cshtml" />
     <None Include="Views\YourOrder\OrderDetail.cshtml" />
   </ItemGroup>

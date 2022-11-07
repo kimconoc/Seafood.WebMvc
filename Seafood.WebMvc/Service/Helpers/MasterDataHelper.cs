@@ -36,5 +36,17 @@ namespace Service.Helpers
             }
             return result.Result.Data;
         }
+
+        public List<Region> GetListRegion(string codeRegion = "", string codeDistrict = "")
+        {
+            var uri = ApiUri.Get_GetListRegion + string.Format($"?shopCode={codeRegion}&?codeDistrict={codeDistrict}");
+
+            var result = provider.GetAsync<List<Region>>(uri);
+            if (result == null || result.Result == null || result.Result.Data == null)
+            {
+                return new List<Region>();
+            }
+            return result.Result.Data;
+        }
     }
 }

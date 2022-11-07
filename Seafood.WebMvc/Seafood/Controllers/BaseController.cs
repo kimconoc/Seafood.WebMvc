@@ -10,5 +10,13 @@ namespace Seafood.Controllers
     public class BaseController : Controller
     {
         protected IProvider provider = new Provider();
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                provider = null;
+            }
+            base.Dispose(disposing);
+        }
     }
 }

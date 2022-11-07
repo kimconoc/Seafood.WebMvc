@@ -1,7 +1,11 @@
 ﻿@using Domain.Constant
+@using Service.Helpers;
 @{
     Layout = "~/Views/Shared/_LayoutAccountManager.cshtml";
+    var masterDataHelper = new MasterDataHelper();
+    var listRegion = masterDataHelper.GetListRegion();
 }
+
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

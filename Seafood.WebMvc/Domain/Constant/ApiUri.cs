@@ -21,6 +21,7 @@ namespace Domain.Constant
         #region MasterData
         public const string Get_GetInfoShopSeeFood = "api/MasterData/GetInfoShopSeeFood";
         public const string Get_GetListSeafoodPromotion = "api/MasterData/GetListSeafoodPromotion";
+        public const string Get_GetListRegion = "api/MasterData/GetListRegion";
         #endregion MasterData
     }
 }

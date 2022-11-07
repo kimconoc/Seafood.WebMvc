@@ -35,14 +35,17 @@ namespace Domain.Constant
         public const string CodeDoKho = "SEADOKHO";
         public const string CodeNuocMam = "SEANUOCMAM";
 
+        #region Khu vực Hà Nội
         //Ông
-        public const string Region_HaNoi = "SEAHANOI";
-        public const string Region_ThanhHoa = "SEATHANHHOA";
+        public const string Region_HaNoi = "01";
+        public const string Region_ThanhHoa = "38";
         //Cha
-        public const string RegionDistrict_ThanhXuan = "SEAHANOITHANHXUAN";
-        public const string RegionDistrict_ThanhTri = "SEAHANOITHANHTRI";
+        public const string RegionDistrict_ThanhXuan = "009";
+        public const string RegionDistrict_ThanhTri = "020";
         //Con
-        public const string ShopSeafood_NgocHoi = "SEAFOODNGOCHOI";
+        public const string ShopSeafood_NgocHoi = "00673";
+        public readonly static string[] ShopSeafood_HaNoi = { "SEAFOODNGOCHOI" };
+        #endregion Khu vực Hà Nội
 
     }
 }

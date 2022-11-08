@@ -16,24 +16,24 @@ namespace Seafood.Controllers
         {
             return View();
         }
-        public ActionResult ExecuteFileExcel(HttpPostedFileBase fileUpload)
+        public ActionResult ExecuteReadFileExcel(HttpPostedFileBase executeReadFileExcel)
         {
             dynamic noti = null;
             List<string> data = new List<string>();
             DataTable dataTabData = new DataTable();
-            if (fileUpload != null)
+            if (executeReadFileExcel != null)
             {
-                if (fileUpload.ContentType == "application/vnd.ms-excel" || fileUpload.ContentType == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+                if (executeReadFileExcel.ContentType == "application/vnd.ms-excel" || executeReadFileExcel.ContentType == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
                 {
                     try
                     {
-                        Stream stream = fileUpload.InputStream;
+                        Stream stream = executeReadFileExcel.InputStream;
                         IExcelDataReader reader = null;
-                        if (fileUpload.FileName.EndsWith(".xls"))
+                        if (executeReadFileExcel.FileName.EndsWith(".xls"))
                         {
                             reader = ExcelReaderFactory.CreateBinaryReader(stream);
                         }
-                        else if (fileUpload.FileName.EndsWith(".xlsx"))
+                        else if (executeReadFileExcel.FileName.EndsWith(".xlsx"))
                         {
                             reader = ExcelReaderFactory.CreateOpenXmlReader(stream);
                         }
@@ -85,6 +85,36 @@ namespace Seafood.Controllers
                 };
                 return Json(noti);
             }
+        }
+        public ActionResult ExecuteSaveFile(HttpPostedFileBase executeSaveFile)
+        {
+            dynamic noti = null;
+            List<string> data = new List<string>();
+            DataTable dataTabData = new DataTable();
+            if (executeSaveFile != null)
+            {
+                string filePath = string.Empty;
+                filePath = Server.MapPath("~/Files/");
+                if (!Directory.Exists(filePath))
+                {
+                    Directory.CreateDirectory(filePath);
+                }
+                filePath = filePath + Path.GetFileName(executeSaveFile.FileName);
+                executeSaveFile.SaveAs(filePath);
+            }
+            else
+            {
+                noti = new
+                {
+                    Message = "Bạn chưa upload file"
+                };
+                return Json(noti);
+            }
+            noti = new
+            {
+                Message = "Bạn đã lưu file thành công"
+            };
+            return Json(noti);
         }
     }
 }

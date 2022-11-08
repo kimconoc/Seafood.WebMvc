@@ -24,7 +24,7 @@
         }
         .btnExecute {
             padding: 8px 8px;
-            width: 100px;
+            width: 120px;
             height: 36px;
             border-radius: 4px;
             font-size: 14px;
@@ -43,11 +43,18 @@
     </style>
 </head>
 <body>
-    @using (Html.BeginForm("ExecuteFileExcel", "UploadFile", FormMethod.Post, new { enctype = "multipart/form-data", onsubmit = "return myFunction()" }))
+    @using (Html.BeginForm("ExecuteReadFileExcel", "UploadFile", FormMethod.Post, new { enctype = "multipart/form-data", onsubmit = "return myFunction()" }))
     {
         <div class="box-upload-file-excel">
-            <input type="file" id="fileUpload" name="fileUpload" class="chooseFile" />
-            <input type="submit" value="Upload" id="btnSubmit" class="btnExecute" />
+            <input type="file" id="executeReadFileExcel" name="executeReadFileExcel" class="chooseFile" />
+            <input type="submit" value="Upload đọc excel" id="btnSubmit" class="btnExecute" />
+        </div>
+    }
+    @using (Html.BeginForm("ExecuteSaveFile", "UploadFile", FormMethod.Post, new { enctype = "multipart/form-data", onsubmit = "return myFunction()" }))
+    {
+        <div class="box-upload-file-excel">
+            <input type="file" id="executeSaveFile" name="executeSaveFile" class="chooseFile" />
+            <input type="submit" value="Upload lưu file" id="btnSubmit" class="btnExecute" />
         </div>
     }
 </body>

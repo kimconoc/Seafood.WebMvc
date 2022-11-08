@@ -319,7 +319,8 @@
     cursor: pointer;
     border: 1px solid rgb(7, 171, 226);
     color: rgb(7, 171, 226);
-    background: rgb(235, 235, 240);
+    /*background-color: rgb(235, 235, 240);*/
+    background-color: white;
 }
 
 .btn-core-accept {

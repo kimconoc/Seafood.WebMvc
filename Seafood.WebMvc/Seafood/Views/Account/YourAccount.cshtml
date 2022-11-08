@@ -1,0 +1,208 @@
+﻿@using Domain.Constant
+@using Service.Helpers;
+@{
+    Layout = "~/Views/Shared/_LayoutAccountManager.cshtml";
+    var masterDataHelper = new MasterDataHelper();
+    var listRegion = masterDataHelper.GetListRegion();
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/assets/css/demo/address-add.css" rel="stylesheet" />
+    <style>
+        .heading {
+            font-size: 19px;
+            line-height: 21px;
+            font-weight: 300;
+            margin: 20px 0px 15px;
+        }
+
+        .box-update-account {
+            background-color: rgb(255, 255, 255);
+            padding: 30px 0 0 15px;
+            min-height: 340px;
+        }
+
+            .box-update-account .form-control-update-account {
+                display: flex;
+                -webkit-box-align: center;
+                align-items: center;
+                margin: 0px 0px 15px;
+                padding: 0 20px 0 20px;
+            }
+
+                .box-update-account .form-control-update-account .label-update {
+                    width: 120px;
+                    min-width: 110px;
+                    font-size: 14px;
+                }
+
+                .box-update-account .form-control-update-account .input-update {
+                    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s, -webkit-box-shadow 0.15s ease-in-out 0s;
+                    border: 1px solid rgb(204, 204, 204);
+                    width: calc(100% - 140px);
+                    border-radius: 4px;
+                    height: 34px;
+                    padding: 6px 12px;
+                    line-height: 34px;
+                    outline: none;
+                    color: black;
+                }
+
+                .box-update-account .form-control-update-account select {
+                    cursor: pointer;
+                    font-size: 15px;
+                    width: calc(100% - 140px);
+                    border: 1px solid rgb(204, 204, 204);
+                    height: 34px;
+                    padding: 0 12px;
+                    line-height: 34px;
+                    outline: none;
+                    border-radius: 4px;
+                    box-shadow: none;
+                    color: black;
+                }
+
+                .box-update-account .form-control-update-account .box-check-birthday-option {
+                    gap: 10px;
+                    display: flex;
+                    width: calc(100% - 140px);
+                }
+
+                .box-update-account .form-control-update-account .box-check-radio-option {
+                    gap: 10px;
+                    display: flex;
+                    width: calc(100% - 140px);
+                }
+
+                    .box-update-account .form-control-update-account .box-check-radio-option input[type=checkbox], input[type=radio] {
+                        margin: 4px 0 0;
+                        margin-top: 1px\9;
+                        line-height: normal;
+                        width: 18px;
+                        height: 18px;
+                        cursor: pointer;
+                    }
+
+                    .box-update-account .form-control-update-account .box-check-radio-option label {
+                        font-size: 13px;
+                        line-height: 2.1;
+                    }
+
+                .box-update-account .form-control-update-account .box-click-continue {
+                    gap: 10px;
+                    display: flex;
+                    width: calc(100% - 140px);
+                }
+
+        .box-avatar-user {
+            padding: 30px 0 0 0;
+            gap: 10px;
+            background-color: white;
+            flex-direction: column;
+            align-items: center;
+            display: flex;
+            min-height: 340px;
+        }
+
+            .box-avatar-user .avatar {
+                height: 150px;
+                width: 150px;
+            }
+
+                .box-avatar-user .avatar img {
+                    width: 100%;
+                    border-radius: 50%;
+                }
+
+                /*ghi đè class*/
+                .box-update-account .form-control-update-account .input-update:focus {
+                    border: 1px solid rgb(7, 171, 226);
+                }
+
+        .container-update-account .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .col-auto,
+        .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10,
+        .col-sm-11, .col-sm-12, .col-sm, .col-sm-auto, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6,
+        .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .col-md-auto, .col-lg-1,
+        .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9,
+        .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-lg-auto, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5,
+        .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl, .col-xl-auto {
+            padding-right: 0;
+            padding-left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-update-account">
+        <div class="heading">
+            Tài khoản của bạn
+        </div>
+        <div class="col-md-3 col-sm-12">
+            <div class="box-avatar-user">
+                <div class="avatar">
+                    <img src="https://salt.tikicdn.com/desktop/img/avatar.png" alt="avatar">
+                </div>
+                <button style="border: 1px solid transparent; " class="btn-core">Chọn ảnh</button>
+            </div>
+        </div>
+        <div class="col-md-9 col-sm-12 menu">
+            <div class="box-update-account">
+                <form>
+                    <div class="form-control-update-account">
+                        <label class="label-update">Họ và tên:</label>
+                        <input required class="input-update" placeholder="Nhập họ và tên" maxlength="60" value="Phạm Văn Đức">
+                    </div>
+                    <div class="form-control-update-account">
+                        <label class="label-update">Email:</label>
+                        <input class="input-update" placeholder="Nhập công ty" maxlength="60" value="">
+                    </div>
+                    <div class="form-control-update-account">
+                        <label class="label-update">Số điện thoại:</label>
+                        <input required class="input-update" placeholder="Nhập số điện thoại" maxlength="10" value="0367823445">
+                    </div>
+                    <div class="form-control-update-account">
+                        <label class="label-update">Ngày sinh:</label>
+                        <div class="box-check-birthday-option">
+                            <select required class="form-select" aria-label="Default select example">
+                                <option value="1">1</option>
+                            </select>
+                            <select required class="form-select" aria-label="Default select example">
+                                <option value="1">Tháng 1</option>
+                            </select>
+                            <select required class="form-select" aria-label="Default select example">
+                                <option value="1990">1990</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-control-update-account">
+                        <label class="label-update">Giới tính:</label>
+                        <div class="box-check-radio-option">
+                            <input type="radio" id="option_sex_nam" name="radio_option_sex" value="0" checked="checked" />
+                            <label for="contactChoice1">Nam</label>
+                            <input type="radio" id="option_sex_nu" name="radio_option_sex" value="1" />
+                            <label for="contactChoice2">Nữ</label>
+                            <input type="radio" id="option_sex_khac" name="radio_option_sex" value="1" />
+                            <label for="contactChoice2">Khác</label>
+                        </div>
+                    </div>
+                    <div class="form-control-update-account">
+                        <label class="label-update"></label>
+                        <div class="box-click-continue">
+                            <button class="btn-core-accept" type="submit">Cập nhật</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        //Setup
+        //Setup
+        $(document).ready(function ()
+        {
+        });
+    </script>
+</body>
+</html>

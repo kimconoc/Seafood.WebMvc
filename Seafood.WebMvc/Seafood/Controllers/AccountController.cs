@@ -20,6 +20,12 @@ namespace Seafood.Controllers
     public class AccountController : BaseController
     {
         // GET: Account
+        public ActionResult YourAccount(string idItem)
+        {
+            ViewBag.IdItem = idItem;
+            return View();
+        }
+        // GET: Account
         public ActionResult Login()
         {
             return View();
@@ -71,7 +77,6 @@ namespace Seafood.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult CreateAccount(string jsonObject)
         {
             dynamic data = null;

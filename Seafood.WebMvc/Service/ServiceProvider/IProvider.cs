@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Service.ServiceProvider
 {
-    public interface IProvider
+    public interface IProvider : IDisposable
     {
         Task<ResponseBase<TResult>> GetAsync<TResult>(string uri, string token = "");
         Task<ResponseBase<TResult>> PostAsync<TResult>(string uri, dynamic fromBody, string token = "");

@@ -14,7 +14,8 @@ namespace Seafood.Controllers
         {
             if (disposing)
             {
-                provider = null;
+                provider.Dispose();// = null;
+                //((IDisposable)provider).Dispose();
             }
             base.Dispose(disposing);
         }

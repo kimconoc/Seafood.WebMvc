@@ -12,11 +12,36 @@ using System.Threading.Tasks;
 using Domain.Models.ResponseModel;
 using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json.Converters;
+using Microsoft.Win32.SafeHandles;
+using System.Runtime.InteropServices;
 
 namespace Service.ServiceProvider
 {
     public class Provider : IProvider
     {
+        // To detect redundant calls
+        private bool _disposedValue;
+
+        // Instantiate a SafeHandle instance.
+        private SafeHandle _safeHandle = new SafeFileHandle(IntPtr.Zero, true);
+
+        // Public implementation of Dispose pattern callable by consumers.
+        public void Dispose() => Dispose(true);
+
+        // Protected implementation of Dispose pattern.
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposedValue)
+            {
+                if (disposing)
+                {
+                    _safeHandle.Dispose();
+                }
+
+                _disposedValue = true;
+            }
+        }
+
         private readonly JsonSerializerSettings _serializerSettings;
         private readonly string ApiEndPoint;
 

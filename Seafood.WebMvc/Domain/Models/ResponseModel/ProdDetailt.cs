@@ -23,6 +23,13 @@ namespace Domain.Models.ResponseModel
         public string Name { get; set; }
         public int Price { get; set; }
         public string Note { get; set; }
+        public string StrPrice
+        {
+            get
+            {
+                return Helper.FomatToTypeMoney(Price);
+            }
+        }
     }
     public class ProdPromotion : VBaseModel
     {

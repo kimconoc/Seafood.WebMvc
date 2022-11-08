@@ -94,7 +94,7 @@ namespace Seafood.Controllers
             if (executeSaveFile != null)
             {
                 string filePath = string.Empty;
-                filePath = Server.MapPath("~/Files/");
+                filePath = Server.MapPath("~/FileUpload/AvartaUser/");
                 if (!Directory.Exists(filePath))
                 {
                     Directory.CreateDirectory(filePath);

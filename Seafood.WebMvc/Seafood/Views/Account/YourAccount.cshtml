@@ -270,15 +270,15 @@
         //Setup
         function updateInfoAccount()
         {
+            debugger
             var displayName = document.getElementById("display_name").value;
             var email = document.getElementById("email").value;
             var sex = $("input[type='radio'][name='radio_option_sex']:checked").val();
             var year = document.getElementById("birthyear").value;
             var month = document.getElementById("birthmonth").value;
             var day = document.getElementById("birthday").value;
-            const birthday = new Date(year, month, day);
 
-            if (isNullOrEmpty(displayName))
+            if (isNullOrEmpty(displayName).toLowerCase() == 'true')
             {
                 return;
             }
@@ -296,9 +296,24 @@
                 },
                 success: function (data)
                 {
-                    debugger
                     if (data.Success) {
-
+                        $.ajax({
+                            type: "POST",
+                            traditional: true,
+                            data:
+                            {
+                                "displayName": displayName,
+                                "email": email,
+                                "sex": sex,
+                                "year": year,
+                                "month": month,
+                                "day": day,
+                            },
+                            url: "@Url.Action("UploadProfileUser", "Account")",
+                            success: function (data)
+                            {
+                            },
+                        })
                     }
                     else {
                         alert(data.Message);

@@ -174,6 +174,14 @@ namespace Seafood.Controllers
             return Json(Success_Request());
         }
 
+        [HttpPost]
+        public ActionResult UploadProfileUser(string displayName, string email, string sex, int year, int month, int day)
+        {
+
+            var birthday = new DateTime(year, month, day);
+            return Json(Success_Request());
+        }
+
         #region private menthod
         //private UserData StoreUserData(User user)
         //{

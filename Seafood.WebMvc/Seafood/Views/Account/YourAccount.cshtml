@@ -115,7 +115,19 @@
                     width: 100%;
                     border-radius: 50%;
                 }
-
+            .box-avatar-user label {
+                font-weight: 600;
+                font-size:12px;
+                cursor: pointer;
+                color: #fff;
+                border-radius: 6px;
+                padding: 10px 20px;
+                background-color: rgb(101, 101, 255);
+            }
+        #file_input {
+            display: none;
+        }
+               
                 /*ghi đè class*/
                 .box-update-account .form-control-update-account .input-update:focus {
                     border: 1px solid rgb(7, 171, 226);
@@ -139,70 +151,164 @@
         <div class="heading">
             Tài khoản của bạn
         </div>
-        <div class="col-md-3 col-sm-12">
-            <div class="box-avatar-user">
-                <div class="avatar">
-                    <img src="https://salt.tikicdn.com/desktop/img/avatar.png" alt="avatar">
+        <form enctype="multipart/form-data">
+            <div class="col-md-3 col-sm-12">
+                <div class="box-avatar-user">
+                    <div class="avatar">
+                        <img id="img_preview" src="https://salt.tikicdn.com/desktop/img/avatar.png" alt="avatar">
+                    </div>
+                    <label for="file_input">Chọn ảnh</label>
+                    <input accept="image/*" name="imgUpload" type="file" id="file_input" />
                 </div>
-                <button style="border: 1px solid transparent; " class="btn-core">Chọn ảnh</button>
             </div>
-        </div>
-        <div class="col-md-9 col-sm-12 menu">
-            <div class="box-update-account">
-                <form>
+            <div class="col-md-9 col-sm-12 menu">
+                <div class="box-update-account">
                     <div class="form-control-update-account">
                         <label class="label-update">Họ và tên:</label>
-                        <input required class="input-update" placeholder="Nhập họ và tên" maxlength="60" value="Phạm Văn Đức">
+                        <input id="display_name" required class="input-update" placeholder="Nhập họ và tên" maxlength="60" value="Phạm Văn Đức">
                     </div>
                     <div class="form-control-update-account">
                         <label class="label-update">Email:</label>
-                        <input class="input-update" placeholder="Nhập email" maxlength="60" value="">
+                        <input id="email" class="input-update" placeholder="Nhập email" maxlength="100" value="">
                     </div>
                     <div class="form-control-update-account">
                         <label class="label-update">Số điện thoại:</label>
-                        <input required class="input-update" placeholder="Nhập số điện thoại" maxlength="10" value="0367823445">
+                        <input id="mobile" disabled class="input-update" maxlength="10" value="0367823445">
                     </div>
                     <div class="form-control-update-account">
                         <label class="label-update">Ngày sinh:</label>
                         <div class="box-check-birthday-option">
-                            <select required class="form-select" aria-label="Default select example">
+                            <select id="birthday" class="form-select" aria-label="Default select example">
                                 <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                                <option value="31">31</option>
                             </select>
-                            <select required class="form-select" aria-label="Default select example">
+                            <select id="birthmonth" class="form-select" aria-label="Default select example">
                                 <option value="1">Tháng 1</option>
+                                <option value="2">Tháng 2</option>
+                                <option value="3">Tháng 3</option>
+                                <option value="4">Tháng 4</option>
+                                <option value="5">Tháng 5</option>
+                                <option value="6">Tháng 6</option>
+                                <option value="7">Tháng 7</option>
+                                <option value="8">Tháng 8</option>
+                                <option value="9">Tháng 9</option>
+                                <option value="10">Tháng 10</option>
+                                <option value="11">Tháng 11</option>
+                                <option value="12">Tháng 12</option>
                             </select>
-                            <select required class="form-select" aria-label="Default select example">
-                                <option value="1990">1990</option>
-                            </select>
+                            <select id="birthyear" class="form-select" aria-label="Default select example">
+                                 @for (int year = 1900; year <= DateTime.Now.Year; year++)
+                                 {
+                                   <option value="@year">@year</option>
+                                 }
+                             </select>
                         </div>
                     </div>
                     <div class="form-control-update-account">
                         <label class="label-update">Giới tính:</label>
                         <div class="box-check-radio-option">
-                            <input type="radio" id="option_sex_nam" name="radio_option_sex" value="0" checked="checked" />
+                            <input type="radio" id="option_sex_nam" name="radio_option_sex" value="1" checked="checked" />
                             <label for="contactChoice1">Nam</label>
-                            <input type="radio" id="option_sex_nu" name="radio_option_sex" value="1" />
+                            <input type="radio" id="option_sex_nu" name="radio_option_sex" value="0" />
                             <label for="contactChoice2">Nữ</label>
-                            <input type="radio" id="option_sex_khac" name="radio_option_sex" value="1" />
+                            <input type="radio" id="option_sex_khac" name="radio_option_sex" value="-1" />
                             <label for="contactChoice2">Khác</label>
                         </div>
                     </div>
                     <div class="form-control-update-account">
                         <label class="label-update"></label>
                         <div class="box-click-continue">
-                            <button class="btn-core-accept" type="submit">Cập nhật</button>
+                            <button onclick="updateInfoAccount()" class="btn-core-accept" type="submit">Cập nhật</button>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
     <script>
         //Setup
-        //Setup
-        $(document).ready(function ()
-        {
+        const fileInput = document.getElementById('file_input');
+        const imgPreview = document.getElementById('img_preview');
+
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length) {
+                const src = URL.createObjectURL(e.target.files[0]);
+                imgPreview.src = src;
+            }
         });
+        $(document).ready(function () {
+        });
+        //Setup
+        function updateInfoAccount()
+        {
+            var displayName = document.getElementById("display_name").value;
+            var email = document.getElementById("email").value;
+            var sex = $("input[type='radio'][name='radio_option_sex']:checked").val();
+            var year = document.getElementById("birthyear").value;
+            var month = document.getElementById("birthmonth").value;
+            var day = document.getElementById("birthday").value;
+            const birthday = new Date(year, month, day);
+
+            if (isNullOrEmpty(displayName))
+            {
+                return;
+            }
+
+            var formData = new FormData($('form')[0]);
+            $.ajax({
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: formData,
+                url: "@Url.Action("UploadAvartaUser", "Account")",
+                type: 'Post',
+                beforeSend: function ()
+                {
+                },
+                success: function (data)
+                {
+                    debugger
+                    if (data.Success) {
+
+                    }
+                    else {
+                        alert(data.Message);
+                    }
+                },
+                error: function ()
+                {
+                },
+            });
+        }
     </script>
 </body>
 </html>

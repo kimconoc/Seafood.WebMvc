@@ -43,6 +43,18 @@ function validatePassword(pw1,pw2)
 
 }
 
+function isNullOrEmpty(value)
+{
+    var result = 'false';
+
+    if (value == null || value == undefined || value == '')
+    {
+        result = 'true';
+    }
+    return result;
+
+}
+
 /*Notification*/
 function HtmlNotifiError(content)
 {

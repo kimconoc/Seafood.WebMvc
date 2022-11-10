@@ -3,379 +3,212 @@
     Layout = null;
 }
 
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <title>Login</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seafood</title>
+    @Styles.Render("~/bundles/css")
+    @Styles.Render("~/bundles/js")
     <link href="~/assets/css/theme.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap/bootstrap.css" rel="stylesheet" />
-    <link href="~/Content/fa/font-awesome.css" rel="stylesheet" />
-    <link href="~/Content/login.css" rel="stylesheet" />
     <script src="~/assets/js/constant.js"></script>
-    <script src="~/Scripts/jquery/jquery-3.3.1.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    @*Thêm*@
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--css, js bootstrap -->
+    <link href="~/Content/fa/font-awesome.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <style>
-        .g-recaptcha {
-            transform: scale(1.12);
-            transform-origin: 0 0;
+        .box-header {
+            width: 100%;
+            height: 84px;
+            box-shadow: 0 6px 6px rgb(0 0 0 / 6%);
+            background-color: rgb(7, 171, 226);
+            position: relative;
         }
 
-        .modal-popup {
-            /*margin: 5% auto !important;*/
-            max-width: 700px;
+            .box-header .seafood {
+                max-width: 1200px;
+                color: white;
+                font-family: cursive;
+                cursor: pointer;
+                font-size: 28px;
+                position: absolute;
+                left: 15%;
+                top: 20px;
+            }
+
+        .login-form {
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            margin: 0 auto;
+            margin-top: 5%;
+            width: 100%;
+            max-width: 450px;
+            background-color: white;
+            box-shadow: 0 6px 6px rgb(0 0 0 / 6%);
+            padding: 30px;
         }
 
-        .aria-hidden {
-            text-align: right;
-            margin-right: 10px;
-            margin-top: 5px;
-        }
+            .login-form .header {
+                width: 100%;
+                font-size: 25px;
+            }
 
-            .aria-hidden:focus {
+
+            .login-form .box-input-login {
+                margin-top: 20px;
+                background-color: white;
+                box-sizing: border-box;
+                width: 100%;
+                height: 45px;
+                border: 1px solid rgba(0,0,0,.14);
+                border-radius: 2px;
+                width: 100%;
+                display: flex;
+                padding: 3px 10px 0 10px;
+                overflow: hidden;
+                box-shadow: inset 0 2px 0 rgb(0 0 0 / 2%);
                 outline: none;
+                justify-content: space-between;
             }
 
-        input.form-check-input {
-            width: 20px;
-            height: 20px;
-        }
-
-        .r-container-image {
-            width: 200px;
-            border-radius: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 50%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        /*Ghi đè class*/
-        .form-group {
-            margin-top: 1rem !important;
-            margin-bottom: 0 !important;
-        }
-
-        .form-control:focus, .form-control:focus + .fa {
-            border-color: #10CE88;
-            color: black !important;
-        }
-
-        .buttonCore {
-            background: #1a73e8;
-        }
-        
-    </style>
-</head>
-
-<body>
-    <div id="notification">
-    </div>
-    <div style="margin: 20px 0 0 20px;">
-        <h4 style="line-height: 0.5 !important;">Đăng nhập</h4>
-        <h6>Để được hưởng các ưu đãi tốt nhất</h6>
-        <button style="background: linear-gradient(rgb(7, 171, 226),#3b5898);" type="button" class="btn btn-info btn-lg" onclick="goToMainHome()">
-            <i class="fa fa-backward"></i>
-            Trang chủ
-        </button>
-    </div>
-    @*Form login*@
-    <div class="login-form" id="loginForm">
-        <div class="form-group" style="width: 150px; margin: 0 auto;">
-            <img style="width: 100%;" src="~/assets/images/logos/logo_login.jpg" />
-        </div>
-
-        <form role="form" method="post" data-parsley-validate="">
-            @Html.AntiForgeryToken()
-
-            <div class="form-group log-status" id="txtUserName">
-                <input value="0367823445" type="text" class="form-control" placeholder="Nhập số điện thoại" id="UserName" name="UserName">
-                <i class="fa fa-user"></i>
-            </div>
-            <div class="form-group log-status" id="txtPassword" style="margin-bottom: 10px;">
-                <input value="ad1234567" type="password" class="form-control" placeholder="Nhập mật khẩu" id="Password" name="Password">
-                <i class="fa fa-lock"></i>
-            </div>
-            <span id="alert"></span>
-            <button style="margin-top: 10px;" type="submit" id="login" class="log-btn">
-                Đăng nhập
-            </button>
-            <div style="display: flex; margin-top:5px">
-                <div style="flex:3;">
-                    <h6 class="labelClick" onclick="showModalRegister()">Đăng ký tài khoản</h6>
-                </div>
-                <div style="flex:auto;">
-                </div>
-                <div style="flex:3.3;">
-                    <h6 class="labelClick" onclick="showModalPasswordRetrieval()">Bạn quên mật khẩu?</h6>
-                </div>
-            </div>
-        </form>
-    </div>
-    @*Popup modal đăng ký tài khoản*@
-    <div style="overflow:scroll" class="modal" tabindex="-1" role="dialog" id="modalRegister">
-        <div class="modal-popup modal-dialog" role="document">
-            <div class="modal-content">
-                <button class="aria-hidden close" aria-label="Close" onclick="CloseModalRegister()">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <div style="display: flex;">
-                    @*Vùng 1 thông tin đăng ký*@
-                    <div style="flex: 1.5; padding-left: 30px;padding-bottom:30px;">
-                        <div class="form-group" style="text-align: left; width: 70px;">
-                            <img style="width: 100%;" src="~/assets/images/logos/logo_login.jpg" height="70" />
-                        </div>
-                        <h6 style="margin-top: 1rem;">Tạo Tài khoản SEAFOOD</h6>
-                        <div style="display: flex;">
-                            <div style="flex:1;" class="form-group log-status" id="log_r_firstName">
-                                <input id="r_firstName" type="text" style="height:35px" class="form-control" placeholder="Họ" />
-                            </div>
-                            <div style="flex:0.05;">
-                            </div>
-                            <div style="flex:1;" class="form-group log-status" id="log_r_lastName">
-                                <input id="r_lastName" type="text" style="height:35px" class="form-control" placeholder="Tên" />
-                            </div>
-                        </div>
-                        <span class="validateError" id="alert_r1"></span>
-                        <div class="form-group log-status" id="log_r_email">
-                            <input id="r_email" type="text" style="height:35px;" class="form-control" placeholder="E-mail" />
-                        </div>
-                        <span class="validateError" id="alert_r2"></span>
-                        <div class="form-group log-status" id="log_r_numberPhone">
-                            <input id="r_numberPhone" type="number" style="height:35px;" class="form-control" placeholder="Số điện thoại" />
-                        </div>
-                        <span class="validateError" id="alert_r3"></span>
-                        @*<div class="form-group log-status" id="log_r_username">
-                                <input id="r_username" type="text" style="height:35px;" class="form-control" placeholder="Tài khoản" />
-                            </div>
-                            <span class="validateError" id="alert_r4"></span>*@
-                        <div style="display: flex;">
-                            <div style="flex:1;" class="form-group log-status" id="log_r_password">
-                                <input id="r_password" type="password" style="height:35px" class="form-control" placeholder="Mật khẩu" />
-                            </div>
-                            <div style="flex:0.05;">
-                            </div>
-                            <div style="flex:1;" class="form-group log-status" id="log_r_confirmPassword">
-                                <input id="r_confirmPassword" type="password" style="height:35px" class="form-control" placeholder="Xác nhận" />
-                            </div>
-                        </div>
-                        <span class="validateError" id="alert_r5"></span>
-                        <div style="margin-left: 10px; margin-right: 10px; font-size: 13px">
-                            Sử dụng 8 ký tự trở lên và kết hợp chữ cái, chữ số và biểu tượng. Để tăng tính bảo mật
-                        </div>
-                        <div class="form-check" style="margin-top: 20px;">
-                            <input id="r_showPassword" onclick="isShowPassword()" class="form-check-input" type="checkbox" value="" />
-                            <label style="margin-left:20px;margin-top:3px" class="form-check-label">Hiện mật khẩu</label>
-                        </div>
-                        <div style="display:flex;margin-top:40px">
-                            <div style="flex:3;margin-top:5px">
-                                <h6 class="labelClick" onclick="cancelRegisterAccount()">Hủy bỏ</h6>
-                            </div>
-                            <div style="flex:0.3;">
-                            </div>
-                            <div style="flex: 3; text-align: right;">
-                                <button class="buttonCore mdc-button mdc-button--outlined outlined-button--success mdc-ripple-upgraded" onclick="executeRegisterAccount()">
-                                    Đăng ký
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="flex:0.1;">
-                    </div>
-                    @*Vùng 2 logo giao diện*@
-                    <div id="r-container-image" style="flex: 1; padding: 30px">
-                        <div class="r-container-image">
-                            <img style="width: 100%;" src="~/assets/images/logos/r-logo_login.jpg" />
-                        </div>
-                        <label style="margin-top: 15px; text-align:center;">
-                            Một tài khoản. Hoạt động trên mọi dịch vụ của Seafood.
-                        </label>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script>
-        //Setup
-        //Setup
-        $('.form-control').keypress(function () {
-            $('.log-status').removeClass('wrong-entry');
-        });
-
-        $(document).ready(function ()
-        {
-            if ('@ViewBag.Message' != '')
-            {
-                $('#txtUserName').addClass('wrong-entry');
-                $('#txtPassword').addClass('wrong-entry');
-                $('#alert').html('@ViewBag.Message');
-                $('#alert').fadeIn(500);
-                setTimeout("$('#alert').fadeOut(1500);", 3000 );
-            }
-
-            $('#UserName').trigger('change');
-        });
-        function showModalRegister()
-        {
-            var r_modal = document.getElementById("modalRegister");
-            r_modal.style.display = "block";
-            $("#loginForm").hide();
-        }
-        function CloseModalRegister()
-        {
-            var r_modal = document.getElementById("modalRegister");
-            r_modal.style.display = "none";
-            $('#loginForm').show();
-        }
-        function showModalPasswordRetrieval()
-        {
-            $('#notification').html(HtmlNotifiInfo('Liên hệ đến SĐT: 0367823445'));
-            $('#notification').fadeIn(500);
-            setTimeout("$('#notification').fadeOut(1500);", 3000 );
-        }
-        function cancelRegisterAccount()
-        {
-            var r_modal = document.getElementById("modalRegister");
-            r_modal.style.display = "none";
-            $('#loginForm').show();
-            clearData();
-        }
-        function isShowPassword()
-        {
-            var checkShowPassword = document.getElementById('r_showPassword');
-            if (checkShowPassword.checked)
-            {
-                document.getElementById("r_password").setAttribute('type', 'text');
-                document.getElementById("r_confirmPassword").setAttribute('type', 'text');
-            }
-            else
-            {
-                document.getElementById("r_password").setAttribute('type', 'password');
-                document.getElementById("r_confirmPassword").setAttribute('type', 'password');
-            }
-        }
-        function clearData()
-        {
-            $("#r_firstName").val('');
-            $("#r_lastName").val('');
-            $("#r_email").val('');
-            $("#r_numberPhone").val('');
-            $("#r_password").val('');
-            $("#r_confirmPassword").val('');
-        }
-        function executeRegisterAccount()
-        {
-            isValidate = true;
-            var r_firstName = $("#r_firstName").val();
-            var r_lastName = $("#r_lastName").val();
-            var r_email = $("#r_email").val();
-            var r_numberPhone = $("#r_numberPhone").val();
-            var r_password = $("#r_password").val();
-            var r_confirmPassword = $("#r_confirmPassword").val();
-            var isPw = validatePassword(r_password, r_confirmPassword);
-
-            if (r_firstName == undefined || r_firstName == ''){
-                isValidate = false;
-                $('#log_r_firstName').addClass('wrong-entry');
-                $('#alert_r1').html('Nhập họ và tên');
-                $('#alert_r1').fadeIn(500);
-                setTimeout("$('#alert_r1').fadeOut(1500);", 3000);
-            }
-            if (r_lastName == undefined || r_lastName == '') {
-                isValidate = false;
-                $('#log_r_lastName').addClass('wrong-entry');
-                $('#alert_r1').html('Nhập họ và tên');
-                $('#alert_r1').fadeIn(500);
-                setTimeout("$('#alert_r1').fadeOut(1500);", 3000);
-            }
-            if (!validateEmail(r_email)) {
-                isValidate = false;
-                $('#log_r_email').addClass('wrong-entry');
-                $('#alert_r2').html('Nhập một địa chỉ Gmail');
-                $('#alert_r2').fadeIn(500);
-                setTimeout("$('#alert_r2').fadeOut(1500);", 3000);
-            }
-            if (!validatePhoneNumber(r_numberPhone)) {
-                isValidate = false;
-                $('#log_r_numberPhone').addClass('wrong-entry');
-                $('#alert_r3').html('Nhập một số điện thoại');
-                $('#alert_r3').fadeIn(500);
-                setTimeout("$('#alert_r3').fadeOut(1500);", 3000);
-            }
-            if (isPw != 'true') {
-                isValidate = false;
-                $('#log_r_password').addClass('wrong-entry');
-                $('#log_r_confirmPassword').addClass('wrong-entry');
-                $('#alert_r5').html(validatePassword(r_password, r_confirmPassword));
-                $('#alert_r5').fadeIn(500);
-                setTimeout("$('#alert_r5').fadeOut(1500);", 3000);
-            }
-
-            if (!isValidate)
-                return;
-
-            dataObject =
-            {
-                r_firstName: r_firstName,
-                r_lastName: r_lastName,
-                r_email: r_email,
-                r_numberPhone: r_numberPhone,
-                r_password: r_password,
-            };
-            paramData =
-            {
-                "__RequestVerificationToken": $('input[name="__RequestVerificationToken"]')[0].value,
-                "jsonObject": JSON.stringify(dataObject),
-            }
-            paramUrl = "@Url.Action("CreateAccount", "Account")";
-            $.ajax({
-                type: "POST",
-                traditional: true,
-                data:
-                {
-                    "__RequestVerificationToken": $('input[name="__RequestVerificationToken"]')[0].value,
-                    "jsonObject": JSON.stringify(dataObject),
-                },
-                url: "@Url.Action("CreateAccount", "Account")",
-                success: function (data)
-                {
-                    if (data != null && data.IsCreate)
-                    {
-                        $('#notification').html(HtmlNotifiSuccess(data.Message));
-                        $('#notification').fadeIn(500);
-                        setTimeout("$('#notification').fadeOut(1500);", 3000);
-                        $("#UserName").val(r_numberPhone);
-                        $("#Password").val(r_password);
-                        cancelRegisterAccount();
-
-                    }
-                    else
-                    {
-                        $('#notification').html(HtmlNotifiErrorRight(data.Message));
-                        $('#notification').fadeIn(500);
-                        setTimeout("$('#notification').fadeOut(1500);", 3000);
-                    }
-                },
-                complete:function()
-                {
-                },
-                error: function (e)
-                {
-                    $('#notification').html(HtmlNotifiErrorRight('Có lỗi trong quá trình xử lý'));
-                    $('#notification').fadeIn(500);
-                    setTimeout("$('#notification').fadeOut(1500);", 3000);
+                .login-form .box-input-login i {
+                    width: auto;
+                    font-size: 18px;
+                    padding: 10px 0 8px 12px;
+                    cursor: pointer;
                 }
 
-            })
-        }
+                .login-form .box-input-login input {
+                    flex: 1;
+                    border: 0px solid transparent;
+                    font-size: 17px;
+                }
+            .login-form .btn-login {
+                width: 100%;
+                margin-top: 20px;
+                height: 45px;
+                font-size: 17px;
+            }
+            .login-form .box-lable-login {
+                margin-top: 5px;
+                /*Chia đều khoảng và cái đứa cái cuối về sát lề*/
+                display: flex;
+                justify-content: space-between;
+                color: #05a;
+            }
+                .login-form .box-lable-login a {
+                    color: #05a;
+                }
 
-        function goToMainHome()
-        {
-            window.location = "/Home/Seafood";
+            .login-form .box-describe {
+                margin-top: 20px;
+                text-transform: uppercase;
+                font-size: .75rem;
+                display: flex;
+            }
+                .login-form .box-describe span {
+                    margin: 0 5px 0 5px;
+                    font-size: 11px;
+                }
+                .login-form .box-describe .slim-line {
+                    margin-top: 7px;
+                    height: 1.5px;
+                    background-color: #ccc;
+                }
+            .login-form .box-register {
+                margin-top: 40px;
+                align-items: center;
+                display: flex;
+                justify-content: center;
+                width: 100%;
+            }
+                .login-form .box-register a {
+                    margin-left: 5px;
+                    color: #ee4d2d;
+                }
+            /*Ghi đè class*/
+            ::placeholder {
+                font-size: 15px !important;
+            }
+        .login-form .box-input-login input:focus {
+            outline: none;
         }
+    </style>
+</head>
+<body style="background-color: #dee8fc;">
+    <div id="loading" style="display:none">
+        <img id="loadingImg" src="~/assets/images/icon/ajax-loader.gif" alt="Alternate Text" />
+    </div>
+    <div class="box-header">
+        <div class="seafood">
+            Seafood.com.vn
+        </div>
+    </div>
+    <form>
+        <div class="login-form">
+            <div class="header">
+                Đăng nhập
+            </div>
+            <div id="box_login_form_account" class="box-input-login">
+                <input id="login_form_account" maxlength="10" placeholder="Số điện thoại">
+            </div>
+            <div id="box_login_form_password" class="box-input-login">
+                <input type="password" id="login_form_password" placeholder="Mật khẩu" />
+                <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                <i style="display:none;" class="fa fa-eye" aria-hidden="true"></i>
+            </div>
+            <button class="btn-login btn-core-accept">Đăng nhập</button>
+            <div class="box-lable-login">
+                <a href="">Quên mật khẩu</a>
+                <a href="">Đăng nhập với SMS</a>
+            </div>
+            <div class="box-describe">
+                <div class="slim-line">
+                </div>
+                <span>Hoặc</span>
+                <div class="slim-line">
+                </div>
+            </div>
+            <div class="box-register">
+                Bạn mới biết đến Seafood?
+                <a href="">Đăng ký</a>
+            </div>
+        </div>
+    </form>
+    <script>
+        //Setup
+        $('#login_form_account').on('focus', function () {
+            document.getElementById("box_login_form_account").style.borderColor = "rgb(7, 171, 226)";
+        });
+        $('#login_form_account').on('blur', function () {
+            document.getElementById("box_login_form_account").style.borderColor = "rgba(0,0,0,.14)";
+        });
+        $('#login_form_password').on('focus', function () {
+            document.getElementById("box_login_form_password").style.borderColor = "rgb(7, 171, 226)";
+        });
+        $('#login_form_password').on('blur', function () {
+            document.getElementById("box_login_form_password").style.borderColor = "rgba(0,0,0,.14)";
+        });
+        function showLoadingNavigatePage(delayInMilliseconds) {
+            $("#loading").show();
+            setTimeout(function () {
+                $("#loading").hide();
+            }, delayInMilliseconds);
+        }
+        //Setup
+        $('.box-header .seafood').click(function (e) {
+             showLoadingNavigatePage(5000);
+             window.location = "/Home/Seafood";
+        });
+        $('.login-form .login').click(function (e) {
+            window.location = "/Home/Seafood";
+        });
     </script>
+
 </body>
 </html>

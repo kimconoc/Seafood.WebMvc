@@ -185,6 +185,7 @@
     <Compile Include="Models\UserData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="assets\css\demo\address-add.css" />
+    <Content Include="assets\css\demo\login.css" />
     <Content Include="assets\css\demo\your-account.css" />
     <Content Include="Views\Address\AddressAdd.cshtml" />
     <Content Include="Views\Address\AddressEdit.cshtml" />

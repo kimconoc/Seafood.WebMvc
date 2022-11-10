@@ -51,9 +51,6 @@
     #mainContent_grid {
         grid-template-columns: 200px 200px;
     }
-    #r-container-image {
-        display: none;
-    }
     .mainContent_grid_item {
         height: 346px !important;
     }

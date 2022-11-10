@@ -34,7 +34,6 @@ namespace Seafood.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel model, string ReturnUrl = "")
         {
             if (!ModelState.IsValid)
@@ -43,18 +42,11 @@ namespace Seafood.Controllers
                 return View(model);
             }           
             var userBase = provider.PostAsync<User>(ApiUri.POST_AccountLogin, model);
-            if(userBase == null || userBase.Result.Data == null)
+            if (userBase == null || userBase.Result == null || userBase.Result.Data == null)
             {
                 ViewBag.Message = "Tài khoản đăng nhập không đúng";
                 return View(model);
             }
-            //var user = userBase.Result.Data;
-            // Lưu thông tin ticket
-            //var userData = StoreUserData(user);
-            //FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, model.UserName, DateTime.Now, DateTime.Now.AddMinutes(1500), false, JsonConvert.SerializeObject(userData), FormsAuthentication.FormsCookiePath);
-            //string hash = FormsAuthentication.Encrypt(ticket);
-            //HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, hash);
-            //Response.Cookies.Add(cookie);
             StaticSettings.User = userBase.Result.Data;
             return RedirectToAction("Seafood", "Home");
         }
@@ -66,14 +58,7 @@ namespace Seafood.Controllers
             {
                 ViewBag.Message = "Có lỗi xảy ra";
                 return View();
-            }
-            //FormsAuthentication.SignOut();
-            //HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, "");
-            //if(cookie != null)
-            //{
-            //    cookie.Expires = DateTime.Now.AddYears(-1);
-            //    Response.Cookies.Add(cookie);
-            //}    
+            }   
             StaticSettings.ClearStaticSettings();
             return RedirectToAction("Seafood", "Home");
         }
@@ -183,23 +168,6 @@ namespace Seafood.Controllers
         }
 
         #region private menthod
-        //private UserData StoreUserData(User user)
-        //{
-        //    List<string> roles = new List<string>();
-        //    if (!string.IsNullOrEmpty(user.Roles))
-        //    {
-        //        roles = user.Roles.Split(',').OfType<string>().ToList();
-        //    }    
-        //    var userData = new UserData
-        //    {
-        //        UserId = user.Id,
-        //        DisplayName = user.DisplayName,
-        //        FullName = user.Fullname,
-        //        Roles = roles,
-        //        IsAdminUser = user.IsAdminUser
-        //    };
-        //    return userData;
-        //}
         #endregion private menthod
     }
 }

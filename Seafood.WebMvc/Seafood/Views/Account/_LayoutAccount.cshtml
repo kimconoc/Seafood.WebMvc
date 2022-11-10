@@ -1,0 +1,76 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seafood</title>
+    @Styles.Render("~/bundles/css")
+    @Styles.Render("~/bundles/js")
+    <link href="~/assets/css/theme.css" rel="stylesheet" />
+    <script src="~/assets/js/constant.js"></script>
+    <!--css, js bootstrap -->
+    <link href="~/Content/fa/font-awesome.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .box-header {
+            width: 100%;
+            height: 84px;
+            box-shadow: 0 6px 6px rgb(0 0 0 / 6%);
+            background-color: rgb(7, 171, 226);
+            position: relative;
+        }
+
+            .box-header .seafood {
+                max-width: 1200px;
+                color: white;
+                font-family: cursive;
+                cursor: pointer;
+                font-size: 28px;
+                position: absolute;
+                left: 15%;
+                top: 20px;
+            }
+        /*Ghi đè class*/
+        ::placeholder {
+            font-size: 15px !important;
+        }
+
+        .login-form .box-input-login input:focus {
+            outline: none;
+        }
+    </style>
+</head>
+<body style="background-color: #dee8fc;">
+    <div id="loading" style="display:none">
+        <img id="loadingImg" src="~/assets/images/icon/ajax-loader.gif" alt="Alternate Text" />
+    </div>
+    <div class="box-header">
+        <div class="seafood">
+            Seafood.com.vn
+        </div>
+    </div>
+    <form>
+        @RenderBody()
+    </form>
+    <script>
+        //Setup
+        function showLoadingNavigatePage(delayInMilliseconds) {
+            $("#loading").show();
+            setTimeout(function () {
+                $("#loading").hide();
+            }, delayInMilliseconds);
+        }
+        //Setup
+    </script>
+
+</body>
+</html>

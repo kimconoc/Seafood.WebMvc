@@ -185,11 +185,13 @@
     <Compile Include="Models\UserData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="assets\css\demo\address-add.css" />
+    <Content Include="assets\css\demo\layout-account.css" />
     <Content Include="assets\css\demo\login.css" />
     <Content Include="assets\css\demo\your-account.css" />
     <Content Include="Views\Address\AddressAdd.cshtml" />
     <Content Include="Views\Address\AddressEdit.cshtml" />
     <Content Include="Views\Account\YourAccount.cshtml" />
+    <Content Include="Views\Account\_LayoutAccount.cshtml" />
     <None Include="Views\Shared\_LayoutAccountManager.cshtml" />
     <Content Include="Views\UploadFile\UpLoadFileExcel.cshtml" />
     <None Include="Views\YourOrder\OrderDetail.cshtml" />

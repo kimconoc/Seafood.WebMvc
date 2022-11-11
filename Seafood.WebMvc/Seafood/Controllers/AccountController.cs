@@ -59,8 +59,12 @@ namespace Seafood.Controllers
             {
                 ViewBag.Message = "Có lỗi xảy ra";
                 return View();
-            }   
-            StaticSettings.ClearStaticSettings();
+            }
+            if (!string.IsNullOrEmpty(Authenticator.GetSigninToken()) && Request.Cookies[Authenticator.GetSigninToken()] != null)
+            {
+                // Clear your data
+            }    
+            Authenticator.LogOff(HttpContext);
             return RedirectToAction("Seafood", "Home");
         }
 

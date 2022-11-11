@@ -263,6 +263,10 @@
                     <i class="fa-solid fa-notes-medical"></i>
                     <div>@Constant.Name_Lich_Su_Mua_Hang</div>
                 </div>
+                <div id="@Constant.Id_Dang_Suat" class="item-content">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                    <div>@Constant.Name_Dang_Suat</div>
+                </div>
             </div>
         </div>
     </div>
@@ -290,6 +294,10 @@
         });
         function showLoadingNavigatePage(delayInMilliseconds)
         {
+            if (isNullOrEmpty(delayInMilliseconds).toLowerCase() == 'true')
+            {
+                delayInMilliseconds = 5000;
+            }
             $("#loading").show();
             setTimeout(function () {
                 $("#loading").hide();
@@ -309,7 +317,11 @@
                 {
                     window.location = "/Address/AddressList?idItem=" + dom.id;
                 }
-               
+                else if (dom.id == '@Constant.Id_Dang_Suat')
+                {
+                    window.location = "/Account/Logout";
+                }
+
             });
         })
 

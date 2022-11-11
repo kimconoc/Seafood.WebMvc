@@ -7,26 +7,16 @@
 <html>
 <head>
     <style>
-        .login-form {
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center center;
-            margin: 0 auto;
-            margin-top: 5%;
-            width: 100%;
-            max-width: 450px;
-            background-color: white;
-            box-shadow: 0 6px 6px rgb(0 0 0 / 6%);
-            padding: 30px;
+        .box-login-form {
+            
         }
-
-            .login-form .header {
+            .box-login-form .header {
                 width: 100%;
                 font-size: 25px;
             }
 
 
-            .login-form .box-input-login {
+            .box-login-form .box-input-login {
                 margin-top: 20px;
                 background-color: white;
                 box-sizing: border-box;
@@ -43,58 +33,58 @@
                 justify-content: space-between;
             }
 
-                .login-form .box-input-login i {
+                .box-login-form .box-input-login i {
                     width: auto;
                     font-size: 18px;
                     padding: 10px 0 8px 12px;
                     cursor: pointer;
                 }
 
-                .login-form .box-input-login input {
+                .box-login-form .box-input-login input {
                     flex: 1;
                     border: 0px solid transparent;
                     font-size: 17px;
                 }
-            .login-form .btn-login {
+            .box-login-form .btn-login {
                 width: 100%;
                 margin-top: 20px;
                 height: 45px;
                 font-size: 17px;
             }
-            .login-form .box-lable-login {
+            .box-login-form .box-lable-login {
                 margin-top: 5px;
                 /*Chia đều khoảng và cái đứa cái cuối về sát lề*/
                 display: flex;
                 justify-content: space-between;
                 color: #05a;
             }
-                .login-form .box-lable-login a {
+                .box-login-form .box-lable-login a {
                     color: #05a;
                 }
 
-            .login-form .box-describe {
+            .box-login-form .box-describe {
                 margin-top: 20px;
                 text-transform: uppercase;
                 font-size: .75rem;
                 display: flex;
             }
-                .login-form .box-describe span {
+                .box-login-form .box-describe span {
                     margin: 0 5px 0 5px;
                     font-size: 11px;
                 }
-                .login-form .box-describe .slim-line {
+                .box-login-form .box-describe .slim-line {
                     margin-top: 7px;
                     height: 1.5px;
                     background-color: #ccc;
                 }
-            .login-form .box-register {
+            .box-login-form .box-register {
                 margin-top: 40px;
                 align-items: center;
                 display: flex;
                 justify-content: center;
                 width: 100%;
             }
-                .login-form .box-register a {
+                .box-login-form .box-register a {
                     margin-left: 5px;
                     color: #ee4d2d;
                 }
@@ -102,64 +92,60 @@
             ::placeholder {
                 font-size: 15px !important;
             }
-        .login-form .box-input-login input:focus {
-            outline: none;
-        }
+            .box-login-form .box-input-login input:focus {
+                outline: none;
+            }
     </style>
 </head>
 <body>
-    <div class="login-form">
-        <div class="header">
-            Đăng nhập
-        </div>
-        <div id="box_login_form_account" class="box-input-login">
-            <input required id="login_form_account" maxlength="10" placeholder="Số điện thoại">
-        </div>
-        <div id="box_login_form_password" class="box-input-login">
-            <input required type="password" id="login_form_password" placeholder="Mật khẩu" />
-            <i class="fa fa-eye-slash" aria-hidden="true"></i>
-            <i style="display:none;" class="fa fa-eye" aria-hidden="true"></i>
-        </div>
-        <button class="btn-login btn-core-accept">Đăng nhập</button>
-        <div class="box-lable-login">
-            <a href="">Quên mật khẩu</a>
-            <a href="">Đăng nhập với SMS</a>
-        </div>
-        <div class="box-describe">
-            <div class="slim-line">
+    <div class="box-login-form">
+        <form role="form" method="post">
+            <div class="header">
+                Đăng nhập
             </div>
-            <span>Hoặc</span>
-            <div class="slim-line">
+
+            <div id="box_login_form_account" class="box-input-login">
+                <input id="userName" name="UserName" maxlength="10" placeholder="Số điện thoại">
             </div>
-        </div>
-        <div class="box-register">
-            Bạn mới biết đến Seafood?
-            <a href="">Đăng ký</a>
-        </div>
+            <div id="box_login_form_password" class="box-input-login">
+                <input type="password" id="password" name="Password" placeholder="Mật khẩu" />
+                <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                <i style="display:none;" class="fa fa-eye" aria-hidden="true"></i>
+            </div>
+            <button class="btn-login btn-core-accept">Đăng nhập</button>
+
+            <div class="box-lable-login">
+                <a href="">Quên mật khẩu</a>
+                <a href="">Đăng nhập với SMS</a>
+            </div>
+            <div class="box-describe">
+                <div class="slim-line">
+                </div>
+                <span>Hoặc</span>
+                <div class="slim-line">
+                </div>
+            </div>
+            <div class="box-register">
+                Bạn mới biết đến Seafood?
+                <a href="">Đăng ký</a>
+            </div>
+        </form>
     </div>
     <script>
         //Setup
         $('#login_form_account').on('focus', function () {
-            document.getElementById("box_login_form_account").style.borderColor = "rgb(7, 171, 226)";
+            document.getElementById("userName").style.borderColor = "rgb(7, 171, 226)";
         });
         $('#login_form_account').on('blur', function () {
-            document.getElementById("box_login_form_account").style.borderColor = "rgba(0,0,0,.14)";
+            document.getElementById("userName").style.borderColor = "rgba(0,0,0,.14)";
         });
         $('#login_form_password').on('focus', function () {
-            document.getElementById("box_login_form_password").style.borderColor = "rgb(7, 171, 226)";
+            document.getElementById("password").style.borderColor = "rgb(7, 171, 226)";
         });
         $('#login_form_password').on('blur', function () {
-            document.getElementById("box_login_form_password").style.borderColor = "rgba(0,0,0,.14)";
+            document.getElementById("password").style.borderColor = "rgba(0,0,0,.14)";
         });
         //Setup
-        $('.box-header .seafood').click(function (e) {
-             showLoadingNavigatePage(5000);
-             window.location = "/Home/Seafood";
-        });
-        $('.login-form .login').click(function (e) {
-            window.location = "/Home/Seafood";
-        });
     </script>
-
 </body>
 </html>

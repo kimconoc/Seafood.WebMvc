@@ -21,7 +21,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <style>
-        .box-header {
+        .box-header-account {
             width: 100%;
             height: 84px;
             box-shadow: 0 6px 6px rgb(0 0 0 / 6%);
@@ -29,16 +29,28 @@
             position: relative;
         }
 
-            .box-header .seafood {
+            .box-header-account .seafood {
                 max-width: 1200px;
                 color: white;
                 font-family: cursive;
                 cursor: pointer;
-                font-size: 28px;
+                font-size: 30px;
                 position: absolute;
                 left: 15%;
                 top: 20px;
             }
+        .box-form-account {
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            margin: 0 auto;
+            margin-top: 5%;
+            width: 100%;
+            max-width: 450px;
+            background-color: white;
+            box-shadow: 0 6px 6px rgb(0 0 0 / 6%);
+            padding: 30px;
+        }
         /*Ghi đè class*/
         ::placeholder {
             font-size: 15px !important;
@@ -53,23 +65,30 @@
     <div id="loading" style="display:none">
         <img id="loadingImg" src="~/assets/images/icon/ajax-loader.gif" alt="Alternate Text" />
     </div>
-    <div class="box-header">
+    <div class="box-header-account">
         <div class="seafood">
             Seafood.com.vn
         </div>
     </div>
-    <form>
+    <div class="box-form-account">
         @RenderBody()
-    </form>
+    </div>
     <script>
         //Setup
         function showLoadingNavigatePage(delayInMilliseconds) {
+            if (isNullOrEmpty(delayInMilliseconds).toLowerCase() == 'true') {
+                delayInMilliseconds = 5000;
+            }
             $("#loading").show();
             setTimeout(function () {
                 $("#loading").hide();
             }, delayInMilliseconds);
         }
         //Setup
+        $('.box-header-account .seafood').click(function (e) {
+            showLoadingNavigatePage(5000);
+            window.location = "/Home/Seafood";
+        });
     </script>
 
 </body>

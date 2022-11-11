@@ -40,9 +40,9 @@ namespace Seafood.Controllers
             {
                 ViewBag.Message = "Nhập thông tin đăng nhập";
                 return View(model);
-            }           
+            }
             var userBase = provider.PostAsync<User>(ApiUri.POST_AccountLogin, model);
-            if (userBase == null || userBase.Result == null || userBase.Result.Data == null)
+            if (userBase == null || userBase.Result.Data == null)
             {
                 ViewBag.Message = "Tài khoản đăng nhập không đúng";
                 return View(model);

@@ -1,28 +1,19 @@
-﻿@using Newtonsoft.Json;
+﻿@using Seafood.Models;
 @using Domain.Models.ResponseModel;
 @using Domain.Constant
 @using Service.Helpers
 
 @{  
-    bool isLogin = false;
+    UserData user = null;
     try
     {
         var httpContextBase = new HttpContextWrapper(HttpContext.Current);
-        var user = Seafood.MemCached.Authenticator.CurrentUser(httpContextBase);
-        if (user != null)
-        {
-            isLogin = true;
-        }
-        else
-        {
-            isLogin = false;
-        }
+        user = Seafood.MemCached.Authenticator.CurrentUser(httpContextBase);
     }
     catch
     {
-        isLogin = false;
-    }
 
+    }
 }
 
 <!DOCTYPE html>
@@ -108,7 +99,7 @@
                     <span>1</span>
                 </div>
                 @*flex6*@
-                @if (!isLogin)
+                @if (user == null)
                 {
                     <div class="header-layout1-login" onclick="login()">
                         <i class="fa fa-user-circle"></i>
@@ -345,29 +336,31 @@
 
         $('.headerLayout1_flex5').click(function (e)
         {
-            if ('@isLogin'.toLowerCase() == 'true')
-            {
-                window.location = "/YourBasket/Basket";
-            }
-            else
+            var user = @Html.Raw(Json.Encode(Seafood.MemCached.Authenticator.CurrentUser(new HttpContextWrapper(HttpContext.Current))));
+            if (isNullOrEmpty(user) == 'true')
             {
                 $('#notification').html(HtmlNotifiErrorRight('Bạn chưa đăng nhập'));
                 $('#notification').fadeIn(500);
                 setTimeout("$('#notification').fadeOut(1500);", 2000);
+            }
+            else
+            {
+                window.location = "/YourBasket/Basket";
             }
         });
 
         $('.headerLayout1_flex4').click(function (e)
         {
-            if ('@isLogin'.toLowerCase() == 'true')
-            {
-                window.location = "/YourOrder/Order";
-            }
-            else
+            var user = '@Seafood.MemCached.Authenticator.CurrentUser(new HttpContextWrapper(HttpContext.Current))';
+            if (isNullOrEmpty(user) == 'true')
             {
                 $('#notification').html(HtmlNotifiErrorRight('Bạn chưa đăng nhập'));
                 $('#notification').fadeIn(500);
                 setTimeout("$('#notification').fadeOut(1500);", 2000);
+            }
+            else
+            {
+                window.location = "/YourOrder/Order";
             }
         });
 

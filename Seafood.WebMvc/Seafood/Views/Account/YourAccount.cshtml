@@ -282,7 +282,16 @@
             {
                 return;
             }
-
+            if ('@User'.toLowerCase() == 'true')
+            {
+                window.location = "/YourBasket/Basket";
+            }
+            else
+            {
+                $('#notification').html(HtmlNotifiErrorRight('Bạn chưa đăng nhập'));
+                $('#notification').fadeIn(500);
+                setTimeout("$('#notification').fadeOut(1500);", 2000);
+            }
             var formData = new FormData($('form')[0]);
             $.ajax({
                 cache: false,

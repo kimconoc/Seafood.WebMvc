@@ -289,7 +289,7 @@
 
 @import url(https://fonts.googleapis.com/css?family=Vibur);
 /*//////////////////////////////*/
-.validateError {
+.validate-error {
     color: #D93025;
     font-size: 13px;
 }

@@ -40,6 +40,10 @@
                     cursor: pointer;
                 }
 
+                .box-login-form .box-input-login #show_password {
+                    color: #05a;
+                }
+
                 .box-login-form .box-input-login input {
                     flex: 1;
                     border: 0px solid transparent;
@@ -105,13 +109,14 @@
             </div>
 
             <div id="box_login_form_account" class="box-input-login">
-                <input id="userName" name="UserName" maxlength="10" placeholder="Số điện thoại">
+                <input id="userName" name="UserName" required maxlength="10" placeholder="Số điện thoại">
             </div>
             <div id="box_login_form_password" class="box-input-login">
-                <input type="password" id="password" name="Password" placeholder="Mật khẩu" />
-                <i class="fa fa-eye-slash" aria-hidden="true"></i>
-                <i style="display:none;" class="fa fa-eye" aria-hidden="true"></i>
+                <input type="password" id="password" name="Password" required maxlength="50" placeholder="Mật khẩu" />
+                <i id="hide_password" class="icon-show-password fa fa-eye-slash" aria-hidden="true"></i>
+                <i id="show_password" style="display:none;" class="icon-show-password fa fa-eye" aria-hidden="true"></i>
             </div>
+            <span class="validate-error" id="alert_login"></span>
             <button class="btn-login btn-core-accept">Đăng nhập</button>
 
             <div class="box-lable-login">
@@ -132,20 +137,45 @@
         </form>
     </div>
     <script>
-        //Setup
-        $('#login_form_account').on('focus', function () {
-            document.getElementById("userName").style.borderColor = "rgb(7, 171, 226)";
-        });
-        $('#login_form_account').on('blur', function () {
-            document.getElementById("userName").style.borderColor = "rgba(0,0,0,.14)";
-        });
-        $('#login_form_password').on('focus', function () {
-            document.getElementById("password").style.borderColor = "rgb(7, 171, 226)";
-        });
-        $('#login_form_password').on('blur', function () {
-            document.getElementById("password").style.borderColor = "rgba(0,0,0,.14)";
+        $(document).ready(function ()
+        {
+            debugger
+            if ('@ViewBag.Message' != '')
+            {
+                $('#alert_login').html('@ViewBag.Message');
+                $('#alert_login').fadeIn(500);
+                setTimeout("$('#alert_login').fadeOut(1500);", 5000 );
+            };
         });
         //Setup
+        $('#userName').on('focus', function () {
+            document.getElementById("box_login_form_account").style.borderColor = "rgb(7, 171, 226)";
+        });
+        $('#userName').on('blur', function () {
+            document.getElementById("box_login_form_account").style.borderColor = "rgba(0,0,0,.14)";
+        });
+        $('#password').on('focus', function () {
+            document.getElementById("box_login_form_password").style.borderColor = "rgb(7, 171, 226)";
+        });
+        $('#password').on('blur', function () {
+            document.getElementById("box_login_form_password").style.borderColor = "rgba(0,0,0,.14)";
+        });
+        //Setup
+        $('.icon-show-password').click(function (e) {
+            var dom = this;
+            if (dom.id == 'hide_password')
+            {
+                document.getElementById("show_password").style.display = "block";
+                document.getElementById("hide_password").style.display = "none";
+                document.getElementById("password").setAttribute('type', 'text');
+            }
+            else
+            {
+                document.getElementById("show_password").style.display = "none";
+                document.getElementById("hide_password").style.display = "block";
+                document.getElementById("password").setAttribute('type', 'password');
+            }
+        });
     </script>
 </body>
 </html>

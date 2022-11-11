@@ -1,42 +1,81 @@
-﻿using System;
+﻿using Domain.Models.ResponseModel;
+using Newtonsoft.Json;
+using Seafood.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Caching;
+using System.Security.Principal;
 using System.Web;
+using System.Web.Security;
 
 namespace Seafood.MemCached
 {
-    //public static class CacheHelper
-    //{
-    //    public static MemoryCache entityCache = MemoryCache.Default;
-    //    public static object GetObject(string sKey)
-    //    {
-    //        return entityCache.Get(sKey);
-    //    }
-    //    public static void AddObject(object entity, string sKey)
-    //    {
-    //        CacheItemPolicy cacheItemPolicy = new CacheItemPolicy();
-    //        cacheItemPolicy.AbsoluteExpiration = DateTime.Now.AddDays(90);
+    public class Authenticator
+    {
+        public static string GetSigninToken()
+        {
+            return FormsAuthentication.FormsCookieName;
+        }
+        public static void SetAuth(User loginUser, HttpContextBase _curentHttpContext)
+        {
+            try
+            {
+                var user = new UserData
+                {
+                    UserId = loginUser.Id,
+                    DisplayName = loginUser.DisplayName,
+                    Avarta = loginUser.Avarta,
+                    Birthday = loginUser.Birthday,
+                    Sex = loginUser.Sex,
+                    Mobile = loginUser.Mobile,
+                    Email = loginUser.Email,
+                };
+                var loginToken = new FormsAuthenticationTicket(1, GetSigninToken(), DateTime.Now,DateTime.Now.AddMinutes(1), FormsAuthentication.SlidingExpiration, JsonConvert.SerializeObject(user), FormsAuthentication.FormsCookiePath);
+                SetAuthCookie(_curentHttpContext, loginToken, GetSigninToken());
 
-    //        entityCache.Add(sKey, entity, cacheItemPolicy);
-    //    }
-    //    public static void AddObject(object entity, string sKey, DateTime dExpireTime)
-    //    {
-    //        CacheItemPolicy cacheItemPolicy = new CacheItemPolicy();
-    //        cacheItemPolicy.AbsoluteExpiration = dExpireTime;
-    //        entityCache.Add(sKey, entity, cacheItemPolicy);
-    //    }
-    //    public static void Set(object entity, string sKey)
-    //    {
-    //        entityCache.Set(sKey, entity, new CacheItemPolicy());
-    //    }
-    //    public static void RemoveBy(string sKey)
-    //    {
-    //        entityCache.Remove(sKey);
-    //    }
-    //    public static void RemoveAll()
-    //    {
-    //        entityCache.Dispose();
-    //    }
-    //}
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+        private static void SetAuthCookie(HttpContextBase httpContext, FormsAuthenticationTicket authenticationTicket, string cookieName)
+        {
+            var encryptedTicket = FormsAuthentication.Encrypt(authenticationTicket);
+            var cookie = new HttpCookie(cookieName, encryptedTicket);
+            httpContext.Response.Cookies.Remove(cookie.Name);
+            httpContext.Response.Cookies.Add(cookie);
+        }
+        public static UserData CurrentUser(HttpContextBase _curentHttpContext)
+        {
+            UserData user = null;
+            var signinTokenCookie = _curentHttpContext.Request.Cookies[GetSigninToken()];
+            if (signinTokenCookie != null && !string.IsNullOrEmpty(signinTokenCookie.Value))
+            {
+                try
+                {
+                    var token = FormsAuthentication.Decrypt(signinTokenCookie.Value);
+                    user = JsonConvert.DeserializeObject<UserData>(token.UserData);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            return user;
+        }
+        public static void LogOff(HttpContextBase httpContext)
+        {
+            var cookie = new HttpCookie(GetSigninToken());
+            DateTime nowDateTime = DateTime.Now;
+            cookie.Expires = nowDateTime.AddDays(-1);
+            httpContext.Response.Cookies.Add(cookie);
+            // Put user code to initialize the page here            
+            FormsAuthentication.SignOut();
+            HttpContext.Current.User = new GenericPrincipal(new GenericIdentity(string.Empty), null);
+            HttpContext.Current.Session.Abandon();
+        }
+    }
 }

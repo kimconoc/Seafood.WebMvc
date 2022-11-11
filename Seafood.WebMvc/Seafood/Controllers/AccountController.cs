@@ -16,6 +16,7 @@ using System.Web.Security;
 using Domain.Helpers;
 using System.Drawing.Imaging;
 using Seafood.Models;
+using Seafood.MemCached;
 
 namespace Seafood.Controllers
 {
@@ -42,12 +43,12 @@ namespace Seafood.Controllers
                 return View(model);
             }
             var userBase = provider.PostAsync<User>(ApiUri.POST_AccountLogin, model);
-            if (userBase == null || userBase.Result.Data == null)
+            if (userBase == null || userBase.Result == null || userBase.Result.Data == null)
             {
                 ViewBag.Message = "Tài khoản đăng nhập không đúng";
                 return View(model);
             }
-            StaticSettings.User = userBase.Result.Data;
+            Authenticator.SetAuth(userBase.Result.Data, HttpContext);
             return RedirectToAction("Seafood", "Home");
         }
 

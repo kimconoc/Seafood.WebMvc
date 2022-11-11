@@ -4,21 +4,18 @@
 @using Service.Helpers
 
 @{  
-   bool isLogin = false;
+    bool isLogin = false;
     try
     {
-        if(StaticSettings.User == null && !StaticSettings.ExecutedAuthen)
-        {
-            var getInfoUserAndAuthen = new GetInfoUserAndAuthen();
-            var authenticateRequest = getInfoUserAndAuthen.AuthenticateRequest();
-            if (StaticSettings.User != null)
-            {
-                isLogin = true;
-            }
-        }
-        else if(StaticSettings.User != null)
+        var httpContextBase = new HttpContextWrapper(HttpContext.Current);
+        var user = Seafood.MemCached.Authenticator.CurrentUser(httpContextBase);
+        if (user != null)
         {
             isLogin = true;
+        }
+        else
+        {
+            isLogin = false;
         }
     }
     catch

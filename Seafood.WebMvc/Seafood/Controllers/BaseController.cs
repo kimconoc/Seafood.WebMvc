@@ -24,7 +24,8 @@ namespace Seafood.Controllers
 
         protected override void OnException(ExceptionContext filterContext)
         {
-            
+            filterContext.ExceptionHandled = true;
+            filterContext.Result = RedirectToAction("Seafood", "Home");
         }
 
         protected DataResponse<TRequest> Success_Request<TRequest>(TRequest data)

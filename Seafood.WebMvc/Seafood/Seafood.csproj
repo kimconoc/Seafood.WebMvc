@@ -179,9 +179,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="MemCached\CacheHelper.cs" />
-    <Compile Include="MemCached\LoginFailed.cs" />
-    <Compile Include="MemCached\SessionBlackList.cs" />
-    <Compile Include="MemCached\SpamAD.cs" />
     <Compile Include="Models\UserData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="assets\css\demo\address-add.css" />

@@ -31,7 +31,7 @@ namespace Seafood.MemCached
                     Mobile = loginUser.Mobile,
                     Email = loginUser.Email,
                 };
-                var loginToken = new FormsAuthenticationTicket(1, GetSigninToken(), DateTime.Now,DateTime.Now.AddMinutes(1), FormsAuthentication.SlidingExpiration, JsonConvert.SerializeObject(user), FormsAuthentication.FormsCookiePath);
+                var loginToken = new FormsAuthenticationTicket(1, GetSigninToken(), DateTime.Now, DateTime.Now + FormsAuthentication.Timeout, FormsAuthentication.SlidingExpiration, JsonConvert.SerializeObject(user), FormsAuthentication.FormsCookiePath);
                 SetAuthCookie(_curentHttpContext, loginToken, GetSigninToken());
 
             }

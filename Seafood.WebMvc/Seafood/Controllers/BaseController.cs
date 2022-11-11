@@ -1,4 +1,5 @@
-﻿using Seafood.Models;
+﻿using Seafood.MemCached;
+using Seafood.Models;
 using Service.ServiceProvider;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,11 @@ namespace Seafood.Controllers
             base.Dispose(disposing);
         }
 
+        public UserData GetCurrentUser()
+        {
+            var user = Authenticator.CurrentUser(ControllerContext.HttpContext);
+            return user;
+        }
         protected override void OnException(ExceptionContext filterContext)
         {
             filterContext.ExceptionHandled = true;

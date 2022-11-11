@@ -1,22 +1,14 @@
-﻿using Seafood.Model;
-using Domain.Constant;
+﻿using Domain.Constant;
 using Domain.FileLog;
+using Domain.Helpers;
 using Domain.Models.ParameterModel;
 using Domain.Models.ResponseModel;
-using Newtonsoft.Json;
-using Service.ServiceProvider;
+using Seafood.MemCached;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
-using System.Web.Security;
-using Domain.Helpers;
-using System.Drawing.Imaging;
-using Seafood.Models;
-using Seafood.MemCached;
 
 namespace Seafood.Controllers
 {

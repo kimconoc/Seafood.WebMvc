@@ -44,6 +44,11 @@ namespace Seafood.Controllers
             return RedirectToAction("Seafood", "Home");
         }
 
+        public ActionResult LoginBySMS()
+        {
+            return View();
+        }
+
         public ActionResult Logout()
         {
             var isLogout = provider.GetAsync<bool>(ApiUri.POST_AccountLogout);

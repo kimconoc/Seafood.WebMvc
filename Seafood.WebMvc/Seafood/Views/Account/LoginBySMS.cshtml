@@ -7,16 +7,16 @@
 <html>
 <head>
     <style>
-        .box-login-form {
+        .box-loginBySMS-form {
             
         }
-            .box-login-form .header {
+            .box-loginBySMS-form .header {
                 width: 100%;
                 font-size: 25px;
             }
 
 
-            .box-login-form .box-input-login {
+            .box-loginBySMS-form .box-input-login {
                 margin-top: 20px;
                 background-color: white;
                 box-sizing: border-box;
@@ -33,87 +33,81 @@
                 justify-content: space-between;
             }
 
-                .box-login-form .box-input-login i {
+                .box-loginBySMS-form .box-input-login i {
                     width: auto;
                     font-size: 18px;
                     padding: 10px 0 8px 12px;
                     cursor: pointer;
                 }
 
-                .box-login-form .box-input-login #show_password {
+                .box-loginBySMS-form .box-input-login #show_password {
                     color: #05a;
                 }
 
-            .box-login-form .btn-login {
+            .box-loginBySMS-form .btn-login {
                 width: 100%;
                 margin-top: 20px;
                 height: 45px;
                 font-size: 17px;
             }
-            .box-login-form .box-lable-login {
+            .box-loginBySMS-form .box-lable-login {
                 margin-top: 5px;
                 /*Chia đều khoảng và cái đứa cái cuối về sát lề*/
                 display: flex;
                 justify-content: space-between;
                 color: #05a;
             }
-                .box-login-form .box-lable-login a {
+                .box-loginBySMS-form .box-lable-login a {
                     color: #05a;
                 }
 
-            .box-login-form .box-describe {
+            .box-loginBySMS-form .box-describe {
                 margin-top: 20px;
                 text-transform: uppercase;
                 font-size: .75rem;
                 display: flex;
             }
-                .box-login-form .box-describe span {
+                .box-loginBySMS-form .box-describe span {
                     margin: 0 5px 0 5px;
                     font-size: 11px;
                 }
-                .box-login-form .box-describe .slim-line {
+                .box-loginBySMS-form .box-describe .slim-line {
                     margin-top: 7px;
                     height: 1.5px;
                     background-color: #ccc;
                 }
-            .box-login-form .box-register {
+            .box-loginBySMS-form .box-register {
                 margin-top: 40px;
                 align-items: center;
                 display: flex;
                 justify-content: center;
                 width: 100%;
             }
-                .box-login-form .box-register a {
+                .box-loginBySMS-form .box-register a {
                     margin-left: 5px;
                     color: #ee4d2d;
                 }
             /*Ghi đè class*/
-            .box-login-form .box-input-login input:focus {
+            .box-loginBySMS-form .box-input-login input:focus {
                 outline: none;
             }
     </style>
 </head>
 <body>
-    <div class="box-login-form">
+    <div class="box-loginBySMS-form">
         <form role="form" method="post">
             <div class="header">
                 Đăng nhập
             </div>
 
             <div id="box_login_form_account" class="box-input-login">
-                <input id="userName" name="UserName" required maxlength="10" placeholder="Số điện thoại">
+                <input id="number" name="Number" required maxlength="10" placeholder="Số điện thoại">
             </div>
-            <div id="box_login_form_password" class="box-input-login">
-                <input type="password" id="password" name="Password" required maxlength="50" placeholder="Mật khẩu" />
-                <i id="hide_password" class="icon-show-password fa fa-eye-slash" aria-hidden="true"></i>
-                <i id="show_password" style="display:none;" class="icon-show-password fa fa-eye" aria-hidden="true"></i>
-            </div>
-            <span class="validate-error" id="alert_login"></span>
-            <button class="btn-login btn-core-accept">Đăng nhập</button>
+            <button class="btn-login btn-core-accept">Tiếp theo</button>
 
             <div class="box-lable-login">
-                <a href="">Quên mật khẩu</a>
-                <a href="/Account/LoginBySMS">Đăng nhập với SMS</a>
+                <a href=""></a>
+                <a href="/Account/Login">Đăng nhập với mật khẩu</a>
             </div>
             <div class="box-describe">
                 <div class="slim-line">
@@ -139,34 +133,13 @@
             };
         });
         //Setup
-        $('#userName').on('focus', function () {
+        $('#number').on('focus', function () {
             document.getElementById("box_login_form_account").style.borderColor = "rgb(7, 171, 226)";
         });
-        $('#userName').on('blur', function () {
+        $('#number').on('blur', function () {
             document.getElementById("box_login_form_account").style.borderColor = "rgba(0,0,0,.14)";
         });
-        $('#password').on('focus', function () {
-            document.getElementById("box_login_form_password").style.borderColor = "rgb(7, 171, 226)";
-        });
-        $('#password').on('blur', function () {
-            document.getElementById("box_login_form_password").style.borderColor = "rgba(0,0,0,.14)";
-        });
         //Setup
-        $('.icon-show-password').click(function (e) {
-            var dom = this;
-            if (dom.id == 'hide_password')
-            {
-                document.getElementById("show_password").style.display = "block";
-                document.getElementById("hide_password").style.display = "none";
-                document.getElementById("password").setAttribute('type', 'text');
-            }
-            else
-            {
-                document.getElementById("show_password").style.display = "none";
-                document.getElementById("hide_password").style.display = "block";
-                document.getElementById("password").setAttribute('type', 'password');
-            }
-        });
     </script>
 </body>
 </html>

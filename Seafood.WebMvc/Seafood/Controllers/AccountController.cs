@@ -65,6 +65,10 @@ namespace Seafood.Controllers
             return RedirectToAction("Seafood", "Home");
         }
 
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
         [HttpPost]
         public ActionResult CreateAccount(string jsonObject)
         {

@@ -55,23 +55,33 @@ namespace Seafood.Controllers
             };
         }
 
-        protected StatusResponse Bad_Request()
+        protected StatusResponse Not_Found(string message = "")
+        {
+            return new StatusResponse()
+            {
+                Success = true,
+                StatusCode = (int)HttpStatusCode.NotFound,
+                Message = string.IsNullOrEmpty(message) ? "Không tìm thấy dữ liệu" : message
+            };
+        }
+
+        protected StatusResponse Bad_Request(string message = "")
         {
             return new StatusResponse()
             {
                 Success = false,
                 StatusCode = (int)HttpStatusCode.BadRequest,
-                Message = "Dữ liệu định dạng sai"
+                Message = string.IsNullOrEmpty(message)? "Dữ liệu định dạng sai": message
             };
         }
 
-        protected StatusResponse Server_Error()
+        protected StatusResponse Server_Error(string message = "")
         {
             return new StatusResponse()
             {
                 Success = false,
                 StatusCode = (int)HttpStatusCode.InternalServerError,
-                Message = "Có lỗi trong quá trình xử lý"
+                Message = string.IsNullOrEmpty(message) ? "Có lỗi trong quá trình xử lý" : message
             };
         }
     }

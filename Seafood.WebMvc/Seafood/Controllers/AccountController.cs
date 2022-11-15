@@ -196,7 +196,39 @@ namespace Seafood.Controllers
             {
                 return View(Server_Error());
             }
-            return Json(Success_Request(data.Result.Data));
+            return Json(Success_Request(data.Result.Data?.Trim()));
+        }
+
+        [HttpPost]
+        public ActionResult CheckCodeFirebase(string number)
+        {
+            if (string.IsNullOrEmpty(number) || !Helper.ValidPhoneNumer(number))
+            {
+                return Json(Bad_Request("Số điện thoại không hợp lệ"));
+            }
+            var uri = ApiUri.Get_CheckCodeFirebase + string.Format($"?number={number}");
+            var firebase = provider.GetAsync<bool>(uri);
+            if (firebase == null || firebase.Result == null || !firebase.Result.Success)
+            {
+                return View(Server_Error());
+            }
+            return Json(Success_Request(firebase.Result.Data));
+        }
+
+        [HttpPost]
+        public ActionResult UpdateCodeFirebase(string number)
+        {
+            if (string.IsNullOrEmpty(number) || !Helper.ValidPhoneNumer(number))
+            {
+                return Json(Bad_Request("Số điện thoại không hợp lệ"));
+            }
+            var uri = ApiUri.Get_UpdateCodeFirebase + string.Format($"?number={number}");
+            var update = provider.GetAsync<bool>(uri);
+            if (update == null || update.Result == null || !update.Result.Success)
+            {
+                return View(Server_Error());
+            }
+            return Json(Success_Request(update.Result.Data));
         }
 
         #region private menthod

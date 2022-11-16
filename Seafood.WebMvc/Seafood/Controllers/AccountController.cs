@@ -216,13 +216,13 @@ namespace Seafood.Controllers
         }
 
         [HttpPost]
-        public ActionResult UpdateCodeFirebase(string number)
+        public ActionResult UpdateCodeFirebase(string number,string code = "")
         {
             if (string.IsNullOrEmpty(number) || !Helper.ValidPhoneNumer(number))
             {
                 return Json(Bad_Request("Số điện thoại không hợp lệ"));
             }
-            var uri = ApiUri.Get_UpdateCodeFirebase + string.Format($"?number={number}");
+            var uri = ApiUri.Get_UpdateCodeFirebase + string.Format($"?number={number}&code={code}");
             var update = provider.GetAsync<bool>(uri);
             if (update == null || update.Result == null || !update.Result.Success)
             {

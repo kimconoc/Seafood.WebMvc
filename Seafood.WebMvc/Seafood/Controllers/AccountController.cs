@@ -94,10 +94,58 @@ namespace Seafood.Controllers
         }
         #endregion LoginBySMS
 
-        #region ForgotPassword
+        #region ForgotPasswordFirebase
         public ActionResult ForgotPassword()
         {
             return View();
+        }
+        [HttpPost]
+        public ActionResult CheckCodeFirebase(string number)
+        {
+            if (string.IsNullOrEmpty(number) || !Helper.ValidPhoneNumer(number))
+            {
+                return Json(Bad_Request("Số điện thoại không hợp lệ"));
+            }
+            var uri = ApiUri.Get_CheckCodeFirebase + string.Format($"?number={number}");
+            var firebase = provider.GetAsync<bool>(uri);
+            if (firebase == null || firebase.Result == null || !firebase.Result.Success)
+            {
+                return View(Server_Error());
+            }
+            return Json(Success_Request(firebase.Result.Data));
+        }
+
+        [HttpPost]
+        public ActionResult UpdateCodeFirebase(string number, string code = "")
+        {
+            if (string.IsNullOrEmpty(number) || !Helper.ValidPhoneNumer(number))
+            {
+                return Json(Bad_Request("Số điện thoại không hợp lệ"));
+            }
+            var uri = ApiUri.Get_UpdateCodeFirebase + string.Format($"?number={number}&code={code}");
+            var update = provider.GetAsync<bool>(uri);
+            if (update == null || update.Result == null || !update.Result.Success)
+            {
+                return View(Server_Error());
+            }
+            return Json(Success_Request(update.Result.Data));
+        }
+
+        [HttpPost]
+        public ActionResult ChangePwByCodeFirebase(string number, string code, string newPassword)
+        {
+            if (string.IsNullOrEmpty(number) || !Helper.ValidPhoneNumer(number) || string.IsNullOrEmpty(code) || string.IsNullOrEmpty(newPassword))
+            {
+                return Json(Bad_Request());
+            }
+            var uri = ApiUri.Get_ChangePwByCodeFirebase + string.Format($"?number={number}&code={code}&newPassword={newPassword}");
+            var userBase = provider.GetAsync<User>(uri);
+            if (userBase == null || userBase.Result == null || !userBase.Result.Success)
+            {
+                return View(Server_Error());
+            }
+            Authenticator.SetAuth(userBase.Result.Data, HttpContext);
+            return Json(Success_Request(userBase.Result.Data));
         }
         #endregion ForgotPassword
 
@@ -183,10 +231,11 @@ namespace Seafood.Controllers
         }
         #endregion CreateAccount
 
+        #region private menthod
         [HttpPost]
         public ActionResult CheckUserByPhoneNumber(string number)
         {
-            if(string.IsNullOrEmpty(number) || !Helper.ValidPhoneNumer(number))
+            if (string.IsNullOrEmpty(number) || !Helper.ValidPhoneNumer(number))
             {
                 return Json(Bad_Request("Số điện thoại không hợp lệ"));
             }
@@ -198,40 +247,6 @@ namespace Seafood.Controllers
             }
             return Json(Success_Request(data.Result.Data?.Trim()));
         }
-
-        [HttpPost]
-        public ActionResult CheckCodeFirebase(string number)
-        {
-            if (string.IsNullOrEmpty(number) || !Helper.ValidPhoneNumer(number))
-            {
-                return Json(Bad_Request("Số điện thoại không hợp lệ"));
-            }
-            var uri = ApiUri.Get_CheckCodeFirebase + string.Format($"?number={number}");
-            var firebase = provider.GetAsync<bool>(uri);
-            if (firebase == null || firebase.Result == null || !firebase.Result.Success)
-            {
-                return View(Server_Error());
-            }
-            return Json(Success_Request(firebase.Result.Data));
-        }
-
-        [HttpPost]
-        public ActionResult UpdateCodeFirebase(string number,string code = "")
-        {
-            if (string.IsNullOrEmpty(number) || !Helper.ValidPhoneNumer(number))
-            {
-                return Json(Bad_Request("Số điện thoại không hợp lệ"));
-            }
-            var uri = ApiUri.Get_UpdateCodeFirebase + string.Format($"?number={number}&code={code}");
-            var update = provider.GetAsync<bool>(uri);
-            if (update == null || update.Result == null || !update.Result.Success)
-            {
-                return View(Server_Error());
-            }
-            return Json(Success_Request(update.Result.Data));
-        }
-
-        #region private menthod
         #endregion private menthod
     }
 }

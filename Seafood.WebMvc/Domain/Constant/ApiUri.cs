@@ -16,6 +16,7 @@ namespace Domain.Constant
         public const string Get_CheckUserByPhoneNumber = "api/Account/CheckUserByPhoneNumber";
         public const string Get_CheckCodeFirebase = "api/Account/CheckCodeFirebase";
         public const string Get_UpdateCodeFirebase = "api/Account/UpdateCodeFirebase";
+        public const string Get_ChangePwByCodeFirebase = "api/Account/ChangePwByCodeFirebase";
 
         public const string Get_ProductGetAllProd = "api/Product/GetAllProd";
         public const string Get_ProductGetProdByCode = "api/Product/GetProdByCode";

@@ -162,10 +162,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Content Include="assets\css\demo\forgot-password.css" />
+    <Content Include="assets\css\demo\your-notification.css" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <None Include="Views\Account\LoginBySMS.cshtml" />
     <Content Include="assets\css\demo\address-edit.css" />
     <Compile Include="Controllers\AddressController.cs" />
+    <Compile Include="Controllers\NotificationController.cs" />
     <Compile Include="Controllers\ProdDetailtController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\UploadFileController.cs" />
@@ -191,6 +194,7 @@
     <Content Include="Views\Address\AddressEdit.cshtml" />
     <Content Include="Views\Account\YourAccount.cshtml" />
     <Content Include="Views\Account\_LayoutAccount.cshtml" />
+    <Content Include="Views\Notification\YourNotification.cshtml" />
     <None Include="Views\Shared\_LayoutAccountManager.cshtml" />
     <Content Include="Views\UploadFile\UpLoadFileExcel.cshtml" />
     <None Include="Views\YourOrder\OrderDetail.cshtml" />

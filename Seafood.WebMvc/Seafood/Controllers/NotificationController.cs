@@ -9,8 +9,9 @@ namespace Seafood.Controllers
     public class NotificationController : Controller
     {
         // GET: Notification
-        public ActionResult YourNotification()
+        public ActionResult YourNotification(string idItem)
         {
+            ViewBag.IdItem = idItem;
             return View();
         }
     }

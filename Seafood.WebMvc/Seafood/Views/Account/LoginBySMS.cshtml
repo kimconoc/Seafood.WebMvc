@@ -104,8 +104,7 @@
             <div id="box_login_form_number" class="box-input-login">
                 <input id="number" maxlength="12" placeholder="Số Điện Thoại">
             </div>
-            <div id="recaptcha-container"></div>
-            <button id="send" class="btn-login btn-core-accept" onclick="phoneAuth()">Gửi mã OTP</button>
+            <button id="send" class="btn-login btn-core-accept" onclick="phoneAuth()">Tiếp theo</button>
         </div>
         <div id="verifier" style="display:none;">
             <div id="box_login_form_verificationcode" class="box-input-login">
@@ -131,81 +130,8 @@
         </div>
     </div>
     @*add firebase SKD*@
-    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase.js"></script>
     <script>
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        const firebaseConfig = {
-            apiKey: "AIzaSyB3cIFVAjP_ikN14nOw_MSXS4r-TwzqtUE",
-            authDomain: "seafood-30e97.firebaseapp.com",
-            projectId: "seafood-30e97",
-            storageBucket: "seafood-30e97.appspot.com",
-            messagingSenderId: "686431378592",
-            appId: "1:686431378592:web:3376c73d2a05f431c53dc5",
-            measurementId: "G-DNQGCSB39Q"
-        };
-        // initializing firebase SDK
-        firebase.initializeApp(firebaseConfig);
-        // render recaptcha verifier
-        render();
-        function render()
-        {
-            window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
-            recaptchaVerifier.render();
-        }
-        // function for send OTP
-        function phoneAuth()
-        {
-            var number = document.getElementById('number').value;
-            firebase.auth().signInWithPhoneNumber(number,window.recaptchaVerifier).then(function (confirmationResult)
-                {
-                    window.confirmationResult = confirmationResult;
-                    coderesult = confirmationResult;
-                    document.getElementById('sender').style.display = 'none';
-                    document.getElementById('verifier').style.display = 'block';
-            }).catch(function (error)
-            {
-                    // error in sending OTP
-                    alert(error.message);
-            });
-        }
-        // function for OTP verify
-        function codeverify()
-        {
-            var code = document.getElementById('verificationcode').value;
-            var number = document.getElementById('number').value;
-            coderesult.confirm(code).then(function ()
-            {
-                //executeVerified(number, "true");
-                alert('Thành công');
-            }).catch(function ()
-            {
-                //executeVerified(number, "false");
-                alert('Thất bại');
-            })
-        }
-
         //Setup
-        $(document).ready(function ()
-        {
-            if ('@ViewBag.Message' != '')
-            {
-                $('#alert_login').html('@ViewBag.Message');
-                $('#alert_login').fadeIn(500);
-                setTimeout("$('#alert_login').fadeOut(1500);", 5000 );
-            };
-        });
-        $('#number').on('focus', function () {
-            document.getElementById("box_login_form_number").style.borderColor = "rgb(7, 171, 226)";
-        });
-        $('#number').on('blur', function () {
-            document.getElementById("box_login_form_number").style.borderColor = "rgba(0,0,0,.14)";
-        });
-        $('#verificationcode').on('focus', function () {
-            document.getElementById("box_login_form_verificationcode").style.borderColor = "rgb(7, 171, 226)";
-        });
-        $('#verificationcode').on('blur', function () {
-            document.getElementById("box_login_form_verificationcode").style.borderColor = "rgba(0,0,0,.14)";
-        });
         //Setup
     </script>
 </body>

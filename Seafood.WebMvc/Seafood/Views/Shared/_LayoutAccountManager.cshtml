@@ -70,7 +70,18 @@
         {
             showLoadingNavigatePage(5000);
             var dom = this;
-            window.location = "/Address/AddressList?idItem=" + dom.id;
+            if (dom.id == '@Constant.Id_Thong_Bao_Cua_Toi')
+            {
+                window.location = "/Notification/YourNotification?idItem=" + dom.id;
+            }
+            else if (dom.id == '@Constant.Id_Thong_Tin_Tai_Khoan')
+            {
+                window.location = "/Account/YourAccount?idItem=" + dom.id;
+            }
+            else if (dom.id == '@Constant.Id_So_Dia_Chi')
+            {
+                window.location = "/Address/AddressList?idItem=" + dom.id;
+            }
         });
     </script>
 </body>

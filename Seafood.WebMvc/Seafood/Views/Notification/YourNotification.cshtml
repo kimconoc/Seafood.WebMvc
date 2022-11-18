@@ -8,19 +8,147 @@
     <link href="~/assets/css/demo/your-notification.css" rel="stylesheet" />
     <style>
         .heading {
-            font-size: 19px;
+           /* font-size: 19px;
             line-height: 21px;
-            font-weight: 300;
+            font-weight: 300;*/
             margin: 20px 0px 15px;
         }
+        .grid-container {
+            display: grid;
+            grid-template-columns: 170px auto;
+            margin-top: 10px;
+        }
+
+        .grid-item-title {
+            background-color: white;
+            border: 1px solid rgba(0,0,0,.14);
+            padding: 20px 0 20px 0;
+            text-align: center;
+        }
+            .grid-item-title i {
+                font-size:30px;
+                margin-bottom:5px;
+            }
+        .grid-item-content {
+            background-color: white;
+            border: 1px solid rgba(0,0,0,.14);
+            padding: 20px;
+            text-align: start;
+            position:relative;
+        }
+            .grid-item-content label {
+                position: absolute;
+                cursor: pointer;
+                bottom: 2px;
+                right: 17px;
+                color: #d70018;
+                font-size: 13px;
+            }
         /*ghi đè class*/
+        .nav > li > a {
+            width: 165px;
+            text-align: center;
+            padding: 7.5px 0 7.5px 0;
+        }
+        a {
+            border: 1px solid rgba(0,0,0,.14);
+        }
     </style>
 </head>
 
 <body>
     <div class="container-your-notification-list">
         <div class="heading">
-            Thông báo
+            <h3>Thông báo</h3>
+        </div>
+        <ul style="gap:7.5px;" class="nav nav-pills">
+            <li style="margin-left:-8px;" class="active"><a data-toggle="pill" href="#all_notify">Thông báo chung</a></li>
+            <li><a data-toggle="pill" href="#promotion_notify">Thông báo khuyến mãi</a></li>
+            <li><a data-toggle="pill" href="#order_notify">Thông báo đơn hàng</a></li>
+            <li><a data-toggle="pill" href="#order_system">Thông báo hệ thống</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="all_notify" class="tab-pane fade in active">
+                <div class="grid-container">
+                    <div class="grid-item-title">
+                        <i style="color: #ee4d2d;" class="fa-solid fa-gift"></i>
+                        <br />
+                        08:03 21/08/2019
+                    </div>
+                    <div class="grid-item-content">
+                        Thông báo từ BQT: Tài khoản OA "Seafood" (ID: 1184060410708649735) của bạn đã được tạo thành công.
+                        Vui lòng thực hiện xác thực trong vòng 14 ngày để hoàn thành quá trình đăng ký. Nhấn vào đây để bắt đầu xác thực.
+                        <label>Xóa</label>
+                    </div>
+                </div>
+                <div class="grid-container">
+                    <div class="grid-item-title">
+                        <i style="color: #ee4d2d; " class='fas fa-clipboard-list'></i>
+                        <br />
+                        08:03 21/08/2019
+                    </div>
+                    <div class="grid-item-content">
+                        Thông báo từ BQT: Tài khoản OA "Seafood" (ID: 1184060410708649735) của bạn đã được tạo thành công.
+                        Vui lòng thực hiện xác thực trong vòng 14 ngày để hoàn thành quá trình đăng ký. Nhấn vào đây để bắt đầu xác thực.
+                        <label>Xóa</label>
+                    </div>
+                </div>
+                <div class="grid-container">
+                    <div class="grid-item-title">
+                        <i style="color: rgb(7, 171, 226);" class="fa fa-sitemap" aria-hidden="true"></i>
+                        <br />
+                        08:03 21/08/2019
+                    </div>
+                    <div class="grid-item-content">
+                        Thông báo từ BQT: Tài khoản OA "Seafood" (ID: 1184060410708649735) của bạn đã được tạo thành công.
+                        Vui lòng thực hiện xác thực trong vòng 14 ngày để hoàn thành quá trình đăng ký. Nhấn vào đây để bắt đầu xác thực.
+                        <label>Xóa</label>
+                    </div>
+                </div>
+            </div>
+            <div id="promotion_notify" class="tab-pane fade">
+                <div class="grid-container">
+                    <div class="grid-item-title">
+                        <i style="color: #ee4d2d;" class="fa-solid fa-gift"></i>
+                        <br />
+                        08:03 21/08/2019
+                    </div>
+                    <div class="grid-item-content">
+                        Thông báo từ BQT: Tài khoản OA "Seafood" (ID: 1184060410708649735) của bạn đã được tạo thành công.
+                        Vui lòng thực hiện xác thực trong vòng 14 ngày để hoàn thành quá trình đăng ký. Nhấn vào đây để bắt đầu xác thực.
+                        <label>Xóa</label>
+                    </div>
+                </div>
+            </div>
+            <div id="order_notify" class="tab-pane fade">
+                <div class="grid-container">
+                    <div class="grid-item-title">
+                        <i style="color: #ee4d2d; " class='fas fa-clipboard-list'></i>
+                        <br />
+                        08:03 21/08/2019
+                    </div>
+                    <div class="grid-item-content">
+                        Thông báo từ BQT: Tài khoản OA "Seafood" (ID: 1184060410708649735) của bạn đã được tạo thành công.
+                        Vui lòng thực hiện xác thực trong vòng 14 ngày để hoàn thành quá trình đăng ký. Nhấn vào đây để bắt đầu xác thực.
+                        <label>Xóa</label>
+                    </div>
+                </div>
+            </div>
+            <div id="order_system" class="tab-pane fade">
+                <div class="grid-container">
+                    <div class="grid-item-title">
+                        <i style="color: rgb(7, 171, 226);" class="fa fa-sitemap" aria-hidden="true"></i>
+                        <br />
+                        08:03 21/08/2019
+                    </div>
+                    <div class="grid-item-content">
+                        Thông báo từ BQT: Tài khoản OA "Seafood" (ID: 1184060410708649735) của bạn đã được tạo thành công.
+                        Vui lòng thực hiện xác thực trong vòng 14 ngày để hoàn thành quá trình đăng ký. Nhấn vào đây để bắt đầu xác thực.
+                        <label>Xóa</label>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script>

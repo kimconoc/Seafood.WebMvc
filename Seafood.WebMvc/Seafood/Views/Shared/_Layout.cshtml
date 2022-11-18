@@ -35,8 +35,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <style>
+        .main-wrapper {
+            min-height: calc(100vh - 260px);
+        }
         /*Ghi đè class*/
-
         input {
             padding-left: 10px;
             border-color: transparent;
@@ -56,7 +58,6 @@
         .headerLayout1_flex2 ::placeholder {
             font-size: 15px !important;
         }
-
     </style>
 </head>
 <body style="background-color: #efefef;">
@@ -127,6 +128,7 @@
                 <div style="flex:1">
                 </div>
             </div>
+
             <div style="display:flex;" class="headerLayout2">
 
                 <div style="flex:1" class="dropdown">
@@ -195,39 +197,39 @@
                 </main>
             </div>
 
-            <div class="tailLayout">
-                <div style="flex:1;">
-                </div>
-                @*Vùng 1*@
-                <div class="tailLayout_flex1" style="width:350px;padding: 20px">
-                    <p class="tailLayout_text">Tư vấn mua hàng (Kết nối Zalo)</p>
-                    <div class="tailLayout_div_number">
-                        <p class="tailLayout_number">03 678 23445</p>
-                        <h6 style="margin:-2.5px 0 0 5px;">(Chi nhánh 1)</h6>
-                    </div>
-                    <p class="tailLayout_text">Tư vấn bảo quản, nấu nướng (Kết nối Zalo)</p>
-                    <div class="tailLayout_div_number">
-                        <p class="tailLayout_number">03 678 23445</p>
-                        <h6 style="margin:-2.5px 0 0 5px;">(Chi nhánh 1)</h6>
-                    </div>
-                    <p class="tailLayout_text" style="margin-top:10px;">Hỗ trợ thanh toán:</p>
-                    <div class="tailLayout_div_number">
-                        <p class="tailLayout_number">099 013 915 9999</p>
-                        <h6 style="margin:-2.5px 0 0 5px;">(Ngân hàng MB)</h6>
-                    </div>
-                </div>
-                @*Khoảng cách*@
-                <div style="width: 30px;">
-                </div>
-                @*Vùng 2*@
-                <div class="tailLayout_flex2" style="width:350px;padding: 20px">
-                    <p class="tailLayout_text">Góp ý, khiếu nại dịch vụ (Kết nối Zalo)</p>
+        </div>
+        <footer class="tailLayout">
+            <div style="flex:1;">
+            </div>
+            @*Vùng 1*@
+            <div class="tailLayout_flex1" style="width:350px;padding: 20px">
+                <p class="tailLayout_text">Tư vấn mua hàng (Kết nối Zalo)</p>
+                <div class="tailLayout_div_number">
                     <p class="tailLayout_number">03 678 23445</p>
+                    <h6 style="margin:-2.5px 0 0 5px;">(Chi nhánh 1)</h6>
                 </div>
-                <div style="flex:2;">
+                <p class="tailLayout_text">Tư vấn bảo quản, nấu nướng (Kết nối Zalo)</p>
+                <div class="tailLayout_div_number">
+                    <p class="tailLayout_number">03 678 23445</p>
+                    <h6 style="margin:-2.5px 0 0 5px;">(Chi nhánh 1)</h6>
+                </div>
+                <p class="tailLayout_text" style="margin-top:10px;">Hỗ trợ thanh toán:</p>
+                <div class="tailLayout_div_number">
+                    <p class="tailLayout_number">099 013 915 9999</p>
+                    <h6 style="margin:-2.5px 0 0 5px;">(Ngân hàng MB)</h6>
                 </div>
             </div>
-        </div>
+            @*Khoảng cách*@
+            <div style="width: 30px;">
+            </div>
+            @*Vùng 2*@
+            <div class="tailLayout_flex2" style="width:350px;padding: 20px">
+                <p class="tailLayout_text">Góp ý, khiếu nại dịch vụ (Kết nối Zalo)</p>
+                <p class="tailLayout_number">03 678 23445</p>
+            </div>
+            <div style="flex:2;">
+            </div>
+        </footer>
     </div>
     <!--Content Popover account manager -->
     <div class="hidden d-none" id="account_manager_popover">

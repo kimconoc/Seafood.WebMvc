@@ -164,6 +164,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Content Include="assets\css\demo\forgot-password.css" />
     <Content Include="assets\css\demo\your-notification.css" />
+    <Content Include="assets\images\icon\error.svg" />
+    <Content Include="assets\images\icon\info.svg" />
+    <Content Include="assets\images\icon\question.svg" />
+    <Content Include="assets\images\icon\success.svg" />
+    <Content Include="assets\images\icon\warning.svg" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <None Include="Views\Account\LoginBySMS.cshtml" />
     <Content Include="assets\css\demo\address-edit.css" />
@@ -218,9 +223,7 @@
     <Content Include="assets\fonts\roboto\Roboto-Regular.svg" />
     <Content Include="assets\fonts\roboto\Roboto-Thin.svg" />
     <Content Include="assets\images\icon\ajax-loader.gif" />
-    <Content Include="assets\images\oyster.png" />
     <Content Include="assets\images\logos\r-logo_login.jpg" />
-    <Content Include="assets\images\crab.jpg" />
     <Content Include="assets\images\logos\logo_login.jpg" />
     <Content Include="assets\images\sidebar\sidebar-bg.jpg" />
     <Content Include="assets\images\switch.png" />

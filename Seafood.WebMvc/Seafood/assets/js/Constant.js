@@ -55,76 +55,45 @@ function isNullOrEmpty(value)
 
 }
 
-/*Notification*/
-function HtmlNotifiError(content)
+/*Notification-Toastinette*/
+// position
+// "top - left".
+// "top-center".(default)
+// "top-right".
+// "bottom-left".
+// "bottom-center".
+// "bottom-right".
+// type
+// "error".
+// "success".(default)
+// "info".
+// "warning".
+function showToasinette_Success_Top_Right(content)
 {
-    var notifi = `
-                        <div class="notifiError">
-                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                        <strong>Danger! </strong>
-                        ${content}
-                        </div>
-                    `;
-    return notifi;
+    if (isNullOrEmpty(content) == 'true')
+    {
+        content = 'Qúa trình xử lý thành công'
+    }
+    Toastinette.init({
+        position: 'top-right',
+        title: 'Thành công',
+        message: content,
+        type: 'success',
+        //autoClose: false,
+        autoClose: 5000,
+        progress: true
+    });
 }
-
-function HtmlNotifiErrorRight(content)
-{
-    var notifi = `
-                        <div class="notifiErrorRight">
-                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                        <strong>Danger! </strong>
-                        ${content}
-                        </div>
-                    `;
-    return notifi;
+function showToasinette_Error_Top_Right(content) {
+    if (isNullOrEmpty(content) == 'true') {
+        content = 'Có lỗi trong quá trình xử lý'
+    }
+    Toastinette.init({
+        position: 'top-right',
+        title: 'Thất bại',
+        message: content,
+        type: 'error',
+        autoClose: 5000,
+        progress: true
+    });
 }
-
-function HtmlNotifiSuccess(content)
-{
-    var notifi = `
-                        <div class="notifiSuccess">
-                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                        <strong>Success! </strong>
-                        ${content}
-                        </div>
-                    `;
-    return notifi;
-}
-
-function HtmlNotifiSuccess(content)
-{
-    var notifi = `
-                        <div class="notifiSuccessRight">
-                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                        <strong>Success! </strong>
-                        ${content}
-                        </div>
-                    `;
-    return notifi;
-}
-
-function HtmlNotifiInfo(content)
-{
-    var notifi = `
-                        <div class="notifiInfo">
-                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                        <strong>Info! </strong>
-                        ${content}
-                        </div>
-                    `;
-    return notifi;
-}
-
-function HtmlNotifiWarning(content)
-{
-    var notifi = `
-                        <div class="notifiWarning">
-                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                        <strong>Warning! </strong>
-                        ${content}
-                        </div>
-                    `;
-    return notifi;
-}
-

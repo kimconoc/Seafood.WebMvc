@@ -164,12 +164,25 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Content Include="assets\css\demo\forgot-password.css" />
     <Content Include="assets\css\demo\your-notification.css" />
+    <Content Include="assets\helpers\toastinette-notification-main\assets\css\style.css" />
+    <Content Include="assets\helpers\toastinette-notification-main\assets\css\toastinette.css" />
+    <Content Include="assets\helpers\toastinette-notification-main\assets\css\toastinette.min.css" />
+    <Content Include="assets\helpers\toastinette-notification-main\assets\js\app.js" />
+    <Content Include="assets\helpers\toastinette-notification-main\assets\js\toastinette.js" />
+    <Content Include="assets\helpers\toastinette-notification-main\index.html" />
     <Content Include="assets\images\icon\error.svg" />
     <Content Include="assets\images\icon\info.svg" />
     <Content Include="assets\images\icon\question.svg" />
     <Content Include="assets\images\icon\success.svg" />
     <Content Include="assets\images\icon\warning.svg" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="assets\helpers\toastinette-notification-main\assets\css\toastinette.css.map" />
+    <Content Include="assets\helpers\toastinette-notification-main\assets\css\toastinette.min.css.map" />
+    <Content Include="assets\helpers\toastinette-notification-main\assets\scss\toastinette.scss" />
+    <Content Include="assets\helpers\toastinette-notification-main\assets\scss\utils\_animation.scss" />
+    <Content Include="assets\helpers\toastinette-notification-main\assets\scss\utils\_variables.scss" />
+    <Content Include="assets\helpers\toastinette-notification-main\LICENSE" />
+    <Content Include="assets\helpers\toastinette-notification-main\README.md" />
     <None Include="Views\Account\LoginBySMS.cshtml" />
     <Content Include="assets\css\demo\address-edit.css" />
     <Compile Include="Controllers\AddressController.cs" />
@@ -502,7 +515,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="assets\helpers\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

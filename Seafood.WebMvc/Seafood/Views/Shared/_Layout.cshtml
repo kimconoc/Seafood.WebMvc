@@ -27,7 +27,12 @@
     <link href="~/assets/css/demo/layout.css" rel="stylesheet" />
     <link href="~/assets/css/theme.css" rel="stylesheet" />
     <script src="~/assets/js/constant.js"></script>
-    <!--css, js bootstrap -->
+    @*cssscript*@
+    <link rel="stylesheet" href="~/assets/helpers/toastinette-notification-main/assets/css/toastinette.min.css">
+    <link rel="stylesheet" href="~/assets/helpers/toastinette-notification-main/assets/css/style.css">
+    <script src="~/assets/helpers/toastinette-notification-main/assets/js/app.js"></script>
+    <script src="~/assets/helpers/toastinette-notification-main/assets/js/toastinette.js"></script>
+    @*css, js bootstrap*@
     <link href="~/Content/fa/font-awesome.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
@@ -67,8 +72,6 @@
         @*<div id="loadingText">
             Processing...
         </div>*@
-    </div>
-    <div id="notification">
     </div>
     <div class="body-wrapper" style="overflow: hidden; background-color: rgb(235, 235, 240);">
         <!-- partial:partials/_sidebar.html -->
@@ -345,9 +348,7 @@
             var user = @Html.Raw(Json.Encode(Seafood.MemCached.Authenticator.CurrentUser(new HttpContextWrapper(HttpContext.Current))));
             if (isNullOrEmpty(user) == 'true')
             {
-                $('#notification').html(HtmlNotifiErrorRight('Bạn chưa đăng nhập'));
-                $('#notification').fadeIn(500);
-                setTimeout("$('#notification').fadeOut(1500);", 2000);
+                showToasinette_Error_Top_Right('Bạn chưa đăng nhập');
             }
             else
             {
@@ -360,9 +361,7 @@
             var user = '@Seafood.MemCached.Authenticator.CurrentUser(new HttpContextWrapper(HttpContext.Current))';
             if (isNullOrEmpty(user) == 'true')
             {
-                $('#notification').html(HtmlNotifiErrorRight('Bạn chưa đăng nhập'));
-                $('#notification').fadeIn(500);
-                setTimeout("$('#notification').fadeOut(1500);", 2000);
+                showToasinette_Error_Top_Right('Bạn chưa đăng nhập');
             }
             else
             {

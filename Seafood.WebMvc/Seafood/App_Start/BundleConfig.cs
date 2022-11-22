@@ -32,7 +32,7 @@ namespace Seafood
                     "~/assets/vendors/css/vendor.bundle.base.css",
                     "~/Content/jquery-confirm.css",
                     "~/Content/dataTables.material.min.css",
-                    "~/Content/bootstrap.css",
+                    //"~/Content/bootstrap.css",
                     "~/Content/material.min.css",
                     "~/Content/docs.css"));
         }

@@ -44,14 +44,6 @@
     .headerRight {
         margin-top: 20px !important;
     }
-    .notifiErrorRight {
-        right: 0 !important;
-        bottom: 10px !important;
-    }
-    .notifiSuccessRight {
-        right: 0 !important;
-        bottom: 10px !important;
-    }
     #mainContent_grid {
         grid-template-columns: 200px 200px;
     }
@@ -428,22 +420,6 @@
 }*/
 
 /*Notification*/
-.notifiError {
-    z-index: 1000000;
-    position: relative;
-    width: 100%;
-    max-width: 500px;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #f44336;
-    color: white;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 .notifiErrorRight {
     z-index: 1000000;
     position: absolute;
@@ -455,67 +431,6 @@
     color: white;
     bottom: 20px;
     right: 10px;
-}
-
-.notifiSuccess {
-    z-index: 1000000;
-    position: relative;
-    width: 100%;
-    max-width: 500px;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #04AA6D;
-    color: white;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.notifiSuccessRight {
-    z-index: 1000000;
-    position: absolute;
-    width: 100%;
-    max-width: 500px;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #04AA6D;
-    color: white;
-    bottom: 20px;
-    right: 10px;
-}
-
-.notifiInfo {
-    z-index: 1000000;
-    position: relative;
-    width: 100%;
-    max-width: 500px;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #2196F3;
-    color: white;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.notifiWarning {
-    z-index: 1000000;
-    position: relative;
-    width: 100%;
-    max-width: 500px;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #ff9800;
-    color: white;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .closebtn {

@@ -166,6 +166,13 @@
     <Content Include="assets\css\demo\your-notification.css" />
     <Content Include="assets\helpers\pages-transition-loader\index.html" />
     <Content Include="assets\helpers\pages-transition-loader\vanilla-js-pages-transition-loader.min.js" />
+    <Content Include="assets\helpers\Prompt-Boxes-master\.gitignore" />
+    <Content Include="assets\helpers\Prompt-Boxes-master\demo\example.PNG" />
+    <Content Include="assets\helpers\Prompt-Boxes-master\demo\index.html" />
+    <Content Include="assets\helpers\Prompt-Boxes-master\dist\prompt-boxes.min.css" />
+    <Content Include="assets\helpers\Prompt-Boxes-master\dist\prompt-boxes.min.js" />
+    <Content Include="assets\helpers\Prompt-Boxes-master\src\css\prompt-boxes.css" />
+    <Content Include="assets\helpers\Prompt-Boxes-master\src\js\prompt-boxes.js" />
     <Content Include="assets\helpers\three-dots-master\dist\three-dots.css" />
     <Content Include="assets\helpers\three-dots-master\dist\three-dots.min.css" />
     <Content Include="assets\helpers\toastinette-notification-main\assets\css\style.css" />
@@ -191,6 +198,13 @@
     <Content Include="assets\helpers\pages-transition-loader\README.md" />
     <Content Include="assets\helpers\three-dots-master\dist\three-dots.css.map" />
     <Content Include="assets\helpers\three-dots-master\dist\three-dots.min.css.map" />
+    <Content Include="assets\helpers\Prompt-Boxes-master\dist\prompt-boxes.min.css.map" />
+    <Content Include="assets\helpers\Prompt-Boxes-master\dist\prompt-boxes.min.js.map" />
+    <Content Include="assets\helpers\Prompt-Boxes-master\LICENSE" />
+    <Content Include="assets\helpers\Prompt-Boxes-master\package.json" />
+    <Content Include="assets\helpers\Prompt-Boxes-master\README.md" />
+    <Content Include="assets\helpers\Prompt-Boxes-master\src\css\prompt-boxes.scss" />
+    <Content Include="assets\helpers\Prompt-Boxes-master\src\prepros-6.config" />
     <None Include="Views\Account\LoginBySMS.cshtml" />
     <Content Include="assets\css\demo\address-edit.css" />
     <Compile Include="Controllers\AddressController.cs" />

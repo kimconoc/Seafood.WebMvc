@@ -84,8 +84,10 @@ function showToasinette_Success_Top_Right(content)
         progress: true
     });
 }
-function showToasinette_Error_Top_Right(content) {
-    if (isNullOrEmpty(content) == 'true') {
+function showToasinette_Error_Top_Right(content)
+{
+    if (isNullOrEmpty(content) == 'true')
+    {
         content = 'Có lỗi trong quá trình xử lý'
     }
     Toastinette.init({
@@ -96,4 +98,54 @@ function showToasinette_Error_Top_Right(content) {
         autoClose: 5000,
         progress: true
     });
+}
+/*Notification-Prompt-Boxes-master*/
+function showPrompt_Success_Top_Right(content)
+{
+    if (isNullOrEmpty(content) == 'true')
+    {
+        content = 'Qúa trình xử lý thành công'
+    }
+    var prompt = new PromptBoxes({
+        // top or bottom
+        toastDir: 'top',
+        // max number of toasts to display
+        toastMax: 5,
+        // auto dismiess after 5 seconds
+        // 0 = never
+        toastDuration: 5000,
+        // is dissmissable
+        toastClose: false,
+        // shows prompt as position absolute
+        promptAsAbsolute: true,
+        // animation speed
+        animationSpeed: 500
+    });
+    prompt.success('Success toast');
+    //prompt.error('Error toast');
+    //prompt.alert('Alert toast');
+    //prompt.info('Info toast');
+}
+function showPrompt_Error_Top_Right(content)
+{
+    if (isNullOrEmpty(content) == 'true')
+    {
+        content = 'Có lỗi trong quá trình xử lý'
+    }
+    var prompt = new PromptBoxes({
+        // top or bottom
+        toastDir: 'top',
+        // max number of toasts to display
+        toastMax: 5,
+        // auto dismiess after 5 seconds
+        // 0 = never
+        toastDuration: 5000,
+        // is dissmissable
+        toastClose: false,
+        // shows prompt as position absolute
+        promptAsAbsolute: true,
+        // animation speed
+        animationSpeed: 500
+    });
+    prompt.error(content);
 }

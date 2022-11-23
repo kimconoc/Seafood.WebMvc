@@ -166,6 +166,8 @@
     <Content Include="assets\css\demo\your-notification.css" />
     <Content Include="assets\helpers\pages-transition-loader\index.html" />
     <Content Include="assets\helpers\pages-transition-loader\vanilla-js-pages-transition-loader.min.js" />
+    <Content Include="assets\helpers\three-dots-master\dist\three-dots.css" />
+    <Content Include="assets\helpers\three-dots-master\dist\three-dots.min.css" />
     <Content Include="assets\helpers\toastinette-notification-main\assets\css\style.css" />
     <Content Include="assets\helpers\toastinette-notification-main\assets\css\toastinette.css" />
     <Content Include="assets\helpers\toastinette-notification-main\assets\css\toastinette.min.css" />
@@ -187,6 +189,8 @@
     <Content Include="assets\helpers\toastinette-notification-main\README.md" />
     <Content Include="assets\helpers\pages-transition-loader\LICENSE" />
     <Content Include="assets\helpers\pages-transition-loader\README.md" />
+    <Content Include="assets\helpers\three-dots-master\dist\three-dots.css.map" />
+    <Content Include="assets\helpers\three-dots-master\dist\three-dots.min.css.map" />
     <None Include="Views\Account\LoginBySMS.cshtml" />
     <Content Include="assets\css\demo\address-edit.css" />
     <Compile Include="Controllers\AddressController.cs" />

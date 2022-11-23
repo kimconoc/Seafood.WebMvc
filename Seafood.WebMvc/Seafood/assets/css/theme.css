@@ -408,7 +408,7 @@
     z-index: 1000000;
 }
 
-/*#loadingText {
+#loadingText {
     font-size: inherit;
     color: rgb(7, 171, 226);
     margin: auto;
@@ -417,7 +417,7 @@
     left: calc(50% - 30px);
     position: absolute;
     z-index: 1000000;
-}*/
+}
 
 /*Notification*/
 .notifiErrorRight {

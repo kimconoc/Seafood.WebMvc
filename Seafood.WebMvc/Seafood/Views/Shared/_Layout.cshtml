@@ -27,6 +27,7 @@
     <link href="~/assets/css/demo/layout.css" rel="stylesheet" />
     <link href="~/assets/css/theme.css" rel="stylesheet" />
     <script src="~/assets/js/constant.js"></script>
+    <link rel="stylesheet" href="~/assets/helpers/three-dots-master/dist/three-dots.css">
     @*cssscript*@
     <link rel="stylesheet" href="~/assets/helpers/toastinette-notification-main/assets/css/toastinette.min.css">
     <link rel="stylesheet" href="~/assets/helpers/toastinette-notification-main/assets/css/style.css">
@@ -67,11 +68,13 @@
 <body style="background-color: #efefef;">
     <script src="~/assets/helpers/pages-transition-loader/vanilla-js-pages-transition-loader.min.js"></script>
     <div id="loading" style="display:none">
-        <img id="loadingImg" src="~/assets/images/icon/ajax-loader.gif" alt="Alternate Text" />
         @*<i id="loadingIcon" class="fas fa-spinner fa-pulse"></i>*@
+        <img id="loadingImg" src="~/assets/images/icon/ajax-loader.gif" alt="Alternate Text" />
+        @*<div id="loadingText" class="dot-elastic"></div>*@
+        @*<div id="loadingText" class="dot-flashing"></div>*@
         @*<div id="loadingText">
-                Processing...
-            </div>*@
+            Processing...
+        </div>*@
     </div>
     <div class="body-wrapper" style="overflow: hidden; background-color: rgb(235, 235, 240);">
         <!-- partial:partials/_sidebar.html -->

@@ -65,12 +65,13 @@
     </style>
 </head>
 <body style="background-color: #efefef;">
+    <script src="~/assets/helpers/pages-transition-loader/vanilla-js-pages-transition-loader.min.js"></script>
     <div id="loading" style="display:none">
         <img id="loadingImg" src="~/assets/images/icon/ajax-loader.gif" alt="Alternate Text" />
         @*<i id="loadingIcon" class="fas fa-spinner fa-pulse"></i>*@
         @*<div id="loadingText">
-            Processing...
-        </div>*@
+                Processing...
+            </div>*@
     </div>
     <div class="body-wrapper" style="overflow: hidden; background-color: rgb(235, 235, 240);">
         <!-- partial:partials/_sidebar.html -->
@@ -285,24 +286,12 @@
                 //    return $(title).children(".popover-heading").html();
                 //}
             });
-
         });
-        function showLoadingNavigatePage(delayInMilliseconds)
-        {
-            if (isNullOrEmpty(delayInMilliseconds).toLowerCase() == 'true')
-            {
-                delayInMilliseconds = 5000;
-            }
-            $("#loading").show();
-            setTimeout(function () {
-                $("#loading").hide();
-            }, delayInMilliseconds);
-        }
         //Setup
         $('[data-toggle=popover_account_manager]').on('shown.bs.popover', function ()
         {
-            $('.item-content').click(function (e) {
-                showLoadingNavigatePage(5000);
+            $('.item-content').click(function (e)
+            {
                 var dom = this;
                 if (dom.id == '@Constant.Id_Thong_Tin_Tai_Khoan')
                 {
@@ -334,11 +323,6 @@
         }
         function goToMainHome(code)
         {
-            $("#loading").show();
-            var delayInMilliseconds = 5000;
-            setTimeout(function () {
-                $("#loading").hide();
-            }, delayInMilliseconds);
             window.location = "/Home/Seafood?code=" + code;
         }
 

@@ -164,6 +164,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Content Include="assets\css\demo\forgot-password.css" />
     <Content Include="assets\css\demo\your-notification.css" />
+    <Content Include="assets\helpers\master-plan\adr_common.js" />
+    <Content Include="assets\helpers\master-plan\iosOverlay.js" />
+    <Content Include="assets\helpers\master-plan\main_v2.css" />
+    <Content Include="assets\helpers\master-plan\style.css" />
     <Content Include="assets\helpers\pages-transition-loader\index.html" />
     <Content Include="assets\helpers\pages-transition-loader\vanilla-js-pages-transition-loader.min.js" />
     <Content Include="assets\helpers\Prompt-Boxes-master\.gitignore" />

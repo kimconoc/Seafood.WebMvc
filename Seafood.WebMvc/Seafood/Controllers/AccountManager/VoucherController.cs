@@ -6,10 +6,10 @@ using System.Web.Mvc;
 
 namespace Seafood.Controllers.AccountManager
 {
-    public class FavoriteProdController : BaseController
+    public class VoucherController : Controller
     {
-        // GET: FavoriteProd
-        public ActionResult FavoriteProd(string idItem)
+        // GET: Voucher
+        public ActionResult Voucher(string idItem)
         {
             ViewBag.IdItem = idItem;
             return View();

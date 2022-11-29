@@ -96,7 +96,9 @@
             .box-list-manager .item .item-content .icon-address {
                 color: #d70018;
             }
-
             .box-list-manager .item .item-content .icon-heart {
                 color: #d70018;
+            }
+            .box-list-manager .item .item-content .icon-voucher {
+                color: rgb(7, 171, 226);
             }

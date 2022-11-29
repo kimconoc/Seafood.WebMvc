@@ -264,6 +264,10 @@
                     <i class='icon-heart far fa-heart'></i>
                     <div>@Constant.Name_San_Pham_Yeu_Thich</div>
                 </div>
+                <div id="@Constant.Id_Ma_Giam_Gia" class="item-content">
+                    <i class="icon-voucher fa-solid fa-tags"></i>
+                    <div>@Constant.Name_Ma_Giam_Gia</div>
+                </div>
                 <div id="@Constant.Id_Lich_Su_Mua_Hang" class="item-content">
                     <i class="fa-solid fa-notes-medical"></i>
                     <div>@Constant.Name_Lich_Su_Mua_Hang</div>
@@ -284,7 +288,7 @@
         //    'Nhập nội dung của bạn',  // Prompt text
         //    'textarea',  // Input type: text or 'textarea'
         //    '', // Default value
-        //    'Đồng ý',  
+        //    'Đồng ý',
         //    'Hủy bỏ',
         //);
         //function executeConfirm(isConfirm)
@@ -328,10 +332,6 @@
                 {
                     window.location = "/Address/AddressList?idItem=" + dom.id;
                 }
-                else if (dom.id == '@Constant.Id_Dang_Suat')
-                {
-                    window.location = "/Account/Logout";
-                }
                 else if (dom.id == '@Constant.Id_Thong_Bao_Cua_Toi')
                 {
                     window.location = "/Notification/YourNotification?idItem=" + dom.id;
@@ -339,6 +339,18 @@
                 else if (dom.id == '@Constant.Id_San_Pham_Yeu_Thich')
                 {
                     window.location = "/FavoriteProd/FavoriteProd?idItem=" + dom.id;
+                }
+                else if (dom.id == '@Constant.Id_Ma_Giam_Gia')
+                {
+                    window.location = "/Voucher/Voucher?idItem=" + dom.id;
+                }
+                else if (dom.id == '@Constant.Id_Lich_Su_Mua_Hang')
+                {
+                    window.location = "/YourOrder/Order";
+                }
+                else if (dom.id == '@Constant.Id_Dang_Suat')
+                {
+                    window.location = "/Account/Logout";
                 }
 
             });

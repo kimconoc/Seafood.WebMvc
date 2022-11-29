@@ -239,6 +239,9 @@
         .account-manager .item-content .icon-heart {
             color: #d70018;
         }
+        .account-manager .item-content .icon-voucher {
+            color: rgb(7, 171, 226);
+        }
 /*headerLayout2*/
 
 .headerLayout2 {

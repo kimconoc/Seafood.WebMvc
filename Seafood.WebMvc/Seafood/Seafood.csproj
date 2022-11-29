@@ -163,6 +163,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Content Include="assets\css\demo\account-manager\favorite-prod.css" />
+    <Content Include="assets\css\demo\account-manager\voucher.css" />
     <Content Include="assets\css\demo\account\forgot-password.css" />
     <Content Include="assets\css\demo\account-manager\your-notification.css" />
     <Content Include="assets\helpers\master-plan\adr_common.js" />
@@ -215,6 +216,7 @@
     <Compile Include="Controllers\AccountManager\AddressController.cs" />
     <Compile Include="Controllers\AccountManager\FavoriteProdController.cs" />
     <Compile Include="Controllers\AccountManager\NotificationController.cs" />
+    <Compile Include="Controllers\AccountManager\VoucherController.cs" />
     <Compile Include="Controllers\ProdDetailtController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\UploadFileController.cs" />
@@ -245,6 +247,7 @@
     <None Include="Views\FavoriteProd\FavoriteProd.cshtml" />
     <None Include="Views\Shared\_LayoutAccountManager.cshtml" />
     <Content Include="Views\UploadFile\UpLoadFileExcel.cshtml" />
+    <Content Include="Views\Voucher\Voucher.cshtml" />
     <None Include="Views\YourOrder\OrderDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>

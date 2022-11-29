@@ -41,6 +41,10 @@
                             <i class='icon-heart far fa-heart'></i>
                             <div>@Constant.Name_San_Pham_Yeu_Thich</div>
                         </div>
+                        <div id="@Constant.Id_Ma_Giam_Gia" class="item-content">
+                            <i class="icon-voucher fa-solid fa-tags"></i>
+                            <div>@Constant.Name_Ma_Giam_Gia</div>
+                        </div>
                         <div id="@Constant.Id_Lich_Su_Mua_Hang" class="item-content">
                             <i class="fa-solid fa-notes-medical"></i>
                             <div>@Constant.Name_Lich_Su_Mua_Hang</div>
@@ -61,6 +65,7 @@
             document.getElementById('@Constant.Id_Thong_Tin_Tai_Khoan').classList.remove('active');
             document.getElementById('@Constant.Id_So_Dia_Chi').classList.remove('active');
             document.getElementById('@Constant.Id_San_Pham_Yeu_Thich').classList.remove('active');
+            document.getElementById('@Constant.Id_Ma_Giam_Gia').classList.remove('active');
             document.getElementById('@Constant.Id_Lich_Su_Mua_Hang').classList.remove('active');
             var element = document.getElementById('@ViewBag.IdItem');
             element.classList.add('active');
@@ -81,9 +86,17 @@
             {
                 window.location = "/Address/AddressList?idItem=" + dom.id;
             }
-             else if (dom.id == '@Constant.Id_San_Pham_Yeu_Thich')
+            else if (dom.id == '@Constant.Id_San_Pham_Yeu_Thich')
             {
                 window.location = "/FavoriteProd/FavoriteProd?idItem=" + dom.id;
+            }
+            else if (dom.id == '@Constant.Id_Ma_Giam_Gia')
+            {
+                window.location = "/Voucher/Voucher?idItem=" + dom.id;
+            }
+            else if (dom.id == '@Constant.Id_Lich_Su_Mua_Hang')
+            {
+                window.location = "/YourOrder/Order";
             }
         });
     </script>

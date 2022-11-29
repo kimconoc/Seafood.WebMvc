@@ -327,10 +327,10 @@
 
             if (item.id != null && item.id != undefined && item.id != '')
             {
-                $("#loading").show();
+                ShowOverlay(true);
                 var delayInMilliseconds = 5000;
                 setTimeout(function () {
-                    $("#loading").hide();
+                    hideOverlay();
                 }, delayInMilliseconds);
                 window.location = "/ProdDetailt/Detailt?prodId=" + item.id;
             }

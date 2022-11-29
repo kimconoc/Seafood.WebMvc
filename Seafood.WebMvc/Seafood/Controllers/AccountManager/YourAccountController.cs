@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Seafood.Controllers
+namespace Seafood.Controllers.AccountManager
 {
     public class YourAccountController : BaseController
     {

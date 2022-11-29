@@ -183,6 +183,10 @@
         .order-add-to-cart button span {
             font-size: 12px !important;
         }
+
+    .prod-promotion-popover {
+        font-size:10px;
+    }
 }
 
 /*css*/
@@ -337,7 +341,6 @@
     }
 
 .prod-promotion-popover {
-    width: 80px;
     margin-top: 5px;
     color: rgb(7, 171, 226);
 }

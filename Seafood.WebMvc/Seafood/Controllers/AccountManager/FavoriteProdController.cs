@@ -9,7 +9,7 @@ namespace Seafood.Controllers.AccountManager
     public class FavoriteProdController : BaseController
     {
         // GET: FavoriteProd
-        public ActionResult Index()
+        public ActionResult FavoriteProd()
         {
             return View();
         }

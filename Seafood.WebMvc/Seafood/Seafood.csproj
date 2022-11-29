@@ -242,7 +242,7 @@
     <Content Include="Views\YourAccount\YourAccount.cshtml" />
     <Content Include="Views\Account\_LayoutAccount.cshtml" />
     <Content Include="Views\Notification\YourNotification.cshtml" />
-    <Content Include="Views\FavoriteProd\FavoriteProd.cshtm" />
+    <None Include="Views\FavoriteProd\FavoriteProd.cshtml" />
     <None Include="Views\Shared\_LayoutAccountManager.cshtml" />
     <Content Include="Views\UploadFile\UpLoadFileExcel.cshtml" />
     <None Include="Views\YourOrder\OrderDetail.cshtml" />

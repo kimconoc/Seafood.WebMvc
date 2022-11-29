@@ -212,10 +212,12 @@
     <None Include="Views\Account\LoginBySMS.cshtml" />
     <Content Include="assets\css\demo\address-edit.css" />
     <Compile Include="Controllers\AddressController.cs" />
+    <Compile Include="Controllers\FavoriteProdController.cs" />
     <Compile Include="Controllers\NotificationController.cs" />
     <Compile Include="Controllers\ProdDetailtController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\UploadFileController.cs" />
+    <Compile Include="Controllers\YourAccountController.cs" />
     <Compile Include="Controllers\YourBasketController.cs" />
     <Compile Include="Controllers\YourOrderController.cs" />
     <Compile Include="Models\DataResponse.cs" />
@@ -236,9 +238,10 @@
     <Content Include="assets\css\demo\your-account.css" />
     <Content Include="Views\Address\AddressAdd.cshtml" />
     <Content Include="Views\Address\AddressEdit.cshtml" />
-    <Content Include="Views\Account\YourAccount.cshtml" />
+    <Content Include="Views\YourAccount\YourAccount.cshtml" />
     <Content Include="Views\Account\_LayoutAccount.cshtml" />
     <Content Include="Views\Notification\YourNotification.cshtml" />
+    <Content Include="Views\FavoriteProd\FavoriteProd.cshtm" />
     <None Include="Views\Shared\_LayoutAccountManager.cshtml" />
     <Content Include="Views\UploadFile\UpLoadFileExcel.cshtml" />
     <None Include="Views\YourOrder\OrderDetail.cshtml" />

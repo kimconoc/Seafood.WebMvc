@@ -1,1 +1,242 @@
-﻿
+﻿@using Domain.Constant
+@{
+    Layout = "~/Views/Shared/_LayoutAccountManager.cshtml";
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/assets/css/demo/account-manager/favorite-prod.css" rel="stylesheet" />
+    <style>
+        .heading {
+            /* font-size: 19px;
+            line-height: 21px;
+            font-weight: 300;*/
+            margin: 20px 0px 15px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 171.5px auto;
+            margin-top: 10px;
+        }
+
+        .grid-item-title {
+            background-color: white;
+            border: 1px solid rgba(0,0,0,.14);
+            padding: 40px 0 20px 0;
+            text-align: center;
+        }
+
+            .grid-item-title .image {
+                width: 60px;
+                margin: 0 auto;
+                margin-bottom:-15px;
+            }
+
+                .grid-item-title .image img {
+                    width: 100%;
+                }
+
+        .grid-item-content {
+            background-color: white;
+            border: 1px solid rgba(0,0,0,.14);
+            padding: 20px;
+            text-align: start;
+            padding: 20px 20px 30px 20px;
+        }
+
+            .grid-item-content .box-header {
+                display:flex;
+                gap:10px;
+            }
+                .grid-item-content .box-header strong {
+                    width: 140px;
+                }
+            .grid-item-content .box-content {
+
+            }
+                .grid-item-content .box-content .content {
+                    margin-top: 5px;
+                    display: flex;
+                    gap: 8px;
+                }
+                    .grid-item-content .box-content .content strong {
+                        margin-top: 8px;
+                        text-align: start;
+                        width: 5px;
+                        height: 5px;
+                        background-color: black;
+                        display: flex;
+                        border-radius: 50%;
+                    }
+        /*ghi đè class*/
+        .nav > li > a {
+            width: 165px;
+            text-align: center;
+            padding: 7.5px 0 7.5px 0;
+        }
+
+        a {
+            border: 1px solid rgba(0,0,0,.14);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-your-favorite-prod">
+        <div class="heading">
+            <h3>Mã giảm giá</h3>
+        </div>
+        <ul class="nav nav-pills">
+            <li style="margin:0 7.5px 0 2px;" class="active"><a data-toggle="pill" href="#all_voucher">Tất cả</a></li>
+            <li style="margin-right: 7.5px;"><a data-toggle="pill" href="#still_voucher">Còn hiệu lực</a></li>
+            <li style="margin-right: 7.5px;"><a data-toggle="pill" href="#due_voucher">Hết hiệu lực</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="all_voucher" class="tab-pane fade in active">
+                <div class="grid-container">
+                    <div class="grid-item-title">
+                        <div class="image">
+                            <img src="https://vcdn.tikicdn.com/cache/128x128/ts/seller/87/aa/81/c2edd6107001cffdb7db71b7965d29ab.jpg">
+                        </div>
+                        <br />
+                        <strong>Giảm 20K</strong>
+                    </div>
+                    <div class="grid-item-content">
+                        <div class="box-header">
+                            <strong>Mã</strong>
+                            <span>ONGNAU0422</span>
+                        </div>
+                        <div class="box-header">
+                            <strong>Hạn sử dụng</strong>
+                            <span>30/11/22</span>
+                        </div>
+                        <div class="box-content">
+                            <div class="content">
+                                <span style="margin-top:8px;">Điều kiện áp dụng</span>
+                            </div>
+                            <div class="content">
+                                <strong></strong>
+                                <span>Giảm 20K cho đơn hàng từ 999K.</span>
+                            </div>
+                            <div class="content">
+                                <strong></strong>
+                                <span>Áp dụng cho sản phẩm của Ong Nâu Store.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid-container">
+                    <div class="grid-item-title">
+                        <div class="image">
+                            <img src="https://vcdn.tikicdn.com/cache/128x128/ts/seller/87/aa/81/c2edd6107001cffdb7db71b7965d29ab.jpg">
+                        </div>
+                        <br />
+                        <strong>Giảm 20K</strong>
+                    </div>
+                    <div class="grid-item-content">
+                        <div class="box-header">
+                            <strong>Mã</strong>
+                            <span>ONGNAU0422</span>
+                        </div>
+                        <div class="box-header">
+                            <strong>Hạn sử dụng</strong>
+                            <span>30/11/22</span>
+                        </div>
+                        <div class="box-content">
+                            <div class="content">
+                                <span style="margin-top:8px;">Điều kiện áp dụng</span>
+                            </div>
+                            <div class="content">
+                                <strong></strong>
+                                <span>Giảm 20K cho đơn hàng từ 999K.</span>
+                            </div>
+                            <div class="content">
+                                <strong></strong>
+                                <span>Áp dụng cho sản phẩm của Ong Nâu Store.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="still_voucher" class="tab-pane fade">
+                <div class="grid-container">
+                    <div class="grid-item-title">
+                        <div class="image">
+                            <img src="https://vcdn.tikicdn.com/cache/128x128/ts/seller/87/aa/81/c2edd6107001cffdb7db71b7965d29ab.jpg">
+                        </div>
+                        <br />
+                        <strong>Giảm 20K</strong>
+                    </div>
+                    <div class="grid-item-content">
+                        <div class="box-header">
+                            <strong>Mã</strong>
+                            <span>ONGNAU0422</span>
+                        </div>
+                        <div class="box-header">
+                            <strong>Hạn sử dụng</strong>
+                            <span>30/11/22</span>
+                        </div>
+                        <div class="box-content">
+                            <div class="content">
+                                <span style="margin-top:8px;">Điều kiện áp dụng</span>
+                            </div>
+                            <div class="content">
+                                <strong></strong>
+                                <span>Giảm 20K cho đơn hàng từ 999K.</span>
+                            </div>
+                            <div class="content">
+                                <strong></strong>
+                                <span>Áp dụng cho sản phẩm của Ong Nâu Store.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="due_voucher" class="tab-pane fade">
+                <div class="grid-container">
+                    <div class="grid-item-title">
+                        <div class="image">
+                            <img src="https://vcdn.tikicdn.com/cache/128x128/ts/seller/87/aa/81/c2edd6107001cffdb7db71b7965d29ab.jpg">
+                        </div>
+                        <br />
+                        <strong>Giảm 20K</strong>
+                    </div>
+                    <div class="grid-item-content">
+                        <div class="box-header">
+                            <strong>Mã</strong>
+                            <span>ONGNAU0422</span>
+                        </div>
+                        <div class="box-header">
+                            <strong>Hạn sử dụng</strong>
+                            <span>30/11/22</span>
+                        </div>
+                        <div class="box-content">
+                            <div class="content">
+                                <span style="margin-top:8px;">Điều kiện áp dụng</span>
+                            </div>
+                            <div class="content">
+                                <strong></strong>
+                                <span>Giảm 20K cho đơn hàng từ 999K.</span>
+                            </div>
+                            <div class="content">
+                                <strong></strong>
+                                <span>Áp dụng cho sản phẩm của Ong Nâu Store.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        //Setup
+        //Setup
+        $(document).ready(function ()
+        {
+        });
+
+    </script>
+</body>
+</html>

@@ -50,6 +50,10 @@
     .mainContent_grid_item {
         height: 346px !important;
     }
+
+    .mainContent_card-img img {
+        max-height: 120px !important;
+    }
     .mainContent_card-price__pecent {
         font-size: 10px !important;
     }
@@ -69,7 +73,7 @@
         font-size: 10px !important;
     }
     .mainContent_card-descPromotion {
-        max-height: 36.9px !important;
+        max-height: 36.5px !important;
         font-size: 10px !important;
     }
 }

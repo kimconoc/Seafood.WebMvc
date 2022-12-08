@@ -13,19 +13,12 @@
             border-radius: 2px;
             padding: 20px 50px 20px 15px;
             display: flex;
-            position: relative;
-            margin-bottom:10px;
+            margin-bottom: 10px;
+            overflow: auto;
         }
-            .box-favorite-prod .delete-favorite-prod {
-                position: absolute;
-                top: 10px;
-                right: 15px;
-                font-size: 18px;
-                cursor: pointer;
-                color: rgb(153, 153, 153);
-            }
             .box-favorite-prod .image {
                 width: 120px;
+                min-width:120px;
                 vertical-align: middle;
                 margin-right:20px;
             }
@@ -33,7 +26,8 @@
                 width:100%;
             }
             .box-favorite-prod .info-prod {
-                flex: 1;
+                flex:1;
+                min-width:100px;
             }
                 .box-favorite-prod .info-prod i {
                     font-size: 11px;
@@ -41,22 +35,22 @@
                 }
             .box-favorite-prod .footer {
                 margin-left: 25px;
+                min-width: 140px;
+                display: flex;
+                gap: 5px;
+                position: relative;
             }
+                .box-favorite-prod .footer strong {
+                    margin: 10px 0 0 0;
+                    font-weight: 500;
+                    color: #707070;
+                    font-size: 14px;
+                    color: rgb(255, 66, 78);
+                }
                 .box-favorite-prod .footer span {
                     font-weight: 600;
                     color: #707070;
                     font-size: 15px;
-                    color: rgb(255, 66, 78);
-                }
-
-                .box-favorite-prod .footer strong {
-                    margin: 0 0 0 5px;
-                    font-weight: 500;
-                    color: #707070;
-                    position: absolute;
-                    top: 30px;
-                    right: 145px;
-                    font-size: 14px;
                     color: rgb(255, 66, 78);
                 }
 
@@ -65,6 +59,14 @@
                     font-weight: 500;
                     text-decoration: line-through;
                     font-size: 14px;
+                }
+                .box-favorite-prod .footer .delete-favorite-prod {
+                    position: absolute;
+                    top: -10px;
+                    right: -35px;
+                    font-size: 18px;
+                    cursor: pointer;
+                    color: rgb(153, 153, 153);
                 }
 
         /*ghi đè class*/
@@ -90,39 +92,17 @@
                 <i class="fa-regular fa-star"></i>
             </div>
             <div class="footer">
-                <div>
-                    <span>31.990.000 đ</span>
-                    <strong>-12%</strong>
+                <strong>-12%</strong>
+                <div class="box-price">
+                    <div>
+                        <span>31.990.000 đ</span>
+                    </div>
+                    <div class="price__sale">
+                        34.990.000 ₫
+                    </div>
                 </div>
-                <div class="price__sale">
-                    34.990.000 ₫
-                </div>
+                <i class="delete-favorite-prod fa fa-times" aria-hidden="true"></i>
             </div>
-            <i class="delete-favorite-prod fa fa-times" aria-hidden="true"></i>
-        </div>
-        <div class="box-favorite-prod">
-            <div class="image">
-                <img src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/4/h/4h43.png" alt="Alternate Text" />
-            </div>
-            <div class="info-prod">
-                <span>Apple iPhone 14 Pro</span>
-                <br />
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star-half-stroke"></i>
-                <i class="fa-regular fa-star"></i>
-            </div>
-            <div class="footer">
-                <div>
-                    <span>31.990.000 đ</span>
-                    <strong>-12%</strong>
-                </div>
-                <div class="price__sale">
-                    34.990.000 ₫
-                </div>
-            </div>
-            <i class="delete-favorite-prod fa fa-times" aria-hidden="true"></i>
         </div>
     </div>
     <script>

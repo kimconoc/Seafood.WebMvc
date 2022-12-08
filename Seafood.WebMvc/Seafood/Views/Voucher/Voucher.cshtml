@@ -5,13 +5,17 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="~/assets/css/demo/account-manager/favorite-prod.css" rel="stylesheet" />
+    <link href="~/assets/css/demo/account-manager/voucher.css" rel="stylesheet" />
     <style>
         .heading {
             /* font-size: 19px;
             line-height: 21px;
             font-weight: 300;*/
             margin: 20px 0px 15px;
+        }
+
+        .tab-content {
+            overflow: scroll;
         }
 
         .grid-container {
@@ -90,7 +94,7 @@
         <ul class="nav nav-pills">
             <li style="margin:0 7.5px 0 2px;" class="active"><a data-toggle="pill" href="#all_voucher">Tất cả</a></li>
             <li style="margin-right: 7.5px;"><a data-toggle="pill" href="#still_voucher">Còn hiệu lực</a></li>
-            <li style="margin-right: 7.5px;"><a data-toggle="pill" href="#due_voucher">Hết hiệu lực</a></li>
+            <li class="due-voucher" style="margin-right: 7.5px;"><a data-toggle="pill" href="#due_voucher">Hết hiệu lực</a></li>
         </ul>
 
         <div class="tab-content">

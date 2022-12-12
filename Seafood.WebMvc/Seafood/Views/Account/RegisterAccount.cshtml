@@ -217,7 +217,7 @@
                 success: function (data)
                 {
                     hideOverlay();
-                    if (data.Success && data.Data)
+                    if (data.Success && data.Data != null)
                     {
                         window.location = "/Home/Seafood";
                     }

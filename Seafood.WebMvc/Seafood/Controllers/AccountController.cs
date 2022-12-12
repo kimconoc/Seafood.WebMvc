@@ -138,12 +138,13 @@ namespace Seafood.Controllers
                     NumberPhone = numberPhone,
                     Password = password,
                 };
-                var isCreate = provider.PostAsync<bool>(ApiUri.POST_AccountCreate, model).Result;
-                if (!isCreate.Data)
+                var isCreate = provider.PostAsync<User>(ApiUri.POST_AccountCreate, model);
+                if (isCreate == null || isCreate.Result == null || !isCreate.Result.Success)
                 {
-                    return Json(Bad_Request("Đăng ký thất bại"));
+                    return View(Server_Error());
                 }
-                return Json(Success_Request(isCreate.Data));
+                Authenticator.SetAuth(isCreate.Result.Data, HttpContext);
+                return Json(Success_Request(isCreate.Result.Data));
             }
             catch (Exception ex)
             {

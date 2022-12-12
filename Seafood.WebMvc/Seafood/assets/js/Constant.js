@@ -27,29 +27,13 @@ function validatePhoneNumber(phoneNumber)
     }
 }
 
-function validatePassword(pw1,pw2)
-{
-    var isPw = 'true';
-    if (pw1 == undefined || pw1 == '' || pw2 == undefined || pw2 == '')
-    {
-        isPw = 'Nhập mật khẩu';
-    }
-    else if (pw1 != pw2)
-    {
-        isPw = 'Mật khẩu nhập lại chưa khớp'
-    }
-
-    return isPw;
-
-}
-
 function isNullOrEmpty(value)
 {
-    var result = 'false';
+    var result = false;
 
     if (value == null || value == undefined || value == '')
     {
-        result = 'true';
+        result = true;
     }
     return result;
 
@@ -70,7 +54,7 @@ function isNullOrEmpty(value)
 // "warning".
 function showToasinette_Success_Top_Right(content)
 {
-    if (isNullOrEmpty(content) == 'true')
+    if (isNullOrEmpty(content))
     {
         content = 'Qúa trình xử lý thành công'
     }
@@ -86,7 +70,7 @@ function showToasinette_Success_Top_Right(content)
 }
 function showToasinette_Error_Top_Right(content)
 {
-    if (isNullOrEmpty(content) == 'true')
+    if (isNullOrEmpty(content))
     {
         content = 'Có lỗi trong quá trình xử lý'
     }
@@ -102,7 +86,7 @@ function showToasinette_Error_Top_Right(content)
 /*Notification-Prompt-Boxes-master*/
 function showPrompt_Success_Top_Right(content)
 {
-    if (isNullOrEmpty(content) == 'true')
+    if (isNullOrEmpty(content))
     {
         content = 'Qúa trình xử lý thành công'
     }
@@ -128,7 +112,7 @@ function showPrompt_Success_Top_Right(content)
 }
 function showPrompt_Error_Top_Right(content)
 {
-    if (isNullOrEmpty(content) == 'true')
+    if (isNullOrEmpty(content))
     {
         content = 'Có lỗi trong quá trình xử lý'
     }

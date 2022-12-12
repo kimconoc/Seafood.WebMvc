@@ -186,6 +186,20 @@
         }
         function continueRegisterAccount(number, password, confirm_password) {
             ShowOverlay(true);
+            if (isNullOrEmpty(password))
+            {
+                $('#alert_verify_password').html('Nhập mật khẩu');
+                $('#alert_verify_password').fadeIn(500);
+                setTimeout("$('#alert_verify_password').fadeOut(1500);", 5000);
+                return;
+            }
+            if (isNullOrEmpty(password))
+            {
+                $('#alert_verify_confirm_password').html('Mật khẩu nhập lại chưa chính xác');
+                $('#alert_verify_confirm_password').fadeIn(500);
+                setTimeout("$('#alert_verify_confirm_password').fadeOut(1500);", 5000);
+                return;
+            }
         }
     </script>
 </body>

@@ -372,7 +372,7 @@
         $('.headerLayout1_flex5').click(function (e)
         {
             var user = @Html.Raw(Json.Encode(Seafood.MemCached.Authenticator.CurrentUser(new HttpContextWrapper(HttpContext.Current))));
-            if (isNullOrEmpty(user) == 'true')
+            if (isNullOrEmpty(user))
             {
                 showToasinette_Error_Top_Right('Bạn chưa đăng nhập');
             }
@@ -385,7 +385,7 @@
         $('.headerLayout1_flex4').click(function (e)
         {
             var user = '@Seafood.MemCached.Authenticator.CurrentUser(new HttpContextWrapper(HttpContext.Current))';
-            if (isNullOrEmpty(user) == 'true')
+            if (isNullOrEmpty(user))
             {
                 showToasinette_Error_Top_Right('Bạn chưa đăng nhập');
             }

@@ -119,6 +119,10 @@ namespace Seafood.Controllers
         #endregion Logout
 
         #region CreateAccount
+        public ActionResult RegisterAccount()
+        {
+            return View();
+        }
         [HttpPost]
         public ActionResult CreateAccount(string jsonObject)
         {

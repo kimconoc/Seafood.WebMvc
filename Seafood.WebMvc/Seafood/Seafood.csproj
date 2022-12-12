@@ -166,6 +166,7 @@
     <Content Include="assets\css\demo\account-manager\voucher.css" />
     <Content Include="assets\css\demo\account\forgot-password.css" />
     <Content Include="assets\css\demo\account-manager\your-notification.css" />
+    <Content Include="assets\css\demo\account\register-account.css" />
     <Content Include="assets\helpers\master-plan\adr_common.js" />
     <Content Include="assets\helpers\master-plan\iosOverlay.js" />
     <Content Include="assets\helpers\master-plan\main_v2.css" />
@@ -282,6 +283,7 @@
     <Content Include="Views\YourAccount\YourAccount.cshtml" />
     <Content Include="Views\Account\_LayoutAccount.cshtml" />
     <Content Include="Views\Notification\YourNotification.cshtml" />
+    <Content Include="Views\Account\RegisterAccount.cshtml" />
     <None Include="Views\FavoriteProd\FavoriteProd.cshtml" />
     <None Include="Views\Shared\_LayoutAccountManager.cshtml" />
     <Content Include="Views\UploadFile\UpLoadFileExcel.cshtml" />

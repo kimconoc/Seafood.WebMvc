@@ -1,0 +1,192 @@
+﻿
+@{
+    Layout = "~/Views/Account/_LayoutAccount.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.gstatic.com/firebasejs/9.12.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.12.1/firebase-auth-compat.js"></script>
+    <style>
+        .box-register-account-form {
+        }
+
+            .box-register-account-form .header {
+                width: 100%;
+                font-size: 25px;
+            }
+
+
+            .box-register-account-form .box-input-login {
+                margin-top: 20px;
+                background-color: white;
+                box-sizing: border-box;
+                width: 100%;
+                height: 45px;
+                border: 1px solid rgba(0,0,0,.14);
+                border-radius: 2px;
+                width: 100%;
+                display: flex;
+                padding: 3px 10px 0 10px;
+                overflow: hidden;
+                box-shadow: inset 0 2px 0 rgb(0 0 0 / 2%);
+                outline: none;
+                justify-content: space-between;
+            }
+
+            .box-register-account-form .btn-login {
+                width: 100%;
+                margin-top: 20px;
+                height: 45px;
+                font-size: 17px;
+            }
+
+            .box-register-account-form .box-lable-login {
+                margin-top: 5px;
+                /*Chia đều khoảng và cái đứa cái cuối về sát lề*/
+                display: flex;
+                justify-content: space-between;
+                color: #05a;
+            }
+
+                .box-register-account-form .box-lable-login a {
+                    color: #05a;
+                }
+
+            .box-register-account-form .box-describe {
+                margin-top: 20px;
+                text-transform: uppercase;
+                font-size: .75rem;
+                display: flex;
+            }
+
+                .box-register-account-form .box-describe span {
+                    margin: 0 5px 0 5px;
+                    font-size: 11px;
+                }
+
+                .box-register-account-form .box-describe .slim-line {
+                    margin-top: 7px;
+                    height: 1.5px;
+                    background-color: #ccc;
+                }
+
+            .box-register-account-form .box-register {
+                margin-top: 40px;
+                align-items: center;
+                display: flex;
+                justify-content: center;
+                width: 100%;
+            }
+
+                .box-register-account-form .box-register a {
+                    margin-left: 5px;
+                    color: #ee4d2d;
+                }
+
+        #recaptcha-container {
+            margin-top: 5px;
+        }
+        /*Ghi đè class*/
+        .box-register-account .box-input-login input:focus {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="box-register-account-form">
+        <div class="header">
+            Đăng ký tài khoản
+        </div>
+
+        <div>
+            <div id="box_login_form_number" class="box-input-login">
+                <input id="number" maxlength="10" placeholder="Số Điện Thoại">
+            </div>
+            <span class="validate-error" id="alert_verify_number"></span>
+            <div id="box_login_form_password" class="box-input-login">
+                <input id="password" type="password" maxlength="100" placeholder="Mật khẩu">
+            </div>
+            <span class="validate-error" id="alert_verify_password"></span>
+            <div id="box_login_form_confirm_password" class="box-input-login">
+                <input id="confirm_password" type="password" maxlength="100" placeholder="Nhập lại mật khẩu">
+            </div>
+            <span class="validate-error" id="alert_verify_confirm_password"></span>
+            <button id="send" class="btn-login btn-core-accept" onclick="registerAccount()">Đăng ký</button>
+        </div>       
+        <div class="box-describe">
+            <div class="slim-line">
+            </div>
+            <span>Hoặc</span>
+            <div class="slim-line">
+            </div>
+        </div>
+        <div class="box-register">
+            Bạn đã có tài khoản?
+            <a href="/Account/Login">Đăng nhập</a>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function ()
+        {
+            $('#number').on('focus', function () {
+                document.getElementById("box_login_form_number").style.borderColor = "rgb(7, 171, 226)";
+            });
+            $('#number').on('blur', function () {
+                document.getElementById("box_login_form_number").style.borderColor = "rgba(0,0,0,.14)";
+            });
+            $('#password').on('focus', function () {
+                document.getElementById("box_login_form_password").style.borderColor = "rgb(7, 171, 226)";
+            });
+            $('#password').on('blur', function () {
+                document.getElementById("box_login_form_password").style.borderColor = "rgba(0,0,0,.14)";
+            });
+            $('#confirm_password').on('focus', function () {
+                document.getElementById("box_login_form_confirm_password").style.borderColor = "rgb(7, 171, 226)";
+            });
+            $('#confirm_password').on('blur', function () {
+                document.getElementById("box_login_form_confirm_password").style.borderColor = "rgba(0,0,0,.14)";
+            });
+        });
+
+        function registerAccount() {
+            ShowOverlay(true);
+            var number = document.getElementById('number').value;
+            var password = document.getElementById('password').value;
+            var confirm_password = document.getElementById('confirm_password').value;
+            $.ajax({
+                type: "POST",
+                traditional: true,
+                data:
+                {
+                    "number": number,
+                },
+                url: "@Url.Action("CheckUserByPhoneNumber", "Account")",
+                success: function (data)
+                {
+                    hideOverlay();
+                    if (!data.Success) {
+                        $('#alert_verify_number').html(data.Message);
+                        $('#alert_verify_number').fadeIn(500);
+                        setTimeout("$('#alert_verify_number').fadeOut(1500);", 5000);
+                        return;
+                    }
+                    else if (data.Success && data.Data != null)
+                    {
+                        $('#alert_verify_number').html('Số điện thoại đã đăng ký');
+                        $('#alert_verify_number').fadeIn(500);
+                        setTimeout("$('#alert_verify_number').fadeOut(1500);", 5000);
+                        return;
+                    }
+                    continueRegisterAccount(number, password, confirm_password);
+                },
+            })
+        }
+        function continueRegisterAccount(number, password, confirm_password) {
+            ShowOverlay(true);
+        }
+    </script>
+</body>
+</html>

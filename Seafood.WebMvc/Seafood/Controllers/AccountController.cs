@@ -124,64 +124,31 @@ namespace Seafood.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult CreateAccount(string jsonObject)
+        public ActionResult CreateAccount(string numberPhone, string password)
         {
-            dynamic data = null;
             try
             {
-                if (string.IsNullOrEmpty(jsonObject))
+                if (!Helper.ValidPhoneNumer(numberPhone) || string.IsNullOrEmpty(password) )
                 {
-                    data = new
-                    {
-                        IsCreate = false,
-                        Message = "Dữ liệu trống"
-                    };
-                    return Json(data);
+                    return Json(Bad_Request("Thông tin không hợp lệ"));
                 }
-                var obj = new JavaScriptSerializer().Deserialize<dynamic>(jsonObject);
-                if (!Helper.ValidPhoneNumer(obj["r_numberPhone"]))
-                {
-                    data = new
-                    {
-                        IsCreate = false,
-                        Message = "Số điện thoại không hợp lệ"
-                    };
-                    return Json(data);
-                }
+               
                 dynamic model = new
                 {
-                    FirstName = obj["r_firstName"],
-                    LastName = obj["r_lastName"],
-                    Email = obj["r_email"],
-                    NumberPhone = obj["r_numberPhone"],
-                    Password = obj["r_password"],
+                    NumberPhone = numberPhone,
+                    Password = password,
                 };
                 var isCreate = provider.PostAsync<bool>(ApiUri.POST_AccountCreate, model).Result;
                 if (!isCreate.Data)
                 {
-                    data = new
-                    {
-                        IsCreate = false,
-                        Message = isCreate.Message.ViMessage
-                    };
-                    return Json(data);
+                    return Json(Bad_Request("Đăng ký thất bại"));
                 }
-                data = new
-                {
-                    IsCreate = true,
-                    Message = "Đăng ký tài khoản thành công"
-                };
-                return Json(data);
+                return Json(Success_Request(isCreate.Data));
             }
             catch (Exception ex)
             {
                 FileHelper.GeneratorFileByDay(ex.ToString(), MethodBase.GetCurrentMethod().Name);
-                data = new
-                {
-                    IsCreate = false,
-                    Message = "Có lỗi trong quá trình xử lý"
-                };
-                return Json(data);
+                return View(Server_Error());
             }
         }
         #endregion CreateAccount

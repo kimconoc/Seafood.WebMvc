@@ -184,22 +184,49 @@
                 },
             })
         }
-        function continueRegisterAccount(number, password, confirm_password) {
+        function continueRegisterAccount(number, password, confirm_password)
+        {
             ShowOverlay(true);
             if (isNullOrEmpty(password))
             {
+                hideOverlay();
                 $('#alert_verify_password').html('Nhập mật khẩu');
                 $('#alert_verify_password').fadeIn(500);
                 setTimeout("$('#alert_verify_password').fadeOut(1500);", 5000);
                 return;
             }
-            if (isNullOrEmpty(password))
+            if (password != confirm_password)
             {
+                hideOverlay();
                 $('#alert_verify_confirm_password').html('Mật khẩu nhập lại chưa chính xác');
                 $('#alert_verify_confirm_password').fadeIn(500);
                 setTimeout("$('#alert_verify_confirm_password').fadeOut(1500);", 5000);
                 return;
             }
+
+            $.ajax({
+                type: "POST",
+                traditional: true,
+                data:
+                {
+                    "numberPhone": number,
+                    "password": password,
+
+                },
+                url: "@Url.Action("CreateAccount", "Account")",
+                success: function (data)
+                {
+                    hideOverlay();
+                    if (data.Success && data.Data)
+                    {
+                        window.location = "/Home/Seafood";
+                    }
+                    else
+                    {
+                        showToasinette_Error_Top_Right('Lỗi đăng ký');
+                    }
+                },
+            })
         }
     </script>
 </body>

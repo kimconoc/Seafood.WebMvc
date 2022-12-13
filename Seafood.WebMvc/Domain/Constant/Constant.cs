@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ namespace Domain.Constant
 {
     public class Constant
     {
-        public const string Link_Img = "https://frontend.tikicdn.com/_desktop-next/static/img/account/empty-order.png";
+        public static string Link_Empty_Order = ConfigurationManager.AppSettings["ApiEndPoint"] + "/FileUpload/seafood/empty-order/empty-order.png";
 
         public const string Name_Thong_Bao_Cua_Toi = "Thông báo của tôi";
         public const string Name_Thong_Tin_Tai_Khoan = "Thông tin tài khoản";

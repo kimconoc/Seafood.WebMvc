@@ -275,6 +275,26 @@
             </div>
         </div>
 
+        <div class="code-html">
+            <div id="pagination" class="tui-pagination"></div>
+        </div>
+        <script type="text/javascript" src="~/assets/helpers/tui.pagination-3.4.0/dist/tui-pagination.js"></script>
+        <script class="code-js">
+            var pagination = new tui.Pagination('pagination', {
+                totalItems: 500,
+                page: 1,
+                itemsPerPage: 20,
+                visiblePages: 10,
+            });
+
+            pagination.on('beforeMove', function (eventData) {
+                return confirm('Go to page ' + eventData.page + '?');
+            });
+
+            pagination.on('afterMove', function (eventData) {
+            });
+        </script>
+
         <div class="box-footer">
             <div>
                 <div class="title">
@@ -292,7 +312,7 @@
                         </div>
                     }
                 </div>
-            </div>        
+            </div>
         </div>
     </div>
     <script>

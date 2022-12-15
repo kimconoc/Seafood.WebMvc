@@ -23,6 +23,8 @@ namespace Domain.Constant
         public const string Get_ProductExecuteToFavourite = "api/Product/ExecuteToFavourite";
         public const string Get_GetProdDetailtById = "api/Product/GetProdDetailtById";
 
+        public const string Get_GetUserById = "api/User/GetUserById";
+
         #region MasterData
         public const string Get_GetInfoShopSeeFood = "api/MasterData/GetInfoShopSeeFood";
         public const string Get_GetListSeafoodPromotion = "api/MasterData/GetListSeafoodPromotion";

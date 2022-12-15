@@ -5,7 +5,7 @@
     var masterDataHelper = new MasterDataHelper();
     var listRegion = masterDataHelper.GetListRegion();
 }
-
+@model Domain.Models.ResponseModel.User
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -51,15 +51,24 @@
                 <div class="box-update-account">
                     <div class="form-control-update-account">
                         <label class="label-update">Họ và tên:</label>
-                        <input id="display_name" required class="input-update" placeholder="Nhập họ và tên" maxlength="60" value="Phạm Văn Đức">
+                        <input id="display_name" required class="input-update" placeholder="Nhập họ và tên" maxlength="60" value="@Model.DisplayName">
                     </div>
                     <div class="form-control-update-account">
                         <label class="label-update">Email:</label>
-                        <input id="email" class="input-update" placeholder="Nhập email" maxlength="100" value="">
+                        @{
+                            if (string.IsNullOrEmpty(Model.Email))
+                            {
+                                <input id="email" class="input-update" placeholder="Nhập email" maxlength="100" value="">
+                            }
+                            else
+                            {
+                                <input id="email" class="input-update" placeholder="Nhập email" maxlength="100" value="@Model.Email">
+                            }
+                        }
                     </div>
                     <div class="form-control-update-account">
                         <label class="label-update">Số điện thoại:</label>
-                        <input id="mobile" disabled class="input-update" maxlength="10" value="0367823445">
+                        <input id="mobile" disabled class="input-update" maxlength="10" value="@Model.Mobile.Trim()">
                     </div>
                     <div class="form-control-update-account">
                         <label class="label-update">Ngày sinh:</label>
@@ -112,7 +121,7 @@
                                 <option value="12">Tháng 12</option>
                             </select>
                             <select id="birthyear" class="form-select" aria-label="Default select example">
-                                 @for (int year = 1900; year <= DateTime.Now.Year; year++)
+                                 @for (int year = DateTime.Now.Year; year >= 1900; year--)
                                  {
                                    <option value="@year">@year</option>
                                  }

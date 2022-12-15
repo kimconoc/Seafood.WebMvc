@@ -1,4 +1,5 @@
 ﻿using Domain.Constant;
+using Domain.Models.ResponseModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,15 @@ namespace Seafood.Controllers.AccountManager
         public ActionResult YourAccount(string idItem)
         {
             ViewBag.IdItem = idItem;
-            return View();
+            var user = GetCurrentUser();
+            var uri = ApiUri.Get_GetUserById + string.Format($"?userId={user.UserId}");
+            var userDetailt = provider.GetAsync<User>(uri);
+            if (userDetailt == null || userDetailt.Result == null || userDetailt.Result.Data == null)
+            {
+                return View(new User());
+            }
+            var result = userDetailt.Result.Data;
+            return View(result);
         }
         [HttpPost]
         public ActionResult UploadAvartaUser(HttpPostedFileBase imgUpload)

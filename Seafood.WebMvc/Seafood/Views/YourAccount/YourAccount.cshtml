@@ -41,7 +41,17 @@
             <div class="col-md-3 col-sm-12">
                 <div class="box-avatar-user">
                     <div class="avatar">
-                        <img id="img_preview" src="https://salt.tikicdn.com/desktop/img/avatar.png" alt="avatar">
+                        @{
+                            if (string.IsNullOrEmpty(Model.Avarta))
+                            {
+                                <img id="img_preview" src="@Constant.Link_Empty_Avarta_User" alt="avatar">
+                            }
+                            else
+                            {
+                                <img id="img_preview" src="@Model.Avarta" alt="avatar">
+                            }
+                        }
+
                     </div>
                     <label for="file_input">Chọn ảnh</label>
                     <input accept="image/*" name="imgUpload" type="file" id="file_input" />
@@ -74,69 +84,76 @@
                         <label class="label-update">Ngày sinh:</label>
                         <div class="box-check-birthday-option">
                             <select id="birthday" class="form-select" aria-label="Default select example">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                                <option value="11">11</option>
-                                <option value="12">12</option>
-                                <option value="13">13</option>
-                                <option value="14">14</option>
-                                <option value="15">15</option>
-                                <option value="16">16</option>
-                                <option value="17">17</option>
-                                <option value="18">18</option>
-                                <option value="19">19</option>
-                                <option value="20">20</option>
-                                <option value="21">21</option>
-                                <option value="22">22</option>
-                                <option value="23">23</option>
-                                <option value="24">24</option>
-                                <option value="25">25</option>
-                                <option value="26">26</option>
-                                <option value="27">27</option>
-                                <option value="28">28</option>
-                                <option value="29">29</option>
-                                <option value="30">30</option>
-                                <option value="31">31</option>
+                                @{
+                                    for (int day = 1; day <= 31; day++)
+                                    {
+                                        if (@Model.Birthday.Day == day)
+                                        {
+                                            <option selected value="@day">@day</option>
+                                            continue;
+                                        }
+                                        <option value="@day">@day</option>
+                                    }
+                                }
                             </select>
                             <select id="birthmonth" class="form-select" aria-label="Default select example">
-                                <option value="1">Tháng 1</option>
-                                <option value="2">Tháng 2</option>
-                                <option value="3">Tháng 3</option>
-                                <option value="4">Tháng 4</option>
-                                <option value="5">Tháng 5</option>
-                                <option value="6">Tháng 6</option>
-                                <option value="7">Tháng 7</option>
-                                <option value="8">Tháng 8</option>
-                                <option value="9">Tháng 9</option>
-                                <option value="10">Tháng 10</option>
-                                <option value="11">Tháng 11</option>
-                                <option value="12">Tháng 12</option>
+                                @{
+                                    for (int month = 1; month <= 12; month++)
+                                    {
+                                        if (@Model.Birthday.Month == month)
+                                        {
+                                            <option selected value="@month">Tháng @month</option>
+                                            continue;
+                                        }
+                                        <option value="@month">Tháng @month</option>
+                                    }
+                                }
                             </select>
                             <select id="birthyear" class="form-select" aria-label="Default select example">
-                                 @for (int year = DateTime.Now.Year; year >= 1900; year--)
-                                 {
-                                   <option value="@year">@year</option>
-                                 }
-                             </select>
+                                @for (int year = DateTime.Now.Year; year >= 1900; year--)
+                                {
+                                    if (@Model.Birthday.Year == year)
+                                    {
+                                        <option selected value="@year">@year</option>
+                                        continue;
+                                    }
+                                    <option value="@year">@year</option>
+                                }
+                            </select>
                         </div>
                     </div>
                     <div class="form-control-update-account">
                         <label class="label-update">Giới tính:</label>
                         <div class="box-check-radio-option">
-                            <input type="radio" id="option_sex_nam" name="radio_option_sex" value="1" checked="checked" />
-                            <label for="contactChoice1">Nam</label>
-                            <input type="radio" id="option_sex_nu" name="radio_option_sex" value="0" />
-                            <label for="contactChoice2">Nữ</label>
-                            <input type="radio" id="option_sex_khac" name="radio_option_sex" value="-1" />
-                            <label for="contactChoice2">Khác</label>
+                            @{
+                                if (Model.Sex == 1)
+                                {
+                                    <input type="radio" id="option_sex_nam" name="radio_option_sex" value="1" checked="checked" />
+                                    <label for="contactChoice1">Nam</label>
+                                    <input type="radio" id="option_sex_nu" name="radio_option_sex" value="0" />
+                                    <label for="contactChoice2">Nữ</label>
+                                    <input type="radio" id="option_sex_khac" name="radio_option_sex" value="-1" />
+                                    <label for="contactChoice2">Khác</label>
+                                }
+                                else if (Model.Sex == 0)
+                                {
+                                    <input type="radio" id="option_sex_nam" name="radio_option_sex" value="1"/>
+                                    <label for="contactChoice1">Nam</label>
+                                    <input type="radio" id="option_sex_nu" name="radio_option_sex" value="0" checked="checked"/>
+                                    <label for="contactChoice2">Nữ</label>
+                                    <input type="radio" id="option_sex_khac" name="radio_option_sex" value="-1" />
+                                    <label for="contactChoice2">Khác</label>
+                                }
+                                else
+                                {
+                                    <input type="radio" id="option_sex_nam" name="radio_option_sex" value="1"/>
+                                    <label for="contactChoice1">Nam</label>
+                                    <input type="radio" id="option_sex_nu" name="radio_option_sex" value="0" />
+                                    <label for="contactChoice2">Nữ</label>
+                                    <input type="radio" id="option_sex_khac" name="radio_option_sex" value="-1" checked="checked"/>
+                                    <label for="contactChoice2">Khác</label>
+                                }
+                            }
                         </div>
                     </div>
                     <div class="form-control-update-account">
@@ -165,7 +182,7 @@
         //Setup
         function updateInfoAccount()
         {
-            debugger
+            ShowOverlay(true);
             var displayName = document.getElementById("display_name").value;
             var email = document.getElementById("email").value;
             var sex = $("input[type='radio'][name='radio_option_sex']:checked").val();
@@ -175,6 +192,7 @@
 
             if (isNullOrEmpty(displayName))
             {
+                hideOverlay();
                 return;
             }
             var formData = new FormData($('form')[0]);
@@ -183,13 +201,14 @@
                 contentType: false,
                 processData: false,
                 data: formData,
-                url: "@Url.Action("UploadAvartaUser", "Account")",
+                url: "@Url.Action("UploadAvartaUser", "YourAccount")",
                 type: 'Post',
                 beforeSend: function ()
                 {
                 },
                 success: function (data)
                 {
+                    debugger
                     if (data.Success) {
                         $.ajax({
                             type: "POST",
@@ -203,18 +222,24 @@
                                 "month": month,
                                 "day": day,
                             },
-                            url: "@Url.Action("UploadProfileUser", "Account")",
+                            url: "@Url.Action("UploadProfileUser", "YourAccount")",
                             success: function (data)
                             {
+                                hideOverlay();
+                                showToasinette_Success_Top_Right('Cập nhật thông tin thành công');
                             },
                         })
                     }
-                    else {
-                        alert(data.Message);
+                    else
+                    {
+                        hideOverlay();
+                        showToasinette_Error_Top_Right();
                     }
                 },
                 error: function ()
                 {
+                    hideOverlay();
+                    showToasinette_Error_Top_Right();
                 },
             });
         }

@@ -40,7 +40,9 @@ namespace Seafood.Controllers.AccountManager
             {
                 try
                 {
-                    var updated = provider.PostAsync<HttpPostedFileBase>(ApiUri.POST_AccountUpdateAvarta, imgUpload);
+                    var user = GetCurrentUser();
+                    var uri = ApiUri.POST_AccountUpdateAvarta + string.Format($"?userId={user.UserId}");
+                    var updated = provider.PostAsync<HttpPostedFileBase>(uri, imgUpload);
                     if (updated == null || updated.Result == null || updated.Result.Data == null || !updated.Result.Success)
                     {
                         return Json(Server_Error());

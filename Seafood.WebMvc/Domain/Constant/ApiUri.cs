@@ -12,7 +12,6 @@ namespace Domain.Constant
         public const string POST_AccountLogout = "api/Account/Logout";
         public const string POST_AccountLogin = "api/Account/Login";
         public const string POST_AccountCreate = "api/Account/Create";
-        public const string POST_AccountUpdateAvarta = "api/Account/UpdateAvarta";
         public const string Get_CheckUserByPhoneNumber = "api/Account/CheckUserByPhoneNumber";
         public const string Get_CheckCodeFirebase = "api/Account/CheckCodeFirebase";
         public const string Get_UpdateCodeFirebase = "api/Account/UpdateCodeFirebase";
@@ -24,6 +23,7 @@ namespace Domain.Constant
         public const string Get_GetProdDetailtById = "api/Product/GetProdDetailtById";
 
         public const string Get_GetUserById = "api/User/GetUserById";
+        public const string POST_AccountUpdateAvarta = "api/User/UpdateAvarta";
 
         #region MasterData
         public const string Get_GetInfoShopSeeFood = "api/MasterData/GetInfoShopSeeFood";

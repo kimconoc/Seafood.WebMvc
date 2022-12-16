@@ -2,6 +2,7 @@
 @using Service.Helpers;
 @{
     Layout = "~/Views/Shared/_LayoutAccountManager.cshtml";
+    string domainName = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
     var masterDataHelper = new MasterDataHelper();
     var listRegion = masterDataHelper.GetListRegion();
 }
@@ -44,11 +45,11 @@
                         @{
                             if (string.IsNullOrEmpty(Model.Avarta))
                             {
-                                <img id="img_preview" src="@Constant.Link_Empty_Avarta_User" alt="avatar">
+                                <img id="img_preview" src="@string.Format(domainName + Constant.Link_Empty_Avarta_User)" alt="avatar">
                             }
                             else
                             {
-                                <img id="img_preview" src="@Model.Avarta" alt="avatar">
+                                <img id="img_preview" src="@string.Format(domainName + Model.Avarta)" alt="avatar">
                             }
                         }
 

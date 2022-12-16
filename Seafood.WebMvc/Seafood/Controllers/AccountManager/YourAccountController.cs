@@ -2,6 +2,7 @@
 using Domain.Models.ResponseModel;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -41,8 +42,18 @@ namespace Seafood.Controllers.AccountManager
                 try
                 {
                     var user = GetCurrentUser();
-                    var uri = ApiUri.POST_AccountUpdateAvarta + string.Format($"?userId={user.UserId}");
-                    var updated = provider.PostAsync<HttpPostedFileBase>(uri, imgUpload);
+                    string filePath = string.Empty;
+                    string path = string.Format("/FileUpload/seafood/avarta-user/" + user.UserId.ToString() + "/");
+                    filePath = Server.MapPath(path);
+                    if (!Directory.Exists(filePath))
+                    {
+                        Directory.CreateDirectory(filePath);
+                    }
+                    filePath = filePath + Path.GetFileName(imgUpload.FileName);
+                    path = path + Path.GetFileName(imgUpload.FileName);
+                    imgUpload.SaveAs(filePath);
+                    var uri = ApiUri.POST_AccountUpdateAvarta + string.Format($"?userId={user.UserId}?path={path}");
+                    var updated = provider.GetAsync<HttpPostedFileBase>(uri);
                     if (updated == null || updated.Result == null || updated.Result.Data == null || !updated.Result.Success)
                     {
                         return Json(Server_Error());

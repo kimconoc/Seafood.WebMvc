@@ -167,6 +167,12 @@
     <Content Include="assets\css\demo\account\forgot-password.css" />
     <Content Include="assets\css\demo\account-manager\your-notification.css" />
     <Content Include="assets\css\demo\account\register-account.css" />
+    <Content Include="assets\helpers\awesome-alert-main\awesomeAlert.js" />
+    <Content Include="assets\images\icon\dynamic\error.svg" />
+    <Content Include="assets\images\icon\dynamic\info.svg" />
+    <Content Include="assets\images\icon\dynamic\success.svg" />
+    <Content Include="assets\images\icon\dynamic\warning.svg" />
+    <Content Include="assets\helpers\awesome-alert-main\style.css" />
     <Content Include="assets\helpers\master-plan\adr_common.js" />
     <Content Include="assets\helpers\master-plan\iosOverlay.js" />
     <Content Include="assets\helpers\master-plan\main_v2.css" />
@@ -250,6 +256,8 @@
     <Content Include="assets\helpers\tui.pagination-3.4.0\package.json" />
     <Content Include="assets\helpers\tui.pagination-3.4.0\README.md" />
     <Content Include="assets\helpers\tui.pagination-3.4.0\tuidoc.config.json" />
+    <Content Include="assets\helpers\awesome-alert-main\LICENSE" />
+    <Content Include="assets\helpers\awesome-alert-main\README.md" />
     <None Include="Views\Account\LoginBySMS.cshtml" />
     <Content Include="assets\css\demo\account-manager\address-edit.css" />
     <Compile Include="Controllers\AccountManager\AddressController.cs" />

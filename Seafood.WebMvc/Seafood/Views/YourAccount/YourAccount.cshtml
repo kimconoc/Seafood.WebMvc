@@ -160,7 +160,7 @@
                     <div class="form-control-update-account">
                         <label class="label-update"></label>
                         <div class="box-click-continue">
-                            <button onclick="updateInfoAccount()" class="btn-core-accept" type="submit">Cập nhật</button>
+                            <button onclick="updateInfoAccount()" class="btn-core-accept" type="button">Cập nhật</button>
                         </div>
                     </div>
                 </div>
@@ -194,6 +194,7 @@
             if (isNullOrEmpty(displayName))
             {
                 hideOverlay();
+                showToasinette_Error_Top_Right('Tên hiển thị không được bỏ trống');
                 return;
             }
             var formData = new FormData($('form')[0]);
@@ -209,7 +210,6 @@
                 },
                 success: function (data)
                 {
-                    debugger
                     if (data.Success) {
                         $.ajax({
                             type: "POST",
@@ -226,8 +226,8 @@
                             url: "@Url.Action("UploadProfileUser", "YourAccount")",
                             success: function (data)
                             {
-                                hideOverlay();
                                 showToasinette_Success_Top_Right('Cập nhật thông tin thành công');
+                                window.location.reload();
                             },
                         })
                     }

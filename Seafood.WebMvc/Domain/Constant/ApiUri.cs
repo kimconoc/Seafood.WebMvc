@@ -23,7 +23,8 @@ namespace Domain.Constant
         public const string Get_GetProdDetailtById = "api/Product/GetProdDetailtById";
 
         public const string Get_GetUserById = "api/User/GetUserById";
-        public const string POST_AccountUpdateAvarta = "api/User/UpdateAvarta";
+        public const string POST_UserUpdateAvarta = "api/User/UpdateAvarta";
+        public const string POST_UserUploadProfile = "api/User/UploadProfile";
 
         #region MasterData
         public const string Get_GetInfoShopSeeFood = "api/MasterData/GetInfoShopSeeFood";

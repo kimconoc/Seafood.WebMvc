@@ -133,3 +133,44 @@ function showPrompt_Error_Top_Right(content)
     });
     prompt.error(content);
 }
+/*Notification-awesome*/
+function showToasinette_AwesomeAlert(header, type, title, message, img)
+{
+    // type
+    // success(default )
+    // info
+    // warning
+    // error
+    // dark
+    // question (xử dụng khi type là question: buttonConfirm: 'Yes',buttonCancel: 'No',)
+    if (isNullOrEmpty(header))
+    {
+        header = true;
+    }
+    if (isNullOrEmpty(type))
+    {
+        type = 'success';
+    }
+    if (isNullOrEmpty(title))
+    {
+        title = 'Thành công!';
+    }
+    if (isNullOrEmpty(message))
+    {
+        message = 'Cập nhật thông tin thành công.';
+    }
+    if (isNullOrEmpty(img))
+    {
+        img = '/assets/images/icon/success.svg';
+    }
+    awesomeAlert({
+        header: header,
+        type: type,
+        title: title,
+        message: message,
+        //bgColor: '#2dd284',
+        img: img,
+        buttonOK: 'Xong!',
+        closeStyle: 'circle'
+    }).then(res => window.location.reload())
+}

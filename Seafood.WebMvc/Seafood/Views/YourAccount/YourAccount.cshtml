@@ -226,8 +226,8 @@
                             url: "@Url.Action("UploadProfileUser", "YourAccount")",
                             success: function (data)
                             {
-                                showToasinette_Success_Top_Right('Cập nhật thông tin thành công');
-                                window.location.reload();
+                                hideOverlay();
+                                showToasinette_AwesomeAlert();
                             },
                         })
                     }

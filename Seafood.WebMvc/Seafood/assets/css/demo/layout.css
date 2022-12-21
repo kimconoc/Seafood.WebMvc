@@ -191,7 +191,15 @@
                 font-size: 10px;
                 /*display: flex;*/
             }
+    .header-layout1-account .account-icon .avatar {
+        width: 37.5px;
+    }
 
+        .header-layout1-account .account-icon .avatar img {
+            margin-top: -3px;
+            width: 100%;
+            border-radius: 50%;
+        }
 .headerLayout1 .popover-content {
     padding: 5px 0 5px 0;
 }

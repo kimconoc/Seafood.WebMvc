@@ -5,6 +5,7 @@
 
 @{  
     UserData user = null;
+    string domainName = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
     try
     {
         var httpContextBase = new HttpContextWrapper(HttpContext.Current);
@@ -125,21 +126,44 @@
                 }
                 else
                 {
-                    <div class="header-layout1-account" data-html="true" data-placement="bottom" data-popover-content="#account_manager_popover" data-toggle="popover_account_manager" href="#" data-trigger="focus" tabindex="0">
-                        <div class="account-icon">
-                            <i class="fa-regular fa-user"></i>
+                    if (string.IsNullOrEmpty(user.Avarta))
+                    {
+                        <div class="header-layout1-account" data-html="true" data-placement="bottom" data-popover-content="#account_manager_popover" data-toggle="popover_account_manager" href="#" data-trigger="focus" tabindex="0">
+                            <div class="account-icon">
+                                <i class="fa-regular fa-user"></i>
+                            </div>
+                            <div>
+                                <div class="account-info">
+                                    <div class="title">Tài khoản</div>
+                                    <div class="name">
+                                        @user.DisplayName
+                                        <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
-                        <div>
-                            <div class="account-info">
-                                <div class="title">Tài khoản</div>
-                                <div class="name">
-                                    @user.DisplayName
-                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                    }
+                    else
+                    {
+                        <div class="header-layout1-account" style="background-color:transparent;" data-html="true" data-placement="bottom" data-popover-content="#account_manager_popover" data-toggle="popover_account_manager" href="#" data-trigger="focus" tabindex="0">
+                            <div class="account-icon">
+                                <div class="avatar">
+                                    <img src="@string.Format(domainName + user.Avarta)" alt="avatar">
                                 </div>
                             </div>
+                            <div>
+                                <div class="account-info">
+                                    <div class="title">Tài khoản</div>
+                                    <div class="name">
+                                        @user.DisplayName
+                                        <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                    </div>
+                                </div>
 
+                            </div>
                         </div>
-                    </div>
+                    }
                 }
                 <div style="flex:1">
                 </div>

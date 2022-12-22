@@ -54,15 +54,11 @@
                 </div>
                 <div class="form-control-address-add">
                     <label class="label-address">Quận huyện:</label>
-                    <select required class="form-select" aria-label="Default select example">
-                        <option disabled selected value="">Chọn Quận/Huyện</option>
-                    </select>
+                    <select id="districtId"></select>
                 </div>
                 <div class="form-control-address-add">
                     <label class="label-address">Phường xã:</label>
-                    <select required class="form-select" aria-label="Default select example">
-                        <option disabled selected value="">Chọn Phường/xã</option>
-                    </select>
+                    <select id="wardId"></select>
                 </div>
                 <div class="form-control-address-add">
                     <label class="label-address">Địa chỉ:</label>
@@ -100,7 +96,7 @@
         {
             $("#regionId").select2({
                 placeholder: 'Chọn Tỉnh/Thành phố',
-                closeOnSelect: false,
+                closeOnSelect: true,// chọn 1 lần hoặc 2 lần
                 matcher: matchCustom,
                 ajax:
                 {
@@ -118,6 +114,58 @@
                     processResults: function (data) {
                         var res = data.map(function (item) {
                             return { id: item.CodeRegion, text: item.NameRegion + '' };
+                        });
+                        return {
+                            results: res
+                        };
+                    }
+                }
+            });
+            $("#districtId").select2({
+                placeholder: 'Chọn Quận/Huyện',
+                closeOnSelect: true,
+                matcher: matchCustom,
+                ajax:
+                {
+                    url: '/MasterData/GetListDistrict',
+                    dataType: 'json',
+                    data: function (params) {
+                        return {
+                            codeRegion: $('#regionId').val(),
+                            codeDistrict: '',
+                            txt: params.term,
+                            defaultText: ''
+                        };
+                    },
+                    processResults: function (data) {
+                        var res = data.map(function (item) {
+                            return { id: item.CodeDistrict, text: item.NameDistrict + '' };
+                        });
+                        return {
+                            results: res
+                        };
+                    }
+                }
+            });
+            $("#wardId").select2({
+                placeholder: 'Chọn Phường/Xã',
+                closeOnSelect: true,
+                matcher: matchCustom,
+                ajax:
+                {
+                    url: '/MasterData/GetListWard',
+                    dataType: 'json',
+                    data: function (params) {
+                        return {
+                            codeRegion: $('#regionId').val(),
+                            codeDistrict: $('#districtId').val(),
+                            txt: params.term,
+                            defaultText: ''
+                        };
+                    },
+                    processResults: function (data) {
+                        var res = data.map(function (item) {
+                            return { id: item.CodeWard, text: item.NameWard + '' };
                         });
                         return {
                             results: res
@@ -152,6 +200,11 @@
             // Return `null` if the term should not be displayed
             return null;
         }
+
+        $('#regionId').change(function ()
+        {
+            
+        });
     </script>
 </body>
 </html>

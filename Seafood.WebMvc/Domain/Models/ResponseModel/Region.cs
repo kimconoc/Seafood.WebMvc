@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Models.ResponseModel
 {
-    public class Region : VBaseModel
+    public class Region
     {
         public string NameRegion { get; set; }
         public string CodeRegion { get; set; }

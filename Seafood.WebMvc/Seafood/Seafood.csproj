@@ -168,6 +168,11 @@
     <Content Include="assets\css\demo\account-manager\your-notification.css" />
     <Content Include="assets\css\demo\account\register-account.css" />
     <Content Include="assets\helpers\awesome-alert-main\awesomeAlert.js" />
+    <Content Include="assets\helpers\lib\select2\select2-spinner.gif" />
+    <Content Include="assets\helpers\lib\select2\select2.css" />
+    <Content Include="assets\helpers\lib\select2\select2.min.js" />
+    <Content Include="assets\helpers\lib\select2\select2.png" />
+    <Content Include="assets\helpers\lib\select2\select2x2.png" />
     <Content Include="assets\images\icon\dynamic\error.svg" />
     <Content Include="assets\images\icon\dynamic\info.svg" />
     <Content Include="assets\images\icon\dynamic\success.svg" />
@@ -264,6 +269,7 @@
     <Compile Include="Controllers\AccountManager\FavoriteProdController.cs" />
     <Compile Include="Controllers\AccountManager\NotificationController.cs" />
     <Compile Include="Controllers\AccountManager\VoucherController.cs" />
+    <Compile Include="Controllers\MasterDataController.cs" />
     <Compile Include="Controllers\ProdDetailtController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\UploadFileController.cs" />
@@ -596,6 +602,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\MasterData\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

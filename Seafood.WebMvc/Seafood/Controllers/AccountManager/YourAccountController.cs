@@ -1,5 +1,6 @@
 ﻿using Domain.Constant;
 using Domain.Models.ResponseModel;
+using Seafood.CustomAuthen;
 using Seafood.MemCached;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Web.Mvc;
 
 namespace Seafood.Controllers.AccountManager
 {
+    [SessionAuthen]
     public class YourAccountController : BaseController
     {
         #region YourAccount

@@ -249,8 +249,8 @@ const awesomeToast = ({
         let templateToast = `
         <div class="toast-frame ${type}-bg" style="animation: Toast-${position} 1s ease-in;" id="${toastId}-toast-frame">
             <div class="toast-content">
-                <span class="toast-title">${title}</span>
-                <span class="toast-message">${message}</span>
+                <span class="toast-awe-title">${title}</span>
+                <span class="toast-awe-message">${message}</span>
             </div>
             <img src=${img} class="toast-img" alt="">
             <span class="toast-close" id="${toastId}-toast-close">X</span>
@@ -262,8 +262,8 @@ const awesomeToast = ({
             templateToast = `
             <div class="toast-frame bg-global" id="${toastId}-toast-frame">
                 <div class="toast-content">
-                <span class="toast-title">${title}</span>
-                <span class="toast-message">${message}</span>
+                <span class="toast-awe-title">${title}</span>
+                <span class="toast-awe-message">${message}</span>
                 </div>
                 <img src=${img} class="toast-img">
                 <span class="toast-close" id="${toastId}-toast-close">X</span>

@@ -315,7 +315,7 @@
     justify-content: center;
 }
 
-.toast-title {
+.toast-awe-title {
     color: #fff;
     font-size: 1.2rem;
     font-weight: bold;
@@ -324,7 +324,7 @@
     word-break: break-word;
 }
 
-.toast-message {
+.toast-awe-message {
     color: #eee;
     font-size: .9rem;
     text-align: justify;

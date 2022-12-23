@@ -1,9 +1,22 @@
 ﻿@using Domain.Constant
 @using Service.Helpers;
+@using Seafood.Models;
+@using Domain.Enums;
 @{
     Layout = "~/Views/Shared/_LayoutAccountManager.cshtml";
     var masterDataHelper = new MasterDataHelper();
-    var listRegion = masterDataHelper.GetListRegion();
+
+    UserData user = null;
+    string domainName = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
+    try
+    {
+        var httpContextBase = new HttpContextWrapper(HttpContext.Current);
+        user = Seafood.MemCached.Authenticator.CurrentUser(httpContextBase);
+    }
+    catch
+    {
+
+    }
 }
 
 <html>
@@ -30,27 +43,27 @@
             <h3>Thêm địa chỉ mới</h3>
         </div>
         <div class="box-address-add">
-            <form>
+            <form role="form" method="post">
                 <div class="form-control-address-add">
                     <label class="label-address">Họ và tên:</label>
-                    <input required class="input-address" placeholder="Nhập họ và tên" maxlength="60" value="Phạm Văn Đức">
+                    <input id="fullName" class="input-address" placeholder="Nhập họ và tên" maxlength="60" value="@user.DisplayName">
                 </div>
-                <div class="form-control-address-add">
+                @*<div class="form-control-address-add">
                     <label class="label-address">Công ty:</label>
-                    <input class="input-address" placeholder="Nhập công ty" maxlength="60" value="">
-                </div>
+                    <input id="company" class="input-address" placeholder="Nhập tên công ty" maxlength="60" value="">
+                </div>*@
                 <div class="form-control-address-add">
                     <label class="label-address">Số điện thoại:</label>
-                    <input required class="input-address" placeholder="Nhập số điện thoại" maxlength="10" value="0367823445">
+                    <input id="mobile" class="input-address" placeholder="Nhập số điện thoại" maxlength="10" value="@user.Mobile">
                 </div>
                 <div class="form-control-address-add">
                     <label class="label-address">Tỉnh/Thành phố:</label>
                     <select id="regionId"></select>
                     @*@Html.DropDownList("regionId", new SelectList(listRegion, "CodeRegion", "NameRegion", null))*@
                     @*<select required class="form-select" aria-label="Default select example">
-                        <option disabled selected value="">Chọn Tỉnh/Thành phố</option>
-                        <option value="1">Quận Ba Đình</option>
-                    </select>*@
+                            <option disabled selected value="">Chọn Tỉnh/Thành phố</option>
+                            <option value="1">Quận Ba Đình</option>
+                        </select>*@
                 </div>
                 <div id="box_district">
                     <div class="form-control-address-add">
@@ -66,14 +79,14 @@
                 </div>
                 <div class="form-control-address-add">
                     <label class="label-address">Địa chỉ:</label>
-                    <textarea required class="textarea-address" name="street" rows="3" maxlength="200" placeholder="Nhập địa chỉ"></textarea>
+                    <textarea id="address" class="textarea-address" name="street" rows="3" maxlength="200" placeholder="Nhập địa chỉ"></textarea>
                 </div>
                 <div class="form-control-address-add">
                     <label class="label-address">Loại địa chỉ:</label>
                     <div class="box-check-radio-option">
-                        <input type="radio" id="option_address1" name="radio_option_address" value="0" checked="checked" />
+                        <input type="radio" id="type_address1" name="radio_type_address" value="@((int)TypeAddressEnum.NhaRieng)" checked="checked" />
                         <label for="contactChoice1">Nhà riêng / Chung cư</label>
-                        <input type="radio" id="option_address2" name="radio_option_address" value="1" />
+                        <input type="radio" id="type_address2" name="radio_type_address" value="@((int)TypeAddressEnum.CoQuan)" />
                         <label for="contactChoice2">Cơ quan / Công ty</label>
                     </div>
                 </div>
@@ -88,16 +101,14 @@
                     <label class="label-address"></label>
                     <div class="box-click-continue">
                         <button class="btn-core-cancle" type="button">Hủy bỏ</button>
-                        <button class="btn-core-accept" type="submit">Thêm địa chỉ</button>
+                        <button class="btn-core-accept" type="button">Thêm địa chỉ</button>
                     </div>
                 </div>
-                @*<input type="submit" value="121212" onclick="ok()">*@
             </form>
         </div>
     </div>
     <script>
-        $(document).ready(function ()
-        {
+        $(document).ready(function () {
             $("#regionId").select2({
                 placeholder: 'Chọn Tỉnh/Thành phố',
                 closeOnSelect: true,// chọn 1 lần hoặc 2 lần
@@ -106,8 +117,7 @@
                 {
                     url: '/MasterData/GetListRegion',
                     dataType: 'json',
-                    data: function (params) 
-                    {
+                    data: function (params) {
                         return {
                             codeRegion: '',
                             codeDistrict: '',
@@ -159,8 +169,7 @@
             return null;
         }
 
-        $('#regionId').change(function ()
-        {
+        $('#regionId').change(function () {
             var boxDistrict = "<div class='form-control-address-add'>";
             boxDistrict = boxDistrict + "<label class='label-address'>Quận huyện:</label>";
             boxDistrict = boxDistrict + "<select onchange='districtChange()' id='districtId'></select>";
@@ -200,8 +209,7 @@
                 placeholder: 'Chọn Phường/Xã'
             });
         });
-        function districtChange()
-        {
+        function districtChange() {
             var boxWard = "<div class='form-control-address-add'>";
             boxWard = boxWard + "<label class='label-address'>Phường xã:</label>";
             boxWard = boxWard + "<select id='wardId'></select>";
@@ -232,6 +240,56 @@
                 }
             });
         }
+
+        $('.btn-core-cancle').click(function (e) {
+            window.location = "/Address/AddressList";
+        });
+
+        $('.btn-core-accept').click(function (e) {
+            debugger
+            var fullName = $('#fullName').val();
+            var mobile = $('#mobile').val();
+            var codeRegion = $('#regionId').val();
+            var codeDistrict = $('#districtId').val();
+            var codeWard = $('#wardId').val();
+            var typeAddress = $("input[type='radio'][name='radio_type_address']:checked").val();
+            var address = $('#address').val();
+
+            if (isNullOrEmpty(fullName) || isNullOrEmpty(mobile) || isNullOrEmpty(codeRegion) || isNullOrEmpty(codeDistrict) || isNullOrEmpty(codeWard))
+            {
+                return;
+            }
+            ShowOverlay(true);
+            $.ajax({
+                type: "POST",
+                traditional: true,
+                data:
+                {
+                    "fullName": fullName,
+                    "mobile": mobile,
+                    "codeRegion": codeRegion,
+                    "codeDistrict": codeDistrict,
+                    "codeWard": codeWard,
+                    "typeAddress": typeAddress,
+                    "address": address,
+                },
+                url: "@Url.Action("CreateNewAddress", "Address")",
+                success: function (data)
+                {
+                    hideOverlay();
+                    awesomeAlert({
+                        header: true,
+                        type: 'success',
+                        title: 'Thành công!',
+                        message: 'Cập nhật thông tin thành công.',
+                        //bgColor: '#2dd284',
+                        img: '/assets/images/icon/success.svg',
+                        buttonOK: 'Xong!',
+                        closeStyle: 'circle'
+                    }).then(res => window.location = "/Address/AddressList")
+                },
+            })
+        });
     </script>
 </body>
 </html>

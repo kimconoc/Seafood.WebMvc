@@ -14,11 +14,11 @@ namespace Seafood.Controllers
         public JsonResult GetListRegion(string txt = "",string codeRegion = "", string codeDistrict = "")
         {
             var lstResult = new List<Region>();
-            var uri = ApiUri.Get_GetListRegion + string.Format($"?codeRegion={codeRegion}&codeDistrict={codeDistrict}");
+            var uri = ApiUri.Get_GetListRegion + string.Format($"?txtSearch={txt}&codeRegion={codeRegion}&codeDistrict={codeDistrict}");
             var result = provider.GetAsync<List<Region>>(uri);
-            if (result != null || result.Result != null || result.Result.Data != null)
+            if (result != null && result.Result != null && result.Result.Data != null)
             {
-                var lstData = result.Result.Data.Where(x => string.IsNullOrEmpty(txt) || x.NameRegion.ToLower().GetVnStringOnlyCharactersAndNumbers().Contains(txt.ToLower().GetVnStringOnlyCharactersAndNumbers())).ToList();
+                var lstData = result.Result.Data;
                 foreach (var item in lstData)
                 {
                     if (!lstResult.Any(r => r.CodeRegion == item.CodeRegion))
@@ -37,11 +37,11 @@ namespace Seafood.Controllers
                 return Json(false);
 
             var lstResult = new List<Region>();
-            var uri = ApiUri.Get_GetListRegion + string.Format($"?codeRegion={codeRegion}&codeDistrict={codeDistrict}");
+            var uri = ApiUri.Get_GetListRegion + string.Format($"?txtSearch={txt}&codeRegion={codeRegion}&codeDistrict={codeDistrict}");
             var result = provider.GetAsync<List<Region>>(uri);
-            if (result != null || result.Result != null || result.Result.Data != null)
+            if (result != null && result.Result != null && result.Result.Data != null)
             {
-                var lstData = result.Result.Data.Where(x => string.IsNullOrEmpty(txt) || x.NameDistrict.ToLower().GetVnStringOnlyCharactersAndNumbers().Contains(txt.ToLower().GetVnStringOnlyCharactersAndNumbers())).ToList();
+                var lstData = result.Result.Data;
                 foreach (var item in lstData)
                 {
                     if (!lstResult.Any(r => r.CodeDistrict == item.CodeDistrict))
@@ -60,11 +60,11 @@ namespace Seafood.Controllers
                 return Json(false);
 
             var lstResult = new List<Region>();
-            var uri = ApiUri.Get_GetListRegion + string.Format($"?codeRegion={codeRegion}&codeDistrict={codeDistrict}");
+            var uri = ApiUri.Get_GetListRegion + string.Format($"?txtSearch={txt}&codeRegion={codeRegion}&codeDistrict={codeDistrict}");
             var result = provider.GetAsync<List<Region>>(uri);
-            if (result != null || result.Result != null || result.Result.Data != null)
+            if (result != null && result.Result != null && result.Result.Data != null)
             {
-                var lstData = result.Result.Data.Where(x => string.IsNullOrEmpty(txt) || x.NameWard.ToLower().GetVnStringOnlyCharactersAndNumbers().Contains(txt.ToLower().GetVnStringOnlyCharactersAndNumbers())).ToList();
+                var lstData = result.Result.Data;
                 foreach (var item in lstData)
                 {
                     if (!lstResult.Any(r => r.CodeWard == item.CodeWard))

@@ -17,7 +17,8 @@ namespace Seafood.Controllers
         #region Login
         public ActionResult Login()
         {
-            return View();
+            LoginViewModel model = new LoginViewModel();
+            return View(model);
         }
         [HttpPost]
         public ActionResult Login(LoginViewModel model, string ReturnUrl = "")

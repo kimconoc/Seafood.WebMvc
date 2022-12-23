@@ -183,7 +183,6 @@
         //Setup
         function updateInfoAccount()
         {
-            ShowOverlay(true);
             var displayName = document.getElementById("display_name").value;
             var email = document.getElementById("email").value;
             var sex = $("input[type='radio'][name='radio_option_sex']:checked").val();
@@ -193,11 +192,11 @@
 
             if (isNullOrEmpty(displayName))
             {
-                hideOverlay();
                 showToasinette_Error_Top_Right('Tên hiển thị không được bỏ trống');
                 return;
             }
             var formData = new FormData($('form')[0]);
+            ShowOverlay(true);
             $.ajax({
                 cache: false,
                 contentType: false,

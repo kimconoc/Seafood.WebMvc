@@ -21,4 +21,12 @@ namespace Domain.Enums
         [Description("Hoằng Hóa")]
         HOANGHOA = 1,
     }
+
+    public enum TypeAddressEnum
+    {
+        [Description("Nhà riêng/Chung cư")]
+        NhaRieng = 0,
+        [Description("Cơ quan/Công ty")]
+        CoQuan = 1,
+    }
 }

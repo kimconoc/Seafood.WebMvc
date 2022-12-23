@@ -52,13 +52,17 @@
                         <option value="1">Quận Ba Đình</option>
                     </select>*@
                 </div>
-                <div class="form-control-address-add">
-                    <label class="label-address">Quận huyện:</label>
-                    <select id="districtId"></select>
+                <div id="box_district">
+                    <div class="form-control-address-add">
+                        <label class="label-address">Quận huyện:</label>
+                        <select id="districtId"></select>
+                    </div>
                 </div>
-                <div class="form-control-address-add">
-                    <label class="label-address">Phường xã:</label>
-                    <select id="wardId"></select>
+                <div id="box_ward">
+                    <div class="form-control-address-add">
+                        <label class="label-address">Phường xã:</label>
+                        <select id="wardId"></select>
+                    </div>
                 </div>
                 <div class="form-control-address-add">
                     <label class="label-address">Địa chỉ:</label>
@@ -122,56 +126,10 @@
                 }
             });
             $("#districtId").select2({
-                placeholder: 'Chọn Quận/Huyện',
-                closeOnSelect: true,
-                matcher: matchCustom,
-                ajax:
-                {
-                    url: '/MasterData/GetListDistrict',
-                    dataType: 'json',
-                    data: function (params) {
-                        return {
-                            codeRegion: $('#regionId').val(),
-                            codeDistrict: '',
-                            txt: params.term,
-                            defaultText: ''
-                        };
-                    },
-                    processResults: function (data) {
-                        var res = data.map(function (item) {
-                            return { id: item.CodeDistrict, text: item.NameDistrict + '' };
-                        });
-                        return {
-                            results: res
-                        };
-                    }
-                }
+                placeholder: 'Chọn Quận/Huyện'
             });
             $("#wardId").select2({
-                placeholder: 'Chọn Phường/Xã',
-                closeOnSelect: true,
-                matcher: matchCustom,
-                ajax:
-                {
-                    url: '/MasterData/GetListWard',
-                    dataType: 'json',
-                    data: function (params) {
-                        return {
-                            codeRegion: $('#regionId').val(),
-                            codeDistrict: $('#districtId').val(),
-                            txt: params.term,
-                            defaultText: ''
-                        };
-                    },
-                    processResults: function (data) {
-                        var res = data.map(function (item) {
-                            return { id: item.CodeWard, text: item.NameWard + '' };
-                        });
-                        return {
-                            results: res
-                        };
-                    }
-                }
+                placeholder: 'Chọn Phường/Xã'
             });
         });
         function matchCustom(params, data) {
@@ -203,8 +161,77 @@
 
         $('#regionId').change(function ()
         {
-            
+            var boxDistrict = "<div class='form-control-address-add'>";
+            boxDistrict = boxDistrict + "<label class='label-address'>Quận huyện:</label>";
+            boxDistrict = boxDistrict + "<select onchange='districtChange()' id='districtId'></select>";
+            boxDistrict = boxDistrict + "</div>";
+            $('#box_district').html(boxDistrict);
+            $("#districtId").select2({
+                placeholder: 'Chọn Quận/Huyện',
+                ajax:
+                {
+                    url: '/MasterData/GetListDistrict',
+                    dataType: 'json',
+                    data: function (params) {
+                        return {
+                            codeRegion: $('#regionId').val(),
+                            codeDistrict: '',
+                            txt: params.term,
+                            defaultText: ''
+                        };
+                    },
+                    processResults: function (data) {
+                        var res = data.map(function (item) {
+                            return { id: item.CodeDistrict, text: item.NameDistrict + '' };
+                        });
+                        return {
+                            results: res
+                        };
+                    }
+                }
+            });
+
+            var boxWard = "<div class='form-control-address-add'>";
+            boxWard = boxWard + "<label class='label-address'>Phường xã:</label>";
+            boxWard = boxWard + "<select id='wardId'></select>";
+            boxWard = boxWard + "</div>";
+            $('#box_ward').html(boxWard);
+            $("#wardId").select2({
+                placeholder: 'Chọn Phường/Xã'
+            });
         });
+        function districtChange()
+        {
+            var boxWard = "<div class='form-control-address-add'>";
+            boxWard = boxWard + "<label class='label-address'>Phường xã:</label>";
+            boxWard = boxWard + "<select id='wardId'></select>";
+            boxWard = boxWard + "</div>";
+            $('#box_ward').html(boxWard);
+            $("#wardId").select2({
+                placeholder: 'Chọn Phường/Xã',
+                ajax:
+                {
+                    url: '/MasterData/GetListWard',
+                    dataType: 'json',
+                    data: function (params) {
+                        return {
+                            codeRegion: $('#regionId').val(),
+                            codeDistrict: $('#districtId').val(),
+                            txt: params.term,
+                            defaultText: ''
+                        };
+                    },
+                    processResults: function (data) {
+                        var res = data.map(function (item) {
+                            return { id: item.CodeWard, text: item.NameWard + '' };
+                        });
+                        return {
+                            results: res
+                        };
+                    }
+                }
+            });
+        }
     </script>
 </body>
 </html>

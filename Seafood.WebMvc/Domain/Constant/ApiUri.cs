@@ -26,6 +26,12 @@ namespace Domain.Constant
         public const string POST_UserUpdateAvarta = "api/User/UpdateAvarta";
         public const string POST_UserUploadProfile = "api/User/UploadProfile";
 
+        public const string Get_GetListAddressByUserId = "api/Address/GetListAddressByUserId";
+        public const string Get_GetAddressByUserId = "api/Address/GetAddressByUserId";
+        public const string Post_CreateAddressByUserId = "api/Address/CreateAddressByUserId";
+        public const string Post_UpdateAddressByUserId = "api/Address/UpdateAddressByUserId";
+        public const string Delete_DeleteAddressByUserId = "api/Address/DeleteAddressByUserId";
+
         #region MasterData
         public const string Get_GetInfoShopSeeFood = "api/MasterData/GetInfoShopSeeFood";
         public const string Get_GetListSeafoodPromotion = "api/MasterData/GetListSeafoodPromotion";

@@ -12,7 +12,7 @@ namespace Seafood.Controllers
             if(string.IsNullOrEmpty(code))
             {
                 var products = provider.GetAsync<List<Product>>(ApiUri.Get_ProductGetAllProd);
-                if (products == null || products.Result.Data == null)
+                if (products == null || products.Result == null || products.Result.Data == null)
                 {
                     return View();
                 }
@@ -23,7 +23,7 @@ namespace Seafood.Controllers
             {
                 var uri = ApiUri.Get_ProductGetProdByCode + string.Format($"?code={code}");
                 var products = provider.GetAsync<List<Product>>(uri);
-                if (products == null || products.Result.Data == null)
+                if (products == null || products.Result == null || products.Result.Data == null)
                 {
                     return View();
                 }

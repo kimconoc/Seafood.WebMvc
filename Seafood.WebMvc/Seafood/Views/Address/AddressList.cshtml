@@ -1,7 +1,11 @@
-﻿@using Domain.Constant
+﻿@using Domain.Constant;
+@using Domain.Extentions;
+@using Domain.Enums;
+@using Domain.Models.ResponseModel;
 @{
     Layout = "~/Views/Shared/_LayoutAccountManager.cshtml";
 }
+@model List<Addresse>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,63 +24,99 @@
             <i class="fa-regular fa-plus"></i>
             <span>Thêm địa chỉ mới</span>
         </div>
-        <div class="box-address-active box-address">
-            <div class="name">
-                <span>Phạm Văn Đức</span>
-                <span class="default-address">Địa chỉ được giao hàng</span>
+        @foreach (var item in Model)
+        {
+            var strTypeAddress = string.Empty;
+            if (item.IsAddressMain)
+            {
+                <div class="box-address-active box-address">
+                    <div class="name">
+                        <span>@item.FullName</span>
+                        <span class="default-address">Địa chỉ được giao hàng</span>
+                    </div>
+                    <div class="content">
+                        <span>
+                            Địa chỉ:
+                            <strong>
+                                @switch (item.TypeAddress)
+                                {
+                                    case (int)TypeAddressEnum.NhaRieng:
+                                        strTypeAddress = TypeAddressEnum.NhaRieng.GetDescription();
+                                        break;
+                                    case (int)TypeAddressEnum.CoQuan:
+                                        strTypeAddress = TypeAddressEnum.CoQuan.GetDescription();
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                @strTypeAddress
+                            </strong>
+                            @string.Format(item.Address + ", " + item.NameWard + ", " + item.NameDistrict + ", " + item.NameRegion)
+                        </span>
+                        <span>
+                            Số điện thoại: @item.Mobile
+                        </span>
+                    </div>
+                    <div class="click-continue">
+                        <button onclick="editAddress()" class="btn-core">Sửa</button>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="box-address">
+                    <div class="name">
+                        <span>@item.FullName</span>
+                    </div>
+                    <div class="content">
+                        <span>
+                            Địa chỉ:
+                            <strong>
+                                @switch (item.TypeAddress)
+                                {
+                                    case (int)TypeAddressEnum.NhaRieng:
+                                        strTypeAddress = TypeAddressEnum.NhaRieng.GetDescription();
+                                        break;
+                                    case (int)TypeAddressEnum.CoQuan:
+                                        strTypeAddress = TypeAddressEnum.CoQuan.GetDescription();
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                @strTypeAddress
+                            </strong>
+                            @string.Format(item.Address + ", " + item.NameWard + ", " + item.NameDistrict + ", " + item.NameRegion)
+                        </span>
+                        <span>
+                            Số điện thoại: @item.Mobile
+                        </span>
+                    </div>
+                    <div class="click-continue">
+                        <button onclick="editAddress()" class="btn-core">Sửa</button>
+                        <button class="btn-core-delete">Xóa</button>
+                    </div>
+                </div>
+            }
+        }
+        @if(Model.Count == 0)
+        {
+            <div class="box-no-data-found">
+                <img src="@Constant.Link_Empty_Order">
+                <span>Không có địa chỉ</span>
             </div>
-            <div class="content">
-                <span>
-                    Địa chỉ:
-                    <strong>
-                        Văn phòng
-                    </strong>
-                    Lô 14 phố Nguyễn Cảnh Dị, Phường Đại Kim, Quận Hoàng Mai, Hà Nội
-                </span>
-                <span>
-                    Địa chỉ: 0367823445
-                </span>
-            </div>
-            <div class="click-continue">
-                <button onclick="editAddress()" class="btn-core">Sửa</button>
-            </div>
-        </div>
-        <div class="box-address">
-            <div class="name">
-                <span>Phạm Văn Đức</span>
-            </div>
-            <div class="content">
-                <span>
-                    Địa chỉ:
-                    <strong>
-                        Văn phòng
-                    </strong>
-                    Lô 14 phố Nguyễn Cảnh Dị, Phường Đại Kim, Quận Hoàng Mai, Hà Nội
-                </span>
-                <span>
-                    Địa chỉ: 0367823445
-                </span>
-            </div>
-            <div class="click-continue">
-                <button onclick="editAddress()" class="btn-core">Sửa</button>
-                <button class="btn-core-delete">Xóa</button>
-            </div>
-        </div>
+        }
     </div>
     <script>
         //Setup
         //Setup
-        $(document).ready(function ()
-        {        
+        $(document).ready(function () {
         });
 
-        $('.box-add-new-address').click(function (e)
-        {
+        $('.box-add-new-address').click(function (e) {
             var dom = this;
             window.location = "/Address/AddressAdd";
         });
-        function editAddress()
-        {
+        function editAddress() {
             var dom = this;
             window.location = "/Address/AddressEdit";
         }

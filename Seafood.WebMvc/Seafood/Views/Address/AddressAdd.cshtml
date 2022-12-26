@@ -93,7 +93,7 @@
                 <div class="form-control-address-add">
                     <label class="label-address"></label>
                     <div style="margin-top:-10px;" class="box-check-radio-option">
-                        <input style="height:20px;width:20px;" type="checkbox" id="check_option_default" name="check_option_default">
+                        <input style="height:20px;width:20px;" type="checkbox" id="isAddressMain" name="check_option_default">
                         <label> Đặt làm địa chỉ giao hàng</label><br>
                     </div>
                 </div>
@@ -247,16 +247,25 @@
 
         $('.btn-core-accept').click(function (e) {
             debugger
-            var fullName = $('#fullName').val();
-            var mobile = $('#mobile').val();
+            var fullName = $('#fullName').val().trim();
+            var mobile = $('#mobile').val().trim();
             var codeRegion = $('#regionId').val();
             var codeDistrict = $('#districtId').val();
             var codeWard = $('#wardId').val();
             var typeAddress = $("input[type='radio'][name='radio_type_address']:checked").val();
+            if (document.getElementById("isAddressMain").checked)
+            {
+                var isAddressMain = true;
+            }
+            else
+            {
+                var isAddressMain = false;
+            }
             var address = $('#address').val();
 
             if (isNullOrEmpty(fullName) || isNullOrEmpty(mobile) || isNullOrEmpty(codeRegion) || isNullOrEmpty(codeDistrict) || isNullOrEmpty(codeWard))
             {
+                showToasinette_Error_Top_Right('Dữ liệu không được bỏ trống');
                 return;
             }
             ShowOverlay(true);
@@ -271,22 +280,38 @@
                     "codeDistrict": codeDistrict,
                     "codeWard": codeWard,
                     "typeAddress": typeAddress,
+                    "isAddressMain": isAddressMain,
                     "address": address,
                 },
                 url: "@Url.Action("CreateNewAddress", "Address")",
                 success: function (data)
                 {
                     hideOverlay();
-                    awesomeAlert({
-                        header: true,
-                        type: 'success',
-                        title: 'Thành công!',
-                        message: 'Cập nhật thông tin thành công.',
-                        //bgColor: '#2dd284',
-                        img: '/assets/images/icon/success.svg',
-                        buttonOK: 'Xong!',
-                        closeStyle: 'circle'
-                    }).then(res => window.location = "/Address/AddressList")
+                    if (data.Success && data.Data) {
+                        awesomeAlert({
+                            header: true,
+                            type: 'success',
+                            title: 'Thành công!',
+                            message: 'Thêm địa chỉ thành công.',
+                            //bgColor: '#2dd284',
+                            img: '/assets/images/icon/success.svg',
+                            buttonOK: 'Xong!',
+                            closeStyle: 'circle'
+                        }).then(res => window.location = "/Address/AddressList")
+                    }
+                    else {
+                        awesomeAlert({
+                            header: true,
+                            type: 'warning',
+                            title: 'Cảnh báo!',
+                            message: 'Không thành công.',
+                            //bgColor: '#2dd284',
+                            img: '/assets/images/icon/warning.svg',
+                            buttonOK: 'Oke!',
+                            closeStyle: 'circle'
+                        }).then(res => false)
+                    }
+                    
                 },
             })
         });

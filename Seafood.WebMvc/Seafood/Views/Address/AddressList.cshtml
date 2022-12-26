@@ -24,21 +24,21 @@
             <i class="fa-regular fa-plus"></i>
             <span>Thêm địa chỉ mới</span>
         </div>
-        @foreach (var item in Model)
-        {
+        @{
+            var obj = Model.FirstOrDefault(x => x.IsAddressMain);
             var strTypeAddress = string.Empty;
-            if (item.IsAddressMain)
+            if (obj != null)
             {
                 <div class="box-address-active box-address">
                     <div class="name">
-                        <span>@item.FullName</span>
+                        <span>@obj.FullName</span>
                         <span class="default-address">Địa chỉ được giao hàng</span>
                     </div>
                     <div class="content">
                         <span>
                             Địa chỉ:
                             <strong>
-                                @switch (item.TypeAddress)
+                                @switch (obj.TypeAddress)
                                 {
                                     case (int)TypeAddressEnum.NhaRieng:
                                         strTypeAddress = TypeAddressEnum.NhaRieng.GetDescription();
@@ -51,18 +51,22 @@
                                 }
                                 @strTypeAddress
                             </strong>
-                            @string.Format(item.Address + ", " + item.NameWard + ", " + item.NameDistrict + ", " + item.NameRegion)
+                            @string.Format(obj.Address + ", " + obj.NameWard + ", " + obj.NameDistrict + ", " + obj.NameRegion)
                         </span>
                         <span>
-                            Số điện thoại: @item.Mobile
+                            Số điện thoại: @obj.Mobile
                         </span>
                     </div>
                     <div class="click-continue">
-                        <button onclick="editAddress()" class="btn-core">Sửa</button>
+                        <button id="@obj.Id" onclick="editAddress(this)" class="btn-core">Sửa</button>
                     </div>
                 </div>
             }
-            else
+        }
+        @foreach (var item in Model)
+        {
+            strTypeAddress = string.Empty;
+            if (!item.IsAddressMain)
             {
                 <div class="box-address">
                     <div class="name">
@@ -92,13 +96,13 @@
                         </span>
                     </div>
                     <div class="click-continue">
-                        <button onclick="editAddress()" class="btn-core">Sửa</button>
-                        <button class="btn-core-delete">Xóa</button>
+                        <button id="@item.Id" onclick="editAddress(this)" class="btn-core">Sửa</button>
+                        <button id="@item.Id" class="btn-core-delete">Xóa</button>
                     </div>
                 </div>
             }
         }
-        @if(Model.Count == 0)
+        @if (Model.Count == 0)
         {
             <div class="box-no-data-found">
                 <img src="@Constant.Link_Empty_Order">
@@ -116,9 +120,9 @@
             var dom = this;
             window.location = "/Address/AddressAdd";
         });
-        function editAddress() {
-            var dom = this;
-            window.location = "/Address/AddressEdit";
+        function editAddress(dom) {
+            var id = dom.id;
+            window.location = "/Address/AddressEdit?addressId=" + id;
         }
 
     </script>

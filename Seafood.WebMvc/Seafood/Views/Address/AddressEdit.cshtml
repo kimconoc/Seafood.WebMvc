@@ -1,11 +1,16 @@
-﻿@using Domain.Constant
+﻿@using Domain.Constant;
+@using Domain.Models.ResponseModel;
+@using Domain.Enums;
 @{
     Layout = "~/Views/Shared/_LayoutAccountManager.cshtml";
 }
+@model Addresse
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="~/assets/css/demo/account-manager/address-edit.css" rel="stylesheet" />
+    <script src="~/assets/helpers/lib/select2/select2.min.js"></script>
+    <link href="~/assets/helpers/lib/select2/select2.css" rel="stylesheet" />
     <style>
         /*ghi đè class*/
         .box-address-edit .form-control-address-add .input-address:focus {
@@ -21,147 +26,81 @@
 <body>
     <div class="container-address-add">
         <div class="heading">
-            Thêm địa chỉ mới
+            <h3> Thêm địa chỉ mới</h3>
         </div>
         <div class="box-address-edit">
             <form>
                 <div class="form-control-address-add">
-                    <label class="label-address">Họ và tên:</label>
-                    <input required class="input-address" placeholder="Nhập họ và tên" maxlength="60" value="Phạm Văn Đức">
+                    <label class="label-address">@Model.FullName</label>
+                    <input id="fullName" class="input-address" placeholder="Nhập họ và tên" maxlength="60" value="Phạm Văn Đức">
                 </div>
-                <div class="form-control-address-add">
-                    <label class="label-address">Công ty:</label>
-                    <input class="input-address" placeholder="Nhập công ty" maxlength="60" value="">
-                </div>
+                @*<div class="form-control-address-add">
+                        <label class="label-address">Công ty:</label>
+                        <input class="input-address" placeholder="Nhập công ty" maxlength="60" value="">
+                    </div>*@
                 <div class="form-control-address-add">
                     <label class="label-address">Số điện thoại:</label>
-                    <input required class="input-address" placeholder="Nhập số điện thoại" maxlength="10" value="0367823445">
+                    <input id="mobile" class="input-address" placeholder="Nhập số điện thoại" maxlength="10" value="@Model.Mobile">
                 </div>
                 <div class="form-control-address-add">
                     <label class="label-address">Tỉnh/Thành phố:</label>
-                    <select required class="form-select" aria-label="Default select example">
-                        <option value="">Chọn Quận/Huyện</option>
-                        <option value="1">Quận Ba Đình</option>
-                        <option value="10">Quận Hoàn Kiếm</option>
-                        <option value="11">Quận Hai Bà Trưng</option>
-                        <option value="12">Quận Đống Đa</option>
-                        <option value="13">Quận Cầu Giấy</option>
-                        <option value="14">Quận Long Biên</option>
-                        <option value="2">Quận Hoàng Mai</option>
-                        <option value="3">Huyện Sóc Sơn</option>
-                        <option value="4">Quận Bắc Từ Liêm</option>
-                        <option value="5">Huyện Thanh Trì</option>
-                        <option value="6">Huyện Gia Lâm</option>
-                        <option value="676">Huyện Ba Vì</option>
-                        <option value="677">Huyện Chương Mỹ</option>
-                        <option value="678">Huyện Đan Phượng</option>
-                        <option value="679">Huyện Hoài Đức</option>
-                        <option value="680">Huyện Mỹ Đức</option>
-                        <option value="681">Huyện Phú Xuyên</option>
-                        <option value="682">Huyện Phúc Thọ</option>
-                        <option value="683">Huyện Quốc Oai</option>
-                        <option value="684">Huyện Thạch Thất</option>
-                        <option value="685">Huyện Thanh Oai</option>
-                        <option value="686">Huyện Thường Tín</option>
-                        <option value="687">Huyện Ứng Hòa</option>
-                        <option value="688">Huyện Mê Linh</option>
-                        <option value="689">Quận Hà Đông</option>
-                        <option value="690">Thị xã Sơn Tây</option>
-                        <option value="7">Huyện Đông Anh</option>
-                        <option value="724">Quận Nam Từ Liêm</option>
-                        <option value="8">Quận Thanh Xuân</option>
-                        <option value="9">Quận Tây Hồ</option>
+                    <select id="regionId">
+                        <option value="@Model.CodeRegion">@Model.NameRegion</option>
                     </select>
                 </div>
-                <div class="form-control-address-add">
-                    <label class="label-address">Quận huyện:</label>
-                    <select required class="form-select" aria-label="Default select example">
-                        <option value="">Chọn Quận/Huyện</option>
-                        <option value="1">Quận Ba Đình</option>
-                        <option value="10">Quận Hoàn Kiếm</option>
-                        <option value="11">Quận Hai Bà Trưng</option>
-                        <option value="12">Quận Đống Đa</option>
-                        <option value="13">Quận Cầu Giấy</option>
-                        <option value="14">Quận Long Biên</option>
-                        <option value="2">Quận Hoàng Mai</option>
-                        <option value="3">Huyện Sóc Sơn</option>
-                        <option value="4">Quận Bắc Từ Liêm</option>
-                        <option value="5">Huyện Thanh Trì</option>
-                        <option value="6">Huyện Gia Lâm</option>
-                        <option value="676">Huyện Ba Vì</option>
-                        <option value="677">Huyện Chương Mỹ</option>
-                        <option value="678">Huyện Đan Phượng</option>
-                        <option value="679">Huyện Hoài Đức</option>
-                        <option value="680">Huyện Mỹ Đức</option>
-                        <option value="681">Huyện Phú Xuyên</option>
-                        <option value="682">Huyện Phúc Thọ</option>
-                        <option value="683">Huyện Quốc Oai</option>
-                        <option value="684">Huyện Thạch Thất</option>
-                        <option value="685">Huyện Thanh Oai</option>
-                        <option value="686">Huyện Thường Tín</option>
-                        <option value="687">Huyện Ứng Hòa</option>
-                        <option value="688">Huyện Mê Linh</option>
-                        <option value="689">Quận Hà Đông</option>
-                        <option value="690">Thị xã Sơn Tây</option>
-                        <option value="7">Huyện Đông Anh</option>
-                        <option value="724">Quận Nam Từ Liêm</option>
-                        <option value="8">Quận Thanh Xuân</option>
-                        <option value="9">Quận Tây Hồ</option>
-                    </select>
+                <div id="box_district">
+                    <div class="form-control-address-add">
+                        <label class="label-address">Quận huyện:</label>
+                        <select id="districtId">
+                            <option value="@Model.CodeDistrict">@Model.NameDistrict</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="form-control-address-add">
-                    <label class="label-address">Phường xã:</label>
-                    <select required class="form-select" aria-label="Default select example">
-                        <option value="">Chọn Quận/Huyện</option>
-                        <option value="1">Quận Ba Đình</option>
-                        <option value="10">Quận Hoàn Kiếm</option>
-                        <option value="11">Quận Hai Bà Trưng</option>
-                        <option value="12">Quận Đống Đa</option>
-                        <option value="13">Quận Cầu Giấy</option>
-                        <option value="14">Quận Long Biên</option>
-                        <option value="2">Quận Hoàng Mai</option>
-                        <option value="3">Huyện Sóc Sơn</option>
-                        <option value="4">Quận Bắc Từ Liêm</option>
-                        <option value="5">Huyện Thanh Trì</option>
-                        <option value="6">Huyện Gia Lâm</option>
-                        <option value="676">Huyện Ba Vì</option>
-                        <option value="677">Huyện Chương Mỹ</option>
-                        <option value="678">Huyện Đan Phượng</option>
-                        <option value="679">Huyện Hoài Đức</option>
-                        <option value="680">Huyện Mỹ Đức</option>
-                        <option value="681">Huyện Phú Xuyên</option>
-                        <option value="682">Huyện Phúc Thọ</option>
-                        <option value="683">Huyện Quốc Oai</option>
-                        <option value="684">Huyện Thạch Thất</option>
-                        <option value="685">Huyện Thanh Oai</option>
-                        <option value="686">Huyện Thường Tín</option>
-                        <option value="687">Huyện Ứng Hòa</option>
-                        <option value="688">Huyện Mê Linh</option>
-                        <option value="689">Quận Hà Đông</option>
-                        <option value="690">Thị xã Sơn Tây</option>
-                        <option value="7">Huyện Đông Anh</option>
-                        <option value="724">Quận Nam Từ Liêm</option>
-                        <option value="8">Quận Thanh Xuân</option>
-                        <option value="9">Quận Tây Hồ</option>
-                    </select>
+                <div id="box_ward">
+                    <div class="form-control-address-add">
+                        <label class="label-address">Phường xã:</label>
+                        <select id="wardId">
+                            <option value="@Model.CodeWard">@Model.NameWard</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="form-control-address-add">
                     <label class="label-address">Địa chỉ:</label>
-                    <textarea required class="textarea-address" required name="street" rows="3" maxlength="200" placeholder="Nhập địa chỉ"></textarea>
+                    <textarea id="address" class="textarea-address" name="street" rows="3" maxlength="200" placeholder="Nhập địa chỉ">@Model.Address</textarea>
                 </div>
                 <div class="form-control-address-add">
                     <label class="label-address">Loại địa chỉ:</label>
                     <div class="box-check-radio-option">
-                        <input type="radio" id="option_address1" name="radio_option_address" value="0" checked="checked" />
-                        <label for="contactChoice1">Nhà riêng / Chung cư</label>
-                        <input type="radio" id="option_address2" name="radio_option_address" value="1" />
-                        <label for="contactChoice2">Cơ quan / Công ty</label>
+                        @switch (Model.TypeAddress)
+                        {
+                            case (int)TypeAddressEnum.NhaRieng:
+                                <input type="radio" id="type_address1" name="radio_type_address" value="@((int)TypeAddressEnum.NhaRieng)" checked="checked" />
+                                <label for="contactChoice1">Nhà riêng / Chung cư</label>
+                                <input type="radio" id="type_address2" name="radio_type_address" value="@((int)TypeAddressEnum.CoQuan)" />
+                                <label for="contactChoice2">Cơ quan / Công ty</label>
+                                break;
+                            case (int)TypeAddressEnum.CoQuan:
+                                <input type="radio" id="type_address1" name="radio_type_address" value="@((int)TypeAddressEnum.NhaRieng)" />
+                                <label for="contactChoice1">Nhà riêng / Chung cư</label>
+                                <input type="radio" id="type_address2" name="radio_type_address" value="@((int)TypeAddressEnum.CoQuan)" checked="checked" />
+                                <label for="contactChoice2">Cơ quan / Công ty</label>
+                                break;
+                            default:
+                                break;
+                        }
                     </div>
                 </div>
                 <div class="form-control-address-add">
                     <label class="label-address"></label>
                     <div style="margin-top:-10px;" class="box-check-radio-option">
-                        <input style="height:20px;width:20px;" type="checkbox" id="check_option_default" name="check_option_default">
+                        @if (Model.IsAddressMain)
+                        {
+                            <input style="height:20px;width:20px;" type="checkbox" id="isAddressMain" name="isAddressMain" checked="checked">
+                        }
+                        else
+                        {
+                            <input style="height:20px;width:20px;" type="checkbox" id="isAddressMain" name="isAddressMain">
+                        }
                         <label> Đặt làm địa chỉ giao hàng</label><br>
                     </div>
                 </div>
@@ -169,7 +108,7 @@
                     <label class="label-address"></label>
                     <div class="box-click-continue">
                         <button class="btn-core-cancle" type="button">Hủy bỏ</button>
-                        <button class="btn-core-accept" type="submit">Cập nhật</button>
+                        <button class="btn-core-accept" type="button">Cập nhật</button>
                     </div>
                 </div>
                 @*<input type="submit" value="121212" onclick="ok()">*@
@@ -177,10 +116,183 @@
         </div>
     </div>
     <script>
-        //Setup
-        //Setup
-        $(document).ready(function ()
-        {
+        $(document).ready(function () {
+            $("#regionId").select2({
+                placeholder: 'Chọn Tỉnh/Thành phố',
+                ajax:
+                {
+                    url: '/MasterData/GetListRegion',
+                    dataType: 'json',
+                    data: function (params) {
+                        return {
+                            codeRegion: '',
+                            codeDistrict: '',
+                            txt: params.term,
+                            defaultText: ''
+                        };
+                    },
+                    processResults: function (data) {
+                        var res = data.map(function (item) {
+                            return { id: item.CodeRegion, text: item.NameRegion + '' };
+                        });
+                        return {
+                            results: res
+                        };
+                    }
+                }
+            });
+            $("#districtId").select2({
+                placeholder: 'Chọn Quận/Huyện'
+            });
+            $("#wardId").select2({
+                placeholder: 'Chọn Phường/Xã'
+            });
+        });
+        $('#regionId').change(function () {
+            var boxDistrict = "<div class='form-control-address-add'>";
+            boxDistrict = boxDistrict + "<label class='label-address'>Quận huyện:</label>";
+            boxDistrict = boxDistrict + "<select onchange='districtChange()' id='districtId'></select>";
+            boxDistrict = boxDistrict + "</div>";
+            $('#box_district').html(boxDistrict);
+            $("#districtId").select2({
+                placeholder: 'Chọn Quận/Huyện',
+                ajax:
+                {
+                    url: '/MasterData/GetListDistrict',
+                    dataType: 'json',
+                    data: function (params) {
+                        return {
+                            codeRegion: $('#regionId').val(),
+                            codeDistrict: '',
+                            txt: params.term,
+                            defaultText: ''
+                        };
+                    },
+                    processResults: function (data) {
+                        var res = data.map(function (item) {
+                            return { id: item.CodeDistrict, text: item.NameDistrict + '' };
+                        });
+                        return {
+                            results: res
+                        };
+                    }
+                }
+            });
+
+            var boxWard = "<div class='form-control-address-add'>";
+            boxWard = boxWard + "<label class='label-address'>Phường xã:</label>";
+            boxWard = boxWard + "<select id='wardId'></select>";
+            boxWard = boxWard + "</div>";
+            $('#box_ward').html(boxWard);
+            $("#wardId").select2({
+                placeholder: 'Chọn Phường/Xã'
+            });
+        });
+        function districtChange() {
+            var boxWard = "<div class='form-control-address-add'>";
+            boxWard = boxWard + "<label class='label-address'>Phường xã:</label>";
+            boxWard = boxWard + "<select id='wardId'></select>";
+            boxWard = boxWard + "</div>";
+            $('#box_ward').html(boxWard);
+            $("#wardId").select2({
+                placeholder: 'Chọn Phường/Xã',
+                ajax:
+                {
+                    url: '/MasterData/GetListWard',
+                    dataType: 'json',
+                    data: function (params) {
+                        return {
+                            codeRegion: $('#regionId').val(),
+                            codeDistrict: $('#districtId').val(),
+                            txt: params.term,
+                            defaultText: ''
+                        };
+                    },
+                    processResults: function (data) {
+                        var res = data.map(function (item) {
+                            return { id: item.CodeWard, text: item.NameWard + '' };
+                        });
+                        return {
+                            results: res
+                        };
+                    }
+                }
+            });
+        }
+        $('.btn-core-cancle').click(function (e) {
+            window.location = "/Address/AddressList";
+        });
+        $('.btn-core-accept').click(function (e) {
+            debugger
+            var model = @Html.Raw(Json.Encode(Model));
+            var fullName = $('#fullName').val().trim();
+            var mobile = $('#mobile').val().trim();
+            var codeRegion = $('#regionId').val();
+            var codeDistrict = $('#districtId').val();
+            var codeWard = $('#wardId').val();
+            var typeAddress = $("input[type='radio'][name='radio_type_address']:checked").val();
+            if (document.getElementById("isAddressMain").checked)
+            {
+                var isAddressMain = true;
+            }
+            else
+            {
+                var isAddressMain = false;
+            }
+            var address = $('#address').val();
+
+            if (isNullOrEmpty(fullName) || isNullOrEmpty(mobile) || isNullOrEmpty(codeRegion) || isNullOrEmpty(codeDistrict) || isNullOrEmpty(codeWard) || isNullOrEmpty(address))
+            {
+                showToasinette_Error_Top_Right('Dữ liệu không được bỏ trống');
+                return;
+            }
+            ShowOverlay(true);
+            $.ajax({
+                type: "POST",
+                traditional: true,
+                data:
+                {
+                    "Id": model.Id,
+                    "fullName": fullName,
+                    "mobile": mobile,
+                    "codeRegion": codeRegion,
+                    "codeDistrict": codeDistrict,
+                    "codeWard": codeWard,
+                    "typeAddress": typeAddress,
+                    "isAddressMain": isAddressMain,
+                    "address": address,
+                },
+                url: "@Url.Action("UpdateAddress", "Address")",
+                success: function (data)
+                {
+                    hideOverlay();
+                    if (data.Success && data.Data) {
+                        awesomeAlert({
+                            header: true,
+                            type: 'success',
+                            title: 'Thành công!',
+                            message: 'Thêm địa chỉ thành công.',
+                            //bgColor: '#2dd284',
+                            img: '/assets/images/icon/success.svg',
+                            buttonOK: 'Xong!',
+                            closeStyle: 'circle'
+                        }).then(res => window.location = "/Address/AddressList")
+                    }
+                    else {
+                        awesomeAlert({
+                            header: true,
+                            type: 'warning',
+                            title: 'Cảnh báo!',
+                            message: data.Message,
+                            //bgColor: '#2dd284',
+                            img: '/assets/images/icon/warning.svg',
+                            buttonOK: 'Oke!',
+                            closeStyle: 'circle'
+                        }).then(res => false)
+                    }
+
+                },
+            })
         });
     </script>
 </body>

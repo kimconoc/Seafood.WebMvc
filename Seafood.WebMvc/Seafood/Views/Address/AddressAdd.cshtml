@@ -61,9 +61,9 @@
                     <select id="regionId"></select>
                     @*@Html.DropDownList("regionId", new SelectList(listRegion, "CodeRegion", "NameRegion", null))*@
                     @*<select required class="form-select" aria-label="Default select example">
-                            <option disabled selected value="">Chọn Tỉnh/Thành phố</option>
-                            <option value="1">Quận Ba Đình</option>
-                        </select>*@
+                          <option disabled selected value="">Chọn Tỉnh/Thành phố</option>
+                          <option value="1">Quận Ba Đình</option>
+                      </select>*@
                 </div>
                 <div id="box_district">
                     <div class="form-control-address-add">
@@ -246,7 +246,6 @@
         });
 
         $('.btn-core-accept').click(function (e) {
-            debugger
             var fullName = $('#fullName').val().trim();
             var mobile = $('#mobile').val().trim();
             var codeRegion = $('#regionId').val();
@@ -263,7 +262,7 @@
             }
             var address = $('#address').val();
 
-            if (isNullOrEmpty(fullName) || isNullOrEmpty(mobile) || isNullOrEmpty(codeRegion) || isNullOrEmpty(codeDistrict) || isNullOrEmpty(codeWard))
+            if (isNullOrEmpty(fullName) || isNullOrEmpty(mobile) || isNullOrEmpty(codeRegion) || isNullOrEmpty(codeDistrict) || isNullOrEmpty(codeWard) || isNullOrEmpty(address))
             {
                 showToasinette_Error_Top_Right('Dữ liệu không được bỏ trống');
                 return;
@@ -304,7 +303,7 @@
                             header: true,
                             type: 'warning',
                             title: 'Cảnh báo!',
-                            message: 'Không thành công.',
+                            message: data.Message,
                             //bgColor: '#2dd284',
                             img: '/assets/images/icon/warning.svg',
                             buttonOK: 'Oke!',

@@ -223,7 +223,6 @@
             window.location = "/Address/AddressList";
         });
         $('.btn-core-accept').click(function (e) {
-            debugger
             var model = @Html.Raw(Json.Encode(Model));
             var fullName = $('#fullName').val().trim();
             var mobile = $('#mobile').val().trim();

@@ -134,6 +134,7 @@
         {
             if (isConfirm)
             {
+                ShowOverlay(true);
                 $.ajax({
                     type: "POST",
                     traditional: true,
@@ -144,6 +145,7 @@
                     url: "@Url.Action("DeleteAddress", "Address")",
                     success: function (data)
                     {
+                        hideOverlay();
                         if (data.Success && data.Data) {
                             awesomeAlert({
                                 header: true,

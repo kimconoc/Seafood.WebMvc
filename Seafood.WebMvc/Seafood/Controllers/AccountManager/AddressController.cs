@@ -57,7 +57,7 @@ namespace Seafood.Controllers.AccountManager
             var isCreate = provider.PostAsync<bool>(ApiUri.Post_CreateAddressByUserId, model);
             if (isCreate == null || isCreate.Result == null || !isCreate.Result.Success)
             {
-                return View(Server_Error());
+                return Json(Server_Error());
             }
             return Json(Success_Request(isCreate.Result.Data));
         }
@@ -78,7 +78,7 @@ namespace Seafood.Controllers.AccountManager
             return View(result);
         }
         [HttpPost]
-        public ActionResult UpdateAddress(Guid Id,
+        public ActionResult UpdateAddress(Guid id,
             string fullName, string mobile, string codeRegion, string codeDistrict, string codeWard, int typeAddress, bool isAddressMain, string address)
         {
             if (string.IsNullOrEmpty(mobile) || !Helper.ValidPhoneNumer(mobile))
@@ -88,7 +88,7 @@ namespace Seafood.Controllers.AccountManager
             var userData = GetCurrentUser();
             dynamic model = new
             {
-                Id = Id,
+                Id = id,
                 UserId = userData.UserId,
                 FullName = fullName,
                 Mobile = mobile,
@@ -102,7 +102,7 @@ namespace Seafood.Controllers.AccountManager
             var isUpd = provider.PostAsync<bool>(ApiUri.Post_UpdateAddressByUserId, model);
             if (isUpd == null || isUpd.Result == null || !isUpd.Result.Success)
             {
-                return View(Server_Error());
+                return Json(Server_Error());
             }
             return Json(Success_Request(isUpd.Result.Data));
         }

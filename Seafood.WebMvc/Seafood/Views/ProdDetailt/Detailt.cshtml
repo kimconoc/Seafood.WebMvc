@@ -18,7 +18,7 @@
     <link href="~/assets/css/demo/detailt.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick-theme.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>*@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <style>
 
@@ -197,7 +197,7 @@
                     </div>
                 </div>
                 <div class="list-linked">
-                    <div id="@Model.ListProcessing.FirstOrDefault(x=> x.Note == code1).Id" class="linked-undefined">
+                    <div id="@Model.ListProcessing.FirstOrDefault(x=> x.Note == code1).Id" class="active-linked-undefined linked-undefined">
                         <strong>@Model.ListProcessing.FirstOrDefault(x => x.Note == code1).Name</strong>
                         <div class="active">
                             ✓
@@ -342,27 +342,27 @@
         </div>
     </div>
     <script>
-        //Setup
-        $('.slider-for').slick({
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            arrows: false,
-            fade: true,
-            asNavFor: '.slider-nav'
+        $(document).ready(function () {
+            $('.slider-for').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: false,
+                fade: true,
+                asNavFor: '.slider-nav'
+            });
+            $('.slider-nav').slick({
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                asNavFor: '.slider-for',
+                dots: true,
+                focusOnSelect: true
+            });
+            $('a[data-slide]').click(function (e) {
+                e.preventDefault();
+                var slideno = $(this).data('slide');
+                $('.slider-nav').slick('slickGoTo', slideno - 1);
+            });
         });
-        $('.slider-nav').slick({
-            slidesToShow: 3,
-            slidesToScroll: 1,
-            asNavFor: '.slider-for',
-            dots: true,
-            focusOnSelect: true
-        });
-        $('a[data-slide]').click(function (e) {
-            e.preventDefault();
-            var slideno = $(this).data('slide');
-            $('.slider-nav').slick('slickGoTo', slideno - 1);
-        });
-        //Setup
         $('.linked-undefined').click(function (e) {
             var dom = this;
             if (dom.innerHTML.indexOf('active') >= 0)
@@ -373,6 +373,7 @@
             for (var i = 0; i < model.ListProcessing.length; i++)
             {
                 const element = document.getElementById(model.ListProcessing[i].Id);
+                element.classList.remove('active-linked-undefined');
                 if (element.innerHTML.indexOf('active') >= 0)
                 {
                     if (model.ListProcessing[i].Note == '@code1') {
@@ -399,8 +400,73 @@
                                    ✓
                                </div>
                               `;
+            dom.classList.add('active-linked-undefined');
             dom.innerHTML = dom.innerHTML + htmlActive;
         });
+
+        $('.order-add-to-cart').click(function (e) {
+            var prompt = new PromptBoxes();
+            prompt.confirm((isConfirm) => executeConfirm(isConfirm), 'Bạn muốn thêm sản phẩm vào giỏ hàng?', 'Đồng ý', 'Hủy bỏ');
+        });
+
+        function executeConfirm(isConfirm)
+        {
+            if (isConfirm) {
+                var productId = "";
+                var processingId = "";
+                var model = @Html.Raw(Json.Encode(Model));
+                for (var i = 0; i < model.ListProcessing.length; i++)
+                {
+                    const element = document.getElementById(model.ListProcessing[i].Id);
+                    if (element.innerHTML.indexOf('active') >= 0)
+                    {
+                        processingId = model.ListProcessing[i].Id;
+                        break;
+                    }
+                }
+                productId = model.Id;
+                ShowOverlay(true);
+                $.ajax({
+                    type: "POST",
+                    traditional: true,
+                    data:
+                    {
+                        "productId": productId,
+                        "processingId": processingId,
+                    },
+                    url: "@Url.Action("AddProductToBasket", "ProdDetailt")",
+                    success: function (data)
+                    {
+                        hideOverlay();
+                        if (data.Success && data.Data) {
+                            awesomeAlert({
+                                header: true,
+                                type: 'success',
+                                title: 'Thành công!',
+                                message: 'Thêm địa chỉ thành công.',
+                                //bgColor: '#2dd284',
+                                img: '/assets/images/icon/success.svg',
+                                buttonOK: 'Xong!',
+                                closeStyle: 'circle'
+                            }).then(res => window.location = "/YourBasket/Basket")
+                        }
+                        else {
+                            awesomeAlert({
+                                header: true,
+                                type: 'error',
+                                title: 'Đã có lỗi!',
+                                message: data.Message,
+                                //bgColor: '#2dd284',
+                                img: '/assets/images/icon/error.svg',
+                                buttonOK: 'Oke!',
+                                closeStyle: 'circle'
+                            }).then(res => false)
+                        }
+
+                    },
+                })
+            }
+        }
 
         function selectedRegion(dom)
         {

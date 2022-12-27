@@ -32,6 +32,8 @@ namespace Domain.Constant
         public const string Post_UpdateAddressByUserId = "api/Address/UpdateAddressByUserId";
         public const string Delete_DeleteAddressByUserId = "api/Address/DeleteAddressByUserId";
 
+        public const string Post_AddProductToBasket = "api/Basket/AddProductToBasket";
+
         #region MasterData
         public const string Get_GetInfoShopSeeFood = "api/MasterData/GetInfoShopSeeFood";
         public const string Get_GetListSeafoodPromotion = "api/MasterData/GetListSeafoodPromotion";

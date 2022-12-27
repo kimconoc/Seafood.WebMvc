@@ -405,6 +405,12 @@
         });
 
         $('.order-add-to-cart').click(function (e) {
+            var user = '@Seafood.MemCached.Authenticator.CurrentUser(new HttpContextWrapper(HttpContext.Current))';
+            if (isNullOrEmpty(user))
+            {
+                showToasinette_Error_Top_Right('Bạn chưa đăng nhập');
+                return;
+            }
             var prompt = new PromptBoxes();
             prompt.confirm((isConfirm) => executeConfirm(isConfirm), 'Bạn muốn thêm sản phẩm vào giỏ hàng?', 'Đồng ý', 'Hủy bỏ');
         });
@@ -451,11 +457,15 @@
                             }).then(res => window.location = "/YourBasket/Basket")
                         }
                         else {
+                            var message = "Đã có lỗi xảy ra."
+                            if (!isNullOrEmpty(data.Message)) {
+                                message = data.Message;
+                            }
                             awesomeAlert({
                                 header: true,
                                 type: 'error',
                                 title: 'Đã có lỗi!',
-                                message: data.Message,
+                                message: message,
                                 //bgColor: '#2dd284',
                                 img: '/assets/images/icon/error.svg',
                                 buttonOK: 'Oke!',

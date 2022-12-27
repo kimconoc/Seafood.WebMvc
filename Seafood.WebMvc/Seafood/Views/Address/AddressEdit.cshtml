@@ -278,11 +278,15 @@
                         }).then(res => window.location = "/Address/AddressList")
                     }
                     else {
+                        var message = "Đã có lỗi xảy ra."
+                        if (!isNullOrEmpty(data.Message)) {
+                            message = data.Message;
+                        }
                         awesomeAlert({
                             header: true,
                             type: 'warning',
                             title: 'Cảnh báo!',
-                            message: data.Message,
+                            message: message,
                             //bgColor: '#2dd284',
                             img: '/assets/images/icon/warning.svg',
                             buttonOK: 'Oke!',

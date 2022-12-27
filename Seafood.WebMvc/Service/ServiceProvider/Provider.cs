@@ -96,5 +96,25 @@ namespace Service.ServiceProvider
             }
             return default;
         }
+
+        public Task<ResponseBase<bool>> DeleteAsync(string uri, string token = "")
+        {
+            uri = ApiEndPoint + uri;
+            try
+            {
+                Uri urlapi = new Uri(uri);
+                using (var wc = new HttpClient())
+                {
+                    wc.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
+                    var jsonResult = wc.DeleteAsync($@"{urlapi}").Result.Content.ReadAsStringAsync().Result;
+                    return Task.Run(() => JsonConvert.DeserializeObject<ResponseBase<bool>>(jsonResult, _serializerSettings));
+                }
+            }
+            catch (Exception ex)
+            {
+                FileHelper.GeneratorFileByDay(ex.ToString(), MethodBase.GetCurrentMethod().Name);
+            }
+            return default;
+        }
     }
 }

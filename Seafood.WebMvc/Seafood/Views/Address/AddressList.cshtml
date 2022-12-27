@@ -97,7 +97,7 @@
                     </div>
                     <div class="click-continue">
                         <button id="@item.Id" onclick="editAddress(this)" class="btn-core">Sửa</button>
-                        <button id="@item.Id" class="btn-core-delete">Xóa</button>
+                        <button id="@item.Id" onclick="deleteAddress(this)" class="btn-core-delete">Xóa</button>
                     </div>
                 </div>
             }
@@ -124,7 +124,54 @@
             var id = dom.id;
             window.location = "/Address/AddressEdit?addressId=" + id;
         }
-
+        function deleteAddress(dom)
+        {
+            var addressId = dom.id;
+            var prompt = new PromptBoxes();
+            prompt.confirm((isConfirm) => executeConfirm(isConfirm, addressId), 'Bạn muốn xóa địa chỉ này?', 'Đồng ý', 'Hủy bỏ');
+        }
+        function executeConfirm(isConfirm, addressId)
+        {
+            if (isConfirm)
+            {
+                $.ajax({
+                    type: "POST",
+                    traditional: true,
+                    data:
+                    {
+                        "addressId": addressId,
+                    },
+                    url: "@Url.Action("DeleteAddress", "Address")",
+                    success: function (data)
+                    {
+                        if (data.Success && data.Data) {
+                            awesomeAlert({
+                                header: true,
+                                type: 'success',
+                                title: 'Thành công!',
+                                message: 'Xóa địa chỉ thành công.',
+                                //bgColor: '#2dd284',
+                                img: '/assets/images/icon/success.svg',
+                                buttonOK: 'Xong!',
+                                closeStyle: 'circle'
+                            }).then(res => window.location = "/Address/AddressList")
+                        }
+                        else {
+                            awesomeAlert({
+                                header: true,
+                                type: 'error',
+                                title: 'Đã có lỗi!',
+                                message: data.Message,
+                                //bgColor: '#2dd284',
+                                img: '/assets/images/icon/error.svg',
+                                buttonOK: 'Oke!',
+                                closeStyle: 'circle'
+                            }).then(res => false)
+                        }
+                    },
+                })
+            }
+        }
     </script>
 </body>
 </html>

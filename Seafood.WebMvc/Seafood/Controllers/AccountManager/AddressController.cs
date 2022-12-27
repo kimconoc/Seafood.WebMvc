@@ -106,5 +106,16 @@ namespace Seafood.Controllers.AccountManager
             }
             return Json(Success_Request(isUpd.Result.Data));
         }
+        [HttpPost]
+        public ActionResult DeleteAddress(Guid addressId)
+        {
+            var uri = ApiUri.Delete_DeleteAddressByUserId + string.Format($"?addressId={addressId}");
+            var isdel = provider.DeleteAsync(uri);
+            if (isdel == null || isdel.Result == null || !isdel.Result.Success)
+            {
+                return View(Server_Error());
+            }
+            return Json(Success_Request(isdel.Result.Data));
+        }
     }
 }

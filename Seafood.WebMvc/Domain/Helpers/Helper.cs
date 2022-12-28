@@ -27,11 +27,11 @@ namespace Domain.Helpers
             }
             else if (strPrice.Length == 7)
             {
-                result = strPrice.Substring(0, 1) + "." + strPrice.Substring(1, 3) + "." + strPrice.Substring(4);
+                result = strPrice.Substring(0, 1) + "." + strPrice.Substring(1, 4) + "." + strPrice.Substring(4);
             }
             else if (strPrice.Length == 8)
             {
-                result = strPrice.Substring(0, 2) + "." + strPrice.Substring(2, 3) + "." + strPrice.Substring(5);
+                result = strPrice.Substring(0, 2) + "." + strPrice.Substring(2, 5) + "." + strPrice.Substring(5);
             }
             return result + " đ";
         }

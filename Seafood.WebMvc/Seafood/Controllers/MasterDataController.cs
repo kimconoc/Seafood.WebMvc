@@ -76,5 +76,21 @@ namespace Seafood.Controllers
 
             return Json(lstResult, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult GetListPromotionByProdId(Guid prodId)
+        {
+            if (prodId == null)
+                return Json(Bad_Request());
+
+            var lstResult = new List<ProdPromotion>();
+            var uri = ApiUri.Get_GetListPromotionByProdId + string.Format($"?prodId={prodId}");
+            var result = provider.GetAsync<List<ProdPromotion>>(uri);
+            if (result != null && result.Result != null && result.Result.Data != null)
+            {
+                lstResult = result.Result.Data;
+            }
+
+            return Json(Success_Request(lstResult));
+        }
     }
 }

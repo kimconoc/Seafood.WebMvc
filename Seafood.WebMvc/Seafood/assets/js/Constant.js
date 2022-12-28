@@ -39,6 +39,27 @@ function isNullOrEmpty(value)
 
 }
 
+function fomatToTypeMoney(price) {
+    var strPrice = price + "";
+    var result = "";
+    if (strPrice.length == 4) {
+        result = strPrice.substring(0, 1) + "." + strPrice.substring(1);
+    }
+    else if (strPrice.length == 5) {
+        result = strPrice.substring(0, 2) + "." + strPrice.substring(2);
+    }
+    else if (strPrice.length == 6) {
+        result = strPrice.substring(0, 3) + "." + strPrice.substring(3);
+    }
+    else if (strPrice.length == 7) {
+        result = strPrice.substring(0, 1) + "." + strPrice.substring(1, 4) + "." + strPrice.substring(4);
+    }
+    else if (strPrice.length == 8) {
+        result = strPrice.substring(0, 2) + "." + strPrice.substring(2, 5) + "." + strPrice.substring(5);
+    }
+    return result + " đ";
+}
+
 /*Notification-Toastinette*/
 // position
 // "top - left".

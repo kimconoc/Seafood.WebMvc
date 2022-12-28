@@ -56,6 +56,7 @@
     <Compile Include="Models\BaseModel\VBaseModel.cs" />
     <Compile Include="Models\ParameterModel\LoginViewModel.cs" />
     <Compile Include="Models\ResponseModel\Addresse.cs" />
+    <Compile Include="Models\ResponseModel\Basket.cs" />
     <Compile Include="Models\ResponseModel\Image.cs" />
     <Compile Include="Models\ResponseModel\ProdDetailt.cs" />
     <Compile Include="Models\ResponseModel\Product.cs" />

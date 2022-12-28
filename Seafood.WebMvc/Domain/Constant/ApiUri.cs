@@ -33,11 +33,13 @@ namespace Domain.Constant
         public const string Delete_DeleteAddressByUserId = "api/Address/DeleteAddressByUserId";
 
         public const string Post_AddProductToBasket = "api/Basket/AddProductToBasket";
+        public const string Get_GetBasketByUserId = "api/Basket/GetBasketByUserId";
 
         #region MasterData
         public const string Get_GetInfoShopSeeFood = "api/MasterData/GetInfoShopSeeFood";
         public const string Get_GetListSeafoodPromotion = "api/MasterData/GetListSeafoodPromotion";
         public const string Get_GetListRegion = "api/MasterData/GetListRegion";
+        public const string Get_GetListPromotionByProdId = "api/MasterData/GetListPromotionByProdId";
         #endregion MasterData
     }
 }

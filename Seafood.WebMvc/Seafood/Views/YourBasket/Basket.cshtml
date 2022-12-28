@@ -1,9 +1,13 @@
-﻿@using Service.Helpers
+﻿@using Service.Helpers;
+@using Domain.Models.ResponseModel;
+@using System.Globalization;
+@using Domain.Constant;
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     var masterDataHelper = new MasterDataHelper();
     var listSeafoodPromotion = masterDataHelper.GetListSeafoodPromotion();
 }
+@model List<Basket>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +19,7 @@
             outline: none;
             outline-offset: 0;
         }
+
         .popover-title {
             background-color: #dee8fc;
         }
@@ -54,82 +59,99 @@
                         }
                     </div>
                 </div>
-                <div class="basket-header">
-                    <div id="checkbox_all_item" style="width: 18px;margin-right:12px;" class="checkbox-fake">
-                    </div>
-                    <div class="info-prod-basket">
-                        Tất cả (1 sản phẩm)
-                    </div>
-                    <div class="price-prod-basket" style="flex: 1.25;">
-                        Đơn giá
-                    </div>
-                    <div style="flex: 1;">
-                        Số lượng
-                    </div>
-                    <div class="price_main-prod-basket" style="flex: 1.25;">
-                        Thành tiền
-                    </div>
-                    <div class="remote-prod-basket" style="width: auto">
-                        <i data-toggle="tooltip" data-placement="top" title="Xóa mục đã chọn" style="font-size: 18px; cursor: pointer;" class="fa-regular fa-trash-can"></i>
-                    </div>
-                </div>
-                <div class="box-basket-content">
-                    <div class="basket-content">
-                        <div id="checkbox1" style="width: 18px;" class="checkbox-fake">
+                @{
+                    if (Model.Count == 0)
+                    {
+                        <div class="box-no-data-found">
+                            <img src="@Constant.Link_Empty_Order">
+                            <span>Không có sản phẩm</span>
                         </div>
-                        <div class="info-prod-basket">
-                            <img src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/4/h/4h43.png" alt="Alternate Text" />
-                            <div class="info-prod">
-                                <div class="name-prod">
-                                    <strong>Loại tôm 1kg 40</strong>
+                    }
+                    else
+                    {
+                        <div class="basket-header">
+                            <div id="checkbox_all_item" style="width: 18px;margin-right:12px;" class="checkbox-fake">
+                            </div>
+                            <div class="info-prod-basket">
+                                Tất cả (1 sản phẩm)
+                            </div>
+                            <div class="price-prod-basket" style="flex: 1.25;">
+                                Đơn giá
+                            </div>
+                            <div style="flex: 1;">
+                                Số lượng
+                            </div>
+                            <div class="price_main-prod-basket" style="flex: 1.25;">
+                                Thành tiền
+                            </div>
+                            <div class="remote-prod-basket" style="width: auto">
+                                <i data-toggle="tooltip" data-placement="top" title="Xóa mục đã chọn" style="font-size: 18px; cursor: pointer;" class="fa-regular fa-trash-can"></i>
+                            </div>
+                        </div>
+                    }
+                }
+                @{
+                    foreach (var item in Model)
+                    {
+                        <div class="box-basket-content">
+                            <div class="basket-content">
+                                <div id="checkbox1" style="width: 18px;" class="checkbox-fake">
                                 </div>
-                                <span class="descPromotion">Tôm được bảo chất lượng tươi ngon Tôm được bảo chất lượng tươi ngon tươi ngon</span>
-                                <div class="linked-undefined">
-                                    <strong>chế biến lẩu</strong>
-                                    @*<span>30.000 đ</span>*@
-                                    <div class="active">
-                                        ✓
+                                <div class="info-prod-basket">
+                                    <img src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/4/h/4h43.png" alt="Alternate Text" />
+                                    <div class="info-prod">
+                                        <div class="name-prod">
+                                            <strong>@item.ProductName</strong>
+                                        </div>
+                                        <span class="descPromotion">@item.ProductDescription</span>
+                                        <div class="linked-undefined">
+                                            <strong>@item.ProdProcessingName</strong>
+                                            @*<span>30.000 đ</span>*@
+                                            <div class="active">
+                                                ✓
+                                            </div>
+                                        </div>
+                                        <!-- Popover product-promotion -->
+                                        <a class="prod-promotion-popover" data-html="true" data-placement="bottom" data-popover-content="#@item.Id" data-toggle="popover" href="#" data-trigger="focus" tabindex="0">
+                                            Khuyến mãi
+                                            <i class="fa-sharp fa-solid fa-chevron-down"></i>
+                                        </a>
+                                    </div>
+
+                                </div>
+                                <div class="price-prod-basket" style="flex:1.25;">
+                                    <div class="box-info__box-price">
+                                        <div class="product__price--show">
+                                            @string.Format(new CultureInfo("de-DE"), "{0:N0}", item.PriceSale) đ
+                                        </div>
+                                        <div class="product__price--through">
+                                            @string.Format(new CultureInfo("de-DE"), "{0:N0}", item.Price) đ
+                                        </div>
                                     </div>
                                 </div>
-                                <!-- Popover product-promotion -->
-                                <a class="prod-promotion-popover" data-html="true" data-placement="bottom" data-popover-content="#prod_promotion_popover" data-toggle="popover" href="#" data-trigger="focus" tabindex="0">
-                                    Khuyến mãi
-                                    <i class="fa-sharp fa-solid fa-chevron-down"></i>
-                                </a>
-                            </div>
-
-                        </div>
-                        <div class="price-prod-basket" style="flex:1.25;">
-                            <div class="box-info__box-price">
-                                <div class="product__price--show">
-                                    1.500.000 đ
+                                <div class="box-amonnt-prod-basket" style="flex: 1;">
+                                    <div class="amonnt-prod-basket">
+                                        <i id="@string.Format("final_quantity_reduce" + item.Id)" onclick="finalQuantityReduce(this)" class="fa-solid fa-minus"></i>
+                                        <input id="@string.Format("final_quantity" + item.Id)" disabled type="tel" value="1">
+                                        <i id="@string.Format("final_quantity_plus" + item.Id)" onclick="finalQuantityPlus(this)" class="fa-regular fa-plus"></i>
+                                    </div>
                                 </div>
-                                <div class="product__price--through">
-                                    1.800.000 đ
+                                <div class="price_main-prod-basket" style="flex: 1.25;">
+                                    <div id="@string.Format("final_price" + item.Id)" class="product__final-prices">
+                                        @string.Format(new CultureInfo("de-DE"), "{0:N0}", item.PriceSale) đ
+                                    </div>
+                                </div>
+                                <div class="remote-prod-basket" style="width: auto">
+                                    <i style="font-size: 17px; cursor: pointer;" class="fa-regular fa-trash-can"></i>
                                 </div>
                             </div>
                         </div>
-                        <div class="box-amonnt-prod-basket" style="flex: 1;">
-                            <div class="amonnt-prod-basket">
-                                <i class="fa-solid fa-minus"></i>
-                                <input disabled type="tel" value="1">
-                                <i class="fa-regular fa-plus"></i>
-                            </div>
-                        </div>
-                        <div class="price_main-prod-basket" style="flex: 1.25;">
-                            <div class="product__final-prices">
-                                1.500.000 đ
-                            </div>
-                        </div>
-                        <div class="remote-prod-basket" style="width: auto">
-                            <i style="font-size: 17px; cursor: pointer;" class="fa-regular fa-trash-can"></i>
-                        </div>
-                    </div>
-                </div>
+                    }
+                }
             </div>
 
-            <div class="col-md-4 col-sm-12"> 
-                <div class="box-address-ship" >
+            <div class="col-md-4 col-sm-12">
+                <div class="box-address-ship">
                     <div class="block-header">
                         <h4 class="block-header__title">Giao tới</h4>
                         <a class="block-header__nav" href="#">Thay đổi</a>
@@ -146,9 +168,10 @@
                 <div class="box-your-voucher">
                     <div class="voucher-header">
                         <strong>Voucher của bạn</strong>
-                        <span>bạn có
-                        <strong>1</strong>
-                        voucher
+                        <span>
+                            bạn có
+                            <strong>1</strong>
+                            voucher
                         </span>
                     </div>
                     <div class="show-more">
@@ -159,17 +182,17 @@
                 <div class="box-your-price">
                     <div class="prices__item">
                         <span class="text-price">Tạm tính</span>
-                        <span class="number-price">150.000 đ</span>
+                        <span id="temporary_price" class="number-price">150.000 đ</span>
                     </div>
                     <div class="prices__item">
                         <span class="text-price-promotion">Giảm giá</span>
-                        <span class="number-price-promotion">30.000 đ</span>
+                        <span id="discount_price" class="number-price-promotion">30.000 đ</span>
                     </div>
                     <div class="slim-line">
                     </div>
                     <div style=" margin-top: 10px;" class="prices__item">
                         <span class="text-price-value">Tổng tiền</span>
-                        <span class="number-price-value">120.000 đ</span>
+                        <span id="total_money" class="number-price-value">120.000 đ</span>
                     </div>
                     <div class="asa-summary-disclaimer">
                         * Seafood sẽ liên hệ với bạn để nắm được các chính sách kèm theo khi mua sản phẩm.
@@ -185,85 +208,55 @@
         </div>
     </div>
     <!--Content Popover product-promotion -->
-    <div class="hidden d-none" id="prod_promotion_popover">
-        <div class="popover-heading">
-            Khuyến mãi từ sản phẩm
-        </div>
-        <div class="popover-body">
-            <div class="box-product-promotion-content">
-                <div class="box-product-promotion-number">
-                    1
-                </div>
-                <div class="box-product-promotion-detail">
-                    Cửa hàng đang có chương trường khuyến mại giảm giá 10% khi mua với hóa đơn từ 1000.000 đ
-                </div>
+    @{
+        foreach (var item in Model)
+        {
+            <div class="hidden d-none" id="@item.Id">
             </div>
-            <div class="box-product-promotion-content">
-                <div class="box-product-promotion-number">
-                    2
-                </div>
-                <div class="box-product-promotion-detail">
-                    Cửa hàng đang có chương trường khuyến mại giảm giá 10% khi mua với hóa đơn từ 1000.000 đ
-                </div>
-            </div>
-            <div class="box-product-promotion-content">
-                <div class="box-product-promotion-number">
-                    3
-                </div>
-                <div class="box-product-promotion-detail">
-                    Cửa hàng đang có chương trường khuyến mại giảm giá 10% khi mua với hóa đơn từ 1000.000 đ
-                </div>
-            </div>
-        </div>
-    </div>
-    <script>
-        //Setup
-        $(function () {
+        }
+    }
+<script>
+    $(document).ready(function () {
+            showProductPromotion();
+            $(function () {
 
-            $("[data-toggle=popover]").popover({
-                html: true,
-                content: function (e) {
-                    var content = $(this).attr("data-popover-content");
-                    return $(content).children(".popover-body").html();
-                },
-                title: function (e) {
-                    var title = $(this).attr("data-popover-content");
-                    return $(title).children(".popover-heading").html();
-                }
+                $("[data-toggle=popover]").popover({
+                    html: true,
+                    content: function (e) {
+                        var content = $(this).attr("data-popover-content");
+                        return $(content).children(".popover-body").html();
+                    },
+                    title: function (e) {
+                        var title = $(this).attr("data-popover-content");
+                        return $(title).children(".popover-heading").html();
+                    }
+                });
+
             });
 
+            $('.prod-promotion-popover').click(function (e) {
+                e.preventDefault(); return true;
+            });
         });
 
-        $('.prod-promotion-popover').click(function (e) {
-            e.preventDefault(); return true;
-        });
-        //Setup
-
-        $('.checkbox-fake').click(function (e)
-        {
+    $('.checkbox-fake').click(function (e) {
             var dom = this;
-            if (dom.id == "checkbox_all_item")
-            {
-                for (var i = 1; i <= 3; i++)
-                {
+            if (dom.id == "checkbox_all_item") {
+                for (var i = 1; i <= 3; i++) {
                     var id = "checkbox" + i;
                     const elementById = document.getElementById(id);
-                    if (dom.innerText == "✓")
-                    {
+                    if (dom.innerText == "✓") {
                         elementById.innerText = "";
-                        elementById.style.backgroundColor = "transparent" 
+                        elementById.style.backgroundColor = "transparent"
                     }
-                    else
-                    {
+                    else {
                         elementById.innerText = "✓";
                         elementById.style.backgroundColor = "rgb(7, 171, 226)"
                     }
                 }
             }
-            else
-            {
-                if (dom.innerText == "")
-                {
+            else {
+                if (dom.innerText == "") {
                     dom.innerText = "✓";
                     dom.style.backgroundColor = "rgb(7, 171, 226)"
                 }
@@ -274,42 +267,134 @@
             }
             var checkFull = 0;
             const elementcheckbox_all_item = document.getElementById("checkbox_all_item");
-            for (var i = 1; i <= 3; i++)
-            {
+            for (var i = 1; i <= 3; i++) {
                 var id = "checkbox" + i;
                 const elementById = document.getElementById(id);
-                if (elementById.innerText == "✓")
-                {
+                if (elementById.innerText == "✓") {
                     checkFull = checkFull + 1;
                 }
             }
-            if (checkFull == 3)
-            {
+            if (checkFull == 3) {
                 elementcheckbox_all_item.innerText = "✓";
                 elementcheckbox_all_item.style.backgroundColor = "rgb(7, 171, 226)"
             }
-            else
-            {
+            else {
                 elementcheckbox_all_item.innerText = "";
                 elementcheckbox_all_item.style.backgroundColor = "transparent"
             }
         });
-
-        $('.box-more-promotion-title div span').click(function (e) {
+    $('.box-more-promotion-title div span').click(function (e) {
             var dom = this;
-            if (dom.innerHTML.indexOf('Mở rộng') >= 0)
-            {
+            if (dom.innerHTML.indexOf('Mở rộng') >= 0) {
                 dom.innerText = "Thu lại";
                 const element = document.getElementById("showSeafoodPromotion_icon");
                 element.className = "fa fa-angle-double-up";
             }
-            else
-            {
+            else {
                 dom.innerText = "Mở rộng";
                 const element = document.getElementById("showSeafoodPromotion_icon");
                 element.className = "fa fa-angle-double-down";
             }
         });
-    </script>
+    function showProductPromotion() {
+        var model = @Html.Raw(Json.Encode(Model));
+        for (var i = 0; i < model.length; i++) {
+            $.ajax({
+                type: "POST",
+                traditional: true,
+                async: false,
+                data:
+                {
+                    "prodId": model[i].ProductId,
+                },
+                url: "@Url.Action("GetListPromotionByProdId", "MasterData")",
+                success: function (data)
+                {
+                    if (data.Data != null && data.Success)
+                    {
+                        var htmlPopover = "<div class='popover-heading'>";
+                        htmlPopover = htmlPopover + "Khuyến mãi từ sản phẩm";
+                        htmlPopover = htmlPopover + "</div>";
+                        htmlPopover = htmlPopover + "<div class='popover-body'>";
+
+                        var index = 0;
+                        for (var j = 0; j < data.Data.length; j++)
+                        {
+                            index = index + 1;
+                            htmlPopover = htmlPopover + "<div class='box-product-promotion-content'>";
+                            htmlPopover = htmlPopover + "<div class='box-product-promotion-number'>";
+                            htmlPopover = htmlPopover + index;
+                            htmlPopover = htmlPopover + "</div>";
+                            htmlPopover = htmlPopover + "<div class='box-product-promotion-detail'>";
+                            htmlPopover = htmlPopover + data.Data[j].Content;
+                            htmlPopover = htmlPopover + "</div>";
+                            htmlPopover = htmlPopover + "</div>";
+                        }
+
+                        htmlPopover = htmlPopover + "</div>";
+                        const element = document.getElementById(model[i].Id);
+                        element.innerHTML = htmlPopover;
+                    }
+                },
+            })
+        }
+    }
+
+    function finalQuantityReduce(dom) {
+        debugger
+        var idBasket;
+        var finalQuantityId;
+        
+        var model = @Html.Raw(Json.Encode(Model));
+        for (var i = 0; i < model.length; i++) {
+            if (dom.id.indexOf(model[i].Id) >= 0) {
+                idBasket = model[i].Id;
+                finalQuantityId = "final_quantity" + model[i].Id;
+                break;
+            }
+        }
+        var quantity = document.getElementById(finalQuantityId).value;
+        if (Number(quantity) <= 1) {
+            return;
+        }
+        quantity = Number(quantity) - 1;
+        document.getElementById(finalQuantityId).value = quantity;
+        updateAmount(quantity, idBasket);
+    }
+    function finalQuantityPlus(dom) {
+        debugger
+        var idBasket;
+        var finalQuantityId;
+        
+        var model = @Html.Raw(Json.Encode(Model));
+        for (var i = 0; i < model.length; i++) {
+            if (dom.id.indexOf(model[i].Id) >= 0) {
+                idBasket = model[i].Id;
+                finalQuantityId = "final_quantity" + model[i].Id;
+                break;
+            }
+        }
+        var quantity = document.getElementById(finalQuantityId).value;
+        if (Number(quantity) >= 100) {
+            return;
+        }
+        quantity = Number(quantity) + 1;
+        document.getElementById(finalQuantityId).value = quantity;
+        updateAmount(quantity, idBasket);
+    }
+
+    function updateAmount(quantity,idBasket) {
+        var finalPriceId = "final_price" + idBasket;
+        var model = @Html.Raw(Json.Encode(Model));
+        for (var i = 0; i < model.length; i++) {
+            if (model[i].Id.indexOf(idBasket) >= 0)
+            {
+                const element = document.getElementById(finalPriceId);
+                element.innerHTML = fomatToTypeMoney(Number(model[i].PriceSale) * quantity);
+                break;
+            }
+        }
+    }
+</script>
 </body>
 </html>

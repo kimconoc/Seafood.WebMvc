@@ -5,11 +5,17 @@
 
 @{  
     UserData user = null;
+    int countBasket = 0;
     string domainName = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
+    var masterDataHelper = new MasterDataHelper();
     try
     {
         var httpContextBase = new HttpContextWrapper(HttpContext.Current);
         user = Seafood.MemCached.Authenticator.CurrentUser(httpContextBase);
+        if(user != null)
+        {
+            countBasket = masterDataHelper.GetCountBasketByUserId(user.UserId);
+        }
     }
     catch
     {
@@ -113,11 +119,21 @@
                     <h6>Tra cứu đơn hàng</h6>
                 </div>
                 @*flex5*@
-                <div class="headerLayout1_flex5">
-                    <i style="font-size: 30px;" class="fa-solid fa-cart-plus"></i>
-                    <h6>Giỏ hàng của bạn</h6>
-                    <span>1</span>
-                </div>
+            <div class="headerLayout1_flex5">
+                <i style="font-size: 30px;" class="fa-solid fa-cart-plus"></i>
+                <h6>Giỏ hàng của bạn</h6>
+                @{
+                    if (countBasket > 0 && countBasket <= 5)
+                    {
+                        <span>@countBasket</span>
+                    }
+                    else if (countBasket > 5)
+                    {
+                        <span>5+</span>
+                    }
+                }
+
+            </div>
                 @*flex6*@
                 @if (user == null)
                 {

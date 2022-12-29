@@ -16,13 +16,25 @@ namespace Seafood.Controllers
         {
             var userData = GetCurrentUser();
             var uri = ApiUri.Get_GetBasketByUserId + string.Format($"?userId={userData.UserId}");
-            var addresses = provider.GetAsync<List<Basket>>(uri);
-            if (addresses == null || addresses.Result == null || addresses.Result.Data == null)
+            var baskets = provider.GetAsync<List<Basket>>(uri);
+            if (baskets == null || baskets.Result == null || baskets.Result.Data == null)
             {
-                return View(new Addresse());
+                return View(new List<Basket>());
             }
-            var result = addresses.Result.Data;
+            var result = baskets.Result.Data;
+
+            var uriAddress = ApiUri.Get_GetListAddressByUserId + string.Format($"?userId={userData.UserId}");
+            var addresses = provider.GetAsync<List<Addresse>>(uriAddress);
+            if (addresses != null && addresses.Result != null && addresses.Result.Data != null)
+            {
+                ViewBag.Address = addresses.Result.Data.FirstOrDefault(x => x.IsAddressMain);
+            }
             return View(result);
+        }
+
+        public ActionResult ExecuteDeleteBasket(List<Guid> lstBasket)
+        {
+            return Json(true);
         }
     }
 }

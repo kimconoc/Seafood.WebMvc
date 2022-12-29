@@ -41,7 +41,7 @@ function isNullOrEmpty(value)
 
 function fomatToTypeMoney(price) {
     var strPrice = price + "";
-    var result = "";
+    var result = price;
     if (strPrice.length == 4) {
         result = strPrice.substring(0, 1) + "." + strPrice.substring(1);
     }
@@ -56,6 +56,9 @@ function fomatToTypeMoney(price) {
     }
     else if (strPrice.length == 8) {
         result = strPrice.substring(0, 2) + "." + strPrice.substring(2, 5) + "." + strPrice.substring(5);
+    }
+    else if (strPrice.length == 9) {
+        result = strPrice.substring(0, 3) + "." + strPrice.substring(3, 6) + "." + strPrice.substring(6);
     }
     return result + " đ";
 }

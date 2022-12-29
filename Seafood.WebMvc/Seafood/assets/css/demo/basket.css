@@ -314,6 +314,7 @@
 
         .basket-content .info-prod-basket img {
             width: 40%;
+            cursor:pointer;
         }
 
         .basket-content .info-prod-basket .info-prod {
@@ -422,13 +423,14 @@
     z-index: 1;
     color: white;
     font-size: 15px;
-    font-weight: 900;
+    font-weight: 700;
     text-align: center !important;
     cursor: pointer;
     background-color: transparent;
     display: flex;
     flex-flow: column;
     justify-content: center;
+    line-height:0;
 }
 
 .box-info__box-price {

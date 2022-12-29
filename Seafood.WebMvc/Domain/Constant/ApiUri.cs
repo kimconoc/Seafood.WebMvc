@@ -40,6 +40,7 @@ namespace Domain.Constant
         public const string Get_GetListSeafoodPromotion = "api/MasterData/GetListSeafoodPromotion";
         public const string Get_GetListRegion = "api/MasterData/GetListRegion";
         public const string Get_GetListPromotionByProdId = "api/MasterData/GetListPromotionByProdId";
+        public const string Get_GetCountBasketByUserId = "api/MasterData/GetCountBasketByUserId";
         #endregion MasterData
     }
 }

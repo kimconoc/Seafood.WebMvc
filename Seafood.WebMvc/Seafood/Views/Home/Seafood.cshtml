@@ -251,9 +251,15 @@
                                         @string.Format(new CultureInfo("de-DE"), "{0:N0}", md.Price) đ
                                     </div>
                                 </div>
-                                <div class="mainContent_card-descPromotion">
-                                    @md.DescPromotion
-                                </div>
+                                @{
+                                    if (!string.IsNullOrEmpty(md.DescPromotion))
+                                    {
+                                        <div class="mainContent_card-descPromotion">
+                                            @md.DescPromotion
+                                        </div>
+                                    }
+                                }
+
                                 @if (string.IsNullOrEmpty(md.Favourite))
                                 {
                                     <div class="mainContent_card-favourite">

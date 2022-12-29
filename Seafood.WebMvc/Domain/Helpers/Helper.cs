@@ -33,6 +33,10 @@ namespace Domain.Helpers
             {
                 result = strPrice.Substring(0, 2) + "." + strPrice.Substring(2, 5) + "." + strPrice.Substring(5);
             }
+            else if (strPrice.Length == 9)
+            {
+                result = strPrice.Substring(0, 3) + "." + strPrice.Substring(3, 6) + "." + strPrice.Substring(6);
+            }
             return result + " đ";
         }
         public static bool ValidPhoneNumer(string phoneNumber, string lengthAndPrefixPhoneNumber = "10-09,086,088,089,020,032,033,034,035,036,037,038,039,070,079,077,076,078,083,084,085,081,082,056,058,059")

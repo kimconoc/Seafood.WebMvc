@@ -43,11 +43,11 @@ namespace Service.Helpers
             }
         }
 
-        public List<Region> GetListRegion(string codeRegion = "", string codeDistrict = "")
+        public List<Region> GetListRegion(string txt = "", string codeRegion = "", string codeDistrict = "")
         {
             using (IProvider provider = new Provider())
             {
-                var uri = ApiUri.Get_GetListRegion + string.Format($"?shopCode={codeRegion}&?codeDistrict={codeDistrict}");
+                var uri = ApiUri.Get_GetListRegion + string.Format($"?txtSearch={txt}&codeRegion={codeRegion}&codeDistrict={codeDistrict}");
 
                 var result = provider.GetAsync<List<Region>>(uri);
                 if (result == null || result.Result == null || result.Result.Data == null)
@@ -55,6 +55,24 @@ namespace Service.Helpers
                     return new List<Region>();
                 }
                 return result.Result.Data;
+            }
+        }
+
+        public int GetCountBasketByUserId(Guid userId)
+        {
+            int count = 0;
+            if (userId == null)
+                return count;
+            using (IProvider provider = new Provider())
+            {
+                var uri = ApiUri.Get_GetCountBasketByUserId + string.Format($"?userId={userId}");
+                var data = provider.GetAsync<int>(uri);
+                if (data != null || data.Result != null || data.Result.Data > 0)
+                {
+                    count = data.Result.Data;
+                }
+
+                return count;
             }
         }
     }

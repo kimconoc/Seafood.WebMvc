@@ -2,10 +2,13 @@
 @using Domain.Models.ResponseModel;
 @using System.Globalization;
 @using Domain.Constant;
+@using Domain.Enums;
+@using Domain.Extentions;
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     var masterDataHelper = new MasterDataHelper();
     var listSeafoodPromotion = masterDataHelper.GetListSeafoodPromotion();
+    var address = (Addresse)ViewBag.Address;
 }
 @model List<Basket>
 <html>
@@ -13,7 +16,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="~/assets/css/demo/basket.css" rel="stylesheet" />
     <style>
-
+        .checkbox-active {
+            background-color: rgb(7, 171, 226);
+            content: "✓";
+        }
         /*ghi đè class*/
         a:focus {
             outline: none;
@@ -70,10 +76,10 @@
                     else
                     {
                         <div class="basket-header">
-                            <div id="checkbox_all_item" style="width: 18px;margin-right:12px;" class="checkbox-fake">
+                            <div id="checkbox_all_item" onclick="checkboxAllItem(this)" style="width: 18px;margin-right:12px;" class="checkbox-fake">
                             </div>
                             <div class="info-prod-basket">
-                                Tất cả (1 sản phẩm)
+                                @string.Format("Tất cả (" + Model.Count + " sản phẩm)")
                             </div>
                             <div class="price-prod-basket" style="flex: 1.25;">
                                 Đơn giá
@@ -85,7 +91,7 @@
                                 Thành tiền
                             </div>
                             <div class="remote-prod-basket" style="width: auto">
-                                <i data-toggle="tooltip" data-placement="top" title="Xóa mục đã chọn" style="font-size: 18px; cursor: pointer;" class="fa-regular fa-trash-can"></i>
+                                <i onclick="deleteBasketBySelected()" data-toggle="tooltip" data-placement="top" title="Xóa mục đã chọn" style="font-size: 18px; cursor: pointer;" class="fa-regular fa-trash-can"></i>
                             </div>
                         </div>
                     }
@@ -95,10 +101,10 @@
                     {
                         <div class="box-basket-content">
                             <div class="basket-content">
-                                <div id="checkbox1" style="width: 18px;" class="checkbox-fake">
+                                <div id="@string.Format("checkbox" + item.Id)" onclick="checkboxItem(this)" style="width: 18px;" class="checkbox-fake">
                                 </div>
                                 <div class="info-prod-basket">
-                                    <img src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/4/h/4h43.png" alt="Alternate Text" />
+                                    <img id="@string.Format("img" + item.Id)" onclick="pageNavigationProduct(this)" src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/4/h/4h43.png" alt="Alternate Text" />
                                     <div class="info-prod">
                                         <div class="name-prod">
                                             <strong>@item.ProductName</strong>
@@ -142,7 +148,7 @@
                                     </div>
                                 </div>
                                 <div class="remote-prod-basket" style="width: auto">
-                                    <i style="font-size: 17px; cursor: pointer;" class="fa-regular fa-trash-can"></i>
+                                    <i id="@string.Format("delete_basket_by_item" + item.Id)" onclick="deleteBasketByItem(this)" style="font-size: 17px; cursor: pointer;" class="fa-regular fa-trash-can"></i>
                                 </div>
                             </div>
                         </div>
@@ -154,16 +160,42 @@
                 <div class="box-address-ship">
                     <div class="block-header">
                         <h4 class="block-header__title">Giao tới</h4>
-                        <a class="block-header__nav" href="#">Thay đổi</a>
+                        <a class="block-header__nav" href="/Address/AddressList">Thay đổi</a>
                     </div>
-                    <div class="customer_info">
-                        <span>Phạm Văn Đức</span>
-                        <span>0367823445</span>
-                    </div>
-                    <div class="address">
-                        <strong>Văn phòng</strong>
-                        Lô 14 phố Nguyễn Cảnh Dị, Phường Đại Kim, Quận Hoàng Mai, Hà Nội
-                    </div>
+                    @{
+                        var strTypeAddress = string.Empty;
+                        if (address != null)
+                        {
+                            <div class="customer_info">
+                                <span>@address.FullName</span>
+                                <span>@address.Mobile</span>
+                            </div>
+                            <div class="address">
+                                <strong>
+                                    @switch (address.TypeAddress)
+                                    {
+                                        case (int)TypeAddressEnum.NhaRieng:
+                                            strTypeAddress = TypeAddressEnum.NhaRieng.GetDescription();
+                                            break;
+                                        case (int)TypeAddressEnum.CoQuan:
+                                            strTypeAddress = TypeAddressEnum.CoQuan.GetDescription();
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                    @strTypeAddress
+                                </strong>
+                                @string.Format(address.Address + ", " + address.NameWard + ", " + address.NameDistrict + ", " + address.NameRegion)
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="customer_info">
+                                <span>@string.Format("Chưa có địa chỉ giao hàng.")</span>
+                            </div>
+                        }
+
+                    }
                 </div>
                 <div class="box-your-voucher">
                     <div class="voucher-header">
@@ -182,7 +214,7 @@
                 <div class="box-your-price">
                     <div class="prices__item">
                         <span class="text-price">Tạm tính</span>
-                        <span id="temporary_price" class="number-price">150.000 đ</span>
+                        <span id="temporary_price" class="number-price">0 đ</span>
                     </div>
                     <div class="prices__item">
                         <span class="text-price-promotion">Giảm giá</span>
@@ -192,7 +224,7 @@
                     </div>
                     <div style=" margin-top: 10px;" class="prices__item">
                         <span class="text-price-value">Tổng tiền</span>
-                        <span id="total_money" class="number-price-value">120.000 đ</span>
+                        <span id="total_money" class="number-price-value">0 đ</span>
                     </div>
                     <div class="asa-summary-disclaimer">
                         * Seafood sẽ liên hệ với bạn để nắm được các chính sách kèm theo khi mua sản phẩm.
@@ -200,7 +232,7 @@
                 </div>
                 <div class="order-add-to-cart">
                     <button>
-                        <strong>MUA NGAY (1)</strong> <br />
+                        <strong id="number_purchased">MUA NGAY (0)</strong> <br />
                         <span>(Giao tận nơi hoặc lấy tại cửa hàng)</span>
                     </button>
                 </div>
@@ -237,65 +269,30 @@
             $('.prod-promotion-popover').click(function (e) {
                 e.preventDefault(); return true;
             });
-        });
-
-    $('.checkbox-fake').click(function (e) {
-            var dom = this;
-            if (dom.id == "checkbox_all_item") {
-                for (var i = 1; i <= 3; i++) {
-                    var id = "checkbox" + i;
-                    const elementById = document.getElementById(id);
-                    if (dom.innerText == "✓") {
-                        elementById.innerText = "";
-                        elementById.style.backgroundColor = "transparent"
-                    }
-                    else {
-                        elementById.innerText = "✓";
-                        elementById.style.backgroundColor = "rgb(7, 171, 226)"
-                    }
-                }
-            }
-            else {
-                if (dom.innerText == "") {
-                    dom.innerText = "✓";
-                    dom.style.backgroundColor = "rgb(7, 171, 226)"
-                }
-                else {
-                    dom.innerText = "";
-                    dom.style.backgroundColor = "transparent"
-                }
-            }
-            var checkFull = 0;
-            const elementcheckbox_all_item = document.getElementById("checkbox_all_item");
-            for (var i = 1; i <= 3; i++) {
-                var id = "checkbox" + i;
-                const elementById = document.getElementById(id);
-                if (elementById.innerText == "✓") {
-                    checkFull = checkFull + 1;
-                }
-            }
-            if (checkFull == 3) {
-                elementcheckbox_all_item.innerText = "✓";
-                elementcheckbox_all_item.style.backgroundColor = "rgb(7, 171, 226)"
-            }
-            else {
-                elementcheckbox_all_item.innerText = "";
-                elementcheckbox_all_item.style.backgroundColor = "transparent"
-            }
-        });
+    });
     $('.box-more-promotion-title div span').click(function (e) {
-            var dom = this;
-            if (dom.innerHTML.indexOf('Mở rộng') >= 0) {
-                dom.innerText = "Thu lại";
-                const element = document.getElementById("showSeafoodPromotion_icon");
-                element.className = "fa fa-angle-double-up";
+        var dom = this;
+        if (dom.innerHTML.indexOf('Mở rộng') >= 0) {
+            dom.innerText = "Thu lại";
+            const element = document.getElementById("showSeafoodPromotion_icon");
+            element.className = "fa fa-angle-double-up";
+        }
+        else {
+            dom.innerText = "Mở rộng";
+            const element = document.getElementById("showSeafoodPromotion_icon");
+            element.className = "fa fa-angle-double-down";
+        }
+    });
+
+    function pageNavigationProduct(dom) {
+        var model = @Html.Raw(Json.Encode(Model));
+        for (var i = 0; i < model.length; i++) {
+            if (dom.id.indexOf(model[i].Id) >= 0) {
+                window.location = "/ProdDetailt/Detailt?prodId=" + model[i].ProductId;
+                break;
             }
-            else {
-                dom.innerText = "Mở rộng";
-                const element = document.getElementById("showSeafoodPromotion_icon");
-                element.className = "fa fa-angle-double-down";
-            }
-        });
+        }
+    }
     function showProductPromotion() {
         var model = @Html.Raw(Json.Encode(Model));
         for (var i = 0; i < model.length; i++) {
@@ -341,10 +338,9 @@
     }
 
     function finalQuantityReduce(dom) {
-        debugger
         var idBasket;
         var finalQuantityId;
-        
+
         var model = @Html.Raw(Json.Encode(Model));
         for (var i = 0; i < model.length; i++) {
             if (dom.id.indexOf(model[i].Id) >= 0) {
@@ -360,12 +356,13 @@
         quantity = Number(quantity) - 1;
         document.getElementById(finalQuantityId).value = quantity;
         updateAmount(quantity, idBasket);
+
+        calculateTotalAmount()
     }
     function finalQuantityPlus(dom) {
-        debugger
         var idBasket;
         var finalQuantityId;
-        
+
         var model = @Html.Raw(Json.Encode(Model));
         for (var i = 0; i < model.length; i++) {
             if (dom.id.indexOf(model[i].Id) >= 0) {
@@ -375,14 +372,15 @@
             }
         }
         var quantity = document.getElementById(finalQuantityId).value;
-        if (Number(quantity) >= 100) {
+        if (Number(quantity) >= 99) {
             return;
         }
         quantity = Number(quantity) + 1;
         document.getElementById(finalQuantityId).value = quantity;
         updateAmount(quantity, idBasket);
-    }
 
+        calculateTotalAmount()
+    }
     function updateAmount(quantity,idBasket) {
         var finalPriceId = "final_price" + idBasket;
         var model = @Html.Raw(Json.Encode(Model));
@@ -395,6 +393,154 @@
             }
         }
     }
+
+    function checkboxAllItem(dom)
+    {
+        var element = document.getElementById(dom.id);
+        var model = @Html.Raw(Json.Encode(Model));
+        if (dom.className.indexOf("checkbox-active") >= 0)
+        {
+            element.classList.remove('checkbox-active');
+            element.innerHTML = "";
+            for (var i = 0; i < model.length; i++)
+            {
+                var idCheck = "checkbox" + model[i].Id;
+                var ele = document.getElementById(idCheck);
+                ele.classList.remove('checkbox-active');
+                ele.innerHTML = "";
+            }
+        }
+        else
+        {
+            element.classList.add('checkbox-active');
+            element.innerHTML = "✓";
+            for (var i = 0; i < model.length; i++) {
+                var idCheck = "checkbox" + model[i].Id;
+                var ele = document.getElementById(idCheck);
+                ele.classList.add('checkbox-active');
+                ele.innerHTML = "✓";
+            }
+        }
+
+        calculateTotalAmount()
+    }
+    function checkboxItem(dom) {
+        var element = document.getElementById(dom.id);
+        var model = @Html.Raw(Json.Encode(Model));
+        if (dom.className.indexOf("checkbox-active") >= 0) {
+            element.classList.remove('checkbox-active');
+            element.innerHTML = "";
+        }
+        else {
+            element.classList.add('checkbox-active');
+            element.innerHTML = "✓";
+        }
+        var index = 0;
+        for (var i = 0; i < model.length; i++)
+        {
+            var idCheck = "checkbox" + model[i].Id;
+            var ele = document.getElementById(idCheck);
+            if (ele.className.indexOf("checkbox-active") >= 0) {
+                index = index + 1;
+            }
+        }
+        var eleAllItem = document.getElementById('checkbox_all_item');
+        if (index == model.length) {
+            eleAllItem.classList.add('checkbox-active');
+            eleAllItem.innerHTML = "✓";
+        }
+        else {
+            eleAllItem.classList.remove('checkbox-active');
+            eleAllItem.innerHTML = "";
+        }
+
+        calculateTotalAmount();
+    }
+
+    function calculateTotalAmount() {
+        var numberPurchased = 0;
+        var total = 0;
+        var model = @Html.Raw(Json.Encode(Model));
+        for (var i = 0; i < model.length; i++) {
+            var idCheck = "checkbox" + model[i].Id;
+            var ele = document.getElementById(idCheck);
+            if (ele.className.indexOf("checkbox-active") >= 0) {
+                numberPurchased = numberPurchased + 1;
+                var finalPriceId = "final_price" + model[i].Id;
+                var price = document.getElementById(finalPriceId).innerHTML.replace('đ', '').replaceAll('.', '').trim();
+                total = total + Number(price);
+            }
+        }
+
+        const eleTemporaryPrice = document.getElementById('temporary_price');
+        eleTemporaryPrice.innerHTML = fomatToTypeMoney(Number(total));
+        var discountPrice = document.getElementById('discount_price').innerHTML.replace('đ', '').replaceAll('.', '').trim();
+        if (total > discountPrice) {
+            total = total - Number(discountPrice);
+        }
+        else {
+            total = 0;
+        }
+        const eleTotalMoney = document.getElementById('total_money');
+        eleTotalMoney.innerHTML = fomatToTypeMoney(Number(total));
+
+        const eleNumberPurchased = document.getElementById('number_purchased');
+        eleNumberPurchased.innerHTML = "MUA NGAY (" + numberPurchased + ")";
+        }
+
+    function deleteBasketBySelected() {
+        var lstBasket = [];
+        var model = @Html.Raw(Json.Encode(Model));
+        for (var i = 0; i < model.length; i++) {
+            var idCheck = "checkbox" + model[i].Id;
+            var ele = document.getElementById(idCheck);
+            if (ele.className.indexOf("checkbox-active") >= 0) {
+                lstBasket.push(model[i].Id);
+            }
+        }
+        if (lstBasket.length > 0) {
+            var prompt = new PromptBoxes();
+            prompt.confirm((isConfirm) => executeDeleteBasket(isConfirm, lstBasket), 'Bạn muốn xóa sản phẩm này?', 'Đồng ý', 'Hủy bỏ');
+        }
+        else {
+            showToasinette_Error_Top_Right('Chưa có mục nào được chọn');
+        }
+    }
+    function deleteBasketByItem(dom) {
+        var lstBasket = [];
+        var model = @Html.Raw(Json.Encode(Model));
+        for (var i = 0; i < model.length; i++) {
+            if (dom.id.indexOf(model[i].Id) >= 0) {
+                lstBasket.push(model[i].Id);
+                break;
+            }
+        }
+        if (lstBasket.length > 0) {
+            var prompt = new PromptBoxes();
+            prompt.confirm((isConfirm) => executeDeleteBasket(isConfirm, lstBasket), 'Bạn muốn xóa sản phẩm này?', 'Đồng ý', 'Hủy bỏ');
+        }
+        else {
+            showToasinette_Error_Top_Right('Chưa có mục nào được chọn');
+        }
+    }
+    function executeDeleteBasket(isConfirm, lstBasket) {
+        if (isConfirm) {
+            $.ajax({
+                type: "POST",
+                traditional: true,
+                async: false,
+                data:
+                {
+                    "lstBasket": lstBasket,
+                },
+                url: "@Url.Action("ExecuteDeleteBasket", "YourBasket")",
+                success: function (data)
+                {
+                },
+            })
+        }
+    }
+
 </script>
 </body>
 </html>

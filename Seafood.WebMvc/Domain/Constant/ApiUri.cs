@@ -30,10 +30,11 @@ namespace Domain.Constant
         public const string Get_GetAddressByUserId = "api/Address/GetAddressByUserId";
         public const string Post_CreateAddressByUserId = "api/Address/CreateAddressByUserId";
         public const string Post_UpdateAddressByUserId = "api/Address/UpdateAddressByUserId";
-        public const string Delete_DeleteAddressByUserId = "api/Address/DeleteAddressByUserId";
+        public const string Delete_DeleteAddressById = "api/Address/DeleteAddressById";
 
         public const string Post_AddProductToBasket = "api/Basket/AddProductToBasket";
         public const string Get_GetBasketByUserId = "api/Basket/GetBasketByUserId";
+        public const string Delete_DeleteBasketById = "api/Basket/DeleteBasketById";
 
         #region MasterData
         public const string Get_GetInfoShopSeeFood = "api/MasterData/GetInfoShopSeeFood";

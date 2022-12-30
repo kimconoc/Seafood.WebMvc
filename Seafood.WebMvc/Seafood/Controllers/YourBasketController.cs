@@ -31,10 +31,15 @@ namespace Seafood.Controllers
             }
             return View(result);
         }
-
+        [HttpPost]
         public ActionResult ExecuteDeleteBasket(List<Guid> lstBasket)
         {
-            return Json(true);
+            var isDeleted = provider.PostAsync<bool>(ApiUri.Delete_DeleteBasketById, lstBasket);
+            if (isDeleted == null || isDeleted.Result == null || !isDeleted.Result.Success)
+            {
+                return Json(Server_Error());
+            }
+            return Json(Success_Request(isDeleted.Result.Data));
         }
     }
 }

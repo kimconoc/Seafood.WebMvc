@@ -109,7 +109,7 @@ namespace Seafood.Controllers.AccountManager
         [HttpPost]
         public ActionResult DeleteAddress(Guid addressId)
         {
-            var uri = ApiUri.Delete_DeleteAddressByUserId + string.Format($"?addressId={addressId}");
+            var uri = ApiUri.Delete_DeleteAddressById + string.Format($"?addressId={addressId}");
             var isdel = provider.DeleteAsync(uri);
             if (isdel == null || isdel.Result == null || !isdel.Result.Success)
             {

@@ -75,5 +75,24 @@ namespace Service.Helpers
                 return count;
             }
         }
+
+        public List<Voucher> GetVoucherByUserId(Guid userId)
+        {
+            var lstResult = new List<Voucher>();
+            if (userId == null)
+                return lstResult;
+
+            using (IProvider provider = new Provider())
+            {
+                var uri = ApiUri.Get_GetVoucherByUserId + string.Format($"?userId={userId}");
+                var result = provider.GetAsync<List<Voucher>>(uri);
+                if (result != null && result.Result != null && result.Result.Data != null)
+                {
+                    lstResult = result.Result.Data;
+                }
+
+                return lstResult;
+            }
+        }
     }
 }

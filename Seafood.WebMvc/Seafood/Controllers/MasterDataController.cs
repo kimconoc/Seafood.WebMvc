@@ -92,5 +92,6 @@ namespace Seafood.Controllers
 
             return Json(Success_Request(lstResult));
         }
+
     }
 }

@@ -1,14 +1,31 @@
 ﻿@using Service.Helpers;
-@using Domain.Models.ResponseModel;
 @using System.Globalization;
 @using Domain.Constant;
 @using Domain.Enums;
 @using Domain.Extentions;
+@using Domain.Models.ResponseModel;
+@using Seafood.Models;
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     var masterDataHelper = new MasterDataHelper();
     var listSeafoodPromotion = masterDataHelper.GetListSeafoodPromotion();
     var address = (Addresse)ViewBag.Address;
+
+    UserData user = null;
+    List<Voucher> vouchers = new List<Voucher>();
+    try
+    {
+        var httpContextBase = new HttpContextWrapper(HttpContext.Current);
+        user = Seafood.MemCached.Authenticator.CurrentUser(httpContextBase);
+        if (user != null)
+        {
+            vouchers = masterDataHelper.GetVoucherByUserId(user.UserId);
+        }
+    }
+    catch
+    {
+
+    }
 }
 @model List<Basket>
 <html>
@@ -16,6 +33,133 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="~/assets/css/demo/basket.css" rel="stylesheet" />
     <style>
+
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 10000; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            flex-flow: row;
+            justify-content: center;
+        }
+
+            .modal .modal-dialog {
+                width: auto;
+            }
+
+                .modal .modal-dialog .modal-content {
+                    padding-top: 20px;
+                    width: 100%;
+                    max-width: 450px;
+                }
+
+                    .modal .modal-dialog .modal-content .container-voucher-active {
+                        border: 5px dotted #5cb85c !important;
+                    }
+
+                    .modal .modal-dialog .modal-content .container-voucher {
+                        border: 5px dotted #bbb;
+                        width: 90%;
+                        border-radius: 15px;
+                        margin: 0 auto;
+                        max-width: 400px;
+                        margin-bottom: 15px;
+                        /*font-family: Arial;*/
+                    }
+
+                        .modal .modal-dialog .modal-content .container-voucher .head {
+                            border-radius: 10px 10px 0 0;
+                            padding: 2px 16px;
+                            background-color: #dee8fc;
+                            display: flex;
+                            flex-flow: row;
+                            justify-content: center;
+                        }
+
+                            .modal .modal-dialog .modal-content .container-voucher .head .voucher-active {
+                                background-color: #5cb85c !important;
+                                color: white;
+                            }
+
+                            .modal .modal-dialog .modal-content .container-voucher .head .voucher {
+                                min-width: 150px;
+                                height: 35px;
+                                margin: 5px 0;
+                                padding: 0 25px 0 25px;
+                                background-color: #bbb;
+                                position: relative;
+                                text-align: center;
+                                display: flex;
+                                flex-flow: column;
+                                justify-content: center;
+                            }
+
+                                .modal .modal-dialog .modal-content .container-voucher .head .voucher::before {
+                                    content: '';
+                                    width: 15px;
+                                    height: 15px;
+                                    position: absolute;
+                                    border-radius: 12px;
+                                    background-color: #dee8fc;
+                                    top: 50%;
+                                    left: 0%;
+                                    transform: translate(-7px, -50%);
+                                }
+
+                                .modal .modal-dialog .modal-content .container-voucher .head .voucher::after {
+                                    content: '';
+                                    width: 15px;
+                                    height: 15px;
+                                    position: absolute;
+                                    border-radius: 12px;
+                                    background-color: #dee8fc;
+                                    top: 50%;
+                                    right: 0%;
+                                    transform: translate(7px, -50%);
+                                }
+
+                        .modal .modal-dialog .modal-content .container-voucher .content {
+                            padding: 10px 16px;
+                        }
+
+                            .modal .modal-dialog .modal-content .container-voucher .content span {
+                            }
+
+                        .modal .modal-dialog .modal-content .container-voucher .box-footer {
+                            border-radius: 0 0 10px 10px;
+                            display: flex;
+                            -webkit-box-align: center;
+                            align-items: center;
+                            -webkit-box-pack: justify;
+                            justify-content: space-between;
+                            padding: 2px 16px;
+                            padding-top: 8px;
+                            background-color: #dee8fc;
+                        }
+
+                            .modal .modal-dialog .modal-content .container-voucher .box-footer .footer .promo {
+                                background: rgb(235, 235, 240);
+                                padding: 5px;
+                            }
+
+                            .modal .modal-dialog .modal-content .container-voucher .box-footer .footer .expire {
+                                color: red;
+                            }
+
+                            .modal .modal-dialog .modal-content .container-voucher .box-footer .btn-core-accept {
+                                color: white;
+                                background: #5cb85c;
+                            }
+
+
+
         .checkbox-active {
             background-color: rgb(7, 171, 226);
             content: "✓";
@@ -199,14 +343,14 @@
                 </div>
                 <div class="box-your-voucher">
                     <div class="voucher-header">
-                        <strong>Voucher của bạn</strong>
+                        <strong>Voucher</strong>
                         <span>
                             bạn có
                             <strong>1</strong>
                             voucher
                         </span>
                     </div>
-                    <div class="show-more">
+                    <div class="show-more-voucher show-more">
                         <i class="fa-solid fa-tags"></i>
                         <strong>Voucher của bạn</strong>
                     </div>
@@ -247,11 +391,123 @@
             </div>
         }
     }
-<script>
-    $(document).ready(function () {
+    @*Popup modal add voucher*@
+    <div class="modal" tabindex="-1" role="dialog" id="modalVoucher">
+        <div class="modal-popup modal-dialog" role="document">
+            <div class="modal-content">
+                <button style="margin-top:-18px;" class="aria-hidden close" aria-label="Close" onclick="CloseModalVoucher()">
+                    <span style="margin-right: 5px; font-size: 28px;" aria-hidden="true">&times;</span>
+                </button>
+                @{
+                    if (vouchers != null && vouchers.Any())
+                    {
+                        var voucher0 = vouchers.Where(x => x.EndTime > DateTime.Now && x.TypeVoucher == 1);
+                        if (voucher0 != null && voucher0.Any())
+                        {
+                            foreach (var item0 in voucher0)
+                            {
+                                <div class="container-voucher">
+                                    <div class="head">
+                                        <div class="voucher-active voucher">
+                                            <span>@string.Format("Giảm {0}k", item0.ReductionAmount / 1000)</span>
+                                        </div>
+                                    </div>
+                                    <div class="content">
+                                        <strong>@item0.Title</strong> <br /><br />
+                                        <span>*</span>
+                                        <span>@item0.Note</span>
+                                    </div>
+                                    <div class="box-footer">
+                                        <div class="footer">
+                                            <p>Mã đơn hàng: <span class="promo">@item0.Code</span></p>
+                                            <p class="expire">@string.Format("Hết hạn: {0}/{1}/{2}", @item0.EndTime.Day, @item0.EndTime.Month, @item0.EndTime.Year)</p>
+                                        </div>
+                                        <div class="btn-core-accept">
+                                            Áp dụng
+                                        </div>
+                                    </div>
+
+                                </div>
+                            }
+
+                        }
+
+                        var voucher1 = vouchers.Where(x => x.EndTime > DateTime.Now && x.TypeVoucher == 0);
+                        if (voucher1 != null && voucher1.Any())
+                        {
+                            foreach (var item1 in voucher1)
+                            {
+                                <div class="container-voucher">
+                                    <div class="head">
+                                        <div class="voucher-active voucher">
+                                            <span>@string.Format("Giảm {0}k", item1.ReductionAmount / 1000)</span>
+                                        </div>
+                                    </div>
+                                    <div class="content">
+                                        <strong>@item1.Title</strong> <br /><br />
+                                        <span>*</span>
+                                        <span>@item1.Note</span>
+                                    </div>
+                                    <div class="box-footer">
+                                        <div class="footer">
+                                            <p>Mã đơn hàng: <span class="promo">@item1.Code</span></p>
+                                            <p class="expire">@string.Format("Hết hạn: {0}/{1}/{2}", @item1.EndTime.Day, @item1.EndTime.Month, @item1.EndTime.Year)</p>
+                                        </div>
+                                        <div class="btn-core-accept">
+                                            Áp dụng
+                                        </div>
+                                    </div>
+
+                                </div>
+                            }
+
+                        }
+
+                        foreach (var item in vouchers)
+                        {
+                            if (item.EndTime < DateTime.Now)
+                            {
+                                <div class="container-voucher">
+                                    <div class="head">
+                                        <div class="voucher">
+                                            <span>@string.Format("Giảm {0}k", item.ReductionAmount / 1000)</span>
+                                        </div>
+                                    </div>
+                                    <div class="content">
+                                        <strong>@item.Title</strong> <br /><br />
+                                        <span>*</span>
+                                        <span>@item.Note</span>
+                                    </div>
+                                    <div class="box-footer">
+                                        <div class="footer">
+                                            <p>Mã đơn hàng: <span class="promo">@item.Code</span></p>
+                                            <p class="expire">@string.Format("Hết hạn: {0}/{1}/{2}", @item.EndTime.Day, @item.EndTime.Month, @item.EndTime.Year)</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        <div class="box-no-data-found">
+                            <img src="@Constant.Link_Empty_Order">
+                            <span>Không có voucher nào</span>
+                        </div>
+                    }
+                }
+
+            </div>
+        </div>
+    </div>
+    <script>
+
+        var modal = document.getElementById("modalVoucher");
+
+        $(document).ready(function () {
             showProductPromotion();
             $(function () {
-
                 $("[data-toggle=popover]").popover({
                     html: true,
                     content: function (e) {
@@ -269,306 +525,313 @@
             $('.prod-promotion-popover').click(function (e) {
                 e.preventDefault(); return true;
             });
-    });
-    $('.box-more-promotion-title div span').click(function (e) {
-        var dom = this;
-        if (dom.innerHTML.indexOf('Mở rộng') >= 0) {
-            dom.innerText = "Thu lại";
-            const element = document.getElementById("showSeafoodPromotion_icon");
-            element.className = "fa fa-angle-double-up";
-        }
-        else {
-            dom.innerText = "Mở rộng";
-            const element = document.getElementById("showSeafoodPromotion_icon");
-            element.className = "fa fa-angle-double-down";
-        }
-    });
+        });
+        $('.box-more-promotion-title div span').click(function (e) {
+            var dom = this;
+            if (dom.innerHTML.indexOf('Mở rộng') >= 0) {
+                dom.innerText = "Thu lại";
+                const element = document.getElementById("showSeafoodPromotion_icon");
+                element.className = "fa fa-angle-double-up";
+            }
+            else {
+                dom.innerText = "Mở rộng";
+                const element = document.getElementById("showSeafoodPromotion_icon");
+                element.className = "fa fa-angle-double-down";
+            }
+        });
 
-    function pageNavigationProduct(dom) {
-        var model = @Html.Raw(Json.Encode(Model));
-        for (var i = 0; i < model.length; i++) {
-            if (dom.id.indexOf(model[i].Id) >= 0) {
-                window.location = "/ProdDetailt/Detailt?prodId=" + model[i].ProductId;
-                break;
+        $('.show-more-voucher').click(function (e) {
+            modal.style.display = "flex";
+        });
+        function CloseModalVoucher() {
+            modal.style.display = "none";
+        }
+
+        function pageNavigationProduct(dom) {
+            var model = @Html.Raw(Json.Encode(Model));
+            for (var i = 0; i < model.length; i++) {
+                if (dom.id.indexOf(model[i].Id) >= 0) {
+                    window.location = "/ProdDetailt/Detailt?prodId=" + model[i].ProductId;
+                    break;
+                }
             }
         }
-    }
-    function showProductPromotion() {
-        var model = @Html.Raw(Json.Encode(Model));
-        for (var i = 0; i < model.length; i++) {
-            $.ajax({
-                type: "POST",
-                traditional: true,
-                async: false,
-                data:
-                {
-                    "prodId": model[i].ProductId,
-                },
-                url: "@Url.Action("GetListPromotionByProdId", "MasterData")",
-                success: function (data)
-                {
-                    if (data.Data != null && data.Success)
+        function showProductPromotion() {
+            var model = @Html.Raw(Json.Encode(Model));
+            for (var i = 0; i < model.length; i++) {
+                $.ajax({
+                    type: "POST",
+                    traditional: true,
+                    async: false,
+                    data:
                     {
-                        var htmlPopover = "<div class='popover-heading'>";
-                        htmlPopover = htmlPopover + "Khuyến mãi từ sản phẩm";
-                        htmlPopover = htmlPopover + "</div>";
-                        htmlPopover = htmlPopover + "<div class='popover-body'>";
-
-                        var index = 0;
-                        for (var j = 0; j < data.Data.length; j++)
+                        "prodId": model[i].ProductId,
+                    },
+                    url: "@Url.Action("GetListPromotionByProdId", "MasterData")",
+                    success: function (data)
+                    {
+                        if (data.Data != null && data.Success)
                         {
-                            index = index + 1;
-                            htmlPopover = htmlPopover + "<div class='box-product-promotion-content'>";
-                            htmlPopover = htmlPopover + "<div class='box-product-promotion-number'>";
-                            htmlPopover = htmlPopover + index;
+                            var htmlPopover = "<div class='popover-heading'>";
+                            htmlPopover = htmlPopover + "Khuyến mãi từ sản phẩm";
                             htmlPopover = htmlPopover + "</div>";
-                            htmlPopover = htmlPopover + "<div class='box-product-promotion-detail'>";
-                            htmlPopover = htmlPopover + data.Data[j].Content;
+                            htmlPopover = htmlPopover + "<div class='popover-body'>";
+
+                            var index = 0;
+                            for (var j = 0; j < data.Data.length; j++)
+                            {
+                                index = index + 1;
+                                htmlPopover = htmlPopover + "<div class='box-product-promotion-content'>";
+                                htmlPopover = htmlPopover + "<div class='box-product-promotion-number'>";
+                                htmlPopover = htmlPopover + index;
+                                htmlPopover = htmlPopover + "</div>";
+                                htmlPopover = htmlPopover + "<div class='box-product-promotion-detail'>";
+                                htmlPopover = htmlPopover + data.Data[j].Content;
+                                htmlPopover = htmlPopover + "</div>";
+                                htmlPopover = htmlPopover + "</div>";
+                            }
+
                             htmlPopover = htmlPopover + "</div>";
-                            htmlPopover = htmlPopover + "</div>";
+                            const element = document.getElementById(model[i].Id);
+                            element.innerHTML = htmlPopover;
                         }
-
-                        htmlPopover = htmlPopover + "</div>";
-                        const element = document.getElementById(model[i].Id);
-                        element.innerHTML = htmlPopover;
-                    }
-                },
-            })
-        }
-    }
-
-    function finalQuantityReduce(dom) {
-        var idBasket;
-        var finalQuantityId;
-
-        var model = @Html.Raw(Json.Encode(Model));
-        for (var i = 0; i < model.length; i++) {
-            if (dom.id.indexOf(model[i].Id) >= 0) {
-                idBasket = model[i].Id;
-                finalQuantityId = "final_quantity" + model[i].Id;
-                break;
+                    },
+                })
             }
         }
-        var quantity = document.getElementById(finalQuantityId).value;
-        if (Number(quantity) <= 1) {
-            return;
+
+        function finalQuantityReduce(dom) {
+            var idBasket;
+            var finalQuantityId;
+
+            var model = @Html.Raw(Json.Encode(Model));
+            for (var i = 0; i < model.length; i++) {
+                if (dom.id.indexOf(model[i].Id) >= 0) {
+                    idBasket = model[i].Id;
+                    finalQuantityId = "final_quantity" + model[i].Id;
+                    break;
+                }
+            }
+            var quantity = document.getElementById(finalQuantityId).value;
+            if (Number(quantity) <= 1) {
+                return;
+            }
+            quantity = Number(quantity) - 1;
+            document.getElementById(finalQuantityId).value = quantity;
+            updateAmount(quantity, idBasket);
+
+            calculateTotalAmount()
         }
-        quantity = Number(quantity) - 1;
-        document.getElementById(finalQuantityId).value = quantity;
-        updateAmount(quantity, idBasket);
+        function finalQuantityPlus(dom) {
+            var idBasket;
+            var finalQuantityId;
 
-        calculateTotalAmount()
-    }
-    function finalQuantityPlus(dom) {
-        var idBasket;
-        var finalQuantityId;
+            var model = @Html.Raw(Json.Encode(Model));
+            for (var i = 0; i < model.length; i++) {
+                if (dom.id.indexOf(model[i].Id) >= 0) {
+                    idBasket = model[i].Id;
+                    finalQuantityId = "final_quantity" + model[i].Id;
+                    break;
+                }
+            }
+            var quantity = document.getElementById(finalQuantityId).value;
+            if (Number(quantity) >= 99) {
+                return;
+            }
+            quantity = Number(quantity) + 1;
+            document.getElementById(finalQuantityId).value = quantity;
+            updateAmount(quantity, idBasket);
 
-        var model = @Html.Raw(Json.Encode(Model));
-        for (var i = 0; i < model.length; i++) {
-            if (dom.id.indexOf(model[i].Id) >= 0) {
-                idBasket = model[i].Id;
-                finalQuantityId = "final_quantity" + model[i].Id;
-                break;
+            calculateTotalAmount()
+        }
+        function updateAmount(quantity,idBasket) {
+            var finalPriceId = "final_price" + idBasket;
+            var model = @Html.Raw(Json.Encode(Model));
+            for (var i = 0; i < model.length; i++) {
+                if (model[i].Id.indexOf(idBasket) >= 0)
+                {
+                    const element = document.getElementById(finalPriceId);
+                    element.innerHTML = fomatToTypeMoney(Number(model[i].PriceSale) * quantity);
+                    break;
+                }
             }
         }
-        var quantity = document.getElementById(finalQuantityId).value;
-        if (Number(quantity) >= 99) {
-            return;
-        }
-        quantity = Number(quantity) + 1;
-        document.getElementById(finalQuantityId).value = quantity;
-        updateAmount(quantity, idBasket);
 
-        calculateTotalAmount()
-    }
-    function updateAmount(quantity,idBasket) {
-        var finalPriceId = "final_price" + idBasket;
-        var model = @Html.Raw(Json.Encode(Model));
-        for (var i = 0; i < model.length; i++) {
-            if (model[i].Id.indexOf(idBasket) >= 0)
-            {
-                const element = document.getElementById(finalPriceId);
-                element.innerHTML = fomatToTypeMoney(Number(model[i].PriceSale) * quantity);
-                break;
-            }
-        }
-    }
-
-    function checkboxAllItem(dom)
-    {
-        var element = document.getElementById(dom.id);
-        var model = @Html.Raw(Json.Encode(Model));
-        if (dom.className.indexOf("checkbox-active") >= 0)
+        function checkboxAllItem(dom)
         {
-            element.classList.remove('checkbox-active');
-            element.innerHTML = "";
+            var element = document.getElementById(dom.id);
+            var model = @Html.Raw(Json.Encode(Model));
+            if (dom.className.indexOf("checkbox-active") >= 0)
+            {
+                element.classList.remove('checkbox-active');
+                element.innerHTML = "";
+                for (var i = 0; i < model.length; i++)
+                {
+                    var idCheck = "checkbox" + model[i].Id;
+                    var ele = document.getElementById(idCheck);
+                    ele.classList.remove('checkbox-active');
+                    ele.innerHTML = "";
+                }
+            }
+            else
+            {
+                element.classList.add('checkbox-active');
+                element.innerHTML = "✓";
+                for (var i = 0; i < model.length; i++) {
+                    var idCheck = "checkbox" + model[i].Id;
+                    var ele = document.getElementById(idCheck);
+                    ele.classList.add('checkbox-active');
+                    ele.innerHTML = "✓";
+                }
+            }
+
+            calculateTotalAmount()
+        }
+        function checkboxItem(dom) {
+            var element = document.getElementById(dom.id);
+            var model = @Html.Raw(Json.Encode(Model));
+            if (dom.className.indexOf("checkbox-active") >= 0) {
+                element.classList.remove('checkbox-active');
+                element.innerHTML = "";
+            }
+            else {
+                element.classList.add('checkbox-active');
+                element.innerHTML = "✓";
+            }
+            var index = 0;
             for (var i = 0; i < model.length; i++)
             {
                 var idCheck = "checkbox" + model[i].Id;
                 var ele = document.getElementById(idCheck);
-                ele.classList.remove('checkbox-active');
-                ele.innerHTML = "";
+                if (ele.className.indexOf("checkbox-active") >= 0) {
+                    index = index + 1;
+                }
             }
+            var eleAllItem = document.getElementById('checkbox_all_item');
+            if (index == model.length) {
+                eleAllItem.classList.add('checkbox-active');
+                eleAllItem.innerHTML = "✓";
+            }
+            else {
+                eleAllItem.classList.remove('checkbox-active');
+                eleAllItem.innerHTML = "";
+            }
+
+            calculateTotalAmount();
         }
-        else
-        {
-            element.classList.add('checkbox-active');
-            element.innerHTML = "✓";
+
+        function calculateTotalAmount() {
+            var numberPurchased = 0;
+            var total = 0;
+            var model = @Html.Raw(Json.Encode(Model));
             for (var i = 0; i < model.length; i++) {
                 var idCheck = "checkbox" + model[i].Id;
                 var ele = document.getElementById(idCheck);
-                ele.classList.add('checkbox-active');
-                ele.innerHTML = "✓";
+                if (ele.className.indexOf("checkbox-active") >= 0) {
+                    numberPurchased = numberPurchased + 1;
+                    var finalPriceId = "final_price" + model[i].Id;
+                    var price = document.getElementById(finalPriceId).innerHTML.replace('đ', '').replaceAll('.', '').trim();
+                    total = total + Number(price);
+                }
+            }
+
+            const eleTemporaryPrice = document.getElementById('temporary_price');
+            eleTemporaryPrice.innerHTML = fomatToTypeMoney(Number(total));
+            var discountPrice = document.getElementById('discount_price').innerHTML.replace('đ', '').replaceAll('.', '').trim();
+            if (total > discountPrice) {
+                total = total - Number(discountPrice);
+            }
+            else {
+                total = 0;
+            }
+            const eleTotalMoney = document.getElementById('total_money');
+            eleTotalMoney.innerHTML = fomatToTypeMoney(Number(total));
+
+            const eleNumberPurchased = document.getElementById('number_purchased');
+            eleNumberPurchased.innerHTML = "MUA NGAY (" + numberPurchased + ")";
+            }
+
+        function deleteBasketBySelected() {
+            var lstBasket = [];
+            var model = @Html.Raw(Json.Encode(Model));
+            for (var i = 0; i < model.length; i++) {
+                var idCheck = "checkbox" + model[i].Id;
+                var ele = document.getElementById(idCheck);
+                if (ele.className.indexOf("checkbox-active") >= 0) {
+                    lstBasket.push(model[i].Id);
+                }
+            }
+            if (lstBasket.length > 0) {
+                var prompt = new PromptBoxes();
+                prompt.confirm((isConfirm) => executeDeleteBasket(isConfirm, lstBasket), 'Bạn muốn xóa sản phẩm này?', 'Đồng ý', 'Hủy bỏ');
+            }
+            else {
+                showToasinette_Error_Top_Right('Chưa có mục nào được chọn');
             }
         }
-
-        calculateTotalAmount()
-    }
-    function checkboxItem(dom) {
-        var element = document.getElementById(dom.id);
-        var model = @Html.Raw(Json.Encode(Model));
-        if (dom.className.indexOf("checkbox-active") >= 0) {
-            element.classList.remove('checkbox-active');
-            element.innerHTML = "";
-        }
-        else {
-            element.classList.add('checkbox-active');
-            element.innerHTML = "✓";
-        }
-        var index = 0;
-        for (var i = 0; i < model.length; i++)
-        {
-            var idCheck = "checkbox" + model[i].Id;
-            var ele = document.getElementById(idCheck);
-            if (ele.className.indexOf("checkbox-active") >= 0) {
-                index = index + 1;
+        function deleteBasketByItem(dom) {
+            var lstBasket = [];
+            var model = @Html.Raw(Json.Encode(Model));
+            for (var i = 0; i < model.length; i++) {
+                if (dom.id.indexOf(model[i].Id) >= 0) {
+                    lstBasket.push(model[i].Id);
+                    break;
+                }
+            }
+            if (lstBasket.length > 0) {
+                var prompt = new PromptBoxes();
+                prompt.confirm((isConfirm) => executeDeleteBasket(isConfirm, lstBasket), 'Bạn muốn xóa sản phẩm này?', 'Đồng ý', 'Hủy bỏ');
+            }
+            else {
+                showToasinette_Error_Top_Right('Chưa có mục nào được chọn');
             }
         }
-        var eleAllItem = document.getElementById('checkbox_all_item');
-        if (index == model.length) {
-            eleAllItem.classList.add('checkbox-active');
-            eleAllItem.innerHTML = "✓";
-        }
-        else {
-            eleAllItem.classList.remove('checkbox-active');
-            eleAllItem.innerHTML = "";
-        }
-
-        calculateTotalAmount();
-    }
-
-    function calculateTotalAmount() {
-        var numberPurchased = 0;
-        var total = 0;
-        var model = @Html.Raw(Json.Encode(Model));
-        for (var i = 0; i < model.length; i++) {
-            var idCheck = "checkbox" + model[i].Id;
-            var ele = document.getElementById(idCheck);
-            if (ele.className.indexOf("checkbox-active") >= 0) {
-                numberPurchased = numberPurchased + 1;
-                var finalPriceId = "final_price" + model[i].Id;
-                var price = document.getElementById(finalPriceId).innerHTML.replace('đ', '').replaceAll('.', '').trim();
-                total = total + Number(price);
-            }
-        }
-
-        const eleTemporaryPrice = document.getElementById('temporary_price');
-        eleTemporaryPrice.innerHTML = fomatToTypeMoney(Number(total));
-        var discountPrice = document.getElementById('discount_price').innerHTML.replace('đ', '').replaceAll('.', '').trim();
-        if (total > discountPrice) {
-            total = total - Number(discountPrice);
-        }
-        else {
-            total = 0;
-        }
-        const eleTotalMoney = document.getElementById('total_money');
-        eleTotalMoney.innerHTML = fomatToTypeMoney(Number(total));
-
-        const eleNumberPurchased = document.getElementById('number_purchased');
-        eleNumberPurchased.innerHTML = "MUA NGAY (" + numberPurchased + ")";
-        }
-
-    function deleteBasketBySelected() {
-        var lstBasket = [];
-        var model = @Html.Raw(Json.Encode(Model));
-        for (var i = 0; i < model.length; i++) {
-            var idCheck = "checkbox" + model[i].Id;
-            var ele = document.getElementById(idCheck);
-            if (ele.className.indexOf("checkbox-active") >= 0) {
-                lstBasket.push(model[i].Id);
-            }
-        }
-        if (lstBasket.length > 0) {
-            var prompt = new PromptBoxes();
-            prompt.confirm((isConfirm) => executeDeleteBasket(isConfirm, lstBasket), 'Bạn muốn xóa sản phẩm này?', 'Đồng ý', 'Hủy bỏ');
-        }
-        else {
-            showToasinette_Error_Top_Right('Chưa có mục nào được chọn');
-        }
-    }
-    function deleteBasketByItem(dom) {
-        var lstBasket = [];
-        var model = @Html.Raw(Json.Encode(Model));
-        for (var i = 0; i < model.length; i++) {
-            if (dom.id.indexOf(model[i].Id) >= 0) {
-                lstBasket.push(model[i].Id);
-                break;
-            }
-        }
-        if (lstBasket.length > 0) {
-            var prompt = new PromptBoxes();
-            prompt.confirm((isConfirm) => executeDeleteBasket(isConfirm, lstBasket), 'Bạn muốn xóa sản phẩm này?', 'Đồng ý', 'Hủy bỏ');
-        }
-        else {
-            showToasinette_Error_Top_Right('Chưa có mục nào được chọn');
-        }
-    }
-    function executeDeleteBasket(isConfirm, lstBasket) {
-        if (isConfirm) {
-            $.ajax({
-                type: "POST",
-                traditional: true,
-                async: false,
-                data:
-                {
-                    "lstBasket": lstBasket,
-                },
-                url: "@Url.Action("ExecuteDeleteBasket", "YourBasket")",
-                success: function (data)
-                {
-                    if (data.Success && data.Data) {
-                        awesomeAlert({
-                            header: true,
-                            type: 'success',
-                            title: 'Thành công!',
-                            message: 'Xóa sản phẩm thành công.',
-                            //bgColor: '#2dd284',
-                            img: '/assets/images/icon/success.svg',
-                            buttonOK: 'Xong!',
-                            closeStyle: 'circle'
-                        }).then(res => window.location.reload())
-                    }
-                    else {
-                        var message = "Đã có lỗi xảy ra."
-                        if (!isNullOrEmpty(data.Message)) {
-                            message = data.Message;
+        function executeDeleteBasket(isConfirm, lstBasket) {
+            if (isConfirm) {
+                $.ajax({
+                    type: "POST",
+                    traditional: true,
+                    async: false,
+                    data:
+                    {
+                        "lstBasket": lstBasket,
+                    },
+                    url: "@Url.Action("ExecuteDeleteBasket", "YourBasket")",
+                    success: function (data)
+                    {
+                        if (data.Success && data.Data) {
+                            awesomeAlert({
+                                header: true,
+                                type: 'success',
+                                title: 'Thành công!',
+                                message: 'Xóa sản phẩm thành công.',
+                                //bgColor: '#2dd284',
+                                img: '/assets/images/icon/success.svg',
+                                buttonOK: 'Xong!',
+                                closeStyle: 'circle'
+                            }).then(res => window.location.reload())
                         }
-                        awesomeAlert({
-                            header: true,
-                            type: 'error',
-                            title: 'Có lỗi!',
-                            message: message,
-                            //bgColor: '#2dd284',
-                            img: '/assets/images/icon/error.svg',
-                            buttonOK: 'Oke!',
-                            closeStyle: 'circle'
-                        }).then(res => false)
-                    }
-                },
-            })
+                        else {
+                            var message = "Đã có lỗi xảy ra."
+                            if (!isNullOrEmpty(data.Message)) {
+                                message = data.Message;
+                            }
+                            awesomeAlert({
+                                header: true,
+                                type: 'error',
+                                title: 'Có lỗi!',
+                                message: message,
+                                //bgColor: '#2dd284',
+                                img: '/assets/images/icon/error.svg',
+                                buttonOK: 'Oke!',
+                                closeStyle: 'circle'
+                            }).then(res => false)
+                        }
+                    },
+                })
+            }
         }
-    }
 
-</script>
+    </script>
 </body>
 </html>

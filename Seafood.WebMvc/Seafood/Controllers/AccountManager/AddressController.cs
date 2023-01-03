@@ -16,14 +16,14 @@ namespace Seafood.Controllers.AccountManager
         // GET: AddressList
         public ActionResult AddressList(string idItem = Constant.Id_So_Dia_Chi)
         {
+            var result = new List<Addresse>();
             var userData = GetCurrentUser();
             var uri = ApiUri.Get_GetListAddressByUserId + string.Format($"?userId={userData.UserId}");
             var addresses = provider.GetAsync<List<Addresse>>(uri);
-            if (addresses == null || addresses.Result == null || addresses.Result.Data == null)
+            if (addresses != null && addresses.Result != null && addresses.Result.Data != null)
             {
-                return View(new Addresse());
+                result = addresses.Result.Data;
             }
-            var result = addresses.Result.Data;
             ViewBag.IdItem = idItem;
             return View(result);
         }

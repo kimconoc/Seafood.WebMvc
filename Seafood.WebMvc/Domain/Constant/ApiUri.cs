@@ -36,6 +36,8 @@ namespace Domain.Constant
         public const string Get_GetBasketByUserId = "api/Basket/GetBasketByUserId";
         public const string Delete_DeleteBasketById = "api/Basket/DeleteBasketById";
 
+        public const string Get_GetVoucherByUserId = "api/Voucher/GetVoucherByUserId";
+
         #region MasterData
         public const string Get_GetInfoShopSeeFood = "api/MasterData/GetInfoShopSeeFood";
         public const string Get_GetListSeafoodPromotion = "api/MasterData/GetListSeafoodPromotion";

@@ -10,10 +10,23 @@
 <head>
     <link href="~/assets/css/demo/account/login.css" rel="stylesheet" />
     <style>
+        /*Ghi đè tự động điền*/
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus,
+        input:-webkit-autofill:active {
+            /*background*/
+            -webkit-box-shadow: 0 0 0 30px white inset !important;
+        }
+        input:-webkit-autofill {
+            /*color*/
+            -webkit-text-fill-color: none !important;
+        }
         /*Ghi đè class*/
         .box-login-form .box-input-login input:focus {
             outline: none;
         }
+
     </style>
 </head>
 <body>

@@ -33,137 +33,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="~/assets/css/demo/basket.css" rel="stylesheet" />
     <style>
-
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 10000; /* Sit on top */
-            padding-top: 100px; /* Location of the box */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-            flex-flow: row;
-            justify-content: center;
-        }
-
-            .modal .modal-dialog {
-                width: auto;
-            }
-
-                .modal .modal-dialog .modal-content {
-                    padding-top: 20px;
-                    width: 100%;
-                    max-width: 450px;
-                }
-
-                    .modal .modal-dialog .modal-content .container-voucher-active {
-                        border: 5px dotted #5cb85c !important;
-                    }
-
-                    .modal .modal-dialog .modal-content .container-voucher {
-                        border: 5px dotted #bbb;
-                        width: 90%;
-                        border-radius: 15px;
-                        margin: 0 auto;
-                        max-width: 400px;
-                        margin-bottom: 15px;
-                        /*font-family: Arial;*/
-                    }
-
-                        .modal .modal-dialog .modal-content .container-voucher .head {
-                            border-radius: 10px 10px 0 0;
-                            padding: 2px 16px;
-                            background-color: #dee8fc;
-                            display: flex;
-                            flex-flow: row;
-                            justify-content: center;
-                        }
-
-                            .modal .modal-dialog .modal-content .container-voucher .head .voucher-active {
-                                background-color: #5cb85c !important;
-                                color: white;
-                            }
-
-                            .modal .modal-dialog .modal-content .container-voucher .head .voucher {
-                                min-width: 150px;
-                                height: 35px;
-                                margin: 5px 0;
-                                padding: 0 25px 0 25px;
-                                background-color: #bbb;
-                                position: relative;
-                                text-align: center;
-                                display: flex;
-                                flex-flow: column;
-                                justify-content: center;
-                            }
-
-                                .modal .modal-dialog .modal-content .container-voucher .head .voucher::before {
-                                    content: '';
-                                    width: 15px;
-                                    height: 15px;
-                                    position: absolute;
-                                    border-radius: 12px;
-                                    background-color: #dee8fc;
-                                    top: 50%;
-                                    left: 0%;
-                                    transform: translate(-7px, -50%);
-                                }
-
-                                .modal .modal-dialog .modal-content .container-voucher .head .voucher::after {
-                                    content: '';
-                                    width: 15px;
-                                    height: 15px;
-                                    position: absolute;
-                                    border-radius: 12px;
-                                    background-color: #dee8fc;
-                                    top: 50%;
-                                    right: 0%;
-                                    transform: translate(7px, -50%);
-                                }
-
-                        .modal .modal-dialog .modal-content .container-voucher .content {
-                            padding: 10px 16px;
-                        }
-
-                            .modal .modal-dialog .modal-content .container-voucher .content span {
-                            }
-
-                        .modal .modal-dialog .modal-content .container-voucher .box-footer {
-                            border-radius: 0 0 10px 10px;
-                            display: flex;
-                            -webkit-box-align: center;
-                            align-items: center;
-                            -webkit-box-pack: justify;
-                            justify-content: space-between;
-                            padding: 2px 16px;
-                            padding-top: 8px;
-                            background-color: #dee8fc;
-                        }
-
-                            .modal .modal-dialog .modal-content .container-voucher .box-footer .footer .promo {
-                                background: rgb(235, 235, 240);
-                                padding: 5px;
-                            }
-
-                            .modal .modal-dialog .modal-content .container-voucher .box-footer .footer .expire {
-                                color: red;
-                            }
-
-                            .modal .modal-dialog .modal-content .container-voucher .box-footer .btn-core-accept {
-                                color: white;
-                                background: #5cb85c;
-                            }
-
-
-
-        .checkbox-active {
-            background-color: rgb(7, 171, 226);
-            content: "✓";
-        }
         /*ghi đè class*/
         a:focus {
             outline: none;
@@ -346,13 +215,18 @@
                         <strong>Voucher</strong>
                         <span>
                             bạn có
-                            <strong>1</strong>
+                            <strong>@vouchers.Where(x=> x.EndTime > DateTime.Now).Count()</strong>
                             voucher
                         </span>
                     </div>
                     <div class="show-more-voucher show-more">
-                        <i class="fa-solid fa-tags"></i>
-                        <strong>Voucher của bạn</strong>
+                        <div>
+                            <i class="fa-solid fa-tags"></i>
+                            <strong>Voucher của bạn</strong>
+                        </div>
+                        <div id="code_voucher_accept" class="voucher">
+                            
+                        </div>
                     </div>
                 </div>
                 <div class="box-your-price">
@@ -362,7 +236,7 @@
                     </div>
                     <div class="prices__item">
                         <span class="text-price-promotion">Giảm giá</span>
-                        <span id="discount_price" class="number-price-promotion">30.000 đ</span>
+                        <span id="discount_price" class="number-price-promotion">0 đ</span>
                     </div>
                     <div class="slim-line">
                     </div>
@@ -422,7 +296,7 @@
                                             <p>Mã đơn hàng: <span class="promo">@item0.Code</span></p>
                                             <p class="expire">@string.Format("Hết hạn: {0}/{1}/{2}", @item0.EndTime.Day, @item0.EndTime.Month, @item0.EndTime.Year)</p>
                                         </div>
-                                        <div class="btn-core-accept">
+                                        <div id="@item0.Id" onclick="acceptVoucher(this)" class="btn-core-accept">
                                             Áp dụng
                                         </div>
                                     </div>
@@ -453,7 +327,7 @@
                                             <p>Mã đơn hàng: <span class="promo">@item1.Code</span></p>
                                             <p class="expire">@string.Format("Hết hạn: {0}/{1}/{2}", @item1.EndTime.Day, @item1.EndTime.Month, @item1.EndTime.Year)</p>
                                         </div>
-                                        <div class="btn-core-accept">
+                                        <div id="@item1.Id" onclick="acceptVoucher(this)" class="btn-core-accept">
                                             Áp dụng
                                         </div>
                                     </div>
@@ -481,7 +355,7 @@
                                     <div class="box-footer">
                                         <div class="footer">
                                             <p>Mã đơn hàng: <span class="promo">@item.Code</span></p>
-                                            <p class="expire">@string.Format("Hết hạn: {0}/{1}/{2}", @item.EndTime.Day, @item.EndTime.Month, @item.EndTime.Year)</p>
+                                            <p class="expire">@string.Format("Đã hết hạn: {0}/{1}/{2}", @item.EndTime.Day, @item.EndTime.Month, @item.EndTime.Year)</p>
                                         </div>
                                     </div>
 
@@ -504,6 +378,7 @@
     <script>
 
         var modal = document.getElementById("modalVoucher");
+        var voucher = {};
 
         $(document).ready(function () {
             showProductPromotion();
@@ -545,6 +420,23 @@
         });
         function CloseModalVoucher() {
             modal.style.display = "none";
+        }
+        function acceptVoucher(dom) {
+            var vouchers = @Html.Raw(Json.Encode(vouchers));
+            for (var i = 0; i < vouchers.length; i++) {
+                if (dom.id == vouchers[i].Id) {
+                    voucher = vouchers[i];
+                    var doc = document.getElementById('code_voucher_accept');
+                    doc.style.display = "flex";
+                    doc.innerText = voucher.Code;
+                    document.getElementById('discount_price').innerText = fomatToTypeMoney(voucher.ReductionAmount);
+                    modal.style.display = "none";
+                    var content = "Áp dụng mã voucher " + voucher.Code + " thành công!";
+                    showToasinette_Success_Top_Right(content);
+                    break;
+                }
+            }
+            calculateTotalAmount();
         }
 
         function pageNavigationProduct(dom) {

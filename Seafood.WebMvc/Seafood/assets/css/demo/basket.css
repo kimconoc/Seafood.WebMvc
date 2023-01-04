@@ -433,6 +433,11 @@
     line-height:0;
 }
 
+.checkbox-active {
+    background-color: rgb(7, 171, 226);
+    content: '✓';
+}
+
 .box-info__box-price {
     text-align: center !important;
 }
@@ -559,8 +564,8 @@
         display: flex;
         -webkit-box-align: center;
         align-items: center;
-        -webkit-box-pack: justify;
         /*Chia đều khoảng và cái đứa cái cuối về sát lề*/
+        -webkit-box-pack: justify;
         justify-content: space-between;
     }
 
@@ -573,8 +578,48 @@
         line-height: 20px;
         cursor: pointer;
         gap: 10px;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
     }
 
+        .box-your-voucher .show-more .voucher {
+            min-width: 120px;
+            height: 32px;
+            margin: 5px 0;
+            padding: 0 25px 0 25px;
+            background-color: #5cb85c;
+            color: white;
+            position: relative;
+            text-align: center;
+            display: flex;
+            display: none;
+            flex-flow: column;
+            justify-content: center;
+        }
+
+            .box-your-voucher .show-more .voucher::before {
+                content: '';
+                width: 15px;
+                height: 15px;
+                position: absolute;
+                border-radius: 12px;
+                background-color: white;
+                top: 50%;
+                left: 0%;
+                transform: translate(-7px, -50%);
+            }
+
+            .box-your-voucher .show-more .voucher::after {
+                content: '';
+                width: 15px;
+                height: 15px;
+                position: absolute;
+                border-radius: 12px;
+                background-color: white;
+                top: 50%;
+                right: 0%;
+                transform: translate(7px, -50%);
+            }
 .box-your-price {
     padding: 15px;
     margin-top: 10px;
@@ -655,3 +700,127 @@
             position: relative;
             display: block;
         }
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 10000; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    flex-flow: row;
+    justify-content: center;
+}
+
+    .modal .modal-dialog {
+        width: auto;
+    }
+
+        .modal .modal-dialog .modal-content {
+            padding-top: 20px;
+            width: 100%;
+            max-width: 450px;
+        }
+
+            .modal .modal-dialog .modal-content .container-voucher-active {
+                border: 5px dotted #5cb85c !important;
+            }
+
+            .modal .modal-dialog .modal-content .container-voucher {
+                border: 5px dotted #bbb;
+                width: 90%;
+                border-radius: 15px;
+                margin: 0 auto;
+                max-width: 400px;
+                margin-bottom: 15px;
+                /*font-family: Arial;*/
+            }
+
+                .modal .modal-dialog .modal-content .container-voucher .head {
+                    border-radius: 10px 10px 0 0;
+                    padding: 2px 16px;
+                    background-color: #dee8fc;
+                    display: flex;
+                    flex-flow: row;
+                    justify-content: center;
+                }
+
+                    .modal .modal-dialog .modal-content .container-voucher .head .voucher-active {
+                        background-color: #5cb85c !important;
+                        color: white;
+                    }
+
+                    .modal .modal-dialog .modal-content .container-voucher .head .voucher {
+                        min-width: 150px;
+                        height: 35px;
+                        margin: 5px 0;
+                        padding: 0 25px 0 25px;
+                        background-color: #bbb;
+                        position: relative;
+                        text-align: center;
+                        display: flex;
+                        flex-flow: column;
+                        justify-content: center;
+                    }
+
+                        .modal .modal-dialog .modal-content .container-voucher .head .voucher::before {
+                            content: '';
+                            width: 15px;
+                            height: 15px;
+                            position: absolute;
+                            border-radius: 12px;
+                            background-color: #dee8fc;
+                            top: 50%;
+                            left: 0%;
+                            transform: translate(-7px, -50%);
+                        }
+
+                        .modal .modal-dialog .modal-content .container-voucher .head .voucher::after {
+                            content: '';
+                            width: 15px;
+                            height: 15px;
+                            position: absolute;
+                            border-radius: 12px;
+                            background-color: #dee8fc;
+                            top: 50%;
+                            right: 0%;
+                            transform: translate(7px, -50%);
+                        }
+
+                .modal .modal-dialog .modal-content .container-voucher .content {
+                    padding: 10px 16px;
+                }
+
+                    .modal .modal-dialog .modal-content .container-voucher .content span {
+                    }
+
+                .modal .modal-dialog .modal-content .container-voucher .box-footer {
+                    border-radius: 0 0 10px 10px;
+                    display: flex;
+                    -webkit-box-align: center;
+                    align-items: center;
+                    -webkit-box-pack: justify;
+                    justify-content: space-between;
+                    padding: 2px 16px;
+                    padding-top: 8px;
+                    background-color: #dee8fc;
+                }
+
+                    .modal .modal-dialog .modal-content .container-voucher .box-footer .footer .promo {
+                        background: rgb(235, 235, 240);
+                        padding: 5px;
+                    }
+
+                    .modal .modal-dialog .modal-content .container-voucher .box-footer .footer .expire {
+                        color: red;
+                    }
+
+                    .modal .modal-dialog .modal-content .container-voucher .box-footer .btn-core-accept {
+                        color: white;
+                        background: #5cb85c;
+                    }

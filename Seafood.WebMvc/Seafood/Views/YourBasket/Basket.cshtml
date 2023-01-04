@@ -379,6 +379,7 @@
 
         var modal = document.getElementById("modalVoucher");
         var voucher = {};
+        var numberPurchased = 0;
 
         $(document).ready(function () {
             showProductPromotion();
@@ -612,37 +613,6 @@
             calculateTotalAmount();
         }
 
-        function calculateTotalAmount() {
-            var numberPurchased = 0;
-            var total = 0;
-            var model = @Html.Raw(Json.Encode(Model));
-            for (var i = 0; i < model.length; i++) {
-                var idCheck = "checkbox" + model[i].Id;
-                var ele = document.getElementById(idCheck);
-                if (ele.className.indexOf("checkbox-active") >= 0) {
-                    numberPurchased = numberPurchased + 1;
-                    var finalPriceId = "final_price" + model[i].Id;
-                    var price = document.getElementById(finalPriceId).innerHTML.replace('đ', '').replaceAll('.', '').trim();
-                    total = total + Number(price);
-                }
-            }
-
-            const eleTemporaryPrice = document.getElementById('temporary_price');
-            eleTemporaryPrice.innerHTML = fomatToTypeMoney(Number(total));
-            var discountPrice = document.getElementById('discount_price').innerHTML.replace('đ', '').replaceAll('.', '').trim();
-            if (total > discountPrice) {
-                total = total - Number(discountPrice);
-            }
-            else {
-                total = 0;
-            }
-            const eleTotalMoney = document.getElementById('total_money');
-            eleTotalMoney.innerHTML = fomatToTypeMoney(Number(total));
-
-            const eleNumberPurchased = document.getElementById('number_purchased');
-            eleNumberPurchased.innerHTML = "MUA NGAY (" + numberPurchased + ")";
-            }
-
         function deleteBasketBySelected() {
             var lstBasket = [];
             var model = @Html.Raw(Json.Encode(Model));
@@ -723,6 +693,120 @@
                 })
             }
         }
+
+        function calculateTotalAmount() {
+            numberPurchased = 0;
+            var total = 0;
+            var model = @Html.Raw(Json.Encode(Model));
+            for (var i = 0; i < model.length; i++) {
+                var idCheck = "checkbox" + model[i].Id;
+                var ele = document.getElementById(idCheck);
+                if (ele.className.indexOf("checkbox-active") >= 0) {
+                    numberPurchased = numberPurchased + 1;
+                    var finalPriceId = "final_price" + model[i].Id;
+                    var price = document.getElementById(finalPriceId).innerHTML.replace('đ', '').replaceAll('.', '').trim();
+                    total = total + Number(price);
+                }
+            }
+
+            const eleTemporaryPrice = document.getElementById('temporary_price');
+            eleTemporaryPrice.innerHTML = fomatToTypeMoney(Number(total));
+            var discountPrice = document.getElementById('discount_price').innerHTML.replace('đ', '').replaceAll('.', '').trim();
+            if (total > discountPrice) {
+                total = total - Number(discountPrice);
+            }
+            else {
+                total = 0;
+            }
+            const eleTotalMoney = document.getElementById('total_money');
+            eleTotalMoney.innerHTML = fomatToTypeMoney(Number(total));
+
+            const eleNumberPurchased = document.getElementById('number_purchased');
+            eleNumberPurchased.innerHTML = "MUA NGAY (" + numberPurchased + ")";
+        }
+
+        $('.order-add-to-cart').click(function (e) {
+            if (numberPurchased == 0) {
+                showToasinette_Error_Top_Right('Bạn chưa tích chọn sản phẩm.');
+                return;
+            }
+            debugger
+            var orders = [];
+            var model = @Html.Raw(Json.Encode(Model));
+            for (var i = 0; i < model.length; i++) {
+                var idCheck = "checkbox" + model[i].Id;
+                var ele = document.getElementById(idCheck);
+                if (ele.className.indexOf("checkbox-active") >= 0)
+                {
+                    var finalQuantityId = "final_quantity" + model[i].Id;
+
+                    var userId = @Html.Raw(Json.Encode(user.UserId));
+                    var productId = model[i].ProductId;
+                    var prodProcessingId = model[i].ProdProcessingId;
+                    var codeVoucher = voucher.Code;
+                    var typeVoucher = voucher.TypeVoucher;
+                    var quantity = document.getElementById(finalQuantityId).value;
+                    var totalPrice = document.getElementById('total_money').innerHTML.replace('đ', '').replaceAll('.', '').trim();
+                    var order = {
+                        UserId: userId,
+                        ProductId: productId,
+                        ProdProcessingId: prodProcessingId,
+                        CodeVoucher: codeVoucher,
+                        TypeVoucher: typeVoucher,
+                        Quantity: quantity,
+                        TotalPrice: totalPrice,
+                    };
+
+                    orders.push(order);
+                }
+            }
+            if (orders.length == 0) {
+                showToasinette_Error_Top_Right('Chưa có sản phẩm nào được chọn.');
+                return;
+            }
+
+            $.ajax({
+                    type: "POST",
+                    traditional: true,
+                    async: false,
+                    data:
+                    {
+                        "orders": orders,
+                    },
+                    url: "@Url.Action("CreateOrderUserId", "YourBasket")",
+                    success: function (data)
+                    {
+                        if (data.Success && data.Data) {
+                            awesomeAlert({
+                                header: true,
+                                type: 'success',
+                                title: 'Thành công!',
+                                message: 'Xóa sản phẩm thành công.',
+                                //bgColor: '#2dd284',
+                                img: '/assets/images/icon/success.svg',
+                                buttonOK: 'Xong!',
+                                closeStyle: 'circle'
+                            }).then(res => window.location.reload())
+                        }
+                        else {
+                            var message = "Đã có lỗi xảy ra."
+                            if (!isNullOrEmpty(data.Message)) {
+                                message = data.Message;
+                            }
+                            awesomeAlert({
+                                header: true,
+                                type: 'error',
+                                title: 'Có lỗi!',
+                                message: message,
+                                //bgColor: '#2dd284',
+                                img: '/assets/images/icon/error.svg',
+                                buttonOK: 'Oke!',
+                                closeStyle: 'circle'
+                            }).then(res => false)
+                        }
+                    },
+                })
+        });
 
     </script>
 </body>

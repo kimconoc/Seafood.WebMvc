@@ -32,6 +32,8 @@ namespace Domain.Constant
         public const string Post_UpdateAddressByUserId = "api/Address/UpdateAddressByUserId";
         public const string Delete_DeleteAddressById = "api/Address/DeleteAddressById";
 
+        public const string Post_CreateOrderUserId = "api/Order/CreateOrderUserId";
+
         public const string Post_AddProductToBasket = "api/Basket/AddProductToBasket";
         public const string Get_GetBasketByUserId = "api/Basket/GetBasketByUserId";
         public const string Delete_DeleteBasketById = "api/Basket/DeleteBasketById";

@@ -41,5 +41,21 @@ namespace Seafood.Controllers
             }
             return Json(Success_Request(isDeleted.Result.Data));
         }
+        [HttpPost]
+        public ActionResult CreateOrderUserId(List<Order> orders)
+        {
+            if (orders == null || !orders.Any())
+            {
+                return Json(Bad_Request());
+            }
+
+            //var iscreate = provider.PostAsync<bool>(ApiUri.Post_CreateOrderUserId, orders);
+            //if (iscreate == null || iscreate.Result == null || !iscreate.Result.Success)
+            //{
+            //    return Json(Server_Error());
+            //}
+            //return Json(Success_Request(iscreate.Result.Data));
+            return Json(Success_Request(true));
+        }
     }
 }

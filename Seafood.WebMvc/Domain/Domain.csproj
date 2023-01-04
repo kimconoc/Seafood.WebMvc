@@ -58,6 +58,7 @@
     <Compile Include="Models\ResponseModel\Addresse.cs" />
     <Compile Include="Models\ResponseModel\Basket.cs" />
     <Compile Include="Models\ResponseModel\Image.cs" />
+    <Compile Include="Models\ResponseModel\Order.cs" />
     <Compile Include="Models\ResponseModel\ProdDetailt.cs" />
     <Compile Include="Models\ResponseModel\Product.cs" />
     <Compile Include="Models\ResponseModel\Region.cs" />

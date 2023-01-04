@@ -13,6 +13,7 @@ namespace Domain.Models.ResponseModel
         public string ProductName { get; set; }
         public Guid ProductId { get; set; }
         public string ProductDescription { get; set; }
+        public Guid ProdProcessingId { get; set; }
         public string ProdProcessingName { get; set; }
         public int Price { get; set; }
         public int PriceSale { get; set; }

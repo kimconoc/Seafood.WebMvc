@@ -713,7 +713,8 @@
             eleTemporaryPrice.innerHTML = fomatToTypeMoney(Number(total));
             var discountPrice = document.getElementById('discount_price').innerHTML.replace('đ', '').replaceAll('.', '').trim();
             if (total > discountPrice) {
-                total = total - Number(discountPrice);
+                if (voucher.ConditionsApply == null || total > voucher.ConditionsApply)
+                    total = total - Number(discountPrice);
             }
             else {
                 total = 0;
@@ -730,7 +731,7 @@
                 showToasinette_Error_Top_Right('Bạn chưa tích chọn sản phẩm.');
                 return;
             }
-            debugger
+
             var orders = [];
             var model = @Html.Raw(Json.Encode(Model));
             for (var i = 0; i < model.length; i++) {
@@ -765,13 +766,15 @@
                 return;
             }
 
+            jsonOrders = JSON.stringify(orders);
+
             $.ajax({
                     type: "POST",
                     traditional: true,
                     async: false,
                     data:
                     {
-                        "orders": orders,
+                        "jsonOrders": jsonOrders,
                     },
                     url: "@Url.Action("CreateOrderUserId", "YourBasket")",
                     success: function (data)
@@ -781,7 +784,7 @@
                                 header: true,
                                 type: 'success',
                                 title: 'Thành công!',
-                                message: 'Xóa sản phẩm thành công.',
+                                message: 'Đặt hàng thành công!',
                                 //bgColor: '#2dd284',
                                 img: '/assets/images/icon/success.svg',
                                 buttonOK: 'Xong!',

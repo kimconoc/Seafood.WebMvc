@@ -355,11 +355,6 @@
 
             if (item.id != null && item.id != undefined && item.id != '')
             {
-                ShowOverlay(true);
-                var delayInMilliseconds = 5000;
-                setTimeout(function () {
-                    hideOverlay();
-                }, delayInMilliseconds);
                 window.location = "/ProdDetailt/Detailt?prodId=" + item.id;
             }
             else

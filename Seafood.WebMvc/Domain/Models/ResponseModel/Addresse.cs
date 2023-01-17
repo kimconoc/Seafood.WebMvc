@@ -19,6 +19,7 @@ namespace Domain.Models.ResponseModel
         public string CodeWard { get; set; }
         public string NameWard { get; set; }
         public int TypeAddress { get; set; }
+        public int TypeAddressDetail { get; set; }
         public bool IsAddressMain { get; set; }
         public string Address { get; set; }
         public string AddressRegion { get; set; }

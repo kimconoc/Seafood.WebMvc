@@ -9,6 +9,7 @@ namespace Domain.Models.BaseModel
     public class VBaseModel : IEntity
     {
         public Guid Id { get; set; }
+        public int TypeAddress { get; set; }
         public bool IsDeleted { get; set; }
         public string DeletedBy { get; set; }
         public DateTime? DeletedAt { get; set; }

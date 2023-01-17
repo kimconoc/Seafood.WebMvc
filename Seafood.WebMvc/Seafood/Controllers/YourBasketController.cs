@@ -13,7 +13,7 @@ namespace Seafood.Controllers
     [SessionAuthen]
     public class YourBasketController : BaseController
     {
-        public ActionResult Basket()
+        public ActionResult Basket(Guid? addressSeafoodId)
         {
             var userData = GetCurrentUser();
             var uri = ApiUri.Get_GetBasketByUserId + string.Format($"?userId={userData.UserId}");
@@ -24,12 +24,36 @@ namespace Seafood.Controllers
             }
             var result = baskets.Result.Data;
 
-            var uriAddress = ApiUri.Get_GetListAddressByUserId + string.Format($"?userId={userData.UserId}");
-            var addresses = provider.GetAsync<List<Addresse>>(uriAddress);
-            if (addresses != null && addresses.Result != null && addresses.Result.Data != null)
+            if(addressSeafoodId == null || addressSeafoodId ==  Guid.Empty)
             {
-                ViewBag.Address = addresses.Result.Data.FirstOrDefault(x => x.IsAddressMain);
-            }
+                var uriAddress = ApiUri.Get_GetListAddressByUserId + string.Format($"?userId={userData.UserId}");
+                var addresses = provider.GetAsync<List<Addresse>>(uriAddress);
+                if (addresses != null && addresses.Result != null && addresses.Result.Data != null)
+                {
+                    ViewBag.Address = addresses.Result.Data.FirstOrDefault(x => x.IsAddressMain);
+                }
+            }  
+            else
+            {
+
+                var shopSeafoods= provider.GetAsync<List<ShopSeafood>>(ApiUri.Get_GetInfoShopSeeFood);
+                if (shopSeafoods != null && shopSeafoods.Result != null && shopSeafoods.Result.Data != null)
+                {
+                    var shopSeafood = shopSeafoods.Result.Data.FirstOrDefault(x => x.Id == addressSeafoodId);
+                    Addresse addresse = new Addresse()
+                    {
+                        Id = shopSeafood.Id,
+                        FullName = shopSeafood.Name,
+                        Mobile = shopSeafood.Mobile,
+                        TypeAddress = shopSeafood.TypeAddress,
+                        Address = shopSeafood.Address,
+                        NameWard = shopSeafood.NameWard,
+                        NameDistrict = shopSeafood.NameDistrict,
+                        NameRegion = shopSeafood.NameRegion,
+                    };
+                    ViewBag.Address = addresse;
+                }
+            }    
             return View(result);
         }
         [HttpPost]

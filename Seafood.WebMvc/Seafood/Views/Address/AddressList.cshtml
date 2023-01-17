@@ -2,8 +2,11 @@
 @using Domain.Extentions;
 @using Domain.Enums;
 @using Domain.Models.ResponseModel;
+@using Service.Helpers;
 @{
     Layout = "~/Views/Shared/_LayoutAccountManager.cshtml";
+    var masterDataHelper = new MasterDataHelper();
+    var getInfoShopSeeFood = masterDataHelper.GetInfoShopSeeFood();
 }
 @model List<Addresse>
 <html>
@@ -38,13 +41,13 @@
                         <span>
                             Địa chỉ:
                             <strong>
-                                @switch (obj.TypeAddress)
+                                @switch (obj.TypeAddressDetail)
                                 {
-                                    case (int)TypeAddressEnum.NhaRieng:
-                                        strTypeAddress = TypeAddressEnum.NhaRieng.GetDescription();
+                                    case (int)TypeAddressDetailEnum.NhaRieng:
+                                        strTypeAddress = TypeAddressDetailEnum.NhaRieng.GetDescription();
                                         break;
-                                    case (int)TypeAddressEnum.CoQuan:
-                                        strTypeAddress = TypeAddressEnum.CoQuan.GetDescription();
+                                    case (int)TypeAddressDetailEnum.CoQuan:
+                                        strTypeAddress = TypeAddressDetailEnum.CoQuan.GetDescription();
                                         break;
                                     default:
                                         break;
@@ -63,51 +66,87 @@
                 </div>
             }
         }
-        @foreach (var item in Model)
-        {
-            strTypeAddress = string.Empty;
-            if (!item.IsAddressMain)
+
+        @{
+            foreach (var item in Model)
             {
-                <div class="box-address">
-                    <div class="name">
-                        <span>@item.FullName</span>
+                strTypeAddress = string.Empty;
+                if (!item.IsAddressMain)
+                {
+                    <div class="box-address">
+                        <div class="name">
+                            <span>@item.FullName</span>
+                        </div>
+                        <div class="content">
+                            <span>
+                                Địa chỉ:
+                                <strong>
+                                    @switch (item.TypeAddressDetail)
+                                    {
+                                        case (int)TypeAddressDetailEnum.NhaRieng:
+                                            strTypeAddress = TypeAddressDetailEnum.NhaRieng.GetDescription();
+                                            break;
+                                        case (int)TypeAddressDetailEnum.CoQuan:
+                                            strTypeAddress = TypeAddressDetailEnum.CoQuan.GetDescription();
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                    @strTypeAddress
+                                </strong>
+                                @string.Format(item.Address + ", " + item.NameWard + ", " + item.NameDistrict + ", " + item.NameRegion)
+                            </span>
+                            <span>
+                                Số điện thoại: @item.Mobile
+                            </span>
+                        </div>
+                        <div class="click-continue">
+                            <button id="@item.Id" onclick="editAddress(this)" class="btn-core">Sửa</button>
+                            <button id="@item.Id" onclick="deleteAddress(this)" class="btn-core-delete">Xóa</button>
+                        </div>
                     </div>
-                    <div class="content">
-                        <span>
-                            Địa chỉ:
-                            <strong>
-                                @switch (item.TypeAddress)
-                                {
-                                    case (int)TypeAddressEnum.NhaRieng:
-                                        strTypeAddress = TypeAddressEnum.NhaRieng.GetDescription();
-                                        break;
-                                    case (int)TypeAddressEnum.CoQuan:
-                                        strTypeAddress = TypeAddressEnum.CoQuan.GetDescription();
-                                        break;
-                                    default:
-                                        break;
-                                }
-                                @strTypeAddress
-                            </strong>
-                            @string.Format(item.Address + ", " + item.NameWard + ", " + item.NameDistrict + ", " + item.NameRegion)
-                        </span>
-                        <span>
-                            Số điện thoại: @item.Mobile
-                        </span>
-                    </div>
-                    <div class="click-continue">
-                        <button id="@item.Id" onclick="editAddress(this)" class="btn-core">Sửa</button>
-                        <button id="@item.Id" onclick="deleteAddress(this)" class="btn-core-delete">Xóa</button>
-                    </div>
-                </div>
+                }
             }
         }
-        @if (Model.Count == 0)
-        {
-            <div class="box-no-data-found">
-                <img src="@Constant.Link_Empty_Order">
-                <span>Không có địa chỉ</span>
-            </div>
+
+        @{
+            if (getInfoShopSeeFood != null && getInfoShopSeeFood.Any())
+            {
+                foreach (var item in getInfoShopSeeFood)
+                {
+                    <div class="box-address">
+                        <div class="name">
+                            <span>@item.Name</span>
+                            <span class="default-address">Lấy tại cửa hàng</span>
+                        </div>
+                        <div class="content">
+                            <span>
+                                Địa chỉ:
+                                <strong>
+                                    Cửa hàng
+                                </strong>
+                                @string.Format(item.Address + ", " + item.NameWard + ", " + item.NameDistrict + ", " + item.NameRegion)
+                            </span>
+                            <span>
+                                Số điện thoại: @item.Mobile
+                            </span>
+                        </div>
+                        <div class="click-continue">
+                            <button id="@item.Id" onclick="selectAddress(this)" class="btn-core">Chọn làm địa chỉ</button>
+                        </div>
+                    </div>
+                }
+            }
+        }
+
+        @{
+            if (Model.Count == 0 && (getInfoShopSeeFood != null || getInfoShopSeeFood.Any()))
+            {
+                <div class="box-no-data-found">
+                    <img src="@Constant.Link_Empty_Order">
+                    <span>Không có địa chỉ</span>
+                </div>
+            }
         }
     </div>
     <script>
@@ -177,6 +216,10 @@
                     },
                 })
             }
+        }
+
+        function selectAddress(dom) {
+            window.location = "/YourBasket/Basket?addressSeafoodId=" + dom.id;
         }
     </script>
 </body>

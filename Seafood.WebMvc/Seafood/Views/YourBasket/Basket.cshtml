@@ -185,16 +185,26 @@
                             </div>
                             <div class="address">
                                 <strong>
-                                    @switch (address.TypeAddress)
-                                    {
-                                        case (int)TypeAddressEnum.NhaRieng:
-                                            strTypeAddress = TypeAddressEnum.NhaRieng.GetDescription();
-                                            break;
-                                        case (int)TypeAddressEnum.CoQuan:
-                                            strTypeAddress = TypeAddressEnum.CoQuan.GetDescription();
-                                            break;
-                                        default:
-                                            break;
+                                    @{ 
+                                        if(address.TypeAddress == (int)TypeAddressEnum.Seafood)
+                                        {
+                                            strTypeAddress = "Cửa hàng";
+                                        }
+                                        else if(address.TypeAddress == (int)TypeAddressEnum.User)
+                                        {
+                                            switch (address.TypeAddressDetail)
+                                            {
+                                                case (int)TypeAddressDetailEnum.NhaRieng:
+                                                    strTypeAddress = TypeAddressDetailEnum.NhaRieng.GetDescription();
+                                                    break;
+                                                case (int)TypeAddressDetailEnum.CoQuan:
+                                                    strTypeAddress = TypeAddressDetailEnum.CoQuan.GetDescription();
+                                                    break;
+                                                default:
+                                                    break;
+                                            }
+                                        }
+
                                     }
                                     @strTypeAddress
                                 </strong>
@@ -732,6 +742,11 @@
                 return;
             }
 
+            if (isNullOrEmpty(@Html.Raw(Json.Encode(address)))) {
+                showToasinette_Error_Top_Right('Bạn chưa chọn địa chỉ  giao hàng.');
+                return;
+            }
+
             var orders = [];
             var model = @Html.Raw(Json.Encode(Model));
             for (var i = 0; i < model.length; i++) {
@@ -744,6 +759,8 @@
                     var userId = @Html.Raw(Json.Encode(user.UserId));
                     var productId = model[i].ProductId;
                     var prodProcessingId = model[i].ProdProcessingId;
+                    var addressId = @Html.Raw(Json.Encode(address?.Id));
+                    var typeAddress = @Html.Raw(Json.Encode(address?.TypeAddress));
                     var codeVoucher = voucher.Code;
                     var typeVoucher = voucher.TypeVoucher;
                     var quantity = document.getElementById(finalQuantityId).value;
@@ -752,6 +769,8 @@
                         UserId: userId,
                         ProductId: productId,
                         ProdProcessingId: prodProcessingId,
+                        AddressId: addressId,
+                        TypeAddress: typeAddress,
                         CodeVoucher: codeVoucher,
                         TypeVoucher: typeVoucher,
                         Quantity: quantity,

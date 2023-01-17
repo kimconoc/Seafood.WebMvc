@@ -10,6 +10,7 @@ namespace Domain.Models.ResponseModel
     public class Order : VBaseModel
     {
         public Guid UserId { get; set; }
+        public Guid AddressId { get; set; }
         public Guid ProductId { get; set; }
         public Guid ProdProcessingId { get; set; }
         public string Code { get; set; }
@@ -22,6 +23,7 @@ namespace Domain.Models.ResponseModel
         public DateTime? TimeDeliveryStart { get; set; }
         public DateTime? EstimateDeliveryTime { get; set; }
         public DateTime? SuccessfulDeliveryTime { get; set; }
+        public DateTime? CancellationTime { get; set; }
         public string Note { get; set; }
     }
 }

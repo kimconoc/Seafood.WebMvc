@@ -35,7 +35,7 @@ namespace Seafood.Controllers.AccountManager
 
         [HttpPost]
         public ActionResult CreateNewAddress(
-            string fullName, string mobile, string codeRegion, string codeDistrict, string codeWard, int typeAddress,bool isAddressMain, string address)
+            string fullName, string mobile, string codeRegion, string codeDistrict, string codeWard, int typeAddressDetail, bool isAddressMain, string address)
         {
             if (string.IsNullOrEmpty(mobile) || !Helper.ValidPhoneNumer(mobile))
             {
@@ -50,7 +50,7 @@ namespace Seafood.Controllers.AccountManager
                 CodeRegion = codeRegion,
                 CodeDistrict = codeDistrict,
                 CodeWard = codeWard,
-                TypeAddress = typeAddress,
+                TypeAddressDetail = typeAddressDetail,
                 IsAddressMain = isAddressMain,
                 Address = address,
             };
@@ -79,7 +79,7 @@ namespace Seafood.Controllers.AccountManager
         }
         [HttpPost]
         public ActionResult UpdateAddress(Guid id,
-            string fullName, string mobile, string codeRegion, string codeDistrict, string codeWard, int typeAddress, bool isAddressMain, string address)
+            string fullName, string mobile, string codeRegion, string codeDistrict, string codeWard, int typeAddressDetail, bool isAddressMain, string address)
         {
             if (string.IsNullOrEmpty(mobile) || !Helper.ValidPhoneNumer(mobile))
             {
@@ -95,7 +95,7 @@ namespace Seafood.Controllers.AccountManager
                 CodeRegion = codeRegion,
                 CodeDistrict = codeDistrict,
                 CodeWard = codeWard,
-                TypeAddress = typeAddress,
+                TypeAddressDetail = typeAddressDetail,
                 IsAddressMain = isAddressMain,
                 Address = address,
             };

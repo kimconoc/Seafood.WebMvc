@@ -73,16 +73,16 @@
                     <div class="box-check-radio-option">
                         @switch (Model.TypeAddress)
                         {
-                            case (int)TypeAddressEnum.NhaRieng:
-                                <input type="radio" id="type_address1" name="radio_type_address" value="@((int)TypeAddressEnum.NhaRieng)" checked="checked" />
+                            case (int)TypeAddressDetailEnum.NhaRieng:
+                                <input type="radio" id="type_address1" name="radio_type_address" value="@((int)TypeAddressDetailEnum.NhaRieng)" checked="checked" />
                                 <label for="contactChoice1">Nhà riêng / Chung cư</label>
-                                <input type="radio" id="type_address2" name="radio_type_address" value="@((int)TypeAddressEnum.CoQuan)" />
+                                <input type="radio" id="type_address2" name="radio_type_address" value="@((int)TypeAddressDetailEnum.CoQuan)" />
                                 <label for="contactChoice2">Cơ quan / Công ty</label>
                                 break;
-                            case (int)TypeAddressEnum.CoQuan:
-                                <input type="radio" id="type_address1" name="radio_type_address" value="@((int)TypeAddressEnum.NhaRieng)" />
+                            case (int)TypeAddressDetailEnum.CoQuan:
+                                <input type="radio" id="type_address1" name="radio_type_address" value="@((int)TypeAddressDetailEnum.NhaRieng)" />
                                 <label for="contactChoice1">Nhà riêng / Chung cư</label>
-                                <input type="radio" id="type_address2" name="radio_type_address" value="@((int)TypeAddressEnum.CoQuan)" checked="checked" />
+                                <input type="radio" id="type_address2" name="radio_type_address" value="@((int)TypeAddressDetailEnum.CoQuan)" checked="checked" />
                                 <label for="contactChoice2">Cơ quan / Công ty</label>
                                 break;
                             default:
@@ -229,7 +229,7 @@
             var codeRegion = $('#regionId').val();
             var codeDistrict = $('#districtId').val();
             var codeWard = $('#wardId').val();
-            var typeAddress = $("input[type='radio'][name='radio_type_address']:checked").val();
+            var typeAddressDetail = $("input[type='radio'][name='radio_type_address']:checked").val();
             if (document.getElementById("isAddressMain").checked)
             {
                 var isAddressMain = true;
@@ -257,7 +257,7 @@
                     "codeRegion": codeRegion,
                     "codeDistrict": codeDistrict,
                     "codeWard": codeWard,
-                    "typeAddress": typeAddress,
+                    "typeAddressDetail": typeAddressDetail,
                     "isAddressMain": isAddressMain,
                     "address": address,
                 },
